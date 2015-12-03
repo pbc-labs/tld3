@@ -1,0 +1,25 @@
+{
+  "name": "d3fault",
+  "version": "1.0.0",
+  "description": "An expressive, modular library for D3.js.",
+  "main": "src/d3fault.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbc-labs/d3fault.git"
+  },
+  "keywords": [
+    "d3",
+    "chart",
+    "data",
+    "visualizations"
+  ],
+  "author": "Banun Atina Idris <banun.a.idris@gmail.com> (http://bthehuman.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pbc-labs/d3fault/issues"
+  },
+  "homepage": "https://github.com/pbc-labs/d3fault#readme"
+}

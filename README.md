@@ -6,8 +6,8 @@
 
   - __Product Owner__: [Preethi Kasireddy](https://github.com/iam-peekay)
   - __Scrum Master__: [Banun Atina Idris](https://github.com/banunatina)
-  - __Lead Developer__: [Colin Seale](https://github.com/colineseale) 
-  - __Development Team Members__: [Preethi Kasireddy](https://github.com/iam-peekay), [Banun Atina Idris](https://github.com/banunatina), [Colin Seale](https://github.com/colineseale) 
+  - __Lead Developer__: [Colin Seale](https://github.com/ceseale) 
+  - __Development Team Members__: [Preethi Kasireddy](https://github.com/iam-peekay), [Banun Atina Idris](https://github.com/banunatina), [Colin Seale](https://github.com/ceseale) 
 
 ## Table of Contents
 
