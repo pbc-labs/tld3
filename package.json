@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/pbc-labs/d3fault.git"
   },
+  "scripts" : {
+    "gulp" : "gulp"
+  },
   "keywords": [
     "d3",
     "chart",
@@ -28,7 +31,6 @@
     "eslint": "1.10.3",
     "eslint-config-airbnb": "2.0.0",
     "eslint-plugin-react": "3.11.2",
-    "git-guppy": "1.0.1",
     "gulp": "3.9.0",
     "gulp-babel": "6.1.1",
     "gulp-eslint": "1.1.1",

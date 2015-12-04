@@ -16,19 +16,19 @@ gulp.task('lint', ['clean'], function () {
 gulp.task('babel', ['lint'], function () {
   return gulp.src('src/*.js')
     .pipe(babel())
-    .pipe(gulp.dest('test'));
+    .pipe(gulp.dest('build'));
 });
 
 // Run mocha tests on compiled files
 gulp.task('mocha', ['lint', 'babel'], function () {
- return gulp.src('test/*.js', {read: false})
+ return gulp.src('build/*.js', {read: false})
         // gulp-mocha needs filepaths so you can't have any plugins before it
         .pipe(mocha({reporter: 'nyan'}));
 });
 
 // Remove test files
 gulp.task('clean', function () {
-    return del(['test/*.js']);
+    return del(['build/*.js']);
 });
 
 gulp.task('default', ['clean', 'lint', 'babel', 'mocha'], function() {
