@@ -2,12 +2,11 @@ var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var babel = require('gulp-babel');
 var mocha = require('gulp-mocha');
-var watch = require('gulp-watch');
+var del = require('del');
 
 //Lint files using Airbnb config ESLinter
-gulp.task('lint', function () {
+gulp.task('lint', ['clean'], function () {
   return gulp.src(['src/*.js', '!node_modules/**', '!bower_components/**'])
-    .pipe(watch('**/*.js'))
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
@@ -27,10 +26,10 @@ gulp.task('mocha', ['lint', 'babel'], function () {
         .pipe(mocha({reporter: 'nyan'}));
 });
 
-// Watch files for changes
-gulp.task('watch', function () {
-    gulp.watch('src/*.js');
+// Remove test files
+gulp.task('clean', function () {
+    return del(['test/*.js']);
 });
 
-gulp.task('default', ['lint', 'babel', 'mocha'], function() {
+gulp.task('default', ['clean', 'lint', 'babel', 'mocha'], function() {
 });
