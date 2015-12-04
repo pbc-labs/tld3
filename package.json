@@ -7,8 +7,8 @@
     "type": "git",
     "url": "git+https://github.com/pbc-labs/d3fault.git"
   },
-  "scripts" : {
-    "gulp" : "gulp"
+  "scripts": {
+    "gulp": "gulp"
   },
   "keywords": [
     "d3",
