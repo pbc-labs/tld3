@@ -2,10 +2,12 @@ var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var babel = require('gulp-babel');
 var mocha = require('gulp-mocha');
+var watch = require('gulp-watch');
 
 //Lint files using Airbnb config ESLinter
 gulp.task('lint', function () {
   return gulp.src(['src/*.js', '!node_modules/**', '!bower_components/**'])
+    .pipe(watch('**/*.js'))
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());

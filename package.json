@@ -27,10 +27,20 @@
     "eslint": "1.10.3",
     "eslint-config-airbnb": "2.0.0",
     "eslint-plugin-react": "3.11.2",
+    "git-guppy": "1.0.1",
     "gulp": "3.9.0",
     "gulp-babel": "6.1.1",
     "gulp-eslint": "1.1.1",
     "gulp-mocha": "2.2.0",
-    "gulp-util": "3.0.7"
+    "gulp-util": "3.0.7",
+    "gulp-watch": "4.3.5",
+    "precommit": "1.1.7"
+  },
+  "pre-commit": {
+    "tasks": [
+      "gulp default"
+    ],
+    "onDirtyState": "ask",
+    "coloredOuput": true
   }
 }
