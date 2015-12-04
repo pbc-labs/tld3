@@ -1,0 +1,43 @@
+{
+  "name": "d3fault",
+  "version": "1.0.0",
+  "description": "An expressive, modular library for D3.js.",
+  "main": "src/d3fault.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbc-labs/d3fault.git"
+  },
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "keywords": [
+    "d3",
+    "chart",
+    "data",
+    "visualizations"
+  ],
+  "author": "Banun Atina Idris <banun.a.idris@gmail.com> (http://bthehuman.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pbc-labs/d3fault/issues"
+  },
+  "homepage": "https://github.com/pbc-labs/d3fault#readme",
+  "dependencies": {
+    "d3": "3.5.10"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "6.1.18",
+    "del": "2.1.0",
+    "eslint": "1.10.3",
+    "eslint-config-airbnb": "2.0.0",
+    "eslint-plugin-react": "3.11.2",
+    "gulp": "3.9.0",
+    "gulp-babel": "6.1.1",
+    "gulp-eslint": "1.1.1",
+    "gulp-mocha": "2.2.0",
+    "gulp-util": "3.0.7",
+    "gulp-watch": "4.3.5",
+    "pre-commit": "1.1.2"
+  },
+  "pre-commit": "gulp"
+}

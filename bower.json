@@ -1,0 +1,29 @@
+{
+  "name": "d3fault",
+  "description": "An expressive, modular library for D3.js.",
+  "main": "src/d3fault.js",
+  "authors": [
+    "Banun Atina Idris <banun.a.idris@gmail.com> (https://github.com/banunatina)",
+    "Preethi Kasireddy <iam.preethi.k@gmail.com> (https://github.com/iam-peekay)",
+    "Colin Seale <ceseale3@gmail.com> (https://github.com/ceseale)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "d3",
+    "chart",
+    "data",
+    "visualizations"
+  ],
+  "homepage": "https://github.com/pbc-labs/d3fault",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~3.5.10"
+  }
+}
