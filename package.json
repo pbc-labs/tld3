@@ -23,12 +23,14 @@
     "d3": "3.5.10"
   },
   "devDependencies": {
+    "babel-preset-es2015": "6.1.18",
     "eslint": "1.10.3",
     "eslint-config-airbnb": "2.0.0",
     "eslint-plugin-react": "3.11.2",
     "gulp": "3.9.0",
     "gulp-babel": "6.1.1",
     "gulp-eslint": "1.1.1",
+    "gulp-mocha": "2.2.0",
     "gulp-util": "3.0.7"
   }
 }
