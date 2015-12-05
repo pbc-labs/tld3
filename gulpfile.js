@@ -6,8 +6,9 @@ var mocha = require('gulp-mocha');
 var del = require('del');
 
 // run jsDoc on all src files
-gulp.task('doc', ['mocha'], shell.task([
-  './node_modules/.bin/jsdoc ./src/*.js -d docs'
+gulp.task('doc', shell.task([
+  './node_modules/.bin/jsdoc ./src/*.js -t ./node_modules/ink-docstrap/template -c ./node_modules/jsdoc/gen.json',
+  './node_modules/.bin/docco ./src/*.js -o docs/docco'
 ]));
 
 //Lint files using Airbnb config ESLinter
