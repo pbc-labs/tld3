@@ -28,6 +28,7 @@
   "devDependencies": {
     "babel-preset-es2015": "6.1.18",
     "del": "2.1.0",
+    "docco": "0.7.0",
     "eslint": "1.10.3",
     "eslint-config-airbnb": "2.0.0",
     "eslint-plugin-react": "3.11.2",
@@ -35,8 +36,11 @@
     "gulp-babel": "6.1.1",
     "gulp-eslint": "1.1.1",
     "gulp-mocha": "2.2.0",
+    "gulp-shell": "0.5.1",
     "gulp-util": "3.0.7",
     "gulp-watch": "4.3.5",
+    "ink-docstrap": "0.5.2",
+    "jsdoc": "3.4.0",
     "pre-commit": "1.1.2"
   },
   "pre-commit": "gulp"

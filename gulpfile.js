@@ -1,8 +1,15 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var babel = require('gulp-babel');
+var shell = require('gulp-shell');
 var mocha = require('gulp-mocha');
 var del = require('del');
+
+// run jsDoc on all src files
+gulp.task('doc', shell.task([
+  './node_modules/.bin/jsdoc ./src/*.js -t ./node_modules/ink-docstrap/template -c ./node_modules/jsdoc/gen.json',
+  './node_modules/.bin/docco ./src/*.js -o docs/docco'
+]));
 
 //Lint files using Airbnb config ESLinter
 gulp.task('lint', ['clean'], function () {
@@ -41,6 +48,6 @@ gulp.task('clean', function () {
     return del(['src/legacy/*.js', 'test/legacy/*.js']);
 });
 
-gulp.task('default', ['clean', 'lint', 'babel', 'mocha'], function() {
+gulp.task('default', ['clean', 'lint', 'babel', 'mocha', 'doc'], function() {
   console.log('All done!');
 });
