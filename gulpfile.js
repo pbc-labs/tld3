@@ -48,6 +48,11 @@ gulp.task('clean', function () {
     return del(['src/legacy/*.js', 'test/legacy/*.js']);
 });
 
+// Watch config
+gulp.task('watch', function () {
+  gulp.watch('src/legacy/*.js', ['doc']);
+});
+
 gulp.task('default', ['clean', 'lint', 'babel', 'mocha', 'doc'], function() {
   console.log('All done!');
 });
