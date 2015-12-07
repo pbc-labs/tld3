@@ -44,7 +44,6 @@ gulp.task('watch', function () {
   gulp.watch('src/legacy/*.js', ['doc']);
 });
 
-
 // modify some webpack config options
 var myDevConfig = Object.create(webpackConfig);
 myDevConfig.devtool = "sourcemap";
@@ -99,4 +98,5 @@ gulp.task("webpack:build", function(callback) {
 		}));
 		callback();
 	});
+
 });
