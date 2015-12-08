@@ -1,3 +1,4 @@
+import ChartMain from '../core/ChartMain'
 /**
 @private
 Constructor subclass for Bar Chart.

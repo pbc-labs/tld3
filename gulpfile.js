@@ -9,7 +9,7 @@ var webpack = require("webpack");
 var webpackConfig = require("./webpack.config.js");
 
 // default that runs on pre-commit
-gulp.task('default', ['clean', 'build', 'lint', 'mocha', 'doc'], function() {
+gulp.task('default', ['clean', 'lint', 'build', 'mocha', 'doc'], function() {
   console.log('All done!');
 });
 
@@ -57,7 +57,7 @@ var devCompiler = webpack(myDevConfig);
 // Disadvantage: Requests are not blocked until bundle is available,
 //               can serve an old app on refresh
 gulp.task("build-dev", ["webpack:build-dev"], function() {
-	gulp.watch(["app/**/*"], ["webpack:build-dev"]);
+	gulp.watch(["src/**/*"], ["webpack:build-dev"]);
 });
 
 

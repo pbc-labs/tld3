@@ -1,7 +1,7 @@
 module.exports = {
   context: __dirname + "/src",
 // file that imports everything
-  entry: './core.js',
+  entry: './core/core.js',
   output: {
     filename: 'd3fault.js',
     path: __dirname + '/dist'

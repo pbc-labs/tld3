@@ -8,7 +8,7 @@
     "url": "git+https://github.com/pbc-labs/d3fault.git"
   },
   "scripts": {
-    "gulp": "gulp"
+    "lint": "gulp lint"
   },
   "keywords": [
     "d3",
@@ -46,5 +46,5 @@
     "pre-commit": "1.1.2",
     "webpack": "1.12.9"
   },
-  "pre-commit": "gulp"
+  "pre-commit": "lint"
 }
