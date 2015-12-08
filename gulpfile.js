@@ -1,43 +1,34 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
-var babel = require('gulp-babel');
+var gutil = require("gulp-util");
 var shell = require('gulp-shell');
 var mocha = require('gulp-mocha');
 var del = require('del');
+var webpack = require("webpack");
+// var WebpackDevServer = require("webpack-dev-server");
+var webpackConfig = require("./webpack.config.js");
+
+// default that runs on pre-commit
+gulp.task('default', ['clean', 'build', 'lint', 'mocha', 'doc'], function() {
+  console.log('All done!');
+});
 
 // run jsDoc on all src files
-gulp.task('doc', shell.task([
+gulp.task('doc', ['mocha'], shell.task([
   './node_modules/.bin/jsdoc ./src/*.js -t ./node_modules/ink-docstrap/template -c ./node_modules/jsdoc/gen.json',
   './node_modules/.bin/docco ./src/*.js -o docs/docco'
 ]));
 
 //Lint files using Airbnb config ESLinter
 gulp.task('lint', ['clean'], function () {
-  return gulp.src(['src/*.js', 'test/*.js', '!node_modules/**', '!bower_components/**'])
+  return gulp.src(['src/*.js', 'src/**/*.js', 'test/*.js', '!node_modules/**', '!bower_components/**'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-
-// Compile src files into ES5
-gulp.task('babel:src', ['lint'], function () {
-  return gulp.src('src/**/*.js')
-    .pipe(babel())
-    .pipe(gulp.dest('src/legacy'));
-});
-
-// Compile test files into ES5
-gulp.task('babel:test', ['lint'], function () {
-  return gulp.src('test/*.js')
-    .pipe(babel())
-    .pipe(gulp.dest('test/legacy'));
-});
-
-gulp.task('babel', ['babel:src', 'babel:test']);
-
 // Run mocha tests on compiled files
-gulp.task('mocha', ['lint', 'babel'], function () {
+gulp.task('mocha', function () {
  return gulp.src('test/legacy/*.js', {read: false})
         // gulp-mocha needs filepaths so you can't have any plugins before it
         .pipe(mocha({reporter: 'nyan'}));
@@ -45,7 +36,7 @@ gulp.task('mocha', ['lint', 'babel'], function () {
 
 // Remove built es5 and test files
 gulp.task('clean', function () {
-    return del(['src/legacy/*.js', 'test/legacy/*.js']);
+    return del(['dist/*.js', 'test/legacy/*.js']);
 });
 
 // Watch config
@@ -53,6 +44,59 @@ gulp.task('watch', function () {
   gulp.watch('src/legacy/*.js', ['doc']);
 });
 
-gulp.task('default', ['clean', 'lint', 'babel', 'mocha', 'doc'], function() {
-  console.log('All done!');
+
+// modify some webpack config options
+var myDevConfig = Object.create(webpackConfig);
+myDevConfig.devtool = "sourcemap";
+myDevConfig.debug = true;
+
+// create a single instance of the compiler to allow caching
+var devCompiler = webpack(myDevConfig);
+
+// Build and watch cycle (another option for development)
+// Advantage: No server required, can run app from filesystem
+// Disadvantage: Requests are not blocked until bundle is available,
+//               can serve an old app on refresh
+gulp.task("build-dev", ["webpack:build-dev"], function() {
+	gulp.watch(["app/**/*"], ["webpack:build-dev"]);
+});
+
+
+gulp.task("webpack:build-dev", ['clean'], function(callback) {
+	// run webpack
+	devCompiler.run(function(err, stats) {
+		if(err) throw new gutil.PluginError("webpack:build-dev", err);
+		gutil.log("[webpack:build-dev]", stats.toString({
+			colors: true
+		}));
+		callback();
+	});
+});
+
+// Production build
+gulp.task("build", ["webpack:build"]);
+
+gulp.task("webpack:build", function(callback) {
+	// modify some webpack config options
+	var myConfig = Object.create(webpackConfig);
+  if (myConfig.plugins) {
+    myConfig.plugins = myConfig.plugins.concat(
+  		new webpack.DefinePlugin({
+  			"process.env": {
+  				// This has effect on the react lib size
+  				"NODE_ENV": JSON.stringify("production")
+  			}
+		}),
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.UglifyJsPlugin()
+	)};
+
+	// run webpack
+	webpack(myConfig, function(err, stats) {
+		if(err) throw new gutil.PluginError("webpack:build", err);
+		gutil.log("[webpack:build]", stats.toString({
+			colors: true
+		}));
+		callback();
+	});
 });
