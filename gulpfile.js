@@ -22,7 +22,7 @@ gulp.task('lint', ['clean'], function () {
 
 // Compile src files into ES5
 gulp.task('babel:src', ['lint'], function () {
-  return gulp.src('src/*.js')
+  return gulp.src('src/**/*.js')
     .pipe(babel())
     .pipe(gulp.dest('src/legacy'));
 });
