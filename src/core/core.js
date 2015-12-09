@@ -12,7 +12,8 @@ This is required for d3 to load.
 Import all necessary submodules into the core module
 */
 import D3fault from './d3fault';
-import data from '../subModules/data';
+
+export default D3fault;
 
 // Below are unneeded as the modules are being imported from the relevant files
 // import charts from '../subModules/charts';
@@ -23,7 +24,3 @@ import data from '../subModules/data';
 // import ChartMain from './ChartMain';
 // import BarChart from '../subModules/BarChart';
 // import utils from '../utils/utils';
-
-D3fault.make('BarChart')
-       .using(data)
-       .in('#yo');

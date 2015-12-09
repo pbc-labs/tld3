@@ -21,14 +21,14 @@ gulp.task('doc', ['test'], shell.task([
 ]));
 
 //Lint files using Airbnb config ESLinter
-gulp.task('lint', ['clean'], function () {
-  return gulp.src(['src/*.js', 'src/**/*.js', 'test/tests/*.js', 'test/tests.js', '!node_modules/**', '!bower_components/**'])
+gulp.task('lint', function () {
+  return gulp.src(['src/*.js', 'src/**/*.js', '!test/testBundle.js', 'test/**/*.js', 'test/tests.js', '!node_modules/**', '!bower_components/**'])
     .pipe(eslint())
     .pipe(eslint.format());
 });
 
 gulp.task('lint-strict', function () {
-  return gulp.src(['src/*.js', 'src/**/*.js', 'test/tests/*.js', 'test/tests.js', '!node_modules/**', '!bower_components/**'])
+  return gulp.src(['src/*.js', 'src/**/*.js', 'test/**/*.js', 'test/tests.js', '!test/testBundle.js', '!node_modules/**', '!bower_components/**'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
@@ -39,16 +39,6 @@ gulp.task('test', ["webpack:build-dev", "webpack:build-test"], function () {
  return gulp.src('test/testBundle.js', {read: false})
         // gulp-mocha needs filepaths so you can't have any plugins before it
         .pipe(mocha({reporter: 'nyan'}));
-});
-
-// Remove built es5 and test files
-gulp.task('clean', function () {
-    return del(['dist/*', 'test/testBundle.js']);
-});
-
-// Watch config
-gulp.task('watch', function () {
-  gulp.watch('src/legacy/*.js', ['doc']);
 });
 
 // modify some webpack config options
@@ -65,11 +55,11 @@ var devCompiler = webpack(myDevConfig);
 // Disadvantage: Requests are not blocked until bundle is available,
 //               can serve an old app on refresh
 gulp.task("build-dev", ["lint", "webpack:build-dev", "webpack:build-test"], function() {
-	gulp.watch(["src/**/*"], ["lint", "webpack:build-dev", "webpack:build-test", "mocha"]);
+	gulp.watch(["src/**/*", "test/unit-tests/*.js"], ["lint", "webpack:build-dev", "webpack:build-test", "test"]);
 });
 
 
-gulp.task("webpack:build-dev", ['clean', 'lint'], function(callback) {
+gulp.task("webpack:build-dev", ['lint'], function(callback) {
 	// run webpack
 	devCompiler.run(function(err, stats) {
 		if(err) throw new gutil.PluginError("webpack:build-dev", err);
@@ -82,11 +72,11 @@ gulp.task("webpack:build-dev", ['clean', 'lint'], function(callback) {
 
 });
 
-gulp.task("webpack:build-test", ['clean', 'lint'], function (callback) {
+gulp.task("webpack:build-test", ['lint'], function (callback) {
 
   testCompiler.run(function(err, stats) {
-    if(err) throw new gutil.PluginError("webpack:build-dev", err);
-    gutil.log("[webpack:build-dev]", stats.toString({
+    if(err) throw new gutil.PluginError("webpack:build-test", err);
+    gutil.log("[webpack:build-test]", stats.toString({
       colors: true
     }));
     callback();

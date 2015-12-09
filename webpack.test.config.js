@@ -1,7 +1,7 @@
 module.exports = {
   context: __dirname + "/test",
 // file that imports everything
-  entry: './tests.js',
+  entry: './unit-tests/core.js',
   output: {
       path: __dirname + "/test",
       filename: "testBundle.js"
