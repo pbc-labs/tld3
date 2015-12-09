@@ -27,7 +27,7 @@ gulp.task('lint', ['clean'], function () {
     .pipe(eslint.format());
 });
 
-gulp.task('lint-strict', ['clean'], function () {
+gulp.task('lint-strict', function () {
   return gulp.src(['src/*.js', 'src/**/*.js', 'test/tests/*.js', 'test/tests.js', '!node_modules/**', '!bower_components/**'])
     .pipe(eslint())
     .pipe(eslint.format())
