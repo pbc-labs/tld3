@@ -105,7 +105,7 @@ const utils = {
       'json': true,
       'tsv': true,
       'csv': true,
-    }
+    };
     return extension in okayExtensions;
   },
 
@@ -114,12 +114,12 @@ const utils = {
       try {
         JSON.parse(rawData);
         return 'json';
-      } catch(e) {
-        let temp = rawData.split('.');
-        if(temp.length == 2){
-          return 'location'
-        } else {
-          // Error
+      } catch (e) {
+        const temp = rawData.split('.');
+        if (temp.length === 2) {
+          return 'location';
+        } else if (temp.length > 2 || temp.length < 2) {
+          throw new Error('Replace with error Class');
         }
       }
     } else if (rawData instanceof Array) {
@@ -129,6 +129,39 @@ const utils = {
     }
   },
 
+  getData(rawData) {
+
+      const dataType = utils.getDataType(rawData);
+
+      if (dataType === 'location') {
+        const fileExtension = rawData.split('.')[1];
+        if (utils.isAcceptableFileExtension(fileExtension)) {
+          return new Promise((resolve, reject) => {
+            d3[fileExtension](rawData, (error, result) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve(result);
+              }
+            });
+          });
+        }
+      } else if (dataType === 'json') {
+          return new Promise(resolve => {
+            resolve(JSON.stringify(rawData));
+          });
+      } else if (dataType === 'object') {
+          return new Promise(resolve => {
+            resolve(rawData);
+          });
+      } else if (dataType === 'array') {
+          return new Promise(resolve => {
+            resolve(rawData);
+          });
+      }
+
+
+  },
 
 };
 
