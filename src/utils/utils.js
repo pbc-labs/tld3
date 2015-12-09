@@ -160,8 +160,15 @@ const utils = {
   },
 
   isOrdinal(data, columnName) {
-    if (Number(data[columnName])) {
-      return false;
+    const dataType = utils.getDataType(data);
+    if (dataType === 'array') {
+      if (Number(data[0][columnName])) {
+        return false;
+      }
+    } else if (dataType === 'object') {
+      if (Number(data[columnName])) {
+        return false;
+      }
     }
     return true;
   },
@@ -188,9 +195,9 @@ const utils = {
   },
 
   getFirstOrdinalCol(data) {
-    const columnNames = getColumnNames(data);
-    for (var i = 0; i < columnNames.length; i++) {
-      if (isOrdinal(data, columnNames[i])) {
+    const columnNames = utils.getColumnNames(data);
+    for (let i = 0; i < columnNames.length; i++) {
+      if (utils.isOrdinal(data, columnNames[i])) {
         return columnNames[i];
       }
     }
@@ -198,9 +205,9 @@ const utils = {
   },
 
   getFirstLinearCol(data) {
-    const columnNames = getColumnNames(data);
-    for (var i = 0; i < columnNames.length; i++) {
-      if (isLinear(data, columnNames[i])) {
+    const columnNames = utils.getColumnNames(data);
+    for (let i = 0; i < columnNames.length; i++) {
+      if (utils.isLinear(data, columnNames[i])) {
         return columnNames[i];
       }
     }
