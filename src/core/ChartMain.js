@@ -50,27 +50,43 @@ export class ChartMain {
     return this;
   }
 
-  setXscale(type, dataDomain, columnName) {
-    this.xAxisLabel = utils.setAxisLabel(columnName);
+  setXscale(type, dataDomain) {
     if (type === 'ordinal') {
+      this.xColumnName = utils.getFirstOrdinalColumn(this.data);
+      this.xAxisLabel = utils.setAxisLabel(this.xColumnName);
       this.xScale = utils.setOridinalScale(this.width.width);
+    } else if (type === 'linear') {
+      this.xColumnName = utils.getFirstLinearColumn(this.data);
+      this.xAxisLabel = utils.setAxisLabel(this.xColumnName);
+      this.xScale = utils.setLinearScale(this.width.width);
     }
-// TODO: do other types of data domain
+
     if (dataDomain === 'string') {
-      utils.mapDataDomainToString(this.xScale, this.data, columnName);
+      utils.mapDataDomainToString(this.xScale, this.data, this.xColumnName);
+    } else if (dataDomain === 'number') {
+      utils.mapDataDomainToNumber(this.xScale, this.data, this.xColumnName);
     }
+
     return this;
   }
 
-  setYscale(type, dataDomain, columnName) {
-    this.yAxisLabel = utils.setAxisLabel(columnName);
-    if (type === 'linear') {
+  setYscale(type, dataDomain) {
+    if (type === 'ordinal') {
+      this.yColumnName = utils.getFirstOrdinalColumn(this.data);
+      this.yAxisLabel = utils.setAxisLabel(this.yColumnName);
+      this.yScale = utils.setOridinalScale(this.height.height);
+    } else if (type === 'linear') {
+      this.yColumnName = utils.getFirstLinearColumn(this.data);
+      this.yAxisLabel = utils.setAxisLabel(this.yColumnName);
       this.yScale = utils.setLinearScale(this.height.height);
     }
 
-    if (dataDomain === 'number') {
-      utils.mapDataDomainToNumber(this.yScale, this.data, columnName);
+    if (dataDomain === 'string') {
+      utils.mapDataDomainToString(this.yScale, this.data, this.yColumnName);
+    } else if (dataDomain === 'number') {
+      utils.mapDataDomainToNumber(this.yScale, this.data, this.yColumnName);
     }
+
     return this;
   }
 

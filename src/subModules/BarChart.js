@@ -6,6 +6,8 @@ Constructor subclass for Bar Chart.
 export class BarChart extends ChartMain {
   constructor() {
     super();
+    this._xScaleType = undefined;
+    this._yScaleType = 'linear';
   }
 
   render() {
@@ -13,8 +15,8 @@ export class BarChart extends ChartMain {
               .setMargin()
               .setWidth()
               .setHeight()
-              .setXscale('ordinal', 'string', 'letter')
-              .setYscale('linear', 'number', 'frequency')
+              .setXscale('ordinal', 'string')
+              .setYscale('linear', 'number')
               .createSVG()
               .setXaxis()
               .setYaxis()
