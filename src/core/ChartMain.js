@@ -134,7 +134,11 @@ export class ChartMain {
 
   in(classOrid) {
     this.location = classOrid;
-    this.render();
+    utils.getData(this.data)
+    .then((data) => {
+      this.data = data;
+      this.render();
+    });
 
     return this;
   }
