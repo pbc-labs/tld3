@@ -22,6 +22,6 @@ import BarChart from '../subModules/BarChart';
 import data from '../subModules/data';
 import utils from '../utils/utils';
 
-d3fault.make('BarChart')
+D3fault.make('BarChart')
         .using(data)
         .in('#yo');

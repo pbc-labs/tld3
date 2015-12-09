@@ -1,4 +1,4 @@
-import ChartMain from '../core/ChartMain'
+import {ChartMain} from '../core/ChartMain';
 /**
 @private
 Constructor subclass for Bar Chart.
@@ -9,18 +9,18 @@ export class BarChart extends ChartMain {
   }
 
   render() {
-    return this.selectElement()
-                .setMargin()
-                .setWidth()
-                .setHeight()
-                .setXscale('ordinal', 'string', 'letter')
-                .setYscale('linear', 'number', 'frequency')
-                .createSVG()
-                .createXaxis('bottom')
-                .createYaxis()
-                .setAxisPathStyle('none', '#000', 'crispEdges')
-                .setAxisLineStyle('none', '#000', 'crispEdges')
-                .final();
+  return this.selectElement()
+              .setMargin()
+              .setWidth()
+              .setHeight()
+              .setXscale('ordinal', 'string')
+              .setYscale('linear', 'number')
+              .createSVG()
+              .createXaxis('bottom')
+              .createYaxis()
+              .setAxisPathStyle('none', '#000', 'crispEdges')
+              .setAxisLineStyle('none', '#000', 'crispEdges')
+              .final();
   }
 
   final() {

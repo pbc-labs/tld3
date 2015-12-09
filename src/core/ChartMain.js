@@ -1,3 +1,5 @@
+'use strict';
+
 import Internal from '../subModules/internal';
 import utils from '../utils/utils';
 
@@ -19,8 +21,8 @@ export class ChartMain {
 
   setMargin(options) {
     if (!this.margin) {
-      this.margin = new Internal.config.Margins({ top: 20, right: 20, bottom: 30, left: 40 });
-    } else {
+      this.margin = utils.setDefaultMargins();
+     } else {
       this.margins.margins(options);
     }
     return this;
@@ -28,7 +30,7 @@ export class ChartMain {
 
   setWidth(width) {
     if (!this.width) {
-      this.width = new Internal.config.Width(600);
+      this.width = utils.setDefaultWidth();
     } else {
       this.width.width(width);
     }
@@ -37,7 +39,7 @@ export class ChartMain {
 
   setHeight(height) {
     if (!this.height) {
-      this.height = new Internal.config.Height(40);
+      this.height = utils.setDefaultHeight();
     } else {
       this.height.height(height);
     }

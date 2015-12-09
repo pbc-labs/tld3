@@ -1,4 +1,4 @@
-import BarChart from '../subModules/BarChart'
+import {BarChart} from '../subModules/BarChart';
 
 /**
 This holds all our chart types within main library.
