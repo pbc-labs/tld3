@@ -72,16 +72,16 @@ const utils = {
     return scale;
   },
 
-  mapDataDomainToString(scale, data) {
-    scale.domain(data.map(d => { return d.letter; }));
+  mapDataDomainToString(scale, data, input) {
+    scale.domain(data.map(d => { return d[input]; }));
   },
 
-  mapDataDomainToNumber(scale, data) {
-    scale.domain([0, d3.max(data, d => { return d.frequency; })]);
+  mapDataDomainToNumber(scale, data, input) {
+    scale.domain([0, d3.max(data, d => { return d[input]; })]);
   },
 
-  setAxisOrientation(orientation) {
-    return new Internal.config.AxisOrientation(orientation);
+  setAxisLabel(label) {
+    return new Internal.config.AxisLabel(label);
   },
 
   createAxis(orientation, scale) {
