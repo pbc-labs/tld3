@@ -1,26 +1,69 @@
-'use strict';
+import Internal from '../subModules/internal';
 
 /**
 @private
-Holds various utility functions used throughout the library.
+Holds various utility functions used throughout the library,
+particularly for creating, building and modifying chart elements.
 */
-// Helper functions
 
 const utils = {
+
+  /**
+  @private
+  @param {Object} element
+    @description The main SVG chart element
+  @param {Number} width
+    @description Width of SVG chart element
+  @param {Number} width
+    @description Width of SVG chart element
+  @returns {Object} The decorated main SVG chart element
+  */
+
   createSVGElement(element, width, height, margin) {
 
     let svgElement = element
-                    .append('svg')
-                    .attr('width', width + margin.left + margin.right)
-                    .attr('height', height + margin.top + margin.bottom)
-                    .append('g')
-                    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+                     .append('svg')
+                     .attr('width', width + margin.left + margin.right)
+                     .attr('height', height + margin.top + margin.bottom)
+                     .append('g')
+                     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
     return svgElement;
+  },
+
+  /**
+  @private
+  @description Used for setting the default margins for all charts
+  @returns {Object} Constructor Class for Margins
+  */
+
+  setDefaultMargins() {
+    return new Internal.config.Margins({ top: 30, right: 30, bottom: 30, left: 50 });
+  },
+
+  /**
+  @private
+  @description  Used for setting the default height for all charts to 600px
+  @returns {Object} Constructor Class for Height
+  */
+
+  setDefaultWidth() {
+    return new Internal.config.Width(600);
+  },
+
+  /**
+  @private
+  @description  Used for setting default width for all charts to 300px
+  @returns {Object} Constructor Class for Width
+  */
+
+  setDefaultHeight() {
+    return new Internal.config.Height(300);
   },
 
   setOridinalScale(length) {
     let scale = d3.scale.ordinal() // Add check to figure out scale
-                    .rangeRoundBands([0, width], 0.1);
+                    .rangeRoundBands([0, length], 0.1);
     return scale;
   },
 
@@ -31,11 +74,15 @@ const utils = {
   },
 
   mapDataDomainToString(scale, data, input) {
-      scale.domain(data.map(d => { return d.input; }));
+      scale.domain(data.map(d => { return d.letter; }));
   },
 
   mapDataDomainToNumber(scale, data, input) {
-      scale.domain([0, d3.max(data, d => { return d.input; })]);
+      scale.domain([0, d3.max(data, d => { return d.frequency; })]);
+  },
+
+  setAxisOrientation(orientation) {
+    return new Internal.config.AxisOrientation(orientation);
   },
 
   createAxis(orientation, scale) {
