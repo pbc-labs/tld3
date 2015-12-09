@@ -11,16 +11,23 @@ This is required for d3 to load.
 /**
 Import all necessary submodules into the core module
 */
-import D3fault from './d3fault';
+/**
+This defines our main library object.
+@private
+*/
+
+import charts from '../subModules/charts';
+import data from '../subModules/data';
+
+const D3fault = {
+  version: '1.0.0',
+  make(chartType) {
+    return new charts[chartType]();
+  },
+};
+
+var chart = D3fault.make('BarChart')
+                   .using(data)
+                   .in('#yo');
 
 export default D3fault;
-
-// Below are unneeded as the modules are being imported from the relevant files
-// import charts from '../subModules/charts';
-// import Height from '../subModules/height';
-// import Width from '../subModules/width';
-// import Margin from '../subModules/margin';
-// import Internal from '../subModules/internal';
-// import ChartMain from './ChartMain';
-// import BarChart from '../subModules/BarChart';
-// import utils from '../utils/utils';

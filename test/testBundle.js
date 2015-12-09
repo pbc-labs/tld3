@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	eval("\"use strict\";//@ sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIwLmpzIiwic291cmNlUm9vdCI6IiJ9");
+	eval("// import d3fault from '../../src/core/core'\n// import chai from '../../node_modules/chai';\n//\n// const expect = chai.expect;\n// const assert = chai.assert;\n//\n// describe('Test', () => {\n//   it('should do something', () => {\n//     expect(true).to.eql(true);\n//   });\n// });\n\"use strict\";//@ sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIwLmpzIiwic291cmNlUm9vdCI6IiJ9");
 
 /***/ }
 /******/ ]);
