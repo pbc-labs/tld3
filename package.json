@@ -8,7 +8,7 @@
     "url": "git+https://github.com/pbc-labs/d3fault.git"
   },
   "scripts": {
-    "lint": "gulp lint"
+    "lint": "gulp lint-strict"
   },
   "keywords": [
     "d3",
