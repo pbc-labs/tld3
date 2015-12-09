@@ -11,6 +11,5 @@ const D3fault = {
     return new charts[chartType]();
   },
 };
-// import charts from '../subModules/charts';
 
 export default D3fault;

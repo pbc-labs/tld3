@@ -131,6 +131,22 @@ const utils = {
     return new Internal.config.AxisLabel(label);
   },
 
+  setColors(colorsArray) {
+    return new Internal.config.Color(colorsArray);
+  },
+
+  setTitle(title) {
+    return new Internal.config.Title(title);
+  },
+
+  setFontStyle(font) {
+    return new Internal.config.Fontstyle(font);
+  },
+
+  setFontSize(size) {
+    return new Internal.config.Fontsize(size);
+  },
+
   /**
   @private
   @function Builds d3 axis

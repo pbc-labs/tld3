@@ -14,16 +14,6 @@ Import all necessary submodules into the core module
 import D3fault from './d3fault';
 import data from '../subModules/data';
 
-// Below are unneeded as the modules are being imported from the relevant files
-// import charts from '../subModules/charts';
-// import Height from '../subModules/height';
-// import Width from '../subModules/width';
-// import Margin from '../subModules/margin';
-// import Internal from '../subModules/internal';
-// import ChartMain from './ChartMain';
-// import BarChart from '../subModules/BarChart';
-// import utils from '../utils/utils';
-
-D3fault.make('BarChart')
-       .using(data)
-       .in('#yo');
+var chart = D3fault.make('BarChart')
+                   .using(data)
+                   .in('#yo');
