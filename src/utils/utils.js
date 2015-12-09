@@ -162,7 +162,7 @@ const utils = {
   isOrdinal(data, columnName) {
     if (Number(data[columnName])) {
       return false;
-    } 
+    }
     return true;
   },
 
@@ -173,7 +173,8 @@ const utils = {
     return false;
   },
 
-  isTime(data, columnName) {
+  isTime() {
+    // TODO
     return false;
   },
 
@@ -181,9 +182,29 @@ const utils = {
     const dataType = utils.getDataType(data);
     if (dataType === 'object') {
       return Object.keys(data);
-    }  else if (dataType === 'array') {
+    } else if (dataType === 'array') {
       return Object.keys(data[0]);
     }
+  },
+
+  getFirstOrdinalCol(data) {
+    const columnNames = getColumnNames(data);
+    for (var i = 0; i < columnNames.length; i++) {
+      if (isOrdinal(data, columnNames[i])) {
+        return columnNames[i];
+      }
+    }
+    return null;
+  },
+
+  getFirstLinearCol(data) {
+    const columnNames = getColumnNames(data);
+    for (var i = 0; i < columnNames.length; i++) {
+      if (isLinear(data, columnNames[i])) {
+        return columnNames[i];
+      }
+    }
+    return null;
   },
 
 };
