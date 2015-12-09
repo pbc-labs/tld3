@@ -10,12 +10,12 @@ var webpackConfig = require("./webpack.config.js");
 var myTestConfig = require("./webpack.test.config.js");
 
 // should run on precommit if in production
-gulp.task('default', ['clean', 'lint-strict', 'build', 'mocha', 'doc', 'stage'], function() {
+gulp.task('default', ['clean', 'lint-strict', 'build', 'test', 'doc', 'stage'], function() {
   console.log('Staged all changes');
 });
 
 // run jsDoc on all src files
-gulp.task('doc', ['mocha'], shell.task([
+gulp.task('doc', ['test'], shell.task([
   './node_modules/.bin/jsdoc ./src/*.js -t ./node_modules/ink-docstrap/template -c ./node_modules/jsdoc/gen.json',
   './node_modules/.bin/docco ./src/*.js -o docs/docco'
 ]));
@@ -35,7 +35,7 @@ gulp.task('lint-strict', function () {
 });
 
 // Run mocha tests on compiled files
-gulp.task('mocha', ["webpack:build-dev", "webpack:build-test"], function () {
+gulp.task('test', ["webpack:build-dev", "webpack:build-test"], function () {
  return gulp.src('test/testBundle.js', {read: false})
         // gulp-mocha needs filepaths so you can't have any plugins before it
         .pipe(mocha({reporter: 'nyan'}));
