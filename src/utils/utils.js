@@ -99,6 +99,37 @@ const utils = {
          'shape-rendering': shapeRerendering,
        });
   },
+
+  isAcceptableFileExtension(extension) {
+    const okayExtensions = {
+      'json': true,
+      'tsv': true,
+      'csv': true,
+    }
+    return extension in okayExtensions;
+  },
+
+  getDataType(rawData) {
+    if (rawData.constructor === String) {
+      try {
+        JSON.parse(rawData);
+        return 'json';
+      } catch(e) {
+        let temp = rawData.split('.');
+        if(temp.length == 2){
+          return 'location'
+        } else {
+          // Error
+        }
+      }
+    } else if (rawData instanceof Array) {
+      return 'array';
+    } else if (rawData instanceof Object) {
+      return 'object';
+    }
+  },
+
+
 };
 
 export default utils;
