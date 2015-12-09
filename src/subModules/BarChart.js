@@ -32,7 +32,7 @@ export class BarChart extends ChartMain {
          .attr('x', d => { return this.xScale(d[this.xAxisLabel.label]); })
          .attr('width', this.xScale.rangeBand())
          .attr('y', d => { return this.yScale(d[this.yAxisLabel.label]); })
-         .attr('height', d => { return this.height.height - this.yScale(d[this.yAxisLabel.label]); }) // TODO: Make work for all names
+         .attr('height', d => { return this.height.height - this.yScale(d[this.yAxisLabel.label]); }) 
          .style('fill', 'steelblue');
     return this;
   }
