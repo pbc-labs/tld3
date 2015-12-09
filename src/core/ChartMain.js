@@ -50,17 +50,8 @@ export class ChartMain {
     return this;
   }
 
-  mapData() {
-
-  }
-
-  setLabels(xLabel = utils.getXLabel(), yLabel = utils.getYLabel) {
-    this.xLabel = xLabel;
-    this.yLabel = yLabel;
-  }
-
   setXscale(type, dataDomain, columnName) {
-// TODO: do other tyes of scale
+    this.xAxisLabel = utils.setAxisLabel(columnName);
     if (type === 'ordinal') {
       this.xScale = utils.setOridinalScale(this.width.width);
     }
@@ -72,6 +63,7 @@ export class ChartMain {
   }
 
   setYscale(type, dataDomain, columnName) {
+    this.yAxisLabel = utils.setAxisLabel(columnName);
     if (type === 'linear') {
       this.yScale = utils.setLinearScale(this.height.height);
     }
@@ -82,31 +74,31 @@ export class ChartMain {
     return this;
   }
 
-  setXaxis(orientation) {
+  setXaxis() {
     if (!this.xAxis) {
-      this.xAxisOrientation = utils.setAxisOrientation(orientation);
-      this.xAxis = utils.createAxis(this.xAxisOrientation.orientation, this.xScale);
+      this.xAxis = utils.createAxis('bottom', this.xScale);
       this.svg.append('g')
               .attr('class', 'x axis')
               .attr('transform', 'translate(0, ' + this.height.height + ')')
               .call(this.xAxis);
-    } else {
-      this.xAxisOrientation.orientation(orientation);
     }
+    // else {
+    //   console.log('TODO');
+    // }
     return this;
   }
 
-  setYaxis(orientation) {
+  setYaxis() {
     if (!this.yAxis) {
-      this.yAxisOrientation = utils.setAxisOrientation(orientation);
-      this.yAxis = utils.createAxis(this.yAxisOrientation.orientation, this.yScale);
+      this.yAxis = utils.createAxis('left', this.yScale);
 
       this.svg.append('g')
                .attr('class', 'y axis')
                .call(this.yAxis);
-    } else {
-      //
     }
+    // else {
+    //   console.log('TODO');
+    // }
     return this;
   }
 
