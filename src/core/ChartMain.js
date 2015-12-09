@@ -1,6 +1,5 @@
-'use strict';
-
-import Internal from '../subModules/internal';
+/*  global d3  */
+// import Internal from '../subModules/internal';
 import utils from '../utils/utils';
 
 /**
@@ -22,7 +21,7 @@ export class ChartMain {
   setMargin(options) {
     if (!this.margin) {
       this.margin = utils.setDefaultMargins();
-     } else {
+    } else {
       this.margins.margins(options);
     }
     return this;
@@ -55,18 +54,19 @@ export class ChartMain {
 
   }
 
-  setLabels(xLabel, yLabel) {
-    this.xLabels = utils.getXLabel(this.data);
-    this.yLabels = utils.getYLabel(this.data);
+  setLabels(xLabel = utils.getXLabel(), yLabel = utils.getYLabel) {
+    this.xLabel = xLabel;
+    this.yLabel = yLabel;
   }
 
   setXscale(type, dataDomain, columnName) {
+// TODO: do other tyes of scale
     if (type === 'ordinal') {
       this.xScale = utils.setOridinalScale(this.width.width);
-    } // do other tyes of scale
-
-    if (dataDomain === 'string') { // do other types of data domain
-      utils.mapDataDomainToString(this.xScale, this.data, columnName)
+    }
+// TODO: do other types of data domain
+    if (dataDomain === 'string') {
+      utils.mapDataDomainToString(this.xScale, this.data, columnName);
     }
     return this;
   }
@@ -77,7 +77,7 @@ export class ChartMain {
     }
 
     if (dataDomain === 'number') {
-      utils.mapDataDomainToNumber(this.yScale, this.data, columnName)
+      utils.mapDataDomainToNumber(this.yScale, this.data, columnName);
     }
     return this;
   }
@@ -111,17 +111,17 @@ export class ChartMain {
   }
 
   setAxisPathStyle(fill, stroke, shapeRerendering) {
-    utils.setAxisStyle(this.svg, 'path', fill, stroke, shapeRerendering)
+    utils.setAxisStyle(this.svg, 'path', fill, stroke, shapeRerendering);
     return this;
   }
 
   setAxisLineStyle(fill, stroke, shapeRerendering) {
-    utils.setAxisStyle(this.svg, 'line', fill, stroke, shapeRerendering)
+    utils.setAxisStyle(this.svg, 'line', fill, stroke, shapeRerendering);
     return this;
   }
 
   setColors() {
-    console.log('set color');
+
   }
 
   setTitle() {
