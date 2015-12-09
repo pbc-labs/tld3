@@ -159,6 +159,33 @@ const utils = {
     }
   },
 
+  isOrdinal(data, columnName) {
+    if (Number(data[columnName])) {
+      return false;
+    } 
+    return true;
+  },
+
+  isLinear(data, columnName) {
+    if (!utils.isOrdinal(data, columnName) && !utils.isTime(data, columnName)) {
+      return true;
+    }
+    return false;
+  },
+
+  isTime(data, columnName) {
+    return false;
+  },
+
+  getColumnNames(data) {
+    const dataType = utils.getDataType(data);
+    if (dataType === 'object') {
+      return Object.keys(data);
+    }  else if (dataType === 'array') {
+      return Object.keys(data[0]);
+    }
+  },
+
 };
 
 export default utils;
