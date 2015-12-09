@@ -81,22 +81,24 @@ export class ChartMain {
               .attr('class', 'x axis')
               .attr('transform', 'translate(0, ' + this.height.height + ')')
               .call(this.xAxis);
-    } else {
-
     }
+    // else {
+    //   console.log('TODO');
+    // }
     return this;
   }
 
-  setYaxis(orientation) {
+  setYaxis() {
     if (!this.yAxis) {
       this.yAxis = utils.createAxis('left', this.yScale);
 
       this.svg.append('g')
                .attr('class', 'y axis')
                .call(this.yAxis);
-    } else {
-      //
     }
+    // else {
+    //   console.log('TODO');
+    // }
     return this;
   }
 
