@@ -43,7 +43,7 @@ gulp.task('mocha', ["webpack:build-dev", "webpack:build-test"], function () {
 
 // Remove built es5 and test files
 gulp.task('clean', function () {
-    return del(['dist/*.js', 'test/testBundle.js']);
+    return del(['dist/*', 'test/testBundle.js']);
 });
 
 // Watch config

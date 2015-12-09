@@ -1,5 +1,5 @@
+/* global d3 */
 import Internal from '../subModules/internal';
-
 /**
 @private
 Holds various utility functions used throughout the library,
@@ -20,8 +20,7 @@ const utils = {
   */
 
   createSVGElement(element, width, height, margin) {
-
-    let svgElement = element
+    const svgElement = element
                      .append('svg')
                      .attr('width', width + margin.left + margin.right)
                      .attr('height', height + margin.top + margin.bottom)
@@ -62,23 +61,23 @@ const utils = {
   },
 
   setOridinalScale(length) {
-    let scale = d3.scale.ordinal() // Add check to figure out scale
+    const scale = d3.scale.ordinal() // Add check to figure out scale
                     .rangeRoundBands([0, length], 0.1);
     return scale;
   },
 
   setLinearScale(length) {
-    let scale = d3.scale.linear()
+    const scale = d3.scale.linear()
                     .range([length, 0]);
     return scale;
   },
 
-  mapDataDomainToString(scale, data, input) {
-      scale.domain(data.map(d => { return d.letter; }));
+  mapDataDomainToString(scale, data) {
+    scale.domain(data.map(d => { return d.letter; }));
   },
 
-  mapDataDomainToNumber(scale, data, input) {
-      scale.domain([0, d3.max(data, d => { return d.frequency; })]);
+  mapDataDomainToNumber(scale, data) {
+    scale.domain([0, d3.max(data, d => { return d.frequency; })]);
   },
 
   setAxisOrientation(orientation) {
@@ -86,7 +85,7 @@ const utils = {
   },
 
   createAxis(orientation, scale) {
-    let axis = d3.svg.axis()
+    const axis = d3.svg.axis()
                  .scale(scale)
                  .orient(orientation);
     return axis;
@@ -99,7 +98,7 @@ const utils = {
          stroke: stroke,
          'shape-rendering': shapeRerendering,
        });
-  }
+  },
 };
 
 export default utils;
