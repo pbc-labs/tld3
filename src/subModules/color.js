@@ -1,15 +1,15 @@
 export default class Color {
-  constructor(colors) { // pass in array
+  constructor(colors) {
     this._colors = colors;
   }
 
-  set color(newColors) {
+  set colors(newColors) {
     if (newColors !== undefined) {
       this._colors = newColors;
     }
   }
 
-  get color() {
+  get colors() {
     return this._colors;
   }
 }

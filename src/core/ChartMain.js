@@ -22,7 +22,7 @@ export class ChartMain {
     if (!this.margin) {
       this.margin = utils.setDefaultMargins();
     } else {
-      this.margins.margins(options);
+      this.margins.margins = options;
     }
     return this;
   }
@@ -31,7 +31,7 @@ export class ChartMain {
     if (!this.width) {
       this.width = utils.setDefaultWidth();
     } else {
-      this.width.width(width);
+      this.width.width = width;
     }
     return this;
   }
@@ -40,7 +40,7 @@ export class ChartMain {
     if (!this.height) {
       this.height = utils.setDefaultHeight();
     } else {
-      this.height.height(height);
+      this.height.height = height;
     }
     return this;
   }
@@ -50,27 +50,43 @@ export class ChartMain {
     return this;
   }
 
-  setXscale(type, dataDomain, columnName) {
-    this.xAxisLabel = utils.setAxisLabel(columnName);
+  setXscale(type, dataDomain) {
     if (type === 'ordinal') {
+      this.xColumnName = utils.getFirstOrdinalColumn(this.data);
+      this.xAxisLabel = utils.setAxisLabel(this.xColumnName);
       this.xScale = utils.setOridinalScale(this.width.width);
+    } else if (type === 'linear') {
+      this.xColumnName = utils.getFirstLinearColumn(this.data);
+      this.xAxisLabel = utils.setAxisLabel(this.xColumnName);
+      this.xScale = utils.setLinearScale(this.width.width);
     }
-// TODO: do other types of data domain
+
     if (dataDomain === 'string') {
-      utils.mapDataDomainToString(this.xScale, this.data, columnName);
+      utils.mapDataDomainToString(this.xScale, this.data, this.xColumnName);
+    } else if (dataDomain === 'number') {
+      utils.mapDataDomainToNumber(this.xScale, this.data, this.xColumnName);
     }
+
     return this;
   }
 
-  setYscale(type, dataDomain, columnName) {
-    this.yAxisLabel = utils.setAxisLabel(columnName);
-    if (type === 'linear') {
+  setYscale(type, dataDomain) {
+    if (type === 'ordinal') {
+      this.yColumnName = utils.getFirstOrdinalColumn(this.data);
+      this.yAxisLabel = utils.setAxisLabel(this.yColumnName);
+      this.yScale = utils.setOridinalScale(this.height.height);
+    } else if (type === 'linear') {
+      this.yColumnName = utils.getFirstLinearColumn(this.data);
+      this.yAxisLabel = utils.setAxisLabel(this.yColumnName);
       this.yScale = utils.setLinearScale(this.height.height);
     }
 
-    if (dataDomain === 'number') {
-      utils.mapDataDomainToNumber(this.yScale, this.data, columnName);
+    if (dataDomain === 'string') {
+      utils.mapDataDomainToString(this.yScale, this.data, this.yColumnName);
+    } else if (dataDomain === 'number') {
+      utils.mapDataDomainToNumber(this.yScale, this.data, this.yColumnName);
     }
+
     return this;
   }
 
@@ -82,9 +98,6 @@ export class ChartMain {
               .attr('transform', 'translate(0, ' + this.height.height + ')')
               .call(this.xAxis);
     }
-    // else {
-    //   console.log('TODO');
-    // }
     return this;
   }
 
@@ -96,36 +109,71 @@ export class ChartMain {
                .attr('class', 'y axis')
                .call(this.yAxis);
     }
-    // else {
-    //   console.log('TODO');
-    // }
+
     return this;
   }
 
   setAxisPathStyle(fill, stroke, shapeRerendering) {
     utils.setAxisStyle(this.svg, 'path', fill, stroke, shapeRerendering);
+
     return this;
   }
 
   setAxisLineStyle(fill, stroke, shapeRerendering) {
     utils.setAxisStyle(this.svg, 'line', fill, stroke, shapeRerendering);
+
     return this;
   }
 
-  setColors() {
+  setColors(colorsArray) {
+    if (!this.colors) {
+      this.colors = utils.setColors(colorsArray);
+    } else {
+      this.colors.colors = colorsArray;
+      this.svg.selectAll('.bar')
+          .style('fill', this.colors.colors);
+    }
 
+    return this;
   }
 
-  setTitle() {
+  setTitle(title) {
+    if (!this.title) {
+      this.title = utils.setTitle(title);
+    } else {
+      this.title.title = title;
+      this.element.select('.title').remove();
+      this.element.select('svg')
+          .append('text')
+          .attr('x', this.width.width * 0.5)
+          .attr('y', 20)
+          .text(this.title.title);
+    }
 
+    return this;
   }
 
-  setFontSize() {
+  setFontSize(size) {
+    if (!this.fontSize) {
+      this.fontSize = utils.setFontSize(size);
+    } else {
+      this.fontSize.fontSize = size;
+      this.element.select('svg')
+          .style('font-size', this.fontSize.fontSize);
+    }
 
+    return this;
   }
 
-  setFontType() {
+  setFontStyle(font) {
+    if (!this.fontStyle) {
+      this.fontStyle = utils.setFontStyle(font);
+    } else {
+      this.fontStyle.fontStyle = font;
+      // utils func to do something to update the chart?
+    }
 
+    return this;
   }
 
   createLegend() {
@@ -134,12 +182,12 @@ export class ChartMain {
 
   in(classOrid) {
     this.location = classOrid;
-    utils.getData(this.data)
-    .then((data) => {
-      this.data = data;
-      this.render();
-    });
-
+    // utils.getData(this.data)
+    // .then((data) => {
+    //   this.data = data;
+    //   this.render();
+    // });
+    this.render();
     return this;
   }
 
