@@ -1,5 +1,3 @@
-'use strict';
-
 import Internal from '../subModules/internal';
 
 /**
@@ -35,7 +33,7 @@ const utils = {
 
   /**
   @private
-  @description Sets the default margins for all charts
+  @description Used for setting the default margins for all charts
   @returns {Object} Constructor Class for Margins
   */
 
@@ -43,9 +41,21 @@ const utils = {
     return new Internal.config.Margins({ top: 30, right: 30, bottom: 30, left: 50 });
   },
 
+  /**
+  @private
+  @description  Used for setting the default height for all charts to 600px
+  @returns {Object} Constructor Class for Height
+  */
+
   setDefaultWidth() {
     return new Internal.config.Width(600);
   },
+
+  /**
+  @private
+  @description  Used for setting default width for all charts to 300px
+  @returns {Object} Constructor Class for Width
+  */
 
   setDefaultHeight() {
     return new Internal.config.Height(300);
@@ -69,6 +79,10 @@ const utils = {
 
   mapDataDomainToNumber(scale, data, input) {
       scale.domain([0, d3.max(data, d => { return d.frequency; })]);
+  },
+
+  setAxisOrientation(orientation) {
+    return new Internal.config.AxisOrientation(orientation);
   },
 
   createAxis(orientation, scale) {

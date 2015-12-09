@@ -16,8 +16,8 @@ export class BarChart extends ChartMain {
               .setXscale('ordinal', 'string')
               .setYscale('linear', 'number')
               .createSVG()
-              .createXaxis('bottom')
-              .createYaxis()
+              .setXaxis('bottom')
+              .setYaxis('left')
               .setAxisPathStyle('none', '#000', 'crispEdges')
               .setAxisLineStyle('none', '#000', 'crispEdges')
               .final();
