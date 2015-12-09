@@ -132,6 +132,7 @@ const utils = {
   getData(rawData) {
     const dataType = utils.getDataType(rawData);
     if (dataType === 'location') {
+      console.log('dataType')
       const fileExtension = rawData.split('.')[1];
       if (utils.isAcceptableFileExtension(fileExtension)) {
         return new Promise((resolve, reject) => {
@@ -146,7 +147,7 @@ const utils = {
       }
     } else if (dataType === 'json') {
       return new Promise(resolve => {
-        resolve(JSON.stringify(rawData));
+        resolve(JSON.parse(rawData));
       });
     } else if (dataType === 'object') {
       return new Promise(resolve => {
