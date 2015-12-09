@@ -109,6 +109,13 @@ const utils = {
     return extension in okayExtensions;
   },
 
+  /**
+  @private
+  @param {Object, String} rawData
+    @description The raw data from user
+  @returns {String} The type of data that was entered
+  */
+
   getDataType(rawData) {
     if (rawData.constructor === String) {
       try {
@@ -119,7 +126,7 @@ const utils = {
         if (temp.length === 2) {
           return 'location';
         } else if (temp.length > 2 || temp.length < 2) {
-          throw new Error('Replace with error Class');
+          throw new Error('Wrong input type!!');
         }
       }
     } else if (rawData instanceof Array) {
@@ -128,6 +135,13 @@ const utils = {
       return 'object';
     }
   },
+
+  /**
+  @private
+  @param {Object, String} rawData
+    @description The raw data from user
+  @returns {Promise} A promise with that gets resolved when the data is available
+  */
 
   getData(rawData) {
     const dataType = utils.getDataType(rawData);
@@ -159,6 +173,15 @@ const utils = {
     }
   },
 
+  /**
+  @private
+  @param {Object} data
+    @description The graph data object
+  @param {Object} columnName
+    @description The column from the data
+  @returns {Boolean} If the column scale is Ordinal
+  */
+
   isOrdinal(data, columnName) {
     const dataType = utils.getDataType(data);
     if (dataType === 'array') {
@@ -173,17 +196,28 @@ const utils = {
     return true;
   },
 
+  /**
+  @private
+  @param {Object} data
+    @description The graph data object
+  @param {Object} columnName
+    @description The column from the data
+  @returns {Boolean} If the column scale is Linear
+  */
+
   isLinear(data, columnName) {
-    if (!utils.isOrdinal(data, columnName) && !utils.isTime(data, columnName)) {
+    if (!utils.isOrdinal(data, columnName)) {
       return true;
     }
     return false;
   },
 
-  isTime() {
-    // TODO
-    return false;
-  },
+  /**
+  @private
+  @param {Object} data
+    @description The graph data object
+  @returns {Boolean} If the column scale is Linear
+  */
 
   getColumnNames(data) {
     const dataType = utils.getDataType(data);
@@ -194,7 +228,14 @@ const utils = {
     }
   },
 
-  getFirstOrdinalCol(data) {
+  /**
+  @private
+  @param {Object} data
+    @description The graph data object
+  @returns {String} The first column that can be oridinal
+  */
+
+  getFirstOrdinalColumn(data) {
     const columnNames = utils.getColumnNames(data);
     for (let i = 0; i < columnNames.length; i++) {
       if (utils.isOrdinal(data, columnNames[i])) {
@@ -204,7 +245,14 @@ const utils = {
     return null;
   },
 
-  getFirstLinearCol(data) {
+  /**
+  @private
+  @param {Object} data
+    @description The graph data object
+  @returns {String} The first column that can be linear
+  */
+
+  getFirstLinearColumn(data) {
     const columnNames = utils.getColumnNames(data);
     for (let i = 0; i < columnNames.length; i++) {
       if (utils.isLinear(data, columnNames[i])) {
