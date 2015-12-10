@@ -26,7 +26,7 @@ export default class Margins {
       'top': this._top,
       'left': this._left,
       'right': this._right,
-      'bottom': this._bottom
-      };
+      'bottom': this._bottom,
+    };
   }
 }

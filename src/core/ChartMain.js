@@ -173,13 +173,13 @@ export class ChartMain {
     return this;
   }
 
-  updateAxisColor(color) {
-    // TODO
-  }
-
-  updateTextColor(color) {
-    // TODO
-  }
+  // updateAxisColor(color) {
+  //   // TODO
+  // }
+  //
+  // updateTextColor(color) {
+  //   // TODO
+  // }
 
   setTitle(title) {
     if (!this.title) {
