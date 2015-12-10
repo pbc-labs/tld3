@@ -80,7 +80,11 @@ export class ChartMain {
 
   /**
   @private
-  @function Sets the xScale for chart. Checks for the type of scale passed in: ordinal vs. linear, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
+  @param {String} type
+    @description type of scale (ordinal vs. linear)
+  @param {String} dataDomain
+    @description Type of data to map the scale to (String vs. Number)
+  @function Sets the xScale for chart. Checks for the type of scale passed in, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
   @returns {Object} this (ChartMain class)
   */
 
@@ -106,6 +110,10 @@ export class ChartMain {
 
   /**
   @private
+  @param {String} type
+    @description type of scale (ordinal vs. linear)
+  @param {String} dataDomain
+    @description Type of data to map the scale to (String vs. Number)
   @function Sets the yScale for chart. Uses the same logic as xScale above
   @returns {Object} this (ChartMain class)
   */
@@ -130,28 +138,46 @@ export class ChartMain {
     return this;
   }
 
-  setXaxis() { // TODO: move D3 to utils
+  /**
+  @private
+  @function Sets the x-Axis to the Axis class structure and then builds the xAxis.
+  @returns {Object} this (ChartMain class)
+  */
+
+  setXaxis() {
     if (!this.xAxis) {
       this.xAxis = utils.createAxis('bottom', this.xScale);
-      this.svg.append('g')
-              .attr('class', 'x axis')
-              .attr('transform', 'translate(0, ' + this.height.height + ')')
-              .call(this.xAxis);
+      utils.buildXAxis(this.svg, this.xAxis);
     }
     return this;
   }
 
-  setYaxis() { // TODO: move D3 to utils
+  /**
+  @private
+  @function Sets the y-Axis to the Axis class structure and then builds the xAxis.
+  @returns {Object} this (ChartMain class)
+  */
+
+  setYaxis() {
     if (!this.yAxis) {
       this.yAxis = utils.createAxis('left', this.yScale);
-
-      this.svg.append('g')
-               .attr('class', 'y axis')
-               .call(this.yAxis);
+      utils.buildYAxis(this.svg, this.yAxis);
     }
 
     return this;
   }
+
+  /**
+  @private
+  @function Sets the axis path style
+  @param {String} fill
+    @description fill color of axis path
+  @param {String} stroke
+    @description stroke color of axis path
+  @param {String} shapeRerendering
+    @description rerenders the axis to be thinner and have crisp edges
+  @returns {Object} this (ChartMain class)
+  */
 
   setAxisPathStyle(fill, stroke, shapeRerendering) {
     utils.setAxisStyle(this.svg, 'path', fill, stroke, shapeRerendering);
@@ -159,11 +185,28 @@ export class ChartMain {
     return this;
   }
 
+  /**
+  @private
+  @function Sets the axis line style
+  @param {String} fill
+    @description fill color of axis path
+  @param {String} stroke
+    @description stroke color of axis path
+  @param {String} shapeRerendering
+    @description rerenders the axis to be thinner and have crisp edges
+  @returns {Object} this (ChartMain class)
+  */
+
   setAxisLineStyle(fill, stroke, shapeRerendering) {
     utils.setAxisStyle(this.svg, 'line', fill, stroke, shapeRerendering);
 
     return this;
   }
+
+  /**
+  @function Set the colors of chart
+  @returns {Object} this (ChartMain class)
+  */
 
   setColors(colorsArray) {
     if (!this.colors) {
@@ -181,41 +224,49 @@ export class ChartMain {
   //   // TODO
   // }
 
+  /**
+  @function Sets the title of the chart if it has not already been instatiated. If title already exists, it means the user is updating the title, so this case is handled in the else block.
+  @returns {Object} this (ChartMain class)
+  */
+
   setTitle(title) {
     if (!this.title) {
       this.title = utils.setTitle(title);
     } else {
       this.title.title = title;
-      this.element.select('.title').remove();
-      this.element.select('svg')
-          .append('text')
-          .attr('x', this.width.width * 0.5)
-          .attr('y', 20)
-          .text(this.title.title);
+      utils.updateTitle(this.element, this.title.title, this.width.width);
     }
 
     return this;
   }
+
+  /**
+  @function Sets the font size on the chart if it has not already been instatiated. If font size already exists, it means the user is updating the font size, so this case is handled in the else block.
+  @returns {Object} this (ChartMain class)
+  */
 
   setFontSize(size) {
     if (!this.fontSize) {
       this.fontSize = utils.setFontSize(size);
     } else {
       this.fontSize.fontSize = size;
-      this.element.select('svg')
-          .style('font-size', this.fontSize.fontSize);
+      utils.updateFontSize(this.element, this.fontSize.fontSize);
     }
 
     return this;
   }
+
+  /**
+  @function Sets the font style on the chart if it has not already been instatiated. If font style already exists, it means the user is updating the font style, so this case is handled in the else block.
+  @returns {Object} this (ChartMain class)
+  */
 
   setFontStyle(font) {
     if (!this.fontStyle) {
       this.fontStyle = utils.setFontStyle(font);
     } else {
       this.fontStyle.fontStyle = font;
-      this.element.select('svg')
-          .attr('font-family', this.fontStyle.fontStyle);
+      utils.updateFontStyle(this.element, this.fontStyle.fontStyle);
     }
 
     return this;
