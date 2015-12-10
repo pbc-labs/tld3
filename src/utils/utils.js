@@ -10,59 +10,6 @@ const utils = {
 
   /**
   @private
-  @function Creates the main SVG element
-  @param {Object} element
-    @description The main SVG chart element
-  @param {Number} width
-    @description Width of SVG chart element
-  @param {Number} width
-    @description Width of SVG chart element
-  @returns {Object} The decorated main SVG chart element
-  */
-
-  createSVGElement(element, width, height, margin) {
-    const svgElement = element
-                     .append('svg')
-                     .attr('width', width + margin.left + margin.right)
-                     .attr('height', height + margin.top + margin.bottom)
-                     .append('g')
-                     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-    return svgElement;
-  },
-
-  /**
-  @private
-  @function Used for setting the default margins for all charts
-  @returns {Object} Constructor Class for Margins
-  */
-
-  setDefaultMargins() {
-    return new Internal.config.Margins({ top: 30, right: 30, bottom: 30, left: 50 });
-  },
-
-  /**
-  @private
-  @function  Used for setting the default height for all charts to 600px
-  @returns {Object} Constructor Class for Height
-  */
-
-  setDefaultWidth() {
-    return new Internal.config.Width(600);
-  },
-
-  /**
-  @private
-  @function  Used for setting default width for all charts to 300px
-  @returns {Object} Constructor Class for Width
-  */
-
-  setDefaultHeight() {
-    return new Internal.config.Height(300);
-  },
-
-  /**
-  @private
   @function Used for setting an oridinal scale on chart
   @param {Number} length
     @description Width or Height property of chart
@@ -129,51 +76,6 @@ const utils = {
 
   setAxisLabel(label) {
     return new Internal.config.AxisLabel(label);
-  },
-
-  /**
-  @private
-  @function Builds up the x-Axis
-  @param {Object} svg
-    @description The svg element of chart
-  @param {Object} xAxis
-    @description xAxis constructor function of chart
-  @returns {Object} Constructor Class for Height
-  */
-
-  buildXAxis(svg, xAxis) {
-    svg.append('g')
-        .attr('class', 'x axis')
-        .attr('transform', 'translate(0, ' + this.height.height + ')')
-        .call(xAxis);
-  },
-
-  /**
-  @private
-  @function Builds up the y-Axis
-  @param {Object} svg
-    @description The svg element of chart
-  @param {Object} yAxis
-    @description yAxis constructor function of chart
-  @returns {Object} Constructor Class for Height
-  */
-
-  buildYAxis(svg, yAxis) {
-    svg.append('g')
-       .attr('class', 'y axis')
-       .call(yAxis);
-  },
-
-  /**
-  @private
-  @function Sets the color constructor class
-  @param {Array} colorsArray
-    @description Array of colors to be used in chart
-  @returns {Object} Constructor Class for Color
-  */
-
-  setColors(colorsArray) {
-    return new Internal.config.Color(colorsArray);
   },
 
   /**
@@ -258,23 +160,6 @@ const utils = {
   updateFontStyle(element, fontStyle) {
     element.select('svg')
            .attr('font-family', fontStyle);
-  },
-
-  /**
-  @private
-  @function Builds d3 axis
-  @param {String} orientation
-    @description The orientation of the scale's ticks ('bottom' vs. 'top', etc)
-  @returns {Object} scale
-    @description y-scale or x-scale of the chart
-  @returns d3 axis
-  */
-
-  createAxis(orientation, scale) {
-    const axis = d3.svg.axis()
-                 .scale(scale)
-                 .orient(orientation);
-    return axis;
   },
 
   /**

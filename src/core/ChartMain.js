@@ -1,6 +1,7 @@
 /*  global d3  */
 // import Internal from '../subModules/internal';
 import utils from '../utils/utils';
+import Internal from '../subModules/internal';
 
 /**
 Defines the main Chart class. This is the super class for
@@ -10,7 +11,43 @@ methods that every chart would use.
 */
 
 export class ChartMain {
-  constructor() {
+  constructor(width, height, margins) {
+    this._width = width || 600;
+    this._height = height || 300;
+    this._margins = margins || { top: 30, right: 30, bottom: 30, left: 50 };
+    this._colors = ['steelblue', 'red', 'green'];
+  }
+
+  set setWidth(newWidth) {
+    this._width = newWidth;
+  }
+
+  get getWidth() {
+    return this._width;
+  }
+
+  set setHeight(newHeight) {
+    this._height = newHeight;
+  }
+
+  get getHeight() {
+    return this._height;
+  }
+
+  set setMargins(newMargins) {
+    this._margins = newMargins;
+  }
+
+  get getMargins() {
+    return this._margins;
+  }
+
+  set setColors(newColors) {
+    this._colors = newColors;
+  }
+
+  get getColors() {
+    return this._colors;
   }
 
   /**
@@ -29,12 +66,8 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  setMargins(options) {
-    if (!this.margins) {
-      this.margins = utils.setDefaultMargins();
-    } else {
-      this.margins.margins = options;
-    }
+  updateMargins(options) {
+    this.setMargins = options;
     return this;
   }
 
@@ -43,12 +76,8 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  setWidth(width) {
-    if (!this.width) {
-      this.width = utils.setDefaultWidth();
-    } else {
-      this.width.width = width;
-    }
+  updateWidth(width) {
+    this.setWidth = width;
     return this;
   }
 
@@ -57,12 +86,8 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  setHeight(height) {
-    if (!this.height) {
-      this.height = utils.setDefaultHeight();
-    } else {
-      this.height.height = height;
-    }
+  updateHeight(height) {
+    this.setHeight = height;
     return this;
   }
 
@@ -73,7 +98,7 @@ export class ChartMain {
   */
 
   createSVG() {
-    this.svg = utils.createSVGElement(this.element, this.width.width, this.height.height, this.margins.margins);
+    this.svg = Internal.createSVGElement(this.element, this.getWidth, this.getHeight, this.getMargins);
 
     return this;
   }
@@ -92,11 +117,11 @@ export class ChartMain {
     if (type === 'ordinal') {
       this.xColumnName = utils.getFirstOrdinalColumn(this.data);
       this.xAxisLabel = utils.setAxisLabel(this.xColumnName);
-      this.xScale = utils.setOridinalScale(this.width.width);
+      this.xScale = utils.setOridinalScale(this.getWidth);
     } else if (type === 'linear') {
       this.xColumnName = utils.getFirstLinearColumn(this.data);
       this.xAxisLabel = utils.setAxisLabel(this.xColumnName);
-      this.xScale = utils.setLinearScale(this.width.width);
+      this.xScale = utils.setLinearScale(this.getWidth);
     }
 
     if (dataDomain === 'string') {
@@ -122,11 +147,11 @@ export class ChartMain {
     if (type === 'ordinal') {
       this.yColumnName = utils.getFirstOrdinalColumn(this.data);
       this.yAxisLabel = utils.setAxisLabel(this.yColumnName);
-      this.yScale = utils.setOridinalScale(this.height.height);
+      this.yScale = utils.setOridinalScale(this.getHeight);
     } else if (type === 'linear') {
       this.yColumnName = utils.getFirstLinearColumn(this.data);
       this.yAxisLabel = utils.setAxisLabel(this.yColumnName);
-      this.yScale = utils.setLinearScale(this.height.height);
+      this.yScale = utils.setLinearScale(this.getHeight);
     }
 
     if (dataDomain === 'string') {
@@ -146,8 +171,8 @@ export class ChartMain {
 
   setXaxis() {
     if (!this.xAxis) {
-      this.xAxis = utils.createAxis('bottom', this.xScale);
-      utils.buildXAxis(this.svg, this.xAxis);
+      this.xAxis = Internal.createAxis('bottom', this.xScale);
+      Internal.buildXAxis(this.svg, this.xAxis, this.getHeight);
     }
     return this;
   }
@@ -160,8 +185,8 @@ export class ChartMain {
 
   setYaxis() {
     if (!this.yAxis) {
-      this.yAxis = utils.createAxis('left', this.yScale);
-      utils.buildYAxis(this.svg, this.yAxis);
+      this.yAxis = Internal.createAxis('left', this.yScale);
+      Internal.buildYAxis(this.svg, this.yAxis);
     }
 
     return this;
@@ -203,19 +228,6 @@ export class ChartMain {
     return this;
   }
 
-  /**
-  @function Set the colors of chart
-  @returns {Object} this (ChartMain class)
-  */
-
-  setColors(colorsArray) {
-    if (!this.colors) {
-      this.colors = utils.setColors(colorsArray);
-    }
-
-    return this;
-  }
-
   // updateAxisColor(color) {
   //   // TODO
   // }
@@ -234,7 +246,7 @@ export class ChartMain {
       this.title = utils.setTitle(title);
     } else {
       this.title.title = title;
-      utils.updateTitle(this.element, this.title.title, this.width.width);
+      utils.updateTitle(this.element, this.title.title, this.getWidth);
     }
 
     return this;
@@ -283,7 +295,7 @@ export class ChartMain {
     //   this.data = data;
     //   this.render();
     // });
-    this.render();
+    this.build();
     return this;
   }
 
