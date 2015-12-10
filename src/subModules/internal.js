@@ -1,6 +1,6 @@
 import Height from '../subModules/height';
 import Width from '../subModules/width';
-import Margin from '../subModules/margin';
+import Margins from '../subModules/margin';
 import AxisLabel from '../subModules/axisLabel';
 import Color from '../subModules/color';
 import Fontstyle from '../subModules/fontStyle';
@@ -11,7 +11,7 @@ const Internal = {
   config: {
     Height: Height,
     Width: Width,
-    Margins: Margin,
+    Margins: Margins,
     AxisLabel: AxisLabel,
     Color: Color,
     Fontstyle: Fontstyle,

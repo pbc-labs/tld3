@@ -10,7 +10,7 @@ export class BarChart extends ChartMain {
 
   render() {
     return this.selectElement()
-              .setMargin()
+              .setMargins()
               .setWidth()
               .setHeight()
               .setXscale('ordinal', 'string')
@@ -42,8 +42,8 @@ export class BarChart extends ChartMain {
     // Updates the font-style, font-size.
     // Adds a title to the chart
     this.element.select('svg')
-        .style('font', this.fontStyle.fontStyle)
-        .style('font-size', this.fontSize.fontSize)
+        .style('font-family', this.fontStyle.fontStyle)
+        .attr('font-size', this.fontSize.fontSize)
         .append('text')
         .attr('class', 'title')
         .attr('x', this.width.width * 0.5)
@@ -51,6 +51,17 @@ export class BarChart extends ChartMain {
         .text(this.title.title);
 
     return this;
+  }
+
+  /**
+  @function Updates color of bar chart after initial render
+  @param {Array} colors
+    @description Array of colors to update the chart to
+  */
+  updateColors(colors) {
+    this.element.select('svg')
+        .selectAll('.bar')
+        .style('fill', colors);
   }
 
 }

@@ -13,19 +13,35 @@ export class ChartMain {
   constructor() {
   }
 
+  /**
+  @private
+  @function Creates a d3 element and assigns it to our internal this.element property
+  @returns {Object} this (ChartMain class)
+  */
+
   selectElement() {
     this.element = d3.select(this.location);
     return this;
   }
 
-  setMargin(options) {
-    if (!this.margin) {
-      this.margin = utils.setDefaultMargins();
+  /**
+  @function Sets the margins for chart. If no margins have been set yet (i.e. upon instantiation of chart), it will set the this.margins property to the Margin constructor class. If a margin exists already, we know that a user is attempting to update the margins explicitly so we use the setter method on the Margin class to update the margins.
+  @returns {Object} this (ChartMain class)
+  */
+
+  setMargins(options) {
+    if (!this.margins) {
+      this.margins = utils.setDefaultMargins();
     } else {
-      this.margin.margin = options;
+      this.margins.margins = options;
     }
     return this;
   }
+
+  /**
+  @function Sets the width for chart. If width has not been set yet (i.e. upon instantiation of chart), it will set the this.width property to the Width constructor class. If a width exists already, we know that a user is attempting to update the width explicitly so we use the setter methods on the Width class to update the width.
+  @returns {Object} this (ChartMain class)
+  */
 
   setWidth(width) {
     if (!this.width) {
@@ -36,6 +52,11 @@ export class ChartMain {
     return this;
   }
 
+  /**
+  @function Sets the height for chart. If height has not been set yet (i.e. upon instantiation of chart), it will set the this.height property to the Height constructor class. If a height exists already, we know that a user is attempting to update the height explicitly so we use the setter methods on the height class to update the height.
+  @returns {Object} this (ChartMain class)
+  */
+
   setHeight(height) {
     if (!this.height) {
       this.height = utils.setDefaultHeight();
@@ -45,10 +66,23 @@ export class ChartMain {
     return this;
   }
 
+  /**
+  @private
+  @function Sets the height for chart. If height has not been set yet (i.e. upon instantiation of chart), it will set the this.height property to the Height constructor class. If a height exists already, we know that a user is attempting to update the height explicitly so we use the setter methods on the height class to update the height.
+  @returns {Object} this (ChartMain class)
+  */
+
   createSVG() {
-    this.svg = utils.createSVGElement(this.element, this.width.width, this.height.height, this.margin);
+    this.svg = utils.createSVGElement(this.element, this.width.width, this.height.height, this.margins.margins);
+
     return this;
   }
+
+  /**
+  @private
+  @function Sets the xScale for chart. Checks for the type of scale passed in: ordinal vs. linear, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
+  @returns {Object} this (ChartMain class)
+  */
 
   setXscale(type, dataDomain) {
     if (type === 'ordinal') {
@@ -70,6 +104,12 @@ export class ChartMain {
     return this;
   }
 
+  /**
+  @private
+  @function Sets the yScale for chart. Uses the same logic as xScale above
+  @returns {Object} this (ChartMain class)
+  */
+
   setYscale(type, dataDomain) {
     if (type === 'ordinal') {
       this.yColumnName = utils.getFirstOrdinalColumn(this.data);
@@ -90,7 +130,7 @@ export class ChartMain {
     return this;
   }
 
-  setXaxis() {
+  setXaxis() { // TODO: move D3 to utils
     if (!this.xAxis) {
       this.xAxis = utils.createAxis('bottom', this.xScale);
       this.svg.append('g')
@@ -101,7 +141,7 @@ export class ChartMain {
     return this;
   }
 
-  setYaxis() {
+  setYaxis() { // TODO: move D3 to utils
     if (!this.yAxis) {
       this.yAxis = utils.createAxis('left', this.yScale);
 
@@ -128,14 +168,18 @@ export class ChartMain {
   setColors(colorsArray) {
     if (!this.colors) {
       this.colors = utils.setColors(colorsArray);
-    } else {
-      this.colors.colors = colorsArray;
-      this.svg.selectAll('.bar')
-          .style('fill', this.colors.colors);
     }
 
     return this;
   }
+
+  // updateAxisColor(color) {
+  //   // TODO
+  // }
+  //
+  // updateTextColor(color) {
+  //   // TODO
+  // }
 
   setTitle(title) {
     if (!this.title) {
@@ -170,7 +214,8 @@ export class ChartMain {
       this.fontStyle = utils.setFontStyle(font);
     } else {
       this.fontStyle.fontStyle = font;
-      // utils func to do something to update the chart?
+      this.element.select('svg')
+          .attr('font-family', this.fontStyle.fontStyle);
     }
 
     return this;
