@@ -131,20 +131,133 @@ const utils = {
     return new Internal.config.AxisLabel(label);
   },
 
+  /**
+  @private
+  @function Builds up the x-Axis
+  @param {Object} svg
+    @description The svg element of chart
+  @param {Object} xAxis
+    @description xAxis constructor function of chart
+  @returns {Object} Constructor Class for Height
+  */
+
+  buildXAxis(svg, xAxis) {
+    svg.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0, ' + this.height.height + ')')
+        .call(xAxis);
+  },
+
+  /**
+  @private
+  @function Builds up the y-Axis
+  @param {Object} svg
+    @description The svg element of chart
+  @param {Object} yAxis
+    @description yAxis constructor function of chart
+  @returns {Object} Constructor Class for Height
+  */
+
+  buildYAxis(svg, yAxis) {
+    svg.append('g')
+       .attr('class', 'y axis')
+       .call(yAxis);
+  },
+
+  /**
+  @private
+  @function Sets the color constructor class
+  @param {Array} colorsArray
+    @description Array of colors to be used in chart
+  @returns {Object} Constructor Class for Color
+  */
+
   setColors(colorsArray) {
     return new Internal.config.Color(colorsArray);
   },
+
+  /**
+  @private
+  @function Sets the title constructor class
+  @param {String} title
+    @description String title name for chart
+  @returns {Object} Constructor Class for Title
+  */
 
   setTitle(title) {
     return new Internal.config.Title(title);
   },
 
+  /**
+  @private
+  @function Sets the font constructor class
+  @param {String} font
+    @description Font style for for chart
+  @returns {Object} Constructor Class for Fontstyle
+  */
+
   setFontStyle(font) {
     return new Internal.config.Fontstyle(font);
   },
 
+  /**
+  @private
+  @function Sets the font size constructor class
+  @param {Number} size
+    @description Font size for chart
+  @returns {Object} Constructor Class for Fontsize
+  */
+
   setFontSize(size) {
     return new Internal.config.Fontsize(size);
+  },
+
+  /**
+  @private
+  @function Updates the title on chart
+  @param {Object} element
+    @description Main chart element
+  @param {String} title
+    @description Chart's new title
+  @param {Number} width
+    @description Chart width
+  */
+
+  updateTitle(element, title, width) {
+    element.select('.title').remove();
+    element.select('svg')
+        .append('text')
+        .attr('x', width * 0.5)
+        .attr('y', 20)
+        .text(title);
+  },
+
+  /**
+  @private
+  @function Updates the font size on chart
+  @param {Object} element
+    @description Main chart element
+  @param {Number} fontSize
+    @description Chart's new font size
+  */
+
+  updateFontSize(element, fontSize) {
+    element.select('svg')
+           .style('font-size', fontSize);
+  },
+
+  /**
+  @private
+  @function Updates the font style on chart
+  @param {Object} element
+    @description Main chart element
+  @param {Number} fontStyle
+    @description Chart's new font style
+  */
+
+  updateFontStyle(element, fontStyle) {
+    element.select('svg')
+           .attr('font-family', fontStyle);
   },
 
   /**
