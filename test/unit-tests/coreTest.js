@@ -38,17 +38,17 @@ export default function (d3fault, expect, assert, should) {
 
       describe('setMargin', () => {
         it('should have a setMargin method', () => {
-          expect(chart.setMargin).to.exist;
+          expect(chart.setMargins).to.exist;
         });
 
         it('should set default margins if no parameters are passed in', () => {
-          const defaultMargins = { 'bottom': 30, 'left': 50, 'right': 30, 'top': 30 };
-          expect(chart.setMargin().margin).to.eql(defaultMargins);
+          const defaultMargins = { '_bottom': 30, '_left': 50, '_right': 30, '_top': 30 };
+          expect(chart.setMargins().margins).to.eql(defaultMargins);
         });
 
         xit('should set custom margins if parameters are passed in', () => {
           const customMargins = { 'bottom': 1, 'left': 1, 'right': 1, 'top': 1 };
-          expect(chart.setMargin(customMargins).margin).to.eql(customMargins);
+          expect(chart.setMargins(customMargins).margins).to.eql(customMargins);
         });
       });
 
