@@ -38,7 +38,7 @@ gulp.task('lint-strict', function () {
 gulp.task('test', ["webpack:build-dev", "webpack:build-test"], function () {
  return gulp.src('test/testBundle.js', {read: false})
         // gulp-mocha needs filepaths so you can't have any plugins before it
-        .pipe(mocha({reporter: 'nyan'}));
+        .pipe(mocha({reporter: 'spec'}));
 });
 
 // modify some webpack config options
