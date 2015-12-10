@@ -22,7 +22,7 @@ export class ChartMain {
     if (!this.margin) {
       this.margin = utils.setDefaultMargins();
     } else {
-      this.margins.margins = options;
+      this.margin.margin = options;
     }
     return this;
   }

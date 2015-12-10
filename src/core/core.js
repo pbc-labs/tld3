@@ -17,7 +17,6 @@ This defines our main library object.
 */
 
 import charts from '../subModules/charts';
-import data from '../subModules/data';
 
 const D3fault = {
   version: '1.0.0',
@@ -25,9 +24,5 @@ const D3fault = {
     return new charts[chartType]();
   },
 };
-
-var chart = D3fault.make('BarChart')
-                   .using(data)
-                   .in('#yo');
 
 export default D3fault;
