@@ -122,8 +122,10 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  updateMargins(options) {
+  changeMargins(options) {
     this.setMargins = options;
+    this.updateMargins();
+    this.updateChartComponents();
     return this;
   }
 
@@ -132,8 +134,10 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  updateWidth(width) {
+  changeWidth(width) {
     this.setWidth = width;
+    this.updateWidth();
+    this.updateChartComponents();
     return this;
   }
 
@@ -142,8 +146,10 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  updateHeight(height) {
+  changeHeight(height) {
     this.setHeight = height;
+    this.updateHeight();
+    this.updateChartComponents();
     return this;
   }
 
@@ -152,7 +158,7 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  updateTitle(title) {
+  changeTitle(title) {
     this.setTitle = title;
     Internal.updateTitle(this);
 
@@ -164,7 +170,7 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  updateFontSize(size) {
+  changeFontSize(size) {
     this.setFontSize = size;
     Internal.updateFontSize(this);
 
@@ -176,7 +182,7 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  updateFontStyle(font) {
+  changeFontStyle(font) {
     this.setFontStyle = font;
     Internal.updateFontStyle(this);
 
@@ -188,7 +194,7 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  updatexAxisLabel(label) {
+  changexAxisLabel(label) {
     this.setxAxisLabel = label;
     Internal.updatexAxis(// TODO
     );
@@ -201,7 +207,7 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  updateyAxisLabel(label) {
+  chagneyAxisLabel(label) {
     this.setyAxisLabel = label;
     Internal.updatexAxis(// TODO
     );
@@ -228,11 +234,6 @@ export class ChartMain {
 
   in(classOrid) {
     this.location = classOrid;
-    // utils.getData(this.data)
-    // .then((data) => {
-    //   this.data = data;
-    //   this.render();
-    // });
     this.build();
     return this;
   }
@@ -244,7 +245,6 @@ export class ChartMain {
 
   using(dataInput) {
     this.data = dataInput;
-
     return this;
   }
 

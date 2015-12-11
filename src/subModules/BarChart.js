@@ -49,9 +49,92 @@ export class BarChart extends ChartMain {
     return this;
   }
 
+  /**
+  @private
+  @function Updates the bar on chart
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+  updateChartComponents() {
+    this.svg.selectAll('.bar')
+             .data(this.data)
+             .attr('class', 'bar')
+             .attr('x', d => { return this.xScale(d[this.getxAxisLabel]); })
+             .attr('width', this.xScale.rangeBand())
+             .attr('y', d => { return this.yScale(d[this.getyAxisLabel]); })
+             .attr('height', d => { return this.getHeight - this.yScale(d[this.getyAxisLabel]); })
+             .style('fill', this.getColors[0]);
+
+    return this;
+  }
+
+  /**
+  @private
+  @function Updates the chart's height on the element itself
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+  updateHeight() {
+    Internal.updateSVGElement(this);
+    // TODO: make scale type a chart properties
+    Internal.setYscale(this, 'linear', 'number');
+    Internal.updateYAxisScale(this);
+    Internal.updateYAxis(this);
+    Internal.updateXAxisPosition(this);
+    return this;
+  }
+
+  /**
+  @private
+  @function Updates the chart's margin on the element itself
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+  updateMargins() {
+    this.updateHeight();
+    this.updateWidth();
+    return this;
+  }
+
+  /**
+  @private
+  @function Updates the chart's width on the element itself
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+  updateWidth() {
+    Internal.updateSVGElement(this);
+    // TODO: make scale type a chart properties
+    Internal.setXscale(this, 'ordinal', 'string');
+    Internal.updateXAxisScale(this);
+    Internal.updateXAxis(this);
+
+    return this;
+  }
+
+  /**
+  @private
+  @function Updates the chart's style on the element
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+
   styleChart() {
-    // Sets the font-style, font-size.
-    // Adds a title to the chart
     this.element.select('svg')
         .style('font-family', this.getFontStyle)
         .attr('font-size', this.getFontSize)
