@@ -151,7 +151,7 @@ export default function (d3fault, expect, assert, should) {
             { 'letter': 'Z', 'frequency': 0.00074 },
             ];
 
-          chart.using(data)
+          chart.using(data);
           expect(chart.data).to.deep.equal(data);
         });
 
