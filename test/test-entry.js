@@ -7,8 +7,8 @@ const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
 
-import coreTest from './unit-tests/coreTest.js';
+// import coreTest from './unit-tests/coreTest.js';
 import chartMainTest from './unit-tests/chartMainTest.js';
 
-coreTest(d3fault, expect, assert, should);
+// coreTest(d3fault, expect, assert, should);
 chartMainTest(d3fault, expect, assert, should);
