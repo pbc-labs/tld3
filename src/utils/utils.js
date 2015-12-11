@@ -19,6 +19,7 @@ const utils = {
 
   /**
   @private
+  @function Checks the data type for a given input
   @param {Object, String} rawData
     @description The raw data from user
   @returns {String} The type of data that was entered
@@ -41,9 +42,10 @@ const utils = {
 
   /**
   @private
+  @function Gets all a file
   @param {Object, String} rawData
     @description The raw data from user
-  @returns {Promise} A promise with that gets resolved when the data is available
+  @returns {Promise} A promise resolved when the data is available
   */
 
   getData(rawData) {
@@ -69,6 +71,7 @@ const utils = {
 
   /**
   @private
+  @function Checks the scale of column and returns if it ordinal
   @param {Object} data
     @description The graph data object
   @param {Object} columnName
@@ -92,6 +95,7 @@ const utils = {
 
   /**
   @private
+  @function Checks the scale of column and returns if it linear
   @param {Object} data
     @description The graph data object
   @param {Object} columnName
@@ -108,6 +112,7 @@ const utils = {
 
   /**
   @private
+  @function Gets all the column names for the data set
   @param {Object} data
     @description The graph data object
   @returns {Boolean} If the column scale is Linear
@@ -124,6 +129,7 @@ const utils = {
 
   /**
   @private
+  @function Gets the first possible ordinal column
   @param {Object} data
     @description The graph data object
   @returns {String} The first column that can be oridinal
@@ -141,6 +147,7 @@ const utils = {
 
   /**
   @private
+  @function Gets the first possible linear column
   @param {Object} data
     @description The graph data object
   @returns {String} The first column that can be linear
