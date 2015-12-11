@@ -232,6 +232,7 @@ export class ChartMain {
   }
   /**
   @function Sets the div element in which the d3 chart will created.
+  @param {String} Class or Id of the div element where d3 chart will be created
   @returns {Object} this (ChartMain class)
   */
 
@@ -243,6 +244,7 @@ export class ChartMain {
 
   /**
   @function Sets the data for the chart.
+  @param {Object, JSON, URL} Data for d3 chart
   @returns {Object} this (ChartMain class)
   */
 
