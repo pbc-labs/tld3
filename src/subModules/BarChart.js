@@ -8,11 +8,8 @@ export class BarChart extends ChartMain {
     super();
   }
 
-  render() {
+  build() {
     return this.selectElement()
-              .setMargins()
-              .setWidth()
-              .setHeight()
               .setXscale('ordinal', 'string')
               .setYscale('linear', 'number')
               .createSVG()
@@ -20,11 +17,13 @@ export class BarChart extends ChartMain {
               .setYaxis()
               .setAxisPathStyle('none', '#000', 'crispEdges')
               .setAxisLineStyle('none', '#000', 'crispEdges')
-              .setColors(['steelblue'])
-              .setFontStyle('Arial')
-              .setFontSize(16)
-              .setTitle('Basic yo')
               .final();
+  }
+  render() {
+    // used for data updates?
+    // need to think about how we are "rendering" upon instantiation and upon update
+    // I think this render needs to be a customized update function depending on what attribute is being updated
+
   }
 
   final() {
@@ -36,19 +35,19 @@ export class BarChart extends ChartMain {
          .attr('x', d => { return this.xScale(d[this.xAxisLabel.label]); })
          .attr('width', this.xScale.rangeBand())
          .attr('y', d => { return this.yScale(d[this.yAxisLabel.label]); })
-         .attr('height', d => { return this.height.height - this.yScale(d[this.yAxisLabel.label]); })
-         .style('fill', this.colors.colors);
+         .attr('height', d => { return this.getHeight - this.yScale(d[this.yAxisLabel.label]); })
+         .style('fill', this.getColors[0]);
 
-    // Updates the font-style, font-size.
+    // Sets the font-style, font-size.
     // Adds a title to the chart
     this.element.select('svg')
-        .style('font-family', this.fontStyle.fontStyle)
-        .attr('font-size', this.fontSize.fontSize)
+        .style('font-family', this.getFontStyle)
+        .attr('font-size', this.getFontSize)
         .append('text')
         .attr('class', 'title')
-        .attr('x', this.width.width * 0.5)
+        .attr('x', this.getWidth * 0.5)
         .attr('y', 20)
-        .text(this.title.title);
+        .text(this.getTitle);
 
     return this;
   }
