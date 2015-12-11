@@ -19,6 +19,7 @@ const utils = {
 
   /**
   @private
+  @function Checks the data type for a given input
   @param {Object, String} rawData
     @description The raw data from user
   @returns {String} The type of data that was entered
@@ -30,12 +31,7 @@ const utils = {
         JSON.parse(rawData);
         return 'json';
       } catch (e) {
-        const temp = rawData.split('.');
-        if (temp.length === 2) {
-          return 'location';
-        } else if (temp.length > 2 || temp.length < 2) {
-          throw new Error('Wrong input type!!');
-        }
+        return 'location';
       }
     } else if (rawData instanceof Array) {
       return 'array';
@@ -46,15 +42,17 @@ const utils = {
 
   /**
   @private
+  @function Gets all a file
   @param {Object, String} rawData
     @description The raw data from user
-  @returns {Promise} A promise with that gets resolved when the data is available
+  @returns {Promise} A promise resolved when the data is available
   */
 
   getData(rawData) {
     const dataType = utils.getDataType(rawData);
     if (dataType === 'location') {
-      const fileExtension = rawData.split('.')[1];
+      const splitData = rawData.split('.');
+      const fileExtension = rawData.split('.')[splitData.length - 1];
       if (utils.isAcceptableFileExtension(fileExtension)) {
         return new Promise((resolve, reject) => {
           d3[fileExtension](rawData, (error, result) => {
@@ -66,23 +64,14 @@ const utils = {
           });
         });
       }
-    } else if (dataType === 'json') {
-      return new Promise(resolve => {
-        resolve(JSON.parse(rawData));
-      });
-    } else if (dataType === 'object') {
-      return new Promise(resolve => {
-        resolve(rawData);
-      });
-    } else if (dataType === 'array') {
-      return new Promise(resolve => {
-        resolve(rawData);
-      });
+    } else {
+      // throw new Error('Can only load files http://www.ourDocs.com/loadData')
     }
   },
 
   /**
   @private
+  @function Checks the scale of column and returns if it ordinal
   @param {Object} data
     @description The graph data object
   @param {Object} columnName
@@ -106,6 +95,7 @@ const utils = {
 
   /**
   @private
+  @function Checks the scale of column and returns if it linear
   @param {Object} data
     @description The graph data object
   @param {Object} columnName
@@ -122,6 +112,7 @@ const utils = {
 
   /**
   @private
+  @function Gets all the column names for the data set
   @param {Object} data
     @description The graph data object
   @returns {Boolean} If the column scale is Linear
@@ -138,6 +129,7 @@ const utils = {
 
   /**
   @private
+  @function Gets the first possible ordinal column
   @param {Object} data
     @description The graph data object
   @returns {String} The first column that can be oridinal
@@ -155,6 +147,7 @@ const utils = {
 
   /**
   @private
+  @function Gets the first possible linear column
   @param {Object} data
     @description The graph data object
   @returns {String} The first column that can be linear

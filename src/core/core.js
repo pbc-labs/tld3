@@ -18,12 +18,14 @@ This defines our main library object.
 */
 
 import charts from '../subModules/charts';
-// import data from '../subModules/data';
-
+import utils from '../utils/utils';
 const D3fault = {
   version: '1.0.0',
   make(chartType) {
     return new charts[chartType]();
+  },
+  upload(dataLocation) {
+    return utils.getData(dataLocation);
   },
 };
 

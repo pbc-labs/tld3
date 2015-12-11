@@ -41,6 +41,16 @@ const Internal = {
     return context;
   },
 
+  updateSVGElement(context) {
+    context.element.select('svg')
+      .attr('width', context.getWidth + context.getMargins.left + context.getMargins.right)
+      .attr('height', context.getHeight + context.getMargins.top + context.getMargins.bottom)
+      .append('g')
+      .attr('transform', 'translate(' + context.getMargins.left + ',' + context.getMargins.top + ')');
+
+    return context;
+  },
+
   /**
   @private
   @function Creates d3 axis - x
@@ -77,6 +87,40 @@ const Internal = {
 
   /**
   @private
+  @function Updates the up the y-axis scale
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+  updateYAxisScale(context) {
+    context.yAxis = d3.svg.axis()
+                      .scale(context.yScale)
+                      .orient(context.getyAxisOrientation);
+
+    return context;
+  },
+
+  /**
+  @private
+  @function Updates the up the x-axis scale
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+  updateXAxisScale(context) {
+    context.xAxis = d3.svg.axis()
+                      .scale(context.xScale)
+                      .orient(context.getxAxisOrientation);
+
+    return context;
+  },
+
+  /**
+  @private
   @function Builds up the x-axis
   @param {Object} context
     @description Chart object
@@ -91,6 +135,22 @@ const Internal = {
                .call(context.xAxis);
 
     return context;
+  },
+
+  /**
+  @private
+  @function Translates the x-axis
+  @param {Object} context
+    @description Chart object
+  @returns {Object} contextsetXscale
+    @description Chart object
+  */
+
+  updateXAxisPosition(context) {
+    context.element
+           .select('svg')
+           .select('g .x.axis')
+           .attr('transform', 'translate(0, ' + context.getHeight + ')');
   },
 
   /**
@@ -112,6 +172,42 @@ const Internal = {
 
   /**
   @private
+  @function Updates the up the y-axis scale
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+  updateYAxis(context) {
+    context.element
+           .select('svg')
+           .selectAll('g .y.axis')
+           .call(context.yAxis);
+
+    return context;
+  },
+
+  /**
+  @private
+  @function Updates the up the x-axis scale
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
+
+  updateXAxis(context) {
+    context.element
+           .select('svg')
+           .selectAll('g .x.axis')
+           .call(context.xAxis);
+
+    return context;
+  },
+
+  /**
+  @private
   @function Updates the chart's width on the element itself
   @param {Object} context
     @description Chart object
@@ -125,20 +221,6 @@ const Internal = {
     return context;
   },
 
-  /**
-  @private
-  @function Updates the chart's height on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
-  */
-
-  updateHeight(context) {
-    // TODO;
-
-    return context;
-  },
 
   /**
   @private
