@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions, no-unused-vars */
 export default function (d3fault, expect, assert, should) {
   describe('Main Chart Constructor', () => {
-    it('should return an object when called to make a chart', () => {
+    xit('should return an object when called to make a chart', () => {
       expect(d3fault.make('BarChart')).to.exist;
       expect(d3fault.make('BarChart')).to.be.an('Object');
     });
@@ -10,27 +10,27 @@ export default function (d3fault, expect, assert, should) {
       const chart = d3fault.make('BarChart');
 
       describe('Creation Methods', () => {
-        it('should have a using method', () => {
+        xit('should have a using method', () => {
           expect(chart.using).to.exist;
         });
 
-        it('should have an in method', () => {
+        xit('should have an in method', () => {
           expect(chart.in).to.exist;
         });
       });
 
       describe('selectElement', () => {
-        it('should have a selectElement method', () => {
+        xit('should have a selectElement method', () => {
           expect(chart.selectElement).to.exist;
         });
       });
 
       describe('setMargin', () => {
-        it('should have a setMargin method', () => {
+        xit('should have a setMargin method', () => {
           expect(chart.setMargins).to.exist;
         });
 
-        it('should set default margins if no parameters are passed in', () => {
+        xit('should set default margins if no parameters are passed in', () => {
           const defaultMargins = { '_bottom': 30, '_left': 50, '_right': 30, '_top': 30 };
           expect(chart.setMargins().margins).to.eql(defaultMargins);
         });
@@ -42,57 +42,57 @@ export default function (d3fault, expect, assert, should) {
       });
 
       describe('setWidth', () => {
-        it('should have a setWidth method', () => {
+        xit('should have a setWidth method', () => {
           expect(chart.setWidth).to.exist;
         });
 
-        it('should set default width if no parameters are passed in', () => {
+        xit('should set default width if no parameters are passed in', () => {
           expect(chart.setWidth().width.width).to.equal(600);
         });
 
-        it('should set custom width if parameters are passed in', () => {
+        xit('should set custom width if parameters are passed in', () => {
           expect(chart.setWidth(300).width.width).to.equal(300);
         });
       });
 
       describe('setHeight', () => {
-        it('should have a setHeight method', () => {
+        xit('should have a setHeight method', () => {
           expect(chart.setHeight).to.exist;
         });
 
-        it('should set default height if no parameters are passed in', () => {
+        xit('should set default height if no parameters are passed in', () => {
           expect(chart.setHeight().height.height).to.equal(300);
         });
 
-        it('should set custom height if parameters are passed in', () => {
+        xit('should set custom height if parameters are passed in', () => {
           expect(chart.setHeight(700).height.height).to.equal(700);
         });
       });
 
       describe('setScale methods', () => {
-        it('should have a setXscale method', () => {
+        xit('should have a setXscale method', () => {
           expect(chart.setXscale).to.exist;
         });
 
-        it('should have a setYscale method', () => {
+        xit('should have a setYscale method', () => {
           expect(chart.setYscale).to.exist;
         });
         // TODO: write test for functionality
       });
 
       describe('setAxisStyle methods', () => {
-        it('should have a setAxisPathStyle method', () => {
+        xit('should have a setAxisPathStyle method', () => {
           expect(chart.setAxisPathStyle).to.exist;
         });
 
-        it('should have a setAxisLineStyle method', () => {
+        xit('should have a setAxisLineStyle method', () => {
           expect(chart.setAxisLineStyle).to.exist;
         });
         // TODO: write test for functionality
       });
 
       describe('setColors', () => {
-        it('should have a setColors method', () => {
+        xit('should have a setColors method', () => {
           expect(chart.setColors).to.exist;
         });
 
@@ -108,7 +108,7 @@ export default function (d3fault, expect, assert, should) {
       });
 
       describe('setTitle', () => {
-        it('should have a setTitle method', () => {
+        xit('should have a setTitle method', () => {
           expect(chart.setTitle).to.exist;
         });
 
@@ -116,13 +116,13 @@ export default function (d3fault, expect, assert, should) {
           expect(chart.setTitle().title.title).to.eql('Chart');
         });
 
-        it('should set the title correctly', () => {
+        xit('should set the title correctly', () => {
           expect(chart.setTitle('ChartNumberOne').title.title).to.eql('ChartNumberOne');
         });
       });
 
       describe('setFontSize', () => {
-        it('should have a setFontSize method', () => {
+        xit('should have a setFontSize method', () => {
           expect(chart.setFontSize).to.exist;
         });
 
@@ -136,7 +136,7 @@ export default function (d3fault, expect, assert, should) {
       });
 
       describe('createLegend', () => {
-        it('should have a createLegend method', () => {
+        xit('should have a createLegend method', () => {
           expect(chart.createLegend).to.exist;
         });
 

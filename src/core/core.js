@@ -18,7 +18,7 @@ This defines our main library object.
 */
 
 import charts from '../subModules/charts';
-import data from '../subModules/data';
+// import data from '../subModules/data';
 
 const D3fault = {
   version: '1.0.0',
@@ -27,11 +27,11 @@ const D3fault = {
   },
 };
 
-const chart = D3fault.make('BarChart')
-                   .using(data)
-                   .in('#yo');
-
-chart.updateFontSize(10)
-     .updateTitle('new title, yo yo yo ');
+// const chart = D3fault.make('BarChart')
+//                    .using(data)
+//                    .in('#yo');
+//
+// chart.updateFontSize(10)
+//      .updateTitle('new title, yo yo yo ');
 
 export default D3fault;
