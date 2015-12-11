@@ -1,6 +1,5 @@
 /*  global d3  */
 // import Internal from '../subModules/internal';
-import utils from '../utils/utils';
 import Internal from '../subModules/internal';
 
 /**

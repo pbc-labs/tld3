@@ -281,7 +281,7 @@ const Internal = {
              fill: fill,
              stroke: stroke,
              'shape-rendering': shapeRerendering,
-            });
+           });
 
     return context;
   },

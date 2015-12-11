@@ -1,5 +1,5 @@
 /* global d3 */
-import Internal from '../subModules/internal';
+
 /**
 @private
 Holds various utility functions used throughout the library,
