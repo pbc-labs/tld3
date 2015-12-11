@@ -30,12 +30,7 @@ const utils = {
         JSON.parse(rawData);
         return 'json';
       } catch (e) {
-        const temp = rawData.split('.');
-        if (temp.length === 2) {
-          return 'location';
-        } else if (temp.length > 2 || temp.length < 2) {
-          throw new Error('Wrong input type!!');
-        }
+        return 'location';
       }
     } else if (rawData instanceof Array) {
       return 'array';
@@ -54,7 +49,8 @@ const utils = {
   getData(rawData) {
     const dataType = utils.getDataType(rawData);
     if (dataType === 'location') {
-      const fileExtension = rawData.split('.')[1];
+      const splitData = rawData.split('.');
+      const fileExtension = rawData.split('.')[splitData.length - 1];
       if (utils.isAcceptableFileExtension(fileExtension)) {
         return new Promise((resolve, reject) => {
           d3[fileExtension](rawData, (error, result) => {
@@ -66,18 +62,8 @@ const utils = {
           });
         });
       }
-    } else if (dataType === 'json') {
-      return new Promise(resolve => {
-        resolve(JSON.parse(rawData));
-      });
-    } else if (dataType === 'object') {
-      return new Promise(resolve => {
-        resolve(rawData);
-      });
-    } else if (dataType === 'array') {
-      return new Promise(resolve => {
-        resolve(rawData);
-      });
+    } else {
+      // throw new Error('Can only load files http://www.ourDocs.com/loadData')
     }
   },
 
