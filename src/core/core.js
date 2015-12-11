@@ -11,6 +11,7 @@ This is required for d3 to load.
 /**
 Import all necessary submodules into the core module
 */
+
 /**
 This defines our main library object.
 @private
@@ -30,7 +31,7 @@ const chart = D3fault.make('BarChart')
                    .using(data)
                    .in('#yo');
 
-chart.updateFontSize(40)
+chart.updateFontSize(10)
      .updateTitle('new title, yo yo yo ');
 
 export default D3fault;

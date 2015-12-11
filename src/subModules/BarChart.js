@@ -17,16 +17,20 @@ export class BarChart extends ChartMain {
               .setYaxis()
               .setAxisPathStyle('none', '#000', 'crispEdges')
               .setAxisLineStyle('none', '#000', 'crispEdges')
-              .final();
+              .buildChartComponents()
+              .styleChart();
   }
+
   render() {
     // used for data updates?
     // need to think about how we are "rendering" upon instantiation and upon update
     // I think this render needs to be a customized update function depending on what attribute is being updated
-
   }
 
-  final() {
+/**
+ @function Builds the actual chart components with data.
+ */
+  buildChartComponents() {
     this.svg.selectAll('.bar')
          .data(this.data)
          .enter()
@@ -38,6 +42,10 @@ export class BarChart extends ChartMain {
          .attr('height', d => { return this.getHeight - this.yScale(d[this.yAxisLabel.label]); })
          .style('fill', this.getColors[0]);
 
+    return this;
+  }
+
+  styleChart() {
     // Sets the font-style, font-size.
     // Adds a title to the chart
     this.element.select('svg')
