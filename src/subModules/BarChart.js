@@ -1,4 +1,6 @@
 import { ChartMain } from '../core/ChartMain';
+import Internal from './internal';
+
 /**
 @private
 Constructor subclass for Bar Chart.
@@ -9,16 +11,18 @@ export class BarChart extends ChartMain {
   }
 
   build() {
-    return this.selectElement()
-              .setXscale('ordinal', 'string')
-              .setYscale('linear', 'number')
-              .createSVG()
-              .setXaxis()
-              .setYaxis()
-              .setAxisPathStyle('none', '#000', 'crispEdges')
-              .setAxisLineStyle('none', '#000', 'crispEdges')
-              .buildChartComponents()
-              .styleChart();
+    Internal.selectElement(this);
+    Internal.setXscale(this, 'ordinal', 'string');
+    Internal.setYscale(this, 'linear', 'number');
+    Internal.createSVGElement(this);
+    Internal.createxAxis(this); // x-axis
+    Internal.buildXAxis(this);
+    Internal.createyAxis(this); // x-axis
+    Internal.buildYAxis(this);
+    Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
+    Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges')
+            .buildChartComponents()
+            .styleChart();
   }
 
   render() {
@@ -36,10 +40,10 @@ export class BarChart extends ChartMain {
          .enter()
          .append('rect')
          .attr('class', 'bar')
-         .attr('x', d => { return this.xScale(d[this.xAxisLabel.label]); })
+         .attr('x', d => { return this.xScale(d[this.getxAxisLabel]); })
          .attr('width', this.xScale.rangeBand())
-         .attr('y', d => { return this.yScale(d[this.yAxisLabel.label]); })
-         .attr('height', d => { return this.getHeight - this.yScale(d[this.yAxisLabel.label]); })
+         .attr('y', d => { return this.yScale(d[this.getyAxisLabel]); })
+         .attr('height', d => { return this.getHeight - this.yScale(d[this.getyAxisLabel]); })
          .style('fill', this.getColors[0]);
 
     return this;
