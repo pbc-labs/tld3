@@ -37,7 +37,7 @@ export default function (d3fault, expect, assert, should) {
       it('should use setter method to update default margins property', () => {
         const newMargins = { top: 50, right: 30, bottom: 50, left: 30 };
         chart.setMargins = newMargins;
-        expect(chart.getMargins).to.deep.equal({ top: 50, right: 30, bottom: 50, left: 30 }).and.to.be.an('object');;
+        expect(chart.getMargins).to.deep.equal({ top: 50, right: 30, bottom: 50, left: 30 }).and.to.be.an('object');
       });
 
       it('should have a default colors array', () => {
@@ -111,17 +111,51 @@ export default function (d3fault, expect, assert, should) {
         chart.setyAxisOrientation = 'right';
         expect(chart.getyAxisOrientation).to.equal('right');
       });
-
-
     });
+
     describe('Chart Main Update Methods', () => {
       const chart = d3fault.make('BarChart');
       describe('Creation Methods', () => {
-        xit('should have a using method', () => {
+        it('should have a using method', () => {
           expect(chart.using).to.exist;
         });
 
-        xit('should have an in method', () => {
+        it('should set data passed into using method as chart.data', () => {
+          const data =
+            [
+            { 'letter': 'A', 'frequency': 0.08167 },
+            { 'letter': 'B', 'frequency': 0.01492 },
+            { 'letter': 'C', 'frequency': 0.02782 },
+            { 'letter': 'D', 'frequency': 0.04253 },
+            { 'letter': 'E', 'frequency': 0.12702 },
+            { 'letter': 'F', 'frequency': 0.02288 },
+            { 'letter': 'G', 'frequency': 0.02015 },
+            { 'letter': 'H', 'frequency': 0.06094 },
+            { 'letter': 'I', 'frequency': 0.06966 },
+            { 'letter': 'J', 'frequency': 0.00153 },
+            { 'letter': 'K', 'frequency': 0.00772 },
+            { 'letter': 'L', 'frequency': 0.04025 },
+            { 'letter': 'M', 'frequency': 0.02406 },
+            { 'letter': 'N', 'frequency': 0.06749 },
+            { 'letter': 'O', 'frequency': 0.07507 },
+            { 'letter': 'P', 'frequency': 0.01929 },
+            { 'letter': 'Q', 'frequency': 0.00095 },
+            { 'letter': 'R', 'frequency': 0.05987 },
+            { 'letter': 'S', 'frequency': 0.06327 },
+            { 'letter': 'T', 'frequency': 0.09056 },
+            { 'letter': 'U', 'frequency': 0.02758 },
+            { 'letter': 'V', 'frequency': 0.00978 },
+            { 'letter': 'W', 'frequency': 0.0236 },
+            { 'letter': 'X', 'frequency': 0.0015 },
+            { 'letter': 'Y', 'frequency': 0.01974 },
+            { 'letter': 'Z', 'frequency': 0.00074 },
+            ];
+
+          chart.using(data)
+          expect(chart.data).to.deep.equal(data);
+        });
+
+        it('should have an in method', () => {
           expect(chart.in).to.exist;
         });
       });
