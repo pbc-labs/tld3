@@ -27,11 +27,4 @@ const D3fault = {
   },
 };
 
-// const chart = D3fault.make('BarChart')
-//                    .using(data)
-//                    .in('#yo');
-//
-// chart.updateFontSize(10)
-//      .updateTitle('new title, yo yo yo ');
-
 export default D3fault;
