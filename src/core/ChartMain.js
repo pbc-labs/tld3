@@ -207,7 +207,7 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  chagneyAxisLabel(label) {
+  changeyAxisLabel(label) {
     this.setyAxisLabel = label;
     Internal.updatexAxis(// TODO
     );
@@ -227,6 +227,9 @@ export class ChartMain {
   // // TODO
   // }
 
+  changeColors(colors) {
+    this.updateColors(colors);
+  }
   /**
   @function Sets the div element in which the d3 chart will created.
   @returns {Object} this (ChartMain class)

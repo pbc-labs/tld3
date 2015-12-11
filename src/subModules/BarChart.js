@@ -152,7 +152,7 @@ export class BarChart extends ChartMain {
   @param {Array} colors
     @description Array of colors to update the chart to
   */
-  changeColors(colors) {
+  updateColors(colors) {
     this.element.select('svg')
         .selectAll('.bar')
         .style('fill', colors);
