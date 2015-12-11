@@ -11,13 +11,14 @@ This is required for d3 to load.
 /**
 Import all necessary submodules into the core module
 */
+
 /**
 This defines our main library object.
 @private
 */
 
 import charts from '../subModules/charts';
-import data from '../subModules/data';
+// import data from '../subModules/data';
 
 const D3fault = {
   version: '1.0.0',
@@ -25,12 +26,5 @@ const D3fault = {
     return new charts[chartType]();
   },
 };
-
-const chart = D3fault.make('BarChart')
-                   .using(data)
-                   .in('#yo');
-
-chart.updateFontSize(40)
-     .updateTitle('new title, yo yo yo ');
 
 export default D3fault;

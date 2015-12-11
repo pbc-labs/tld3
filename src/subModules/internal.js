@@ -1,3 +1,4 @@
+/* global d3 */
 import AxisLabel from '../subModules/axisLabel';
 
 const Internal = {

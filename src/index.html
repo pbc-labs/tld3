@@ -12,6 +12,16 @@
     <div id="yo">
 
     </div>
-    <script src="../dist/d3fault.js"></script>
+    <script src="../dist/lib.js"></script>
+    <script src="./data.js"></script>
+    <script>
+    d3fault = d3fault.default;
+    var chart = d3fault.make('BarChart')
+                       .using(data)
+                       .in('#yo');
+
+    chart.updateFontSize(10)
+         .updateTitle('new title, yo yo yo ');
+         </script>
   </body>
 </html>
