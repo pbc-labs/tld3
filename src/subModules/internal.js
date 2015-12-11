@@ -1,19 +1,8 @@
-import Height from '../subModules/height';
-import Width from '../subModules/width';
-import Margins from '../subModules/margin';
 import AxisLabel from '../subModules/axisLabel';
-import Color from '../subModules/color';
-import Fontstyle from '../subModules/fontStyle';
-import Fontsize from '../subModules/fontSize';
-import Title from '../subModules/title';
 
 const Internal = {
   config: {
     AxisLabel: AxisLabel,
-    Color: Color,
-    Fontstyle: Fontstyle,
-    Fontsize: Fontsize,
-    Title: Title,
   },
 
   /**
@@ -87,6 +76,20 @@ const Internal = {
     svg.append('g')
        .attr('class', 'y axis')
        .call(yAxis);
+  },
+
+  updateFontSize(element, size) {
+    element.select('svg')
+           .attr('font-size', size);
+  },
+
+  updateTitle(element, title, width) {
+    element.select('.title').remove();
+    element.select('svg')
+        .append('text')
+        .attr('x', width * 0.5)
+        .attr('y', 20)
+        .text(title);
   },
 
 

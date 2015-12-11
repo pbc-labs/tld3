@@ -11,11 +11,16 @@ methods that every chart would use.
 */
 
 export class ChartMain {
-  constructor(width, height, margins) {
+  constructor(width, height, margins, colors, title, fontSize, fontStyle, xAxisOrientation, yAxisOrientation) {
     this._width = width || 600;
     this._height = height || 300;
     this._margins = margins || { top: 30, right: 30, bottom: 30, left: 50 };
-    this._colors = ['steelblue', 'red', 'green'];
+    this._colors = colors || ['steelblue', 'red', 'green'];
+    this._title = title || 'Default title, YO!';
+    this._fontSize = fontSize || 14;
+    this._fontStyle = fontStyle || 'Arial';
+    this._xAxisOrientation = xAxisOrientation || 'bottom';
+    this._yAxisOrientation = yAxisOrientation || 'left';
   }
 
   set setWidth(newWidth) {
@@ -48,6 +53,46 @@ export class ChartMain {
 
   get getColors() {
     return this._colors;
+  }
+
+  set setTitle(newTitle) {
+    this._title = newTitle;
+  }
+
+  get getTitle() {
+    return this._title;
+  }
+
+  set setFontSize(newFontSize) {
+    this._fontSize = newFontSize;
+  }
+
+  get getFontSize() {
+    return this._fontSize;
+  }
+
+  set setFontStyle(newFontStyle) {
+    this._fontStyle = newFontStyle;
+  }
+
+  get getFontStyle() {
+    return this._fontStyle;
+  }
+
+  set setxAxisOrientation(newOrientation) {
+    this._xAxisOrientation = newOrientation;
+  }
+
+  get getxAxisOrientation() {
+    return this._xAxisOrientation;
+  }
+
+  set setyAxisOrientation(newOrientation) {
+    this._yAxisOrientation = newOrientation;
+  }
+
+  get getyAxisOrientation() {
+    return this._yAxisOrientation;
   }
 
   /**
@@ -88,6 +133,48 @@ export class ChartMain {
 
   updateHeight(height) {
     this.setHeight = height;
+    return this;
+  }
+
+
+  // updateAxisColor(color) {
+  //   // TODO
+  // }
+  //
+  // updateTextColor(color) {
+  //   // TODO
+  // }
+
+  /**
+  @function Sets the title of the chart if it has not already been instatiated. If title already exists, it means the user is updating the title, so this case is handled in the else block.
+  @returns {Object} this (ChartMain class)
+  */
+
+  updateTitle(title) {
+    this.setTitle = title;
+    Internal.updateTitle(this.element, this.getTitle, this.getWidth);
+    return this;
+  }
+
+  /**
+  @function Sets the font size on the chart if it has not already been instatiated. If font size already exists, it means the user is updating the font size, so this case is handled in the else block.
+  @returns {Object} this (ChartMain class)
+  */
+
+  updateFontSize(size) {
+    this.setFontSize = size;
+    Internal.updateFontSize(this.element, this.getFontSize);
+    return this;
+  }
+
+  /**
+  @function Sets the font style on the chart if it has not already been instatiated. If font style already exists, it means the user is updating the font style, so this case is handled in the else block.
+  @returns {Object} this (ChartMain class)
+  */
+
+  updateFontStyle(font) {
+    this.setFontStyle = font;
+
     return this;
   }
 
@@ -171,7 +258,7 @@ export class ChartMain {
 
   setXaxis() {
     if (!this.xAxis) {
-      this.xAxis = Internal.createAxis('bottom', this.xScale);
+      this.xAxis = Internal.createAxis(this.getxAxisOrientation, this.xScale);
       Internal.buildXAxis(this.svg, this.xAxis, this.getHeight);
     }
     return this;
@@ -185,7 +272,7 @@ export class ChartMain {
 
   setYaxis() {
     if (!this.yAxis) {
-      this.yAxis = Internal.createAxis('left', this.yScale);
+      this.yAxis = Internal.createAxis(this.getyAxisOrientation, this.yScale);
       Internal.buildYAxis(this.svg, this.yAxis);
     }
 
@@ -224,62 +311,6 @@ export class ChartMain {
 
   setAxisLineStyle(fill, stroke, shapeRerendering) {
     utils.setAxisStyle(this.svg, 'line', fill, stroke, shapeRerendering);
-
-    return this;
-  }
-
-  // updateAxisColor(color) {
-  //   // TODO
-  // }
-  //
-  // updateTextColor(color) {
-  //   // TODO
-  // }
-
-  /**
-  @function Sets the title of the chart if it has not already been instatiated. If title already exists, it means the user is updating the title, so this case is handled in the else block.
-  @returns {Object} this (ChartMain class)
-  */
-
-  setTitle(title) {
-    if (!this.title) {
-      this.title = utils.setTitle(title);
-    } else {
-      this.title.title = title;
-      utils.updateTitle(this.element, this.title.title, this.getWidth);
-    }
-
-    return this;
-  }
-
-  /**
-  @function Sets the font size on the chart if it has not already been instatiated. If font size already exists, it means the user is updating the font size, so this case is handled in the else block.
-  @returns {Object} this (ChartMain class)
-  */
-
-  setFontSize(size) {
-    if (!this.fontSize) {
-      this.fontSize = utils.setFontSize(size);
-    } else {
-      this.fontSize.fontSize = size;
-      utils.updateFontSize(this.element, this.fontSize.fontSize);
-    }
-
-    return this;
-  }
-
-  /**
-  @function Sets the font style on the chart if it has not already been instatiated. If font style already exists, it means the user is updating the font style, so this case is handled in the else block.
-  @returns {Object} this (ChartMain class)
-  */
-
-  setFontStyle(font) {
-    if (!this.fontStyle) {
-      this.fontStyle = utils.setFontStyle(font);
-    } else {
-      this.fontStyle.fontStyle = font;
-      utils.updateFontStyle(this.element, this.fontStyle.fontStyle);
-    }
 
     return this;
   }

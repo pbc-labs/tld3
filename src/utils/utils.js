@@ -80,62 +80,6 @@ const utils = {
 
   /**
   @private
-  @function Sets the title constructor class
-  @param {String} title
-    @description String title name for chart
-  @returns {Object} Constructor Class for Title
-  */
-
-  setTitle(title) {
-    return new Internal.config.Title(title);
-  },
-
-  /**
-  @private
-  @function Sets the font constructor class
-  @param {String} font
-    @description Font style for for chart
-  @returns {Object} Constructor Class for Fontstyle
-  */
-
-  setFontStyle(font) {
-    return new Internal.config.Fontstyle(font);
-  },
-
-  /**
-  @private
-  @function Sets the font size constructor class
-  @param {Number} size
-    @description Font size for chart
-  @returns {Object} Constructor Class for Fontsize
-  */
-
-  setFontSize(size) {
-    return new Internal.config.Fontsize(size);
-  },
-
-  /**
-  @private
-  @function Updates the title on chart
-  @param {Object} element
-    @description Main chart element
-  @param {String} title
-    @description Chart's new title
-  @param {Number} width
-    @description Chart width
-  */
-
-  updateTitle(element, title, width) {
-    element.select('.title').remove();
-    element.select('svg')
-        .append('text')
-        .attr('x', width * 0.5)
-        .attr('y', 20)
-        .text(title);
-  },
-
-  /**
-  @private
   @function Updates the font size on chart
   @param {Object} element
     @description Main chart element
