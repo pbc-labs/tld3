@@ -206,21 +206,6 @@ const Internal = {
     return context;
   },
 
-  /**
-  @private
-  @function Updates the chart's width on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
-  */
-
-  updateWidth(context) {
-    // TODO;
-
-    return context;
-  },
-
 
   /**
   @private
@@ -264,12 +249,8 @@ const Internal = {
   */
 
   updateTitle(context) {
-    context.element.select('.title').remove();
-    context.element.select('svg')
-           .append('text')
-           .attr('x', context.getWidth * 0.5)
-           .attr('y', 20)
-           .text(context.getTitle);
+    context.element.select('.title')
+            .text(context.getTitle);
 
     return context;
   },

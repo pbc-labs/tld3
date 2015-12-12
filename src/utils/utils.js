@@ -33,7 +33,7 @@ const utils = {
       } catch (e) {
         return 'location';
       }
-    } else if (rawData instanceof Array) {
+    } else if (Array.isArray(rawData)) {
       return 'array';
     } else if (rawData instanceof Object) {
       return 'object';
