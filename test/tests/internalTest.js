@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions, no-unused-vars */
 import Browser from '../../node_modules/zombie';
 import chai from '../../node_modules/chai';
-import data from '../data';
+import data from '../data/data.js';
 
 const expect = chai.expect;
 const assert = chai.assert;
