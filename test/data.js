@@ -1,6 +1,6 @@
 /* eslint-disable */
 //test data
-var data =
+const data =
   [
   { 'letter': 'A', 'frequency': 0.08167 },
   { 'letter': 'B', 'frequency': 0.01492 },
@@ -29,3 +29,5 @@ var data =
   { 'letter': 'Y', 'frequency': 0.01974 },
   { 'letter': 'Z', 'frequency': 0.00074 },
   ];
+
+export default data;
