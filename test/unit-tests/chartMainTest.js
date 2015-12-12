@@ -266,7 +266,7 @@ describe('Main Chart Constructor', () => {
       it('should change colors when \'changeColors\' method is invoked with options', () => {
         const chart = browser.window.d3fault.make('BarChart');
         chart.using(data).in('#chart');
-        const newColors = ['blueblueblue','greengreen'];
+        const newColors = ['blueblueblue', 'greengreen'];
         chart.changeColors(newColors);
         const currentColor = browser.window.d3.select('#chart').select('svg').select('.bar').style('fill').split(',');
         expect(currentColor).to.deep.equal(newColors).and.to.be.an('Array');
@@ -311,7 +311,6 @@ describe('Main Chart Constructor', () => {
         const currentFontStyle = browser.window.d3.select('#chart').select('svg').attr('font-family');
         expect(currentFontStyle).to.equal('Comic Sans').and.to.be.a('String');
       });
-
     });
   });
 });
