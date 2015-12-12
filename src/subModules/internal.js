@@ -249,12 +249,8 @@ const Internal = {
   */
 
   updateTitle(context) {
-    context.element.select('.title').remove();
-    context.element.select('svg')
-           .append('text')
-           .attr('x', context.getWidth * 0.5)
-           .attr('y', 20)
-           .text(context.getTitle);
+    context.element.select('.title')
+            .text(context.getTitle);
 
     return context;
   },

@@ -2,6 +2,7 @@
 import d3fault from '../../src/core/core';
 import d3 from '../../node_modules/d3';
 import chai from '../../node_modules/chai';
+import Browser from '../../node_modules/zombie';
 
 const expect = chai.expect;
 const assert = chai.assert;
@@ -120,46 +121,11 @@ describe('Main Chart Constructor', () => {
     });
   });
 
-  describe('Chart Main Update Methods', () => {
+  describe('Chart Main Update Methods Exist', () => {
     const chart = d3fault.make('BarChart');
     describe('Creation Methods', () => {
       it('should have a using method', () => {
         expect(chart.using).to.exist;
-      });
-
-      it('should set data passed into using method as chart.data', () => {
-        const data =
-          [
-          { 'letter': 'A', 'frequency': 0.08167 },
-          { 'letter': 'B', 'frequency': 0.01492 },
-          { 'letter': 'C', 'frequency': 0.02782 },
-          { 'letter': 'D', 'frequency': 0.04253 },
-          { 'letter': 'E', 'frequency': 0.12702 },
-          { 'letter': 'F', 'frequency': 0.02288 },
-          { 'letter': 'G', 'frequency': 0.02015 },
-          { 'letter': 'H', 'frequency': 0.06094 },
-          { 'letter': 'I', 'frequency': 0.06966 },
-          { 'letter': 'J', 'frequency': 0.00153 },
-          { 'letter': 'K', 'frequency': 0.00772 },
-          { 'letter': 'L', 'frequency': 0.04025 },
-          { 'letter': 'M', 'frequency': 0.02406 },
-          { 'letter': 'N', 'frequency': 0.06749 },
-          { 'letter': 'O', 'frequency': 0.07507 },
-          { 'letter': 'P', 'frequency': 0.01929 },
-          { 'letter': 'Q', 'frequency': 0.00095 },
-          { 'letter': 'R', 'frequency': 0.05987 },
-          { 'letter': 'S', 'frequency': 0.06327 },
-          { 'letter': 'T', 'frequency': 0.09056 },
-          { 'letter': 'U', 'frequency': 0.02758 },
-          { 'letter': 'V', 'frequency': 0.00978 },
-          { 'letter': 'W', 'frequency': 0.0236 },
-          { 'letter': 'X', 'frequency': 0.0015 },
-          { 'letter': 'Y', 'frequency': 0.01974 },
-          { 'letter': 'Z', 'frequency': 0.00074 },
-          ];
-
-        chart.using(data);
-        expect(chart.data).to.deep.equal(data);
       });
 
       it('should have an in method', () => {
@@ -171,19 +137,11 @@ describe('Main Chart Constructor', () => {
       it('should have a changeMargins method', () => {
         expect(chart.changeMargins).to.exist;
       });
-
-      xit('should update chart margins to the object values passed in', () => {
-        // TODO
-      });
     });
 
     describe('changeWidth', () => {
       it('should have a changeWidth method', () => {
         expect(chart.changeWidth).to.exist;
-      });
-
-      xit('should update chart width to the number passed in', () => {
-        // TODO
       });
     });
 
@@ -191,19 +149,11 @@ describe('Main Chart Constructor', () => {
       it('should have a changeHeight method', () => {
         expect(chart.changeWidth).to.exist;
       });
-
-      xit('should update chart height to the number passed in', () => {
-        // TODO
-      });
     });
 
     describe('changeTitle', () => {
       it('should have a changeTitle method', () => {
         expect(chart.changeWidth).to.exist;
-      });
-
-      xit('should update chart title to the string passed in', () => {
-        // TODO
       });
     });
 
@@ -211,19 +161,11 @@ describe('Main Chart Constructor', () => {
       it('should have a changeFontSize method', () => {
         expect(chart.changeFontSize).to.exist;
       });
-
-      xit('should update chart font size to the value passed in', () => {
-        // TODO
-      });
     });
 
     describe('changeFontStyle', () => {
       it('should have a changeFontStyle method', () => {
         expect(chart.changeFontStyle).to.exist;
-      });
-
-      xit('should update chart font style to the string passed in', () => {
-        // TODO
       });
     });
 
@@ -231,19 +173,11 @@ describe('Main Chart Constructor', () => {
       xit('should have a changexAxisLabel method', () => {
         expect(chart.changexAxisLabel).to.exist;
       });
-
-      xit('should update chart x axis label to the string passed in', () => {
-        // TODO
-      });
     });
 
     describe('changeyAxisLabel', () => {
       xit('should have a changeyAxisLabel method', () => {
         expect(chart.changexAxisLabel).to.exist;
-      });
-
-      xit('should update chart y axis label to the string passed in', () => {
-        // TODO
       });
     });
 
@@ -251,20 +185,133 @@ describe('Main Chart Constructor', () => {
       xit('should have a changeColorsl method', () => {
         expect(chart.changeColors).to.exist;
       });
-
-      xit('should update colors to the arrays passed in', () => {
-        // TODO
-      });
     });
 
     describe('createLegend', () => {
       xit('should have a createLegend method', () => {
         expect(chart.createLegend).to.exist;
       });
+    });
+  });
 
-      xit('should create a legend with the options passed it', () => {
-        // TODO: write tests for functionality
+  describe('Chart Main methods functionality', () => {
+    const browser = new Browser();
+    const data =
+      [
+      { 'letter': 'A', 'frequency': 0.08167 },
+      { 'letter': 'B', 'frequency': 0.01492 },
+      { 'letter': 'C', 'frequency': 0.02782 },
+      { 'letter': 'D', 'frequency': 0.04253 },
+      { 'letter': 'E', 'frequency': 0.12702 },
+      { 'letter': 'F', 'frequency': 0.02288 },
+      { 'letter': 'G', 'frequency': 0.02015 },
+      { 'letter': 'H', 'frequency': 0.06094 },
+      { 'letter': 'I', 'frequency': 0.06966 },
+      { 'letter': 'J', 'frequency': 0.00153 },
+      { 'letter': 'K', 'frequency': 0.00772 },
+      { 'letter': 'L', 'frequency': 0.04025 },
+      { 'letter': 'M', 'frequency': 0.02406 },
+      { 'letter': 'N', 'frequency': 0.06749 },
+      { 'letter': 'O', 'frequency': 0.07507 },
+      { 'letter': 'P', 'frequency': 0.01929 },
+      { 'letter': 'Q', 'frequency': 0.00095 },
+      { 'letter': 'R', 'frequency': 0.05987 },
+      { 'letter': 'S', 'frequency': 0.06327 },
+      { 'letter': 'T', 'frequency': 0.09056 },
+      { 'letter': 'U', 'frequency': 0.02758 },
+      { 'letter': 'V', 'frequency': 0.00978 },
+      { 'letter': 'W', 'frequency': 0.0236 },
+      { 'letter': 'X', 'frequency': 0.0015 },
+      { 'letter': 'Y', 'frequency': 0.01974 },
+      { 'letter': 'Z', 'frequency': 0.00074 },
+      ];
+
+    before(() => {
+      return browser.visit('file://' + __dirname + '/../index.html');
+    });
+
+    describe('Library instantiation methods', () => {
+      it('should be find a div with \'chart\' id', () => {
+        browser.assert.element('#chart');
       });
+
+      it('should have the d3fault library loaded', () => {
+        browser.assert.global('d3fault');
+      });
+
+      it('should have the d3 library loaded', () => {
+        browser.assert.global('d3');
+      });
+
+      it('should make a chart', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        expect(chart).to.exist;
+        expect(chart).to.be.an('Object');
+      });
+
+      it('should add data to chart object when the \'using\' method is called with data', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data);
+        expect(chart.data).to.deep.equal(data);
+      });
+
+      it('should change margins when \'changeMargins\' method is invoked with options', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        const newMargins = { top: 60, right: 40, bottom: 60, left: 40 };
+        chart.changeMargins(newMargins);
+        expect(chart.getMargins).to.deep.equal(newMargins).and.to.be.an('Object');
+      });
+
+      it('should change colors when \'changeColors\' method is invoked with options', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        const newColors = ['blueblueblue','greengreen'];
+        chart.changeColors(newColors);
+        const currentColor = browser.window.d3.select('#chart').select('svg').select('.bar').style('fill').split(',');
+        expect(currentColor).to.deep.equal(newColors).and.to.be.an('Array');
+      });
+
+      it('should change height when \'changeHeight\' method is invoked with options', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        chart.changeHeight(500);
+        const currentHeight = browser.window.d3.select('#chart').select('svg').attr('height') - chart.getMargins.top - chart.getMargins.bottom;
+        expect(currentHeight).to.deep.equal(500).and.to.be.a('Number');
+      });
+
+      it('should change width when \'changeWidth\' method is invoked with options', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        chart.changeWidth(800);
+        const currentWidth = browser.window.d3.select('#chart').select('svg').attr('width') - chart.getMargins.right - chart.getMargins.left;
+        expect(currentWidth).to.deep.equal(800).and.to.be.a('Number');
+      });
+
+      it('should change title when \'changeTitle\' method is invoked with options', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        chart.changeTitle('new new new old gone');
+        const currentTitle = browser.window.d3.select('#chart').select('svg').select('.title').text();
+        expect(currentTitle).to.equal('new new new old gone').and.to.be.a('String');
+      });
+
+      it('should change font size when \'changeFontSize\' method is invoked with options', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        chart.changeFontSize(30);
+        const currentFontSize = browser.window.d3.select('#chart').select('svg').attr('font-size');
+        expect(currentFontSize).to.equal('30').and.to.be.a('String');
+      });
+
+      it('should change font style when \'changeFontStyle\' method is invoked with options', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        chart.changeFontStyle('Comic Sans');
+        const currentFontStyle = browser.window.d3.select('#chart').select('svg').attr('font-family');
+        expect(currentFontStyle).to.equal('Comic Sans').and.to.be.a('String');
+      });
+
     });
   });
 });

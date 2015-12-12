@@ -228,6 +228,7 @@ export class ChartMain {
   // }
 
   changeColors(colors) {
+    this.setColors = colors;
     this.updateColors(colors);
   }
   /**
