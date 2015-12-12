@@ -253,5 +253,4 @@ export class ChartMain {
     this.data = dataInput;
     return this;
   }
-
 }

@@ -255,12 +255,30 @@ describe('Main Chart Constructor', () => {
         expect(chart.data).to.deep.equal(data);
       });
 
+      it('should change set the x-axis column name properly', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        const xColumnNameActual = chart.xColumnName;
+        expect(xColumnNameActual).to.equal('letter');
+      });
+
+      it('should change set the y-axis column name properly', () => {
+        const chart = browser.window.d3fault.make('BarChart');
+        chart.using(data).in('#chart');
+        const yColumnNameActual = chart.yColumnName;
+        expect(yColumnNameActual).to.equal('frequency');
+      });
+
       it('should change margins when \'changeMargins\' method is invoked with options', () => {
         const chart = browser.window.d3fault.make('BarChart');
         chart.using(data).in('#chart');
         const newMargins = { top: 60, right: 40, bottom: 60, left: 40 };
         chart.changeMargins(newMargins);
-        expect(chart.getMargins).to.deep.equal(newMargins).and.to.be.an('Object');
+        const topNew = browser.window.d3.select('#chart').select('svg').attr('height') - chart.getHeight - chart.getMargins.bottom;
+        const bottomNew = browser.window.d3.select('#chart').select('svg').attr('height') - chart.getHeight - chart.getMargins.top;
+        const rightNew = browser.window.d3.select('#chart').select('svg').attr('width') - chart.getWidth - chart.getMargins.left;
+        const leftNew = browser.window.d3.select('#chart').select('svg').attr('width') - chart.getWidth - chart.getMargins.right;
+        expect({ top: topNew, right: rightNew, bottom: bottomNew, left: leftNew }).to.deep.equal(newMargins);
       });
 
       it('should change colors when \'changeColors\' method is invoked with options', () => {
