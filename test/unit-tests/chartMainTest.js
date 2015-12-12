@@ -167,119 +167,93 @@ describe('Main Chart Constructor', () => {
       });
     });
 
-    describe('selectElement', () => {
-      xit('should have a selectElement method', () => {
-        expect(chart.selectElement).to.exist;
+    describe('changeMargins', () => {
+      it('should have a changeMargins method', () => {
+        expect(chart.changeMargins).to.exist;
+      });
+
+      xit('should update chart margins to the object values passed in', () => {
+        // TODO
       });
     });
 
-    describe('setMargin', () => {
-      xit('should have a setMargin method', () => {
-        expect(chart.setMargins).to.exist;
+    describe('changeWidth', () => {
+      it('should have a changeWidth method', () => {
+        expect(chart.changeWidth).to.exist;
       });
 
-      xit('should set default margins if no parameters are passed in', () => {
-        const defaultMargins = { '_bottom': 30, '_left': 50, '_right': 30, '_top': 30 };
-        expect(chart.setMargins().margins).to.eql(defaultMargins);
-      });
-
-      xit('should set custom margins if parameters are passed in', () => {
-        const customMargins = { 'bottom': 1, 'left': 1, 'right': 1, 'top': 1 };
-        expect(chart.setMargins(customMargins).margins).to.eql(customMargins);
+      xit('should update chart width to the number passed in', () => {
+        // TODO
       });
     });
 
-    describe('setWidth', () => {
-      xit('should have a setWidth method', () => {
-        expect(chart.setWidth).to.exist;
+    describe('changeHeight', () => {
+      it('should have a changeHeight method', () => {
+        expect(chart.changeWidth).to.exist;
       });
 
-      xit('should set default width if no parameters are passed in', () => {
-        expect(chart.setWidth().width.width).to.equal(600);
-      });
-
-      xit('should set custom width if parameters are passed in', () => {
-        expect(chart.setWidth(300).width.width).to.equal(300);
+      xit('should update chart height to the number passed in', () => {
+        // TODO
       });
     });
 
-    describe('setHeight', () => {
-      xit('should have a setHeight method', () => {
-        expect(chart.setHeight).to.exist;
+    describe('changeTitle', () => {
+      it('should have a changeTitle method', () => {
+        expect(chart.changeWidth).to.exist;
       });
 
-      xit('should set default height if no parameters are passed in', () => {
-        expect(chart.setHeight().height.height).to.equal(300);
-      });
-
-      xit('should set custom height if parameters are passed in', () => {
-        expect(chart.setHeight(700).height.height).to.equal(700);
+      xit('should update chart title to the string passed in', () => {
+        // TODO
       });
     });
 
-    describe('setScale methods', () => {
-      xit('should have a setXscale method', () => {
-        expect(chart.setXscale).to.exist;
+    describe('changeFontSize', () => {
+      it('should have a changeFontSize method', () => {
+        expect(chart.changeFontSize).to.exist;
       });
 
-      xit('should have a setYscale method', () => {
-        expect(chart.setYscale).to.exist;
-      });
-      // TODO: write test for functionality
-    });
-
-    describe('setAxisStyle methods', () => {
-      xit('should have a setAxisPathStyle method', () => {
-        expect(chart.setAxisPathStyle).to.exist;
-      });
-
-      xit('should have a setAxisLineStyle method', () => {
-        expect(chart.setAxisLineStyle).to.exist;
-      });
-      // TODO: write test for functionality
-    });
-
-    describe('setColors', () => {
-      xit('should have a setColors method', () => {
-        expect(chart.setColors).to.exist;
-      });
-
-      xit('should set default colors if no parameters are passed in', () => {
-        const defaultColors = [];
-        expect(chart.setColors().colors).to.eql(defaultColors);
-      });
-
-      xit('should set custom colors if parameters are passed in', () => {
-        const customColors = ['black', 'grey', 'chartruse'];
-        expect(chart.setColors(customColors).colors).to.eql(customColors);
+      xit('should update chart font size to the value passed in', () => {
+        // TODO
       });
     });
 
-    describe('setTitle', () => {
-      xit('should have a setTitle method', () => {
-        expect(chart.setTitle).to.exist;
+    describe('changeFontStyle', () => {
+      it('should have a changeFontStyle method', () => {
+        expect(chart.changeFontStyle).to.exist;
       });
 
-      xit('should set the default title if no parameters are passed in', () => {
-        expect(chart.setTitle().title.title).to.eql('Chart');
-      });
-
-      xit('should set the title correctly', () => {
-        expect(chart.setTitle('ChartNumberOne').title.title).to.eql('ChartNumberOne');
+      xit('should update chart font style to the string passed in', () => {
+        // TODO
       });
     });
 
-    describe('setFontSize', () => {
-      xit('should have a setFontSize method', () => {
-        expect(chart.setFontSize).to.exist;
+    describe('changexAxisLabel', () => {
+      xit('should have a changexAxisLabel method', () => {
+        expect(chart.changexAxisLabel).to.exist;
       });
 
-      xit('should set default font size if no parameters are passed in', () => {
-        // TODO: write test for default font sizing
+      xit('should update chart x axis label to the string passed in', () => {
+        // TODO
+      });
+    });
+
+    describe('changeyAxisLabel', () => {
+      xit('should have a changeyAxisLabel method', () => {
+        expect(chart.changexAxisLabel).to.exist;
       });
 
-      xit('should set custom font size if parameters are passed in', () => {
-        // TODO: write test for custom font sizing
+      xit('should update chart y axis label to the string passed in', () => {
+        // TODO
+      });
+    });
+
+    describe('changeColors', () => {
+      xit('should have a changeColorsl method', () => {
+        expect(chart.changeColors).to.exist;
+      });
+
+      xit('should update colors to the arrays passed in', () => {
+        // TODO
       });
     });
 

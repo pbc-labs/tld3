@@ -206,21 +206,6 @@ const Internal = {
     return context;
   },
 
-  /**
-  @private
-  @function Updates the chart's width on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
-  */
-
-  updateWidth(context) {
-    // TODO;
-
-    return context;
-  },
-
 
   /**
   @private
