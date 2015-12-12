@@ -36,7 +36,7 @@ gulp.task('lint-strict', function () {
 
 // Run mocha tests on compiled files
 gulp.task('test', ["webpack:build-dev"], function () {
- return gulp.src('test/unit-tests/*.js', {read: false})
+ return gulp.src('test/**/*.js', {read: false})
         // gulp-mocha needs filepaths so you can't have any plugins before it
         .pipe(mocha({reporter: 'spec',
                       compilers: {
