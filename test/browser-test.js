@@ -9,11 +9,11 @@ const should = chai.should();
 describe('Browser Test', () => {
   const browser = new Browser();
 
-  before(() => {
+  beforeEach(() => {
     return browser.visit('file://' + __dirname + '/index.html');
   });
 
-  it('should be find a div with \'chart\' id', () => {
+  it('should find a div with \'chart\' id', () => {
     browser.assert.element('#chart');
   });
 
@@ -21,7 +21,7 @@ describe('Browser Test', () => {
     browser.assert.global('d3fault');
   });
 
-  it('should have the d3fault library loaded', () => {
+  it('should have the d3 library loaded', () => {
     browser.assert.global('d3');
   });
 
