@@ -36,6 +36,8 @@
     "eslint": "1.10.3",
     "eslint-config-airbnb": "2.0.0",
     "eslint-plugin-react": "3.11.2",
+    "fast-csv": "^0.6.0",
+    "fs": "0.0.2",
     "gulp": "3.9.0",
     "gulp-babel": "6.1.1",
     "gulp-eslint": "1.1.1",
@@ -48,7 +50,6 @@
     "mocha": "2.3.4",
     "pre-commit": "1.1.2",
     "webpack": "1.12.9",
-    "zombie": "4.2.1",
     "zombie": "^4.2.1"
   },
   "pre-commit": "lint"
