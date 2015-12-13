@@ -231,10 +231,10 @@ const Internal = {
   @returns {Object} context
     @description Chart object
   */
-
+// TODO: make styling uniform - some of these use attr by default and some use style
   updateFontStyle(context) {
     context.element.select('svg')
-           .attr('font-family', context.getFontStyle);
+           .style('font-family', context.getFontStyle);
 
     return context;
   },
