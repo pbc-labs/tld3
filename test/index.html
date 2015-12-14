@@ -24,21 +24,27 @@
     <div id="donutchart">
     </div>
     <script>
-      var parseDate = d3.time.format("%d-%b-%y").parse;
       var d3fault = d3fault.default;
-      d3fault.upload('./data/dataLine.csv', function(err) {
-        if (!err) {
-          console.log(err);
-        }
-      }).then(function(data) {
-        data.forEach(function(d) {
-          d.date = parseDate(d.date);
-          d.close = +d.close;
-        });
-        d3fault.make('LineChart')
-               .using(data)
-               .in('#linechart');
-      });
+      // var parseDate = d3.time.format("%d-%b-%y").parse;
+      // d3fault.upload('./data/dataLine.csv', function(err) {
+      //   if (!err) {
+      //     console.log(err);
+      //   }
+      // }).then(function(data) {
+      //   data.forEach(function(d) {
+      //     d.date = parseDate(d.date);
+      //     d.close = +d.close;
+      //   });
+      //   d3fault.make('LineChart')
+      //          .using(data)
+      //          .in('#linechart');
+      // });
+
+    // d3fault.upload('./data/scatterData.csv').then((data) => {
+    //     d3fault.make('BarChart').using(data).in('#barchart');
+    // }).catch((err) => {
+    //   console.error(err);
+    // });
 
     </script>
   </body>
