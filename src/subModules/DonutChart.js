@@ -24,14 +24,14 @@ export class DonutChart extends ChartMain {
   }
 
   buildChartComponents() {
-    this.svg.selectAll('.arc')
+    const g = this.svg.selectAll('.arc')
         .data(this.pie(this.data))
         .enter().append('g')
-        .attr('class', 'arc')
-      .append('path')
+        .attr('class', 'arc');
+    g.append('path')
         .attr('d', this.arc)
-        .style('fill', d => { return this.colorScale(d.data.age); })
-      .append('text')
+        .style('fill', d => { return this.colorScale(d.data.age); });
+    g.append('text')
         .attr('transform', d => { return 'translate(' + this.arc.centroid(d) + ')'; })
         .attr('dy', '.35em')
         .text(d => { return d.data.age; });
@@ -43,7 +43,7 @@ export class DonutChart extends ChartMain {
         .data(this.pie(this.data))
       .selectAll('path')
         .attr('d', this.arc)
-        .style('fill', d => { return this.colorScale(d.data.age); })
+        .style('fill', d => { return this.colorScale(d.data[this.ordinalColumn]); })
       .selectAll('text')
         .attr('transform', d =>{ return 'translate(' + this.arc.centroid(d) + ')'; })
         .attr('dy', '.35em')
@@ -52,7 +52,7 @@ export class DonutChart extends ChartMain {
   }
 
   updateRadius() {
-    this.getRadius = Math.min(this.getHeight, this.getWidth);
+    this.radius = Math.min(this.getHeight, this.getWidth);
     return this;
   }
 
@@ -64,15 +64,15 @@ export class DonutChart extends ChartMain {
 
   updateArc() {
     this.arc = d3.svg.arc()
-               .innerRadius(this.radius - 10)
-               .outerRadius(this.radius - 80);
+               .outerRadius(this.radius - 80)
+               .innerRadius(this.radius - 10);
     return this;
   }
 
   updatePie() {
     this.pie = d3.layout.pie()
                .sort(null)
-               .value(() => { return this.data[this.ordinalColumn]; });
+               .value(d => { return d[this.linearColumn]; });
     return this;
   }
 
@@ -90,6 +90,11 @@ export class DonutChart extends ChartMain {
     this.data.forEach(item => {
       item[this.linearColumn] = Number(item[this.linearColumn]);
     });
+    return this;
+  }
+
+  updateTranslation() {
+    this.svg.attr('transform', 'translate(' + this.getWidth / 2 + ',' + this.getHeight / 2 + ')');
     return this;
   }
 
