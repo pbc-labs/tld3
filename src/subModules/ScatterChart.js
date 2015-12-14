@@ -14,6 +14,7 @@ export class ScatterChart extends ChartMain {
 
   build() {
     Internal.selectElement(this);
+    Internal.scatter.setColumns(this);
     Internal.scatter.setXscale(this);
     Internal.scatter.setYscale(this);
     Internal.createSVGElement(this);
@@ -45,7 +46,6 @@ export class ScatterChart extends ChartMain {
   @returns {Object} context
     @description Chart object
   */
-
   updateChartComponents() {
     Internal.scatter.updateChartComponents(this);
   }
@@ -62,7 +62,7 @@ export class ScatterChart extends ChartMain {
   updateHeight() {
     Internal.updateSVGElement(this);
     // TODO: make scale type a chart property
-    Internal.setYscale(this, 'linear', 'number');
+    Internal.scatter.setYscale(this, 'linear', 'number');
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
     Internal.updateXAxisPosition(this);
@@ -96,45 +96,21 @@ export class ScatterChart extends ChartMain {
   updateWidth() {
     Internal.updateSVGElement(this);
     // TODO: make scale type a chart properties
-    Internal.setXscale(this, 'ordinal', 'string');
+    Internal.scatter.setXscale(this, 'ordinal', 'string');
     Internal.updateXAxisScale(this);
     Internal.updateXAxis(this);
 
     return this;
   }
 
-  /**
-  @private
-  @function Updates the chart's style on the element
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
-  */
-
-
-  styleChart() {
-    this.element.select('svg')
-        .style('font-family', this.getFontStyle)
-        .attr('font-size', this.getFontSize)
-        .append('text')
-        .attr('class', 'title')
-        .attr('x', this.getWidth * 0.5)
-        .attr('y', 20)
-        .text(this.getTitle);
-
-    return this;
-  }
-
-  /**
-  @function Updates color of bar chart after initial render
-  @param {Array} colors
-    @description Array of colors to update the chart to
-  */
+/**
+@function Updates color of bar chart after initial render
+@param {Array} colors
+  @description Array of colors to update the chart to
+*/
   updateColors(colors) {
     this.element.select('svg')
-        .selectAll('.bar')
+        .selectAll('.dot')
         .style('fill', colors);
   }
-
 }

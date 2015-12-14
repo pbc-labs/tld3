@@ -2,8 +2,22 @@
 import utils from '../utils/utils';
 
 const scatter = {
-  setXscale(context) {
+/**
+@private
+@function Parses and sets the column names for a particular chart instance.
+*/
+  setColumns(context) {
     context.xColumnName = utils.getFirstLinearColumn(context.data);
+    context.yColumnName = utils.getColumnNames(context.data)[1];
+    context.ordinalNames = utils.getFirstOrdinalColumn(context.data);
+    return context;
+  },
+
+/**
+@private
+@function Sets the scale for the X-axis based on the results of the setColumns function
+*/
+  setXscale(context) {
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.scale.linear()
                     .range([0, context.getWidth]);
@@ -11,8 +25,11 @@ const scatter = {
     return context;
   },
 
+/**
+@private
+@function Sets the scale for the Y-axis based on the results of the setColumns function
+*/
   setYscale(context) {
-    context.yColumnName = utils.getColumnNames(context.data)[1];
     context.setyAxisLabel = context.yColumnName;
     context.yScale = d3.scale.linear()
                        .range([context.getHeight, 0]);
@@ -20,6 +37,10 @@ const scatter = {
     return context;
   },
 
+/**
+@private
+@function Builds the X-Axis label with the appropriate column name.
+*/
   buildXAxisLabel(context) {
     context.element.select('.x.axis').append('text')
           .attr('class', 'label')
@@ -29,7 +50,10 @@ const scatter = {
           .text(`${context.getxAxisLabel}`);
     return context;
   },
-
+/**
+@private
+@function Builds the Y-Axis label with the appropriate column name.
+*/
   buildYAxisLabel(context) {
     context.element.select('.y.axis').append('text')
           .attr('class', 'label')
@@ -39,9 +63,9 @@ const scatter = {
           .text(`${context.getyAxisLabel}`);
     return context;
   },
-  /**
-   @function Builds the actual chart components with data.
-   */
+/**
+@function Builds the actual chart components with data.
+*/
   buildChartComponents(context) {
     context.svg.selectAll('.dot')
          .data(context.data)
@@ -51,12 +75,19 @@ const scatter = {
          .attr('r', 3.5)
          .attr('cx', (d) => { return context.xScale(d[context.getxAxisLabel]); })
          .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
-// species?
-         .style('fill', (d) => { return context.color(d.species); });
+         .style('fill', (d) => { return context.color(d[context.ordinalNames]); });
 
     return context;
   },
 
+/**
+@private
+@function Updates the chart's style on the element
+@param {Object} context
+  @description Chart object
+@returns {Object} context
+  @description Chart object
+*/
   styleChart(context) {
     context.element.select('svg')
         .style('font-family', context.getFontStyle)
@@ -70,6 +101,7 @@ const scatter = {
     return context;
   },
 
+
   updateChartComponents(context) {
     context.svg.selectAll('.dot')
              .data(context.data)
@@ -78,7 +110,7 @@ const scatter = {
              .attr('width', context.xScale.rangeBand())
              .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
              .attr('height', (d) => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); })
-             .style('fill', (d) => { return context.getColorScale(d.species); });
+             .style('fill', (d) => { return context.getColorScale(d[context.ordinalNames]); });
 
     return context;
   },

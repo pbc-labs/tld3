@@ -1,5 +1,4 @@
 /* global d3 */
-
 import utils from '../utils/utils';
 import scatter from '../internal-charts/scatter';
 
