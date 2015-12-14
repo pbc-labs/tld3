@@ -1,4 +1,5 @@
 import { BarChart } from '../subModules/BarChart';
+import { LineChart } from '../subModules/LineChart';
 import { DonutChart } from '../subModules/DonutChart';
 
 /**
@@ -9,6 +10,7 @@ A subclass exists for each chart type.
 
 const charts = {
   BarChart,
+  LineChart,
   DonutChart,
 };
 
