@@ -129,13 +129,43 @@ describe('Utils Tests', () => {
     });
   });
 
-  xdescribe('isTime', () => {
+  describe('isAcceptableTimeFormat', () => {
     it('should return true for time data', () => {
-
+      expect(utils.isAcceptableTimeFormat('Jan 1 2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January 1 2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January 01 2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January 2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('01 January 2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('2015 Jan 01')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('Jan-1-2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January-1-2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January-01-2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January-2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('01-January-2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('2015-Jan-01')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('Jan/1/2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January/1/2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January/01/2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('January/2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('01/January/2015')).to.be.true;
+      expect(utils.isAcceptableTimeFormat('2015/Jan/01')).to.be.true;
     });
 
     it('should return false for data that is not time data', () => {
+      expect(utils.isAcceptableTimeFormat('hello')).to.be.false;
+      expect(utils.isAcceptableTimeFormat('2015 January ONE')).to.be.false;
+      expect(utils.isAcceptableTimeFormat(99)).to.be.false;
+      expect(utils.isAcceptableTimeFormat('99')).to.be.false;
+    });
+  });
 
+  describe('isTIme', () => {
+    it('should return true for column data that does have time data', () => {
+      expect(utils.isTime([{ 'test': 'January/2015' }], 'test')).to.be.true;
+    });
+
+    it('should return false for column data that does have time data', () => {
+      expect(utils.isTime([{ 'test': 'Hello World!' }], 'test')).to.be.false;
     });
   });
 
@@ -158,7 +188,12 @@ describe('Utils Tests', () => {
   });
 
   describe('getFirstTimeColumn', () => {
-    xit('should return first time column', () => {
+    it('should return null if no time columns exit', () => {
+      expect(utils.getFirstTimeColumn([{ 'testNum': 99, 'testTime': 'January/2015' }])).to.eql('testTime');
+    });
+
+    it('should return null if no time columns exit', () => {
+      expect(utils.getFirstTimeColumn(data)).to.be.null;
     });
   });
 });
