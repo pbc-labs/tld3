@@ -14,17 +14,21 @@ export class ScatterChart extends ChartMain {
 
   build() {
     Internal.selectElement(this);
-    Internal.setXscale(this, 'linear', 'string');
-    Internal.setYscale(this, 'linear', 'number');
+    Internal.scatter.setXscale(this);
+    Internal.scatter.setYscale(this);
     Internal.createSVGElement(this);
-    Internal.createxAxis(this); // x-axis
+    // x-axis
+    Internal.createxAxis(this);
     Internal.buildXAxis(this);
-    Internal.createyAxis(this); // x-axis
+    Internal.scatter.buildXAxisLabel(this);
+    // y-axis
+    Internal.createyAxis(this);
     Internal.buildYAxis(this);
+    Internal.scatter.buildYAxisLabel(this);
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
-    Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges')
-            .buildChartComponents()
-            .styleChart();
+    Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
+    Internal.scatter.buildChartComponents(this);
+    Internal.scatter.styleChart(this);
   }
 
   render() {
@@ -33,26 +37,9 @@ export class ScatterChart extends ChartMain {
     // I think this render needs to be a customized update function depending on what attribute is being updated
   }
 
-/**
- @function Builds the actual chart components with data.
- */
-  buildChartComponents() {
-    this.svg.selectAll('.dot')
-         .data(this.data)
-         .enter()
-         .append('circle')
-         .attr('class', 'dot')
-         .attr('r', 3.5)
-         .attr('cx', (d) => { return this.xScale(d[this.getxAxisLabel]); })
-         .attr('cy', (d) => { return this.yScale(d[this.getyAxisLabel]); })
-         .style('fill', (d) => { return this.color(d.species); });
-
-    return this;
-  }
-
   /**
   @private
-  @function Updates the bar on chart
+  @function Updates the dots on chart. Calls the internal update function.
   @param {Object} context
     @description Chart object
   @returns {Object} context
@@ -60,16 +47,7 @@ export class ScatterChart extends ChartMain {
   */
 
   updateChartComponents() {
-    this.svg.selectAll('.dot')
-             .data(this.data)
-             .attr('class', 'circle')
-             .attr('x', d => { return this.xScale(d[this.getxAxisLabel]); })
-             .attr('width', this.xScale.rangeBand())
-             .attr('y', d => { return this.yScale(d[this.getyAxisLabel]); })
-             .attr('height', d => { return this.getHeight - this.yScale(d[this.getyAxisLabel]); })
-             .style('fill', this.getColors[0]);
-
-    return this;
+    Internal.scatter.updateChartComponents(this);
   }
 
   /**
@@ -83,7 +61,7 @@ export class ScatterChart extends ChartMain {
 
   updateHeight() {
     Internal.updateSVGElement(this);
-    // TODO: make scale type a chart properties
+    // TODO: make scale type a chart property
     Internal.setYscale(this, 'linear', 'number');
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
