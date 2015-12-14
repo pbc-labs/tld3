@@ -50,7 +50,7 @@ describe('Line Chart methods functionality', () => {
     it('should make line to represent data for the line chart', () => {
       const lineChart = browser.window.d3fault.make('LineChart');
       lineChart.using(dataLineChart).in('#linechart');
-      const lineShape = browser.window.d3.select('#linechart').select('.line');
+      const lineShape = browser.window.d3.select('#linechart').select('.line')[0];
       expect(lineShape).to.exist;
     });
 

@@ -62,7 +62,7 @@ describe('Bar Chart methods functionality', () => {
     it('should make rects to represent data for the bar chart', () => {
       const barChart = browser.window.d3fault.make('BarChart');
       barChart.using(dataBarChart).in('#barchart');
-      const barRect = browser.window.d3.select('#barchart').select('rect');
+      const barRect = browser.window.d3.select('#barchart').select('rect')[0];
       expect(barRect).to.exist;
     });
   });
