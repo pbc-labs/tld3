@@ -1,5 +1,6 @@
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
+import InternalBar from './internalBar';
 
 /**
 @private
@@ -15,14 +16,14 @@ export class BarChart extends ChartMain {
     Internal.setXscale(this, 'ordinal', 'string');
     Internal.setYscale(this, 'linear', 'number');
     Internal.createSVGElement(this);
-    Internal.createxAxis(this); // x-axis
+    Internal.createxAxis(this);
     Internal.buildXAxis(this);
-    Internal.createyAxis(this); // x-axis
+    Internal.createyAxis(this);
     Internal.buildYAxis(this);
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
-    Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges')
-            .buildChartComponents()
-            .styleChart();
+    Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
+    InternalBar.buildChartComponents(this);
+    InternalBar.styleChart(this);
   }
 
   render() {
@@ -31,44 +32,17 @@ export class BarChart extends ChartMain {
     // I think this render needs to be a customized update function depending on what attribute is being updated
   }
 
-/**
- @function Builds the actual chart components with data.
- */
-  buildChartComponents() {
-    this.svg.selectAll('.bar')
-         .data(this.data)
-         .enter()
-         .append('rect')
-         .attr('class', 'bar')
-         .attr('x', d => { return this.xScale(d[this.getxAxisLabel]); })
-         .attr('width', this.xScale.rangeBand())
-         .attr('y', d => { return this.yScale(d[this.getyAxisLabel]); })
-         .attr('height', d => { return this.getHeight - this.yScale(d[this.getyAxisLabel]); })
-         .style('fill', this.getColors[0]);
-
-    return this;
-  }
-
   /**
   @private
-  @function Updates the bar on chart
+  @function Calls InternalBar to updates the bar on chart
   @param {Object} context
     @description Chart object
-  @returns {Object} context
+  @returns {Object} this
     @description Chart object
   */
 
   updateChartComponents() {
-    this.svg.selectAll('.bar')
-             .data(this.data)
-             .attr('class', 'bar')
-             .attr('x', d => { return this.xScale(d[this.getxAxisLabel]); })
-             .attr('width', this.xScale.rangeBand())
-             .attr('y', d => { return this.yScale(d[this.getyAxisLabel]); })
-             .attr('height', d => { return this.getHeight - this.yScale(d[this.getyAxisLabel]); })
-             .style('fill', this.getColors[0]);
-
-    return this;
+    InternalBar.updateChartComponents(this);
   }
 
   /**
@@ -82,7 +56,6 @@ export class BarChart extends ChartMain {
 
   updateHeight() {
     Internal.updateSVGElement(this);
-    // TODO: make scale type a chart properties
     Internal.setYscale(this, 'linear', 'number');
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
@@ -116,7 +89,6 @@ export class BarChart extends ChartMain {
 
   updateWidth() {
     Internal.updateSVGElement(this);
-    // TODO: make scale type a chart properties
     Internal.setXscale(this, 'ordinal', 'string');
     Internal.updateXAxisScale(this);
     Internal.updateXAxis(this);
@@ -125,37 +97,12 @@ export class BarChart extends ChartMain {
   }
 
   /**
-  @private
-  @function Updates the chart's style on the element
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
-  */
-
-
-  styleChart() {
-    this.element.select('svg')
-        .style('font-family', this.getFontStyle)
-        .attr('font-size', this.getFontSize)
-        .append('text')
-        .attr('class', 'title')
-        .attr('x', this.getWidth * 0.5)
-        .attr('y', 20)
-        .text(this.getTitle);
-
-    return this;
-  }
-
-  /**
-  @function Updates color of bar chart after initial render
+  @function Calls InternalBar to update color of bar chart after initial render
   @param {Array} colors
     @description Array of colors to update the chart to
   */
   updateColors(colors) {
-    this.element.select('svg')
-        .selectAll('.bar')
-        .style('fill', colors);
+    InternalBar.updateColors(colors, this);
   }
 
 }

@@ -157,6 +157,8 @@ const Internal = {
            .select('svg')
            .select('g .x.axis')
            .attr('transform', 'translate(0, ' + context.getHeight + ')');
+
+    return context;
   },
 
   /**

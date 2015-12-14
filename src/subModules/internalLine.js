@@ -1,3 +1,4 @@
+/*  global d3  */
 import utils from '../utils/utils';
 
 const InternalLine = {
