@@ -104,8 +104,44 @@ const utils = {
   */
 
   isLinear(data, columnName) {
-    if (!utils.isOrdinal(data, columnName)) {
+    if (!utils.isOrdinal(data, columnName) && !utils.isTime(data, columnName)) {
       return true;
+    }
+    return false;
+  },
+
+  /**
+  @private
+  @function Checks the scale of column and returns if it linear
+  @param {Object} data
+    @description The graph data object
+  @param {Object} columnName
+    @description The column from the data
+  @returns {Boolean} If the column scale is Linear
+  */
+
+  isTime(data, columnName) {
+    if (utils.isAcceptableTimeFormat(data[0][columnName])) {
+      return true;
+    }
+    return false;
+  },
+
+  /**
+  @private
+  @function Returns true a given timeStamp can be writen in a time format
+  @param {String} timeStamp
+    @description A UTC time or string
+  @returns {Boolean} If the timeStamp is a valid time
+  */
+
+  isAcceptableTimeFormat(timeStamp, context) {
+    const _timeStamp = String(timeStamp);
+    if (context && context.timeFormat) {
+      const parser = d3.time.format(context.timeFormat).parse;
+      return parser(_timeStamp) === null;
+    } else if (_timeStamp.split(' ').length > 1 || _timeStamp.split('/').length > 1 || _timeStamp.split('-').length > 1) {
+      return new Date(_timeStamp).toString() !== 'Invalid Date';
     }
     return false;
   },
@@ -157,6 +193,24 @@ const utils = {
     const columnNames = utils.getColumnNames(data);
     for (let i = 0; i < columnNames.length; i++) {
       if (utils.isLinear(data, columnNames[i])) {
+        return columnNames[i];
+      }
+    }
+    return null;
+  },
+
+  /**
+  @private
+  @function Gets the first possible time scale column
+  @param {Object} data
+    @description The graph data object
+  @returns {String} The first column that can be linear
+  */
+
+  getFirstTimeColumn(data) {
+    const columnNames = utils.getColumnNames(data);
+    for (let i = 0; i < columnNames.length; i++) {
+      if (utils.isTime(data, columnNames[i])) {
         return columnNames[i];
       }
     }
