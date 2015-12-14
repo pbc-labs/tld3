@@ -1,29 +1,30 @@
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
-import InternalBar from './internalBar';
+import InternalLine from './internalLine';
 
 /**
 @private
 Constructor subclass for Bar Chart.
 */
-export class BarChart extends ChartMain {
+export class LineChart extends ChartMain {
   constructor() {
     super();
   }
 
   build() {
     Internal.selectElement(this);
-    Internal.setXscale(this, 'ordinal', 'string');
-    Internal.setYscale(this, 'linear', 'number');
+    InternalLine.setXScale(this);
+    InternalLine.setYScale(this);
     Internal.createSVGElement(this);
     Internal.createxAxis(this);
     Internal.buildXAxis(this);
     Internal.createyAxis(this);
-    Internal.buildYAxis(this);
+    InternalLine.buildYAxis(this);
+    InternalLine.buildLine(this);
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
-    InternalBar.buildChartComponents(this);
-    InternalBar.styleChart(this);
+    InternalLine.buildChartComponents(this);
+    InternalLine.styleChart(this);
   }
 
   render() {
@@ -34,15 +35,15 @@ export class BarChart extends ChartMain {
 
   /**
   @private
-  @function Calls InternalBar to updates the bar on chart
+  @function Calls InternalLine to update the line on the chart
   @param {Object} context
     @description Chart object
-  @returns {Object} this
+  @returns {Object} context
     @description Chart object
   */
 
   updateChartComponents() {
-    InternalBar.updateChartComponents(this);
+    InternalLine.updateChartComponents(this);
   }
 
   /**
@@ -60,6 +61,8 @@ export class BarChart extends ChartMain {
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
     Internal.updateXAxisPosition(this);
+    InternalLine.buildLine(this);
+
     return this;
   }
 
@@ -75,6 +78,7 @@ export class BarChart extends ChartMain {
   updateMargins() {
     this.updateHeight();
     this.updateWidth();
+
     return this;
   }
 
@@ -89,20 +93,23 @@ export class BarChart extends ChartMain {
 
   updateWidth() {
     Internal.updateSVGElement(this);
-    Internal.setXscale(this, 'ordinal', 'string');
+    // TODO: make scale type a chart properties
+    InternalLine.setXScale(this);
     Internal.updateXAxisScale(this);
     Internal.updateXAxis(this);
+    InternalLine.buildLine(this);
 
     return this;
   }
 
+
   /**
-  @function Calls InternalBar to update color of bar chart after initial render
+  @function Calls InternalLine function to update color of line on chart after initial render
   @param {Array} colors
     @description Array of colors to update the chart to
   */
   updateColors(colors) {
-    InternalBar.updateColors(colors, this);
+    InternalLine.updateColors(colors, this);
   }
 
 }

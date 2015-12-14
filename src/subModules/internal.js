@@ -132,7 +132,13 @@ const Internal = {
     context.svg.append('g')
                .attr('class', 'x axis')
                .attr('transform', 'translate(0, ' + context.getHeight + ')')
-               .call(context.xAxis);
+               .call(context.xAxis)
+               .append('text')
+               .attr('class', 'x-axis-label')
+               .attr('x', context.getWidth * 0.5)
+               .attr('dy', '30px')
+               .style('text-anchor', 'middle')
+               .text(context.getxAxisLabel);
 
     return context;
   },
@@ -151,6 +157,8 @@ const Internal = {
            .select('svg')
            .select('g .x.axis')
            .attr('transform', 'translate(0, ' + context.getHeight + ')');
+
+    return context;
   },
 
   /**
@@ -201,7 +209,12 @@ const Internal = {
     context.element
            .select('svg')
            .selectAll('g .x.axis')
-           .call(context.xAxis);
+           .call(context.xAxis)
+           .select('.x-axis-label')
+           .attr('x', context.getWidth * 0.5)
+           .attr('dy', '30px')
+           .style('text-anchor', 'middle')
+           .text(context.getxAxisLabel);
 
     return context;
   },
