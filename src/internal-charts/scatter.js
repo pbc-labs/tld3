@@ -114,6 +114,29 @@ const scatter = {
 
     return context;
   },
+// TODO: refactor
+  createLegend(context) {
+    const legend = context.svg.append('g')
+        .attr('class', 'legend')
+        .selectAll('.legend-data')
+        .data(context.color.domain())
+        .enter().append('g')
+        .attr('class', 'legend-data')
+        // Makes each rect spaced by 20px
+        .attr('transform', (d, i) => { return 'translate(0,' + i * 20 + ')'; });
+    legend.append('rect')
+        .attr('x', context.getWidth - 18)
+        .attr('width', 18)
+        .attr('height', 18)
+        // Setting colors
+        .style('fill', context.color);
+    // // append the name of species
+    legend.append('text')
+        .attr('x', context.getWidth - 24)
+        .attr('y', 12)
+        .style('text-anchor', 'end')
+        .text((d) => { return d; });
+  },
 };
 
 export default scatter;

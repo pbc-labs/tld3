@@ -1,7 +1,6 @@
 /* global d3 */
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
-
 /**
 @private
 Constructor subclass for Scatter Chart.
@@ -30,6 +29,7 @@ export class ScatterChart extends ChartMain {
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
     Internal.scatter.buildChartComponents(this);
     Internal.scatter.styleChart(this);
+    Internal.scatter.createLegend(this);
   }
 
   render() {
@@ -98,6 +98,7 @@ export class ScatterChart extends ChartMain {
     // TODO: make scale type a chart properties
     Internal.scatter.setXscale(this, 'ordinal', 'string');
     Internal.updateXAxisScale(this);
+    // Internal.scatter.updateXAxisLabel
     Internal.updateXAxis(this);
 
     return this;
