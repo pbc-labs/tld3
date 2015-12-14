@@ -37,7 +37,6 @@
     "eslint-config-airbnb": "2.0.0",
     "eslint-plugin-react": "3.11.2",
     "fast-csv": "^0.6.0",
-    "fs": "0.0.2",
     "gulp": "3.9.0",
     "gulp-babel": "6.1.1",
     "gulp-eslint": "1.1.1",
