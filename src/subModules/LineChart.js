@@ -35,7 +35,7 @@ export class LineChart extends ChartMain {
 
   /**
   @private
-  @function Updates the bar on chart
+  @function Calls InternalLine to update the line on the chart
   @param {Object} context
     @description Chart object
   @returns {Object} context
@@ -43,16 +43,7 @@ export class LineChart extends ChartMain {
   */
 
   updateChartComponents() {
-    this.svg.selectAll('.line')
-             .data(this.data)
-             .attr('class', 'line')
-             .attr('x', d => { return this.xScale(d[this.getxAxisLabel]); })
-             .attr('width', this.xScale.rangeBand())
-             .attr('y', d => { return this.yScale(d[this.getyAxisLabel]); })
-             .attr('height', d => { return this.getHeight - this.yScale(d[this.getyAxisLabel]); })
-             .style('fill', this.getColors[0]);
-
-    return this;
+    InternalLine.updateChartComponents(this);
   }
 
   /**
@@ -70,6 +61,8 @@ export class LineChart extends ChartMain {
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
     Internal.updateXAxisPosition(this);
+    InternalLine.buildLine(this);
+
     return this;
   }
 
@@ -85,6 +78,7 @@ export class LineChart extends ChartMain {
   updateMargins() {
     this.updateHeight();
     this.updateWidth();
+
     return this;
   }
 
@@ -100,24 +94,22 @@ export class LineChart extends ChartMain {
   updateWidth() {
     Internal.updateSVGElement(this);
     // TODO: make scale type a chart properties
-    Internal.setXscale(this, 'time', 'date');
+    InternalLine.setXScale(this);
     Internal.updateXAxisScale(this);
     Internal.updateXAxis(this);
+    InternalLine.buildLine(this);
 
     return this;
   }
 
 
-
   /**
-  @function Updates color of bar chart after initial render
+  @function Calls InternalLine function to update color of line on chart after initial render
   @param {Array} colors
     @description Array of colors to update the chart to
   */
   updateColors(colors) {
-    this.element.select('svg')
-        .selectAll('.bar')
-        .style('fill', colors);
+    InternalLine.updateColors(colors, this);
   }
 
 }

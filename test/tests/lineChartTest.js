@@ -12,32 +12,20 @@ describe('Line Chart methods functionality', () => {
   const browser = new Browser();
   const dataLineChart =
     [
-    { 'letter': 'A', 'frequency': 0.08167 },
-    { 'letter': 'B', 'frequency': 0.01492 },
-    { 'letter': 'C', 'frequency': 0.02782 },
-    { 'letter': 'D', 'frequency': 0.04253 },
-    { 'letter': 'E', 'frequency': 0.12702 },
-    { 'letter': 'F', 'frequency': 0.02288 },
-    { 'letter': 'G', 'frequency': 0.02015 },
-    { 'letter': 'H', 'frequency': 0.06094 },
-    { 'letter': 'I', 'frequency': 0.06966 },
-    { 'letter': 'J', 'frequency': 0.00153 },
-    { 'letter': 'K', 'frequency': 0.00772 },
-    { 'letter': 'L', 'frequency': 0.04025 },
-    { 'letter': 'M', 'frequency': 0.02406 },
-    { 'letter': 'N', 'frequency': 0.06749 },
-    { 'letter': 'O', 'frequency': 0.07507 },
-    { 'letter': 'P', 'frequency': 0.01929 },
-    { 'letter': 'Q', 'frequency': 0.00095 },
-    { 'letter': 'R', 'frequency': 0.05987 },
-    { 'letter': 'S', 'frequency': 0.06327 },
-    { 'letter': 'T', 'frequency': 0.09056 },
-    { 'letter': 'U', 'frequency': 0.02758 },
-    { 'letter': 'V', 'frequency': 0.00978 },
-    { 'letter': 'W', 'frequency': 0.0236 },
-    { 'letter': 'X', 'frequency': 0.0015 },
-    { 'letter': 'Y', 'frequency': 0.01974 },
-    { 'letter': 'Z', 'frequency': 0.00074 },
+      { 'date': '24-Apr-07', 'close': 93.24 },
+      { 'date': '28-Apr-07', 'close': 95.35 },
+      { 'date': '1-May-07', 'close': 98.84 },
+      { 'date': '4-May-07', 'close': 99.92 },
+      { 'date': '5-May-07', 'close': 99.80 },
+      { 'date': '9-May-07', 'close': 100.39 },
+      { 'date': '10-May-07', 'close': 100.81 },
+      { 'date': '11-May-07', 'close': 100.40 },
+      { 'date': '12-May-07', 'close': 103.92 },
+      { 'date': '13-May-07', 'close': 105.06 },
+      { 'date': '14-May-07', 'close': 106.88 },
+      { 'date': '15-May-07', 'close': 107.34 },
+      { 'date': '16-May-07', 'close': 108.74 },
+      { 'date': '17-May-07', 'close': 108.74 },
     ];
 
   before(() => {
@@ -45,25 +33,39 @@ describe('Line Chart methods functionality', () => {
   });
 
   describe('Line Chart methods', () => {
-    xit('should make a chart in a div with id "linechart"', () => {
+    it('should make a chart in a div with id "linechart"', () => {
       const lineChart = browser.window.d3fault.make('LineChart');
       lineChart.using(dataLineChart).in('#linechart');
       const lineId = lineChart.element.attr('id');
       expect(lineId).to.equal('linechart').and.to.be.an('String');
     });
 
-    xit('should make a chart with a class "line"', () => {
+    it('should make a chart with a class "line"', () => {
       const lineChart = browser.window.d3fault.make('LineChart');
       lineChart.using(dataLineChart).in('#linechart');
-      const lineClass = browser.window.d3.select('#linechart').select('line').attr('class');
-      expect(lineClass).to.equal('linechart').and.to.be.an('String');
+      const lineClass = browser.window.d3.select('#linechart').select('.line').attr('class');
+      expect(lineClass).to.equal('line').and.to.be.an('String');
     });
 
-    xit('should make rects to represent data for the line chart', () => {
+    it('should make line to represent data for the line chart', () => {
       const lineChart = browser.window.d3fault.make('LineChart');
       lineChart.using(dataLineChart).in('#linechart');
-      const lineShape = browser.window.d3.select('#linechart').select('line');
+      const lineShape = browser.window.d3.select('#linechart').select('.line');
       expect(lineShape).to.exist;
+    });
+
+    it('should change set the x-axis column name properly (to the one which is time scale)', () => {
+      const lineChart = browser.window.d3fault.make('LineChart');
+      lineChart.using(dataLineChart).in('#linechart');
+      const xColumnNameActual = lineChart.xColumnName;
+      expect(xColumnNameActual).to.equal('date');
+    });
+
+    it('should change set the y-axis column name properly (to the one which is linear scale)', () => {
+      const lineChart = browser.window.d3fault.make('LineChart');
+      lineChart.using(dataLineChart).in('#linechart');
+      const yColumnNameActual = lineChart.yColumnName;
+      expect(yColumnNameActual).to.equal('close');
     });
   });
 });
