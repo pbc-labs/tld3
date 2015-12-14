@@ -75,7 +75,7 @@ const scatter = {
          .attr('r', 3.5)
          .attr('cx', (d) => { return context.xScale(d[context.getxAxisLabel]); })
          .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
-         .style('fill', (d) => { return context.color(d[context.ordinalNames]); });
+         .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); });
 
     return context;
   },
@@ -110,16 +110,16 @@ const scatter = {
              .attr('width', context.xScale.rangeBand())
              .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
              .attr('height', (d) => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); })
-             .style('fill', (d) => { return context.getColorScale(d[context.ordinalNames]); });
+             .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); });
 
     return context;
   },
-// TODO: refactor
+// TODO: move into general internal
   createLegend(context) {
     const legend = context.svg.append('g')
         .attr('class', 'legend')
         .selectAll('.legend-data')
-        .data(context.color.domain())
+        .data(context.getColors.domain())
         .enter().append('g')
         .attr('class', 'legend-data')
         // Makes each rect spaced by 20px
@@ -129,14 +129,23 @@ const scatter = {
         .attr('width', 18)
         .attr('height', 18)
         // Setting colors
-        .style('fill', context.color);
-    // // append the name of species
+        .style('fill', context.getColors);
+    // // append the name of ordinal data
     legend.append('text')
         .attr('x', context.getWidth - 24)
         .attr('y', 12)
         .style('text-anchor', 'end')
         .text((d) => { return d; });
   },
+
+  updateColors(context) {
+    context.element.select('svg')
+        .selectAll('.dot')
+        .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); });
+    context.element.selectAll('.legend-data rect')
+    .style('fill', context.getColors);
+  },
+
 };
 
 export default scatter;

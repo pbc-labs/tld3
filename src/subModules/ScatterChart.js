@@ -1,6 +1,7 @@
 /* global d3 */
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
+import InternalScatter from '../internal-charts/scatter';
 /**
 @private
 Constructor subclass for Scatter Chart.
@@ -8,28 +9,29 @@ Constructor subclass for Scatter Chart.
 export class ScatterChart extends ChartMain {
   constructor() {
     super();
-    this.color = d3.scale.category10();
+    // overwrites default colors with ordinal scale
+    this._colors = d3.scale.category10();
   }
 
   build() {
     Internal.selectElement(this);
-    Internal.scatter.setColumns(this);
-    Internal.scatter.setXscale(this);
-    Internal.scatter.setYscale(this);
+    InternalScatter.setColumns(this);
+    InternalScatter.setXscale(this);
+    InternalScatter.setYscale(this);
     Internal.createSVGElement(this);
     // x-axis
     Internal.createxAxis(this);
     Internal.buildXAxis(this);
-    Internal.scatter.buildXAxisLabel(this);
+    InternalScatter.buildXAxisLabel(this);
     // y-axis
     Internal.createyAxis(this);
     Internal.buildYAxis(this);
-    Internal.scatter.buildYAxisLabel(this);
+    InternalScatter.buildYAxisLabel(this);
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
-    Internal.scatter.buildChartComponents(this);
-    Internal.scatter.styleChart(this);
-    Internal.scatter.createLegend(this);
+    InternalScatter.buildChartComponents(this);
+    InternalScatter.styleChart(this);
+    InternalScatter.createLegend(this);
   }
 
   render() {
@@ -47,7 +49,7 @@ export class ScatterChart extends ChartMain {
     @description Chart object
   */
   updateChartComponents() {
-    Internal.scatter.updateChartComponents(this);
+    InternalScatter.updateChartComponents(this);
   }
 
   /**
@@ -62,7 +64,7 @@ export class ScatterChart extends ChartMain {
   updateHeight() {
     Internal.updateSVGElement(this);
     // TODO: make scale type a chart property
-    Internal.scatter.setYscale(this, 'linear', 'number');
+    InternalScatter.setYscale(this, 'linear', 'number');
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
     Internal.updateXAxisPosition(this);
@@ -96,12 +98,18 @@ export class ScatterChart extends ChartMain {
   updateWidth() {
     Internal.updateSVGElement(this);
     // TODO: make scale type a chart properties
-    Internal.scatter.setXscale(this, 'ordinal', 'string');
+    InternalScatter.setXscale(this, 'ordinal', 'string');
     Internal.updateXAxisScale(this);
-    // Internal.scatter.updateXAxisLabel
     Internal.updateXAxis(this);
 
     return this;
+  }
+
+  set setColors(newColors) {
+    const color = d3.scale.ordinal()
+                    .domain(this.getColors.domain())
+                    .range(newColors);
+    this._colors = color;
   }
 
 /**
@@ -109,9 +117,8 @@ export class ScatterChart extends ChartMain {
 @param {Array} colors
   @description Array of colors to update the chart to
 */
-  updateColors(colors) {
-    this.element.select('svg')
-        .selectAll('.dot')
-        .style('fill', colors);
+// TODO: possible update to ordinal colors in general internal
+  updateColors() {
+    InternalScatter.updateColors(this);
   }
 }
