@@ -9,7 +9,7 @@ const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
 
-describe('Donut Chart methods functionality', () => {
+xdescribe('Donut Chart methods functionality', () => {
   const browser = new Browser();
   const dataDonutChart = [];
   before(() => {
@@ -32,11 +32,18 @@ describe('Donut Chart methods functionality', () => {
       expect(donutId).to.equal('donutchart').and.to.be.an('String');
     });
 
-    it('should make rects to represent data for the donut chart', () => {
+    it('should make arc to represent donut chart', () => {
       const donutChart = browser.window.d3fault.make('DonutChart');
       donutChart.using(dataDonutChart).in('#donutchart');
       const donutShape = browser.window.d3.select('#donutchart').select('.arc'); // TODO: update to the right selector
       expect(donutShape[0]).to.exist;
+    });
+
+    it('should make paths to represent data in donut chart', () => {
+      const donutChart = browser.window.d3fault.make('DonutChart');
+      donutChart.using(dataDonutChart).in('#donutchart');
+      const donutPaths = browser.window.d3.select('svg').selectAll('path'); // TODO: update to the right selector
+      expect(donutPaths).to.equal(7);
     });
   });
 });
