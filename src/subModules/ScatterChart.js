@@ -22,11 +22,9 @@ export class ScatterChart extends ChartMain {
     // x-axis
     Internal.createxAxis(this);
     Internal.buildXAxis(this);
-    InternalScatter.buildXAxisLabel(this);
     // y-axis
     Internal.createyAxis(this);
     Internal.buildYAxis(this);
-    InternalScatter.buildYAxisLabel(this);
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
     InternalScatter.buildChartComponents(this);

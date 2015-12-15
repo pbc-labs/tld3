@@ -36,33 +36,6 @@ const scatter = {
     context.yScale.domain(d3.extent(context.data, (d) => { return +d[context.yColumnName]; })).nice();
     return context;
   },
-
-/**
-@private
-@function Builds the X-Axis label with the appropriate column name.
-*/
-  buildXAxisLabel(context) {
-    context.element.select('.x.axis').append('text')
-          .attr('class', 'label')
-          .attr('x', context.getWidth)
-          .attr('y', -6)
-          .style('text-anchor', 'end')
-          .text(`${context.getxAxisLabel}`);
-    return context;
-  },
-/**
-@private
-@function Builds the Y-Axis label with the appropriate column name.
-*/
-  buildYAxisLabel(context) {
-    context.element.select('.y.axis').append('text')
-          .attr('class', 'label')
-          .attr('transform', 'rotate(-90)')
-          .attr('y', 12)
-          .style('text-anchor', 'end')
-          .text(`${context.getyAxisLabel}`);
-    return context;
-  },
 /**
 @function Builds the actual chart components with data.
 */
@@ -101,7 +74,7 @@ const scatter = {
     return context;
   },
 
-
+// TODO!
   updateChartComponents(context) {
     context.svg.selectAll('.dot')
              .data(context.data)
@@ -142,6 +115,7 @@ const scatter = {
     context.element.select('svg')
         .selectAll('.dot')
         .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); });
+
     context.element.selectAll('.legend-data rect')
     .style('fill', context.getColors);
   },

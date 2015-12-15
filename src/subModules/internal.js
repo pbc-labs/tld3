@@ -134,9 +134,9 @@ const Internal = {
                .call(context.xAxis)
                .append('text')
                .attr('class', 'x-axis-label')
-               .attr('x', context.getWidth * 0.5)
-               .attr('dy', '30px')
-               .style('text-anchor', 'middle')
+               .attr('x', context.getWidth)
+               .attr('y', -6)
+               .style('text-anchor', 'end')
                .text(context.getxAxisLabel);
 
     return context;
@@ -162,18 +162,22 @@ const Internal = {
 
   /**
   @private
-  @function Builds up the y-axis
+  @function Builds up the y-axis and adds the label
   @param {Object} context
     @description Chart object
   @returns {Object} context
     @description Chart object
   */
-
   buildYAxis(context) {
     context.svg.append('g')
            .attr('class', 'y axis')
-           .call(context.yAxis);
-
+           .call(context.yAxis)
+           .append('text')
+           .attr('class', 'y-axis-label')
+           .attr('transform', 'rotate(-90)')
+           .attr('y', 12)
+           .style('text-anchor', 'end')
+           .text(context.getyAxisLabel);
     return context;
   },
 
@@ -209,10 +213,11 @@ const Internal = {
            .select('svg')
            .selectAll('g .x.axis')
            .call(context.xAxis)
-           .select('.x-axis-label')
-           .attr('x', context.getWidth * 0.5)
-           .attr('dy', '30px')
-           .style('text-anchor', 'middle')
+           .select('x-axis-label')
+           .attr('class', 'x-axis-label')
+           .attr('x', context.getWidth)
+           .attr('y', -6)
+           .style('text-anchor', 'end')
            .text(context.getxAxisLabel);
 
     return context;
