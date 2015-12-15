@@ -1,6 +1,6 @@
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
-import InternalLine from './internalLine';
+import InternalLine from '../internal-charts/internalLine';
 
 /**
 @private
