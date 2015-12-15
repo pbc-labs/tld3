@@ -78,7 +78,12 @@ const scatter = {
   updateChartComponents(context) {
     context.svg.select('.scatter').remove();
     context.svg.selectAll('.dot').remove();
+    context.svg.selectAll('.legend').remove();
+    context.element.select('.title').remove();
+
     this.buildChartComponents(context);
+    this.createLegend(context);
+    this.styleChart(context);
     return context;
   },
 // TODO: move into general internal
