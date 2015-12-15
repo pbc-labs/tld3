@@ -195,7 +195,12 @@ const Internal = {
            .select('svg')
            .selectAll('g .y.axis')
            .call(context.yAxis);
-
+    context.element.select('.y-axis-label')
+           .attr('class', 'y-axis-label')
+           .attr('transform', 'rotate(-90)')
+           .attr('y', 12)
+           .style('text-anchor', 'end')
+           .text(context.getyAxisLabel);
     return context;
   },
 
@@ -212,9 +217,8 @@ const Internal = {
     context.element
            .select('svg')
            .selectAll('g .x.axis')
-           .call(context.xAxis)
-           .select('x-axis-label')
-           .attr('class', 'x-axis-label')
+           .call(context.xAxis);
+    context.element.select('.x-axis-label')
            .attr('x', context.getWidth)
            .attr('y', -6)
            .style('text-anchor', 'end')

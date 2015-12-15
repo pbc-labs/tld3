@@ -62,7 +62,7 @@ export class ScatterChart extends ChartMain {
   updateHeight() {
     Internal.updateSVGElement(this);
     // TODO: make scale type a chart property
-    InternalScatter.setYscale(this, 'linear', 'number');
+    InternalScatter.setYscale(this);
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
     Internal.updateXAxisPosition(this);
@@ -96,7 +96,7 @@ export class ScatterChart extends ChartMain {
   updateWidth() {
     Internal.updateSVGElement(this);
     // TODO: make scale type a chart properties
-    InternalScatter.setXscale(this, 'ordinal', 'string');
+    InternalScatter.setXscale(this);
     Internal.updateXAxisScale(this);
     Internal.updateXAxis(this);
 

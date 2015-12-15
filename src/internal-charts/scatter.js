@@ -40,7 +40,7 @@ const scatter = {
 @function Builds the actual chart components with data.
 */
   buildChartComponents(context) {
-    context.svg.selectAll('.dot')
+    context.svg.selectAll('.scatter')
          .data(context.data)
          .enter()
          .append('circle')
@@ -76,15 +76,9 @@ const scatter = {
 
 // TODO!
   updateChartComponents(context) {
-    context.svg.selectAll('.dot')
-             .data(context.data)
-             .attr('class', 'circle')
-             .attr('cx', (d) => { return context.xScale(d[context.getxAxisLabel]); })
-             .attr('width', context.xScale.rangeBand())
-             .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
-             .attr('height', (d) => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); })
-             .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); });
-
+    context.svg.select('.scatter').remove();
+    context.svg.selectAll('.dot').remove();
+    this.buildChartComponents(context);
     return context;
   },
 // TODO: move into general internal
