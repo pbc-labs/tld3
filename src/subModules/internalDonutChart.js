@@ -37,12 +37,12 @@ const DonutChart = {
     return context;
   },
 
-  updateLinearColunm(context, columnName) {
+  updateLinearColumn(context, columnName) {
     context.linearColumn = columnName || utils.getFirstLinearColumn(context.data);
     return context;
   },
 
-  updateOrdinalColunm(context, columnName) {
+  updateOrdinalColumn(context, columnName) {
     context.ordinalColumn = columnName || utils.getFirstOrdinalColumn(context.data);
     return context;
   },
@@ -91,7 +91,7 @@ const DonutChart = {
     context.svg.append('text')
     .attr('class', 'title')
     .attr('text-anchor', 'middle')
-    .text('Default Tilte');
+    .text('Default Title');
     return this;
   },
 
