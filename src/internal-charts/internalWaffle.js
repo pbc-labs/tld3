@@ -63,25 +63,38 @@ const waffle = {
     return context;
   },
 
+  styleChart(context) {
+    context.element.select('svg')
+           .style('font-family', context.getFontStyle)
+           .attr('font-size', context.getFontSize)
+           .append('text')
+           .attr('class', 'title')
+           .attr('x', context.getWidth * 0.5)
+           .attr('y', 20)
+           .text(`${context.xColumnName} | ${context.yColumnName}`);
+    return context;
+  },
+
   createLegend(context) {
     const legend = context.svg.append('g')
         .attr('class', 'legend')
+        .attr('transform', 'translate(' + context.getSquareWidth + ', 0)')
         .selectAll('.legend-data')
         .data(context.getColors.domain())
         .enter().append('g')
         .attr('class', 'legend-data')
         // Makes each rect spaced by 20px
-        .attr('transform', (d, i) => { return 'translate(' + i * 50 + ', ' + (context.getHeight - 10) + ')'; });
+        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getHeight) + ')'; });
     legend.append('rect')
         .attr('x', 10)
-        .attr('width', 18)
-        .attr('height', 18)
+        .attr('width', context.getSquareWidth)
+        .attr('height', 5)
         // Setting colors
         .style('fill', context.getColors);
     // // append the name of ordinal data
     legend.append('text')
-        .attr('x', 30)
-        .attr('y', 35)
+        .attr('x', 32)
+        .attr('y', 20)
         .style('text-anchor', 'end')
         .text((d) => { return context.data[d][context.xColumnName]; });
   },
