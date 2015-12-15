@@ -62,6 +62,7 @@ export class WaffleChart extends ChartMain {
     InternalWaffle.updateChartComponents(this);
   }
 
+  // TODO: Calculate change in squares for updateHeight and updateWidth
   updateHeight() {
 
   }
