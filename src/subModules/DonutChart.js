@@ -1,7 +1,7 @@
 /*  global d3  */
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
-import InternalDonut from './internalDonutChart';
+import InternalDonut from '../internal-charts/internalDonutChart';
 
 export class DonutChart extends ChartMain {
   constructor() {
