@@ -1,6 +1,6 @@
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
-import InternalBar from './internalBar';
+import InternalBar from '../internal-charts/internalBar';
 
 /**
 @private

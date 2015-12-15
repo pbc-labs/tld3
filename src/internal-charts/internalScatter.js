@@ -74,7 +74,6 @@ const scatter = {
     return context;
   },
 
-// TODO!
   updateChartComponents(context) {
     context.svg.select('.scatter').remove();
     context.svg.selectAll('.dot').remove();

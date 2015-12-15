@@ -1,7 +1,7 @@
 /* global d3 */
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
-import InternalScatter from '../internal-charts/scatter';
+import InternalScatter from '../internal-charts/internalScatter';
 /**
 @private
 Constructor subclass for Scatter Chart.
