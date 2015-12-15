@@ -3,7 +3,7 @@ import utils from '../utils/utils';
 
 const waffle = {
   setColumns(context) {
-    context.xColumnName = utils.getFirstLinearColumn(context.data);
+    context.xColumnName = utils.getFirstOrdinalColumn(context.data);
     context.yColumnName = utils.getColumnNames(context.data)[1];
     return context;
   },
@@ -45,6 +45,7 @@ const waffle = {
                .data(context.processedData)
                .enter()
                .append('rect')
+               .attr('class', 'square')
                .attr('width', context.getSquareSize)
                .attr('height', context.getSquareSize)
                .attr('fill', (d) => {
@@ -57,9 +58,40 @@ const waffle = {
                })
                .attr('y', (d, i) => {
                  const row = i % context.getSquareHeight;
-                 return (context.getSquareHeight * context.getSquareSize) - ((row * context.getSquareSize) + (row * context.getGapSize));
+                 return (context.getSquareHeight * context.getSquareSize) - ((row * context.getSquareSize) + (row * context.getGapSize) + 10);
                });
     return context;
+  },
+
+  createLegend(context) {
+    const legend = context.svg.append('g')
+        .attr('class', 'legend')
+        .selectAll('.legend-data')
+        .data(context.getColors.domain())
+        .enter().append('g')
+        .attr('class', 'legend-data')
+        // Makes each rect spaced by 20px
+        .attr('transform', (d, i) => { return 'translate(' + i * 50 + ', ' + (context.getHeight - 10) + ')'; });
+    legend.append('rect')
+        .attr('x', 10)
+        .attr('width', 18)
+        .attr('height', 18)
+        // Setting colors
+        .style('fill', context.getColors);
+    // // append the name of ordinal data
+    legend.append('text')
+        .attr('x', 30)
+        .attr('y', 35)
+        .style('text-anchor', 'end')
+        .text((d) => { return context.data[d][context.xColumnName]; });
+  },
+
+  updateColors(context) {
+    context.element.select('svg')
+        .selectAll('.square')
+        .style('fill', (d) => { return context.getColors(d[context.yColumnName]); });
+    context.element.selectAll('.legend-data rect')
+    .style('fill', context.getColors);
   },
 };
 
