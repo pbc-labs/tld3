@@ -14,7 +14,7 @@ describe('Internal Tests', () => {
   let internal;
 
   before((done) => {
-    browser.visit('file://' + __dirname + '/../index.html', () => {
+    browser.visit('file://' + __dirname + '../index.html', () => {
       d3 = browser.window.d3;
       d3fault = browser.window.d3fault;
       internal = d3fault.internal;
@@ -26,7 +26,7 @@ describe('Internal Tests', () => {
     let chart;
 
     before((done) => {
-      browser.visit('file://' + __dirname + '/../index.html', () => {
+      browser.visit('file://' + __dirname + '../index.html', () => {
         chart = d3fault.make('BarChart').using(data).in('#chart');
         done();
       });
@@ -95,7 +95,7 @@ describe('Internal Tests', () => {
     let context;
 
     before((done) => {
-      browser.visit('file://' + __dirname + '/../index.html', () => {
+      browser.visit('file://' + __dirname + '../index.html', () => {
         context = d3fault.make('BarChart');
         context.location = '#chart';
         context.data = data;
@@ -128,7 +128,7 @@ describe('Internal Tests', () => {
     let context;
 
     before((done) => {
-      browser.visit('file://' + __dirname + '/../index.html', () => {
+      browser.visit('file://' + __dirname + '../index.html', () => {
         context = d3fault.make('BarChart');
         context.location = '#chart';
         context.data = data;
@@ -161,7 +161,7 @@ describe('Internal Tests', () => {
     let chart;
 
     before((done) => {
-      browser.visit('file://' + __dirname + '/../index.html', () => {
+      browser.visit('file://' + __dirname + '../index.html', () => {
         chart = d3fault.make('BarChart').using(data).in('#chart');
         done();
       });
