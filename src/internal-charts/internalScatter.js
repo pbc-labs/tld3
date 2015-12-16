@@ -40,15 +40,60 @@ const scatter = {
 @function Builds the actual chart components with data.
 */
   buildChartComponents(context) {
+    // TODO: refactor to be used on all charts
+    const tooltip = d3.select('body')
+    .append('div')
+    .attr('class', 'tooltip')
+    .style({
+      position: 'absolute',
+      color: 'black',
+      'text-align': 'center',
+      width: '100px',
+      padding: '2px',
+      font: '12px sans-serif',
+      background: '#f2f2f2',
+      border: '0px',
+      'border-radius': '1px',
+      cursor: 'pointer',
+    });
+
     context.svg.selectAll('.scatter')
          .data(context.data)
          .enter()
          .append('circle')
          .attr('class', 'dot')
-         .attr('r', 3.5)
+         .on('mouseover', (d) => {
+           d3.select(d3.event.target).transition()
+             .duration(200)
+             .attr('r', 7);
+           tooltip.transition()
+             .duration(200)
+             .style('opacity', 0.9);
+           tooltip
+             .html(() => {
+               return `${context.yColumnName}: ${d[context.yColumnName]}\
+              ${context.xColumnName}: ${d[context.xColumnName]}`;
+             })
+             .style('left', (d3.event.pageX + 'px'))
+             .style('top', (d3.event.pageY + 'px'));
+         })
+        .on('mouseout', () => {
+          d3.select(d3.event.target).transition()
+            .duration(200)
+            .attr('r', 4);
+          tooltip.transition()
+             .duration(500)
+             .style('opacity', 0);
+        })
+         .attr('r', 4)
          .attr('cx', (d) => { return context.xScale(d[context.getxAxisLabel]); })
          .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
-         .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); });
+         .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); })
+         .style('opacity', 0)
+         .transition()
+         .delay((d, i) => { return i * (Math.random() * 20); })
+         .style('opacity', 1);
+
 
     return context;
   },
@@ -73,7 +118,7 @@ const scatter = {
 
     return context;
   },
-
+// TODO: change to change attribute, not remove
   updateChartComponents(context) {
     context.svg.select('.scatter').remove();
     context.svg.selectAll('.dot').remove();
@@ -117,6 +162,7 @@ const scatter = {
     context.element.selectAll('.legend-data rect')
     .style('fill', context.getColors);
   },
+
 
 };
 

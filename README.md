@@ -1,13 +1,13 @@
 # d3fault
-
+[![Build Status](https://travis-ci.org/pbc-labs/d3fault.svg?branch=master)](https://travis-ci.org/pbc-labs/d3fault)
 > An expressive, modular library for [D3.js](https://github.com/mbostock/d3).
 
 ## Team
 
   - __Product Owner__: [Preethi Kasireddy](https://github.com/iam-peekay)
   - __Scrum Master__: [Banun Atina Idris](https://github.com/banunatina)
-  - __Lead Developer__: [Colin Seale](https://github.com/ceseale) 
-  - __Development Team Members__: [Preethi Kasireddy](https://github.com/iam-peekay), [Banun Atina Idris](https://github.com/banunatina), [Colin Seale](https://github.com/ceseale) 
+  - __Lead Developer__: [Colin Seale](https://github.com/ceseale)
+  - __Development Team Members__: [Preethi Kasireddy](https://github.com/iam-peekay), [Banun Atina Idris](https://github.com/banunatina), [Colin Seale](https://github.com/ceseale)
 
 ## Table of Contents
 
@@ -29,7 +29,7 @@
 
 ## Development
 
-### Installation 
+### Installation
 
 ```sh
 sudo npm install -g bower
