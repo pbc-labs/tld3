@@ -67,9 +67,14 @@ const waffle = {
                .attr('height', context.getSquareSize)
                .attr('class', (d) => { return context.xColumnName + d.groupIndex; })
                .on('mouseover', (d) => {
-                 tooltip.transition()
+                d3.selectAll('rect').transition()
+                  .duration(200)
+                  .style('opacity', 0.6);
+
+                  //  select all from same group
+                 d3.selectAll('.' + d3.select(d3.event.target).attr('class')).transition()
                    .duration(200)
-                   .style('opacity', 0.9);
+                   .style('opacity', 1);
                  tooltip
                    .html(() => {
                      return `${d[context.xColumnName]}`;
@@ -78,6 +83,9 @@ const waffle = {
                    .style('top', (d3.event.pageY + 'px'));
                })
               .on('mouseout', () => {
+                d3.selectAll('rect').transition()
+                  .duration(500)
+                  .style('opacity', 1);
                 tooltip.transition()
                    .duration(500)
                    .style('opacity', 0);
@@ -93,7 +101,7 @@ const waffle = {
                  return context.getColors(d.groupIndex);
                })
                .transition()
-               .delay((d, i) => { return i * 20; })
+               .delay((d, i) => { return i * 10; })
               .attr('y', (d, i) => {
                 const row = i % context.getSquareHeight;
                 return (context.getSquareHeight * context.getSquareSize) - ((row * context.getSquareSize) + (row * context.getGapSize) + 10);
