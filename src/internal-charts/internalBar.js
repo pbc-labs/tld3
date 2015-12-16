@@ -7,22 +7,6 @@ const InternalBar = {
      @description Chart object
    */
   buildChartComponents(context) {
-    const tooltip = d3.select('body')
-                      .append('div')
-                      .attr('class', 'tooltip')
-                      .style({
-                        position: 'absolute',
-                        color: 'black',
-                        'text-align': 'center',
-                        width: '130px',
-                        padding: '5px',
-                        font: '12px sans-serif',
-                        background: '#f2f2f2',
-                        border: '0px',
-                        'border-radius': '1px',
-                        cursor: 'pointer',
-                      });
-
     context.svg.selectAll('.bar')
          .data(context.data)
          .enter()
@@ -31,32 +15,32 @@ const InternalBar = {
          .on('mouseover', (d) => {
            d3.select(d3.event.target).transition()
              .duration(200);
-             tooltip.transition()
-             .duration(200)
-             .style('opacity', 0.9);
-             tooltip
-             .html(() => {
-               return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
-               <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
-             })
-             .style('left', (d3.event.pageX + 'px'))
-             .style('top', (d3.event.pageY + 'px'));
-          })
+           context.tooltip.transition()
+                  .duration(200)
+                  .style('opacity', 0.9);
+           context.tooltip
+                  .html(() => {
+                    return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
+                    <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
+                  })
+                  .style('left', (d3.event.pageX + 'px'))
+                  .style('top', (d3.event.pageY + 'px'));
+         })
           .on('mouseout', () => {
             d3.select(d3.event.target).transition()
               .duration(200);
-              tooltip.transition()
-              .duration(500)
-              .style('opacity', 0);
+            context.tooltip.transition()
+                   .duration(500)
+                   .style('opacity', 0);
           })
          .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); })
-         .attr("y", (d, i) => { return context.getHeight; })
+         .attr('y', context.getHeight)
          .attr('width', context.xScale.rangeBand())
-         .attr("height", 0)
+         .attr('height', 0)
          .style('fill', context.getColors[0])
          .transition()
-			   .duration(300)
-			   .delay((d, i) => { return i * 50; })
+         .duration(300)
+         .delay((d, i) => { return i * 50; })
          .attr('y', d => { return context.yScale(d[context.getyAxisLabel]); })
          .attr('height', d => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); });
 
