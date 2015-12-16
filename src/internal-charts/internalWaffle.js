@@ -67,7 +67,7 @@ const waffle = {
                .attr('height', context.getSquareSize)
                .attr('class', (d) => { return context.xColumnName + d.groupIndex; })
                .on('mouseover', (d) => {
-                d3.selectAll('rect').transition()
+                 d3.selectAll('rect').transition()
                   .duration(200)
                   .style('opacity', 0.6);
 
