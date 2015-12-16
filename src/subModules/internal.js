@@ -370,6 +370,26 @@ const Internal = {
     return context;
   },
 
+  createToolTip(context) {
+    context.tooltip = d3.select('body')
+                      .append('div')
+                      .attr('class', 'tooltip')
+                      .style({
+                        position: 'absolute',
+                        color: 'black',
+                        'text-align': 'center',
+                        width: '120px',
+                        padding: '5px',
+                        font: '12px Arial',
+                        background: '#f2f2f2',
+                        border: '1px',
+                        'border-color': '#606060',
+                        'border-style': 'solid',
+                        'border-radius': '1px',
+                        cursor: 'pointer',
+                      });
+  },
+
 
 };
 
