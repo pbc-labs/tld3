@@ -28,6 +28,8 @@ const InternalBarLeft = {
                     })
              .style('left', (d3.event.pageX + 'px'))
              .style('top', (d3.event.pageY + 'px'));
+             d3.select(d3.event.target)
+               .style('fill', 'orangered');
            })
            .on('mouseout', () => {
              d3.select(d3.event.target).transition()
@@ -35,6 +37,8 @@ const InternalBarLeft = {
              context.tooltip.transition()
                     .duration(500)
                     .style('opacity', 0);
+             d3.select(d3.event.target)
+               .style('fill', context.getColors[0]);
            })
            .attr('height', context.y.rangeBand())
            .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
