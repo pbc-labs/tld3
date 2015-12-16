@@ -72,8 +72,8 @@ const InternalBar = {
   */
   updateColors(colors, context) {
     context.element.select('svg')
-        .selectAll('.bar')
-        .style('fill', colors);
+           .selectAll('.bar')
+           .style('fill', colors);
 
     return context;
   },

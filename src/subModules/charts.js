@@ -3,6 +3,7 @@ import { LineChart } from '../subModules/LineChart';
 import { DonutChart } from '../subModules/DonutChart';
 import { ScatterChart } from '../subModules/ScatterChart';
 import { WaffleChart } from '../subModules/WaffleChart';
+import { BarChartLeft } from '../subModules/BarChartLeft';
 
 /**
 This holds all our chart types within main library.
@@ -16,6 +17,7 @@ const charts = {
   DonutChart,
   ScatterChart,
   WaffleChart,
+  BarChartLeft,
 };
 
 export default charts;
