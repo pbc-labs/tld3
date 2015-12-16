@@ -8,9 +8,9 @@ const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
 
-describe('Bar Chart methods functionality', () => {
+describe('Bar Chart Left methods functionality', () => {
   const browser = new Browser();
-  const dataBarChart =
+  const dataBarChartLeft =
     [
     { 'letterTest': 'A', 'frequencyTest': 0.08167 },
     { 'letterTest': 'B', 'frequencyTest': 0.01492 },
@@ -44,40 +44,40 @@ describe('Bar Chart methods functionality', () => {
     return browser.visit('file://' + __dirname + '/../index.html');
   });
 
-  describe('Bar Chart methods', () => {
-    it('should make a chart in a div with id "barchart"', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
-      barChart.using(dataBarChart).in('#barchart');
-      const barId = barChart.element.attr('id');
-      expect(barId).to.equal('barchart').and.to.be.an('String');
+  describe('Bar Chart Left methods', () => {
+    it('should make a chart in a div with id "barchartleft"', () => {
+      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      barChartLeft.using(dataBarChartLeft).in('#barchartleft');
+      const barId = barChartLeft.element.attr('id');
+      expect(barId).to.equal('barchartleft').and.to.be.an('String');
     });
 
     it('should make a chart with a class "bar"', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
-      barChart.using(dataBarChart).in('#barchart');
-      const barClass = browser.window.d3.select('#barchart').select('rect').attr('class');
+      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      barChartLeft.using(dataBarChartLeft).in('#barchartleft');
+      const barClass = browser.window.d3.select('#barchartleft').select('rect').attr('class');
       expect(barClass).to.equal('bar').and.to.be.an('String');
     });
 
     it('should make rects to represent data for the bar chart', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
-      barChart.using(dataBarChart).in('#barchart');
-      const barRect = browser.window.d3.select('#barchart').select('rect')[0];
+      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      barChartLeft.using(dataBarChartLeft).in('#barchartleft');
+      const barRect = browser.window.d3.select('#barchartleft').select('rect')[0];
       expect(barRect).to.exist;
     });
 
-    it('should set the right x-column name', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
-      barChart.using(dataBarChart).in('#barchart');
-      const barXColumn = barChart.getxAxisLabel;
-      expect(barXColumn).to.equal('letterTest');
+    it('should set the Left x-column name', () => {
+      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      barChartLeft.using(dataBarChartLeft).in('#barchartleft');
+      const barXColumn = barChartLeft.getxAxisLabel;
+      expect(barXColumn).to.equal('frequencyTest');
     });
 
-    it('should set the right x-column name', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
-      barChart.using(dataBarChart).in('#barchart');
-      const barYColumn = barChart.getyAxisLabel;
-      expect(barYColumn).to.equal('frequencyTest');
+    it('should set the Left x-column name', () => {
+      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      barChartLeft.using(dataBarChartLeft).in('#barchartleft');
+      const barYColumn = barChartLeft.getyAxisLabel;
+      expect(barYColumn).to.equal('letterTest');
     });
   });
 });
