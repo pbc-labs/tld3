@@ -17,14 +17,19 @@ const InternalBarLeft = {
            .attr('class', 'bar')
            .attr('height', context.y.rangeBand())
            .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
-           .attr('width', d => { const label = context.getxAxisLabel; return context.x(d[label]); })
+           .attr('x', d => { return context.getWidth; })
+           .attr('width', 0)
            .style('fill', context.getColors[0])
-           .append('text')
-           .attr('text-anchor', 'end')
+           .transition()
+           .duration(700)
+           .delay((d, i) => { return i * 50; })
            .attr('x', d => { const label = context.getxAxisLabel; return d[label]; })
-           .attr('y', context.y.rangeBand())
-           .attr('dy', '.35em')
-           .text((d, i) => { return i; });
+           .attr('width', d => { const label = context.getxAxisLabel; return context.x(d[label]); });
+          //  .append('text')
+          //  .attr('text-anchor', 'end')
+          //  .attr('y', context.y.rangeBand())
+          //  .attr('dy', '.35em')
+          //  .text((d, i) => { return i; });
 
     return context;
   },

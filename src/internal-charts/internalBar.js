@@ -12,10 +12,15 @@ const InternalBar = {
          .append('rect')
          .attr('class', 'bar')
          .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); })
+         .attr("y", (d, i) => { return context.getHeight; })
          .attr('width', context.xScale.rangeBand())
+         .attr("height", 0)
+         .style('fill', context.getColors[0])
+         .transition()
+			   .duration(300)
+			   .delay((d, i) => { return i * 50; })
          .attr('y', d => { return context.yScale(d[context.getyAxisLabel]); })
-         .attr('height', d => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); })
-         .style('fill', context.getColors[0]);
+         .attr('height', d => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); });
 
     return context;
   },
