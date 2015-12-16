@@ -16,6 +16,7 @@ export class BarChart extends ChartMain {
     Internal.setXscale(this, 'ordinal', 'string');
     Internal.setYscale(this, 'linear', 'number');
     Internal.createSVGElement(this);
+    Internal.createToolTip(this);
     Internal.createxAxis(this);
     Internal.buildXAxis(this);
     Internal.createyAxis(this);
