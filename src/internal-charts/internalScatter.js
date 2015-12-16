@@ -40,6 +40,7 @@ const scatter = {
 @function Builds the actual chart components with data.
 */
   buildChartComponents(context) {
+    // TODO: refactor to be used on all charts
     const tooltip = d3.select('body')
     .append('div')
     .attr('class', 'tooltip')
@@ -53,6 +54,7 @@ const scatter = {
       background: '#f2f2f2',
       border: '0px',
       'border-radius': '1px',
+      cursor: 'pointer',
     });
 
     context.svg.selectAll('.scatter')
@@ -61,6 +63,9 @@ const scatter = {
          .append('circle')
          .attr('class', 'dot')
          .on('mouseover', (d) => {
+           d3.select(d3.event.target).transition()
+             .duration(200)
+             .attr('r', 7);
            tooltip.transition()
              .duration(200)
              .style('opacity', 0.9);
@@ -73,11 +78,14 @@ const scatter = {
              .style('top', (d3.event.pageY + 'px'));
          })
         .on('mouseout', () => {
+          d3.select(d3.event.target).transition()
+            .duration(200)
+            .attr('r', 4);
           tooltip.transition()
              .duration(500)
              .style('opacity', 0);
         })
-         .attr('r', 3.5)
+         .attr('r', 4)
          .attr('cx', (d) => { return context.xScale(d[context.getxAxisLabel]); })
          .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
          .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); })
