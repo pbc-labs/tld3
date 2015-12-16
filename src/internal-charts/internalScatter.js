@@ -48,7 +48,11 @@ const scatter = {
          .attr('r', 3.5)
          .attr('cx', (d) => { return context.xScale(d[context.getxAxisLabel]); })
          .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
-         .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); });
+         .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); })
+         .style('opacity', 0)
+         .transition()
+         .delay((d, i) => { return i * (Math.random()*20); })
+         .style('opacity', 1);
 
     return context;
   },
