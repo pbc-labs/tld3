@@ -51,7 +51,7 @@ const scatter = {
          .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); })
          .style('opacity', 0)
          .transition()
-         .delay((d, i) => { return i * (Math.random()*20); })
+         .delay((d, i) => { return i * (Math.random() * 20); })
          .style('opacity', 1);
 
     return context;
