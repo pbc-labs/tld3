@@ -17,6 +17,8 @@
     </div>
     <div id="barchart">
     </div>
+    <div id="barchartleft">
+    </div>
     <div id="linechart">
     </div>
     <div id="scatterchart">
@@ -25,6 +27,7 @@
     </div>
     <script>
       var d3fault = d3fault.default;
+
       // var parseDate = d3.time.format("%d-%b-%y").parse;
       // d3fault.upload('./data/dataLine.csv', function(err) {
       //   if (!err) {
@@ -39,12 +42,25 @@
       //          .using(data)
       //          .in('#linechart');
       // });
+
      // var scatter;
      // d3fault.upload('./data/scatterData.csv').then((data) => {
      //     scatter = d3fault.make('ScatterChart').using(data).in('#scatterchart');
      // }).catch((err) => {
      //   console.error(err);
      // });
+
+
+      d3fault.upload('./data/barData.csv', function(err) {
+        if (!err) {
+          console.log(err);
+        }
+      }).then(function(data) {
+          d3fault.make('BarChartRight')
+                 .using(data)
+                 .in('#barchartright')
+      });
+
     </script>
   </body>
 </html>
