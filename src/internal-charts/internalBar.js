@@ -1,16 +1,54 @@
+/* global d3 */
 
 const InternalBar = {
   /**
-   @function Builds the actual chart components with data.
+   @function Builds the actual chart components with data, including the tooltips
    @returns {Object} context
      @description Chart object
    */
   buildChartComponents(context) {
+    const tooltip = d3.select('body')
+                      .append('div')
+                      .attr('class', 'tooltip')
+                      .style({
+                        position: 'absolute',
+                        color: 'black',
+                        'text-align': 'center',
+                        width: '130px',
+                        padding: '5px',
+                        font: '12px sans-serif',
+                        background: '#f2f2f2',
+                        border: '0px',
+                        'border-radius': '1px',
+                        cursor: 'pointer',
+                      });
+
     context.svg.selectAll('.bar')
          .data(context.data)
          .enter()
          .append('rect')
          .attr('class', 'bar')
+         .on('mouseover', (d) => {
+           d3.select(d3.event.target).transition()
+             .duration(200);
+             tooltip.transition()
+             .duration(200)
+             .style('opacity', 0.9);
+             tooltip
+             .html(() => {
+               return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
+               <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
+             })
+             .style('left', (d3.event.pageX + 'px'))
+             .style('top', (d3.event.pageY + 'px'));
+          })
+          .on('mouseout', () => {
+            d3.select(d3.event.target).transition()
+              .duration(200);
+              tooltip.transition()
+              .duration(500)
+              .style('opacity', 0);
+          })
          .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); })
          .attr("y", (d, i) => { return context.getHeight; })
          .attr('width', context.xScale.rangeBand())
