@@ -73,7 +73,7 @@ const scatter = {
 
     return context;
   },
-
+// TODO: change to change attribute, not remove
   updateChartComponents(context) {
     context.svg.select('.scatter').remove();
     context.svg.selectAll('.dot').remove();

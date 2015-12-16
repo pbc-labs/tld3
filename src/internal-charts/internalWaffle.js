@@ -48,18 +48,24 @@ const waffle = {
                .attr('class', 'square')
                .attr('width', context.getSquareSize)
                .attr('height', context.getSquareSize)
-               .attr('fill', (d) => {
-                 return context.getColors(d.groupIndex);
-               })
+               .style('opacity', 0)
                .attr('x', (d, i) => {
                 //  groups n squares for column
                  const col = Math.floor(i / context.getSquareHeight);
                  return (col * context.getSquareSize) + (col * context.getGapSize);
                })
-               .attr('y', (d, i) => {
-                 const row = i % context.getSquareHeight;
-                 return (context.getSquareHeight * context.getSquareSize) - ((row * context.getSquareSize) + (row * context.getGapSize) + 10);
-               });
+               .attr('y', 300)
+               .attr('fill', (d) => {
+                 return context.getColors(d.groupIndex);
+               })
+               .transition()
+               .delay((d, i) => { return i * 20; })
+              .attr('y', (d, i) => {
+                const row = i % context.getSquareHeight;
+                return (context.getSquareHeight * context.getSquareSize) - ((row * context.getSquareSize) + (row * context.getGapSize) + 10);
+              })
+              .style('opacity', 1);
+
     return context;
   },
 
