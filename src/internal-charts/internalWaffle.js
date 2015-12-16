@@ -25,6 +25,7 @@ const waffle = {
                                        units: d.units,
                                        [context.yColumnName]: d[context.yColumnName],
                                        groupIndex: i,
+                                       [context.xColumnName]: d[context.xColumnName],
                                      };
                                    }));
     });
@@ -39,6 +40,22 @@ const waffle = {
   },
 
   buildChartComponents(context) {
+    const tooltip = d3.select('body')
+    .append('div')
+    .attr('class', 'tooltip')
+    .style({
+      position: 'absolute',
+      color: 'black',
+      'text-align': 'center',
+      width: '100px',
+      padding: '2px',
+      font: '12px sans-serif',
+      background: '#f2f2f2',
+      border: '0px',
+      'border-radius': '1px',
+      cursor: 'pointer',
+    });
+
     context.svg.append('g')
                .selectAll('div')
                .attr('class', 'waffle')
@@ -48,6 +65,23 @@ const waffle = {
                .attr('class', 'square')
                .attr('width', context.getSquareSize)
                .attr('height', context.getSquareSize)
+               .attr('class', (d) => { return context.xColumnName + d.groupIndex; })
+               .on('mouseover', (d) => {
+                 tooltip.transition()
+                   .duration(200)
+                   .style('opacity', 0.9);
+                 tooltip
+                   .html(() => {
+                     return `${d[context.xColumnName]}`;
+                   })
+                   .style('left', (d3.event.pageX + 'px'))
+                   .style('top', (d3.event.pageY + 'px'));
+               })
+              .on('mouseout', () => {
+                tooltip.transition()
+                   .duration(500)
+                   .style('opacity', 0);
+              })
                .style('opacity', 0)
                .attr('x', (d, i) => {
                 //  groups n squares for column
