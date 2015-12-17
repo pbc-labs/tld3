@@ -212,6 +212,38 @@ const utils = {
     return null;
   },
 
+  /**
+  @private
+  @function Parses time data
+  @param {Object} data
+    @description The graph data object
+  @param {String} column
+  @returns {String} Time parsed data
+  */
+
+  parseTimeData(data, column) {
+    data.forEach(item => {
+      item[column] = new Date(item[column]);
+    });
+    return data;
+  },
+
+  /**
+  @private
+  @function Parses strings to numbers
+  @param {Object} data
+    @description The graph data object
+  @param {String} column
+  @returns {String} Column parsed as number
+  */
+
+  parseNumberData(data, column) {
+    data.forEach(item => {
+      item[column] = Number(item[column]);
+    });
+    return data;
+  },
+
 };
 
 export default utils;
