@@ -62,10 +62,9 @@ const waffle = {
                .data(context.processedData)
                .enter()
                .append('rect')
-               .attr('class', 'square')
                .attr('width', context.getSquareSize)
                .attr('height', context.getSquareSize)
-               .attr('class', (d) => { return context.xColumnName + d.groupIndex; })
+               .attr('class', (d) => { return 'square ' + context.xColumnName + d.groupIndex; })
                .on('mouseover', (d) => {
                  tooltip.transition()
                    .duration(200)
@@ -77,7 +76,7 @@ const waffle = {
                   .style('opacity', 0.6);
 
                   //  select all from same group
-                 d3.selectAll('.' + d3.select(d3.event.target).attr('class')).transition()
+                 d3.selectAll('.' + d3.select(d3.event.target).attr('class').split(' ')[1]).transition()
                    .duration(200)
                    .style('opacity', 1);
                  tooltip
