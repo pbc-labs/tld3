@@ -71,7 +71,7 @@ const InternalLine = {
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.time.scale()
                     .range([0, context.getWidth]);
-    context.xScale.domain(d3.extent(context.data, (d) => { return d.date; }));
+    context.xScale.domain(d3.extent(context.data, (d) => { return d[context.xColumnName]; }));
 
     return context;
   },
@@ -89,7 +89,7 @@ const InternalLine = {
     context.yScale = d3.scale.linear()
                     .range([context.getHeight, 0]);
 
-    context.yScale.domain(d3.extent(context.data, (d) => { return d.close; }));
+    context.yScale.domain(d3.extent(context.data, (d) => { return d[context.yColumnName]; }));
 
     return context;
   },
@@ -101,6 +101,21 @@ const InternalLine = {
   @returns {Object} context Chart object
    */
   buildChartComponents(context) {
+    const tooltip = d3.select('body')
+      .append('div')
+      .attr('class', 'tooltip')
+      .style({
+        position: 'absolute',
+        color: 'black',
+        'text-align': 'center',
+        width: '100px',
+        padding: '2px',
+        font: '12px sans-serif',
+        background: '#f2f2f2',
+        border: '0px',
+        'border-radius': '1px',
+        cursor: 'pointer',
+      });
     context.svg.append('path')
             .datum(context.data)
             .attr('class', 'line')
@@ -108,8 +123,38 @@ const InternalLine = {
               fill: 'none',
               stroke: context.getColors[0],
               'stroke-width': 'crispEdges',
-            })
-            .attr('d', context.line);
+            });
+    const line = context.svg.select('.line');
+    let k = context.data.length - 1;
+
+    d3.timer(() => {
+      if (k > 0) {
+        k -= 5;
+        line.attr('d', () => {
+          return context.line(context.data.slice(0, context.data.length - k));
+        });
+      } else {
+        return true;
+      }
+    });
+
+    line.on('mouseover', () => {
+      tooltip.transition()
+       .duration(200)
+       .style('opacity', 0.9);
+
+      tooltip
+       .html(() => {
+         return `${context.xColumnName}: ${context.xScale.invert(d3.event.pageX).toLocaleString()}\
+        ${context.yColumnName}: ${context.yScale.invert(d3.event.pageY).toFixed(3)}`;
+       })
+       .style('left', (d3.event.pageX + 'px'))
+       .style('top', (d3.event.pageY + 'px'));
+    });
+
+    line.on('mouseout', () => {
+      tooltip.transition().style('opacity', 0);
+    });
 
     return context;
   },
@@ -154,6 +199,17 @@ const InternalLine = {
         });
 
     return context;
+  },
+
+  convertData(context) {
+    context.data = utils.parseTimeData(context.data, context.xColumnName);
+    context.data = utils.parseNumberData(context.data, context.yColumnName);
+    return context;
+  },
+
+  setColumnNames(context) {
+    context.yColumnName = utils.getFirstLinearColumn(context.data);
+    context.xColumnName = utils.getFirstTimeColumn(context.data);
   },
 };
 
