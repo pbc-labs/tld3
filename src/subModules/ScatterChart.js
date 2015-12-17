@@ -100,8 +100,8 @@ to build the scatter chart.
 
     return this;
   }
-  /**
 
+  /**
   @private
   @function setColors
   @description Overrides the default ChartMain setColors setter - maps to an ordinal scale

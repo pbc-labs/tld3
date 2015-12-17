@@ -8,16 +8,17 @@ Constructor subclass for Waffle Chart.
 export class WaffleChart extends ChartMain {
   constructor() {
     super();
-    // overwrites default colors with ordinal scale
+    // Adds default waffleChart configuration
     this._squareWidth = 20;
     this._squareHeight = 5;
     this._squareValue = 0;
-    this._colors = d3.scale.category10();
     this._gap = 1;
+    // Overwrites default colors with ordinal scale
+    this._colors = d3.scale.category10();
   }
-  /**
-  @private
-  @method All of the below setters and getters are used for the chart properties instantiated in the contructor function above.
+
+  /*
+  All of the below setters and getters are used for the chart properties instantiated in the contructor function above.
   */
 
   get getSquareValue() {
@@ -47,7 +48,7 @@ export class WaffleChart extends ChartMain {
   /**
   @private
   @function build
-  @description Builds up the bar chart
+  @description Builds up the waffle chart
   */
 
   build() {
@@ -63,21 +64,9 @@ export class WaffleChart extends ChartMain {
 
   /**
   @private
-  @function render
-  */
-
-  render() {
-    // used for data updates?
-    // need to think about how we are "rendering" upon instantiation and upon update
-    // I think this render needs to be a customized update function depending on what attribute is being updated
-  }
-
-  /**
-  @private
   @function updateChartComponents
   @description Calls InternalWaffle to update the waffle chart components
   */
-
   updateChartComponents() {
     InternalWaffle.updateChartComponents(this);
   }
@@ -91,7 +80,12 @@ export class WaffleChart extends ChartMain {
 
   }
 
-// TODO: Refactor into internal - used also in Scatter and possibly Donut
+  /**
+  @private
+  @function setColors
+  @description Overrides the default ChartMain setColors setter - maps to an ordinal scale
+  @param {Array} colors Array of colors to update the chart to
+  */
   set setColors(newColors) {
     const color = d3.scale.ordinal()
                     .domain(this.getColors.domain())
