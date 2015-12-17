@@ -2,11 +2,15 @@
 
 const InternalBar = {
   /**
-   @function Builds the actual chart components with data, including the tooltips
-   @returns {Object} context
-     @description Chart object
+  @private
+  @function buildChartComponents
+  @description Builds the actual chart components with data, including the tooltips
+  @returns {Object} context Chart object
    */
   buildChartComponents(context) {
+    /*
+    Uses d3 to build the chart components for bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
+    */
     context.svg.selectAll('.bar')
          .data(context.data)
          .enter()
@@ -53,11 +57,10 @@ const InternalBar = {
 
   /**
   @private
-  @function Updates the bar on chart
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateChartComponents
+  @description Updates the bar on chart
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
   */
 
   updateChartComponents(context) {
@@ -75,15 +78,17 @@ const InternalBar = {
 
   /**
   @private
-  @function Updates the chart's style on the element
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function styleChart
+  @description Updates the chart's style on the element
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
   */
 
 
   styleChart(context) {
+    /*
+    Styles the chart's font-size, font-style, and title
+    */
     context.element.select('svg')
         .style('font-family', context.getFontStyle)
         .attr('font-size', context.getFontSize)
@@ -97,7 +102,9 @@ const InternalBar = {
   },
 
   /**
-  @function Updates color of bar chart after initial render
+  @private
+  @function updateColors
+  @description Updates color of bar chart after initial render
   @param {Array} colors
     @description Array of colors to update the chart to
   */

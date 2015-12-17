@@ -1,7 +1,6 @@
 /* global d3 */
 
-/**
-@private
+/*
 Holds various utility functions used throughout the library,
 particularly for creating, building and modifying chart elements.
 */
@@ -19,9 +18,9 @@ const utils = {
 
   /**
   @private
-  @function Checks the data type for a given input
-  @param {Object, String} rawData
-    @description The raw data from user
+  @function getDataType
+  @description Checks the data type for a given input
+  @param {Object/String} rawData The raw data from user
   @returns {String} The type of data that was entered
   */
 
@@ -42,9 +41,9 @@ const utils = {
 
   /**
   @private
-  @function Gets all a file
-  @param {Object, String} rawData
-    @description The raw data from user
+  @function getData
+  @description Gets all a file
+  @param {Object/String} rawData The raw data from user
   @returns {Promise} A promise resolved when the data is available
   */
 
@@ -71,11 +70,10 @@ const utils = {
 
   /**
   @private
-  @function Checks the scale of column and returns if it ordinal
-  @param {Object} data
-    @description The graph data object
-  @param {Object} columnName
-    @description The column from the data
+  @function isOridinal
+  @description Checks the scale of column and returns if it ordinal
+  @param {Object} data The graph data object
+  @param {Object} columnName The column from the data
   @returns {Boolean} If the column scale is Ordinal
   */
 
@@ -96,10 +94,8 @@ const utils = {
   /**
   @private
   @function Checks the scale of column and returns if it linear
-  @param {Object} data
-    @description The graph data object
-  @param {Object} columnName
-    @description The column from the data
+  @param {Object} data The graph data object
+  @param {Object} columnName The column from the data
   @returns {Boolean} If the column scale is Linear
   */
 
@@ -112,11 +108,10 @@ const utils = {
 
   /**
   @private
-  @function Checks the scale of column and returns if it linear
-  @param {Object} data
-    @description The graph data object
-  @param {Object} columnName
-    @description The column from the data
+  @function isTime
+  @description Checks the scale of column and returns if it linear
+  @param {Object} data The graph data object
+  @param {Object} columnName The column from the data
   @returns {Boolean} If the column scale is Linear
   */
 
@@ -129,9 +124,9 @@ const utils = {
 
   /**
   @private
-  @function Returns true a given timeStamp can be writen in a time format
-  @param {String} timeStamp
-    @description A UTC time or string
+  @function isAcceptableTimeFormat
+  @description Returns true a given timeStamp can be writen in a time format
+  @param {String} timeStamp A UTC time or string
   @returns {Boolean} If the timeStamp is a valid time
   */
 
@@ -148,9 +143,9 @@ const utils = {
 
   /**
   @private
-  @function Gets all the column names for the data set
-  @param {Object} data
-    @description The graph data object
+  @function getColumnNames
+  @description Gets all the column names for the data set
+  @param {Object} data The graph data object
   @returns {Boolean} If the column scale is Linear
   */
 
@@ -165,9 +160,9 @@ const utils = {
 
   /**
   @private
-  @function Gets the first possible ordinal column
-  @param {Object} data
-    @description The graph data object
+  @function getFirstOrdinalColumn
+  @description Gets the first possible ordinal column
+  @param {Object} data The graph data object
   @returns {String} The first column that can be oridinal
   */
 
@@ -183,9 +178,9 @@ const utils = {
 
   /**
   @private
-  @function Gets the first possible linear column
-  @param {Object} data
-    @description The graph data object
+  @function getFirstLinearColumn
+  @description Gets the first possible linear column
+  @param {Object} data The graph data object
   @returns {String} The first column that can be linear
   */
 
@@ -201,9 +196,9 @@ const utils = {
 
   /**
   @private
-  @function Gets the first possible time scale column
-  @param {Object} data
-    @description The graph data object
+  @function getFirstTimeColumn
+  @description Gets the first possible time scale column
+  @param {Object} data The graph data object
   @returns {String} The first column that can be linear
   */
 

@@ -111,6 +111,7 @@ export class ScatterChart extends ChartMain {
   }
 
 /**
+@private
 @function Updates color of bar chart after initial render
 @param {Array} colors
   @description Array of colors to update the chart to

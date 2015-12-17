@@ -6,10 +6,8 @@ const InternalLine = {
   /**
   @private
   @function Updates the chart's style on the element
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
   */
 
   styleChart(context) {
@@ -26,11 +24,13 @@ const InternalLine = {
   /**
   @private
   @function Builds up the line
-  @returns {Object} context
-    @description Chart object
+  @returns {Object} context Chart object
   */
 
   buildLine(context) {
+    /*
+    Build the d3 line using by mapping the x and y values to the data
+    */
     context.line = d3.svg.line()
         .x((d) => { return context.xScale(d[context.getxAxisLabel]); })
         .y((d) => { return context.yScale(d[context.getyAxisLabel]); });
@@ -38,14 +38,12 @@ const InternalLine = {
     return context;
   },
 
-    /**
-    @private
-    @function Builds up the y-axis
-    @param {Object} context
-      @description Chart object
-    @returns {Object} context
-      @description Chart object
-    */
+  /**
+  @private
+  @function Builds up the y-axis
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
 
   buildYAxis(context) {
     context.svg.append('g')
@@ -64,8 +62,8 @@ const InternalLine = {
   /**
   @private
   @function Builds up the line
-  @returns {Object} context
-    @description Chart object
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
   */
 
   setXScale(context) {
@@ -81,8 +79,8 @@ const InternalLine = {
   /**
   @private
   @function Builds up the line
-  @returns {Object} context
-    @description Chart object
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
   */
 
   setYScale(context) {
@@ -97,9 +95,10 @@ const InternalLine = {
   },
 
   /**
-   @function Builds the actual chart components with data.
-   @returns {Object} context
-     @description Chart object
+  @private
+  @function Builds the actual chart components with data.
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
    */
   buildChartComponents(context) {
     context.svg.append('path')
@@ -117,11 +116,10 @@ const InternalLine = {
 
   /**
   @private
-  @function Update the line on the chart
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateChartComponents
+  @description Updates the line on the chart
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
   */
 
   updateChartComponents(context) {
@@ -140,9 +138,11 @@ const InternalLine = {
   },
 
   /**
-  @function Updates color of line on chart after initial render
-  @param {Array} colors
-    @description Array of colors to update the chart to
+  @private
+  @function
+  @description Updates color of line on chart after initial render
+  @param {Array} colors Array of colors to update the chart to
+  @param {Object} context Chart object
   */
   updateColors(colors, context) {
     context.element.select('svg')

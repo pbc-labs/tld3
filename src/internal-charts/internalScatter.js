@@ -37,7 +37,9 @@ const scatter = {
     return context;
   },
 /**
-@function Builds the actual chart components with data.
+@private
+@function buildChartComponents
+@description Builds the actual chart components with data.
 */
   buildChartComponents(context) {
     // TODO: refactor to be used on all charts
@@ -153,6 +155,15 @@ const scatter = {
         .style('text-anchor', 'end')
         .text((d) => { return d; });
   },
+
+  /**
+  @private
+  @function Updates the chart's colors
+  @param {Object} context
+    @description Chart object
+  @returns {Object} context
+    @description Chart object
+  */
 
   updateColors(context) {
     context.element.select('svg')
