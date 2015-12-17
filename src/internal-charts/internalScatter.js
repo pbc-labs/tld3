@@ -4,7 +4,8 @@ import utils from '../utils/utils';
 const scatter = {
 /**
 @private
-@function Parses and sets the column names for a particular chart instance.
+@function setColumns
+@description Parses and sets the column names for a particular chart instance.
 */
   setColumns(context) {
     context.xColumnName = utils.getFirstLinearColumn(context.data);
@@ -15,7 +16,8 @@ const scatter = {
 
 /**
 @private
-@function Sets the scale for the X-axis based on the results of the setColumns function
+@function setXscale
+@description Sets the scale for the X-axis based on the results of the setColumns function
 */
   setXscale(context) {
     context.setxAxisLabel = context.xColumnName;
@@ -27,7 +29,8 @@ const scatter = {
 
 /**
 @private
-@function Sets the scale for the Y-axis based on the results of the setColumns function
+@function setYscale
+@description Sets the scale for the Y-axis based on the results of the setColumns function
 */
   setYscale(context) {
     context.setyAxisLabel = context.yColumnName;
@@ -42,7 +45,6 @@ const scatter = {
 @description Builds the actual chart components with data.
 */
   buildChartComponents(context) {
-    // TODO: refactor to be used on all charts
     const tooltip = d3.select('body')
     .append('div')
     .attr('class', 'tooltip')
@@ -102,7 +104,8 @@ const scatter = {
 
 /**
 @private
-@function Updates the chart's style on the element
+@function styleChart
+@description Updates the chart's style on the element
 @param {Object} context
   @description Chart object
 @returns {Object} context
@@ -158,7 +161,8 @@ const scatter = {
 
   /**
   @private
-  @function Updates the chart's colors
+  @function  updateColors
+  @description Updates the chart's colors
   @param {Object} context
     @description Chart object
   @returns {Object} context
