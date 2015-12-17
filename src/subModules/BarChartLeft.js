@@ -19,6 +19,7 @@ export class BarChartLeft extends ChartMain {
     InternalBarLeft.setXscale(this);
     InternalBarLeft.setYscale(this);
     Internal.createSVGElement(this);
+    Internal.createToolTip(this);
     InternalBarLeft.createxAxis(this);
     InternalBarLeft.buildXAxis(this);
     InternalBarLeft.createyAxis(this);

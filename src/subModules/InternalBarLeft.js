@@ -15,16 +15,41 @@ const InternalBarLeft = {
            .append('g')
            .append('rect')
            .attr('class', 'bar')
+           .on('mouseover', (d) => {
+             d3.select(d3.event.target).transition()
+               .duration(200);
+             context.tooltip.transition()
+            .duration(200)
+            .style('opacity', 0.9);
+             context.tooltip
+                    .html(() => {
+                      return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
+                      <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
+                    })
+             .style('left', (d3.event.pageX + 'px'))
+             .style('top', (d3.event.pageY + 'px'));
+             d3.select(d3.event.target)
+               .style('fill', 'orangered');
+           })
+           .on('mouseout', () => {
+             d3.select(d3.event.target).transition()
+               .duration(200);
+             context.tooltip.transition()
+                    .duration(500)
+                    .style('opacity', 0);
+             d3.select(d3.event.target)
+               .style('fill', context.getColors[0]);
+           })
            .attr('height', context.y.rangeBand())
            .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
-           .attr('width', d => { const label = context.getxAxisLabel; return context.x(d[label]); })
+           .attr('x', context.getWidth)
+           .attr('width', 0)
            .style('fill', context.getColors[0])
-           .append('text')
-           .attr('text-anchor', 'end')
+           .transition()
+           .duration(700)
+           .delay((d, i) => { return i * 50; })
            .attr('x', d => { const label = context.getxAxisLabel; return d[label]; })
-           .attr('y', context.y.rangeBand())
-           .attr('dy', '.35em')
-           .text((d, i) => { return i; });
+           .attr('width', d => { const label = context.getxAxisLabel; return context.x(d[label]); });
 
     return context;
   },

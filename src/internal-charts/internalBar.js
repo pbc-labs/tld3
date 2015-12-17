@@ -1,7 +1,8 @@
+/* global d3 */
 
 const InternalBar = {
   /**
-   @function Builds the actual chart components with data.
+   @function Builds the actual chart components with data, including the tooltips
    @returns {Object} context
      @description Chart object
    */
@@ -11,11 +12,41 @@ const InternalBar = {
          .enter()
          .append('rect')
          .attr('class', 'bar')
+         .on('mouseover', (d) => {
+           d3.select(d3.event.target).transition()
+             .duration(200);
+           context.tooltip.transition()
+                  .duration(200)
+                  .style('opacity', 0.9);
+           context.tooltip
+                  .html(() => {
+                    return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
+                    <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
+                  })
+                  .style('left', (d3.event.pageX + 'px'))
+                  .style('top', (d3.event.pageY + 'px'));
+           d3.select(d3.event.target)
+             .style('fill', 'orangered');
+         })
+          .on('mouseout', () => {
+            d3.select(d3.event.target).transition()
+              .duration(200);
+            context.tooltip.transition()
+                   .duration(500)
+                   .style('opacity', 0);
+            d3.select(d3.event.target)
+              .style('fill', context.getColors[0]);
+          })
          .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); })
+         .attr('y', context.getHeight)
          .attr('width', context.xScale.rangeBand())
+         .attr('height', 0)
+         .style('fill', context.getColors[0])
+         .transition()
+         .duration(300)
+         .delay((d, i) => { return i * 50; })
          .attr('y', d => { return context.yScale(d[context.getyAxisLabel]); })
-         .attr('height', d => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); })
-         .style('fill', context.getColors[0]);
+         .attr('height', d => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); });
 
     return context;
   },

@@ -25,18 +25,12 @@ describe('Internal Tests', () => {
   describe('selectElement', () => {
     let chart;
 
-    before((done) => {
-      browser.visit('file://' + __dirname + '/../index.html', () => {
-        chart = d3fault.make('BarChart').using(data).in('#chart');
-        done();
-      });
-    });
-
     it('should select the d3 element of the chart given', () => {
+      chart = d3fault.make('BarChart').using(data).in('#chart');
       expect(chart.element).to.eql(d3.select('#chart'));
-      chart.location = '#chart2';
+      chart.location = '#chart';
       internal.selectElement(chart);
-      expect(chart.element).to.eql(d3.select('#chart2'));
+      expect(chart.element).to.eql(d3.select('#chart'));
     });
   });
 
@@ -160,14 +154,8 @@ describe('Internal Tests', () => {
   describe('Update methods', () => {
     let chart;
 
-    before((done) => {
-      browser.visit('file://' + __dirname + '/../index.html', () => {
-        chart = d3fault.make('BarChart').using(data).in('#chart');
-        done();
-      });
-    });
-
     it('should update the font style', () => {
+      chart = d3fault.make('BarChart').using(data).in('#chart');
       expect(chart.getFontStyle).to.equal('Arial');
       expect(d3.select('#chart svg').style('font-family')).to.equal('Arial');
       chart.setFontStyle = 'Courier New';
