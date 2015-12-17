@@ -3,7 +3,6 @@ import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
 import InternalWaffle from '../internal-charts/internalWaffle';
 /**
-@private
 Constructor subclass for Waffle Chart.
 */
 export class WaffleChart extends ChartMain {
@@ -16,6 +15,10 @@ export class WaffleChart extends ChartMain {
     this._colors = d3.scale.category10();
     this._gap = 1;
   }
+  /**
+  @private
+  @method All of the below setters and getters are used for the chart properties instantiated in the contructor function above.
+  */
 
   get getSquareValue() {
     return this._squareValue;
@@ -41,6 +44,12 @@ export class WaffleChart extends ChartMain {
     return this._gap;
   }
 
+  /**
+  @private
+  @function build
+  @description Builds up the bar chart
+  */
+
   build() {
     Internal.selectElement(this);
     InternalWaffle.setColumns(this);
@@ -52,11 +61,22 @@ export class WaffleChart extends ChartMain {
     InternalWaffle.createLegend(this);
   }
 
+  /**
+  @private
+  @function render
+  */
+
   render() {
     // used for data updates?
     // need to think about how we are "rendering" upon instantiation and upon update
     // I think this render needs to be a customized update function depending on what attribute is being updated
   }
+
+  /**
+  @private
+  @function updateChartComponents
+  @description Calls InternalWaffle to update the waffle chart components
+  */
 
   updateChartComponents() {
     InternalWaffle.updateChartComponents(this);
@@ -80,6 +100,7 @@ export class WaffleChart extends ChartMain {
   }
 
 /**
+@private
 @function Updates color of waffle chart after initial render
 @param {Array} colors
   @description Array of colors to update the chart to

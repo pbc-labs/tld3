@@ -3,7 +3,6 @@ import Internal from './internal';
 import InternalBar from '../internal-charts/internalBar';
 
 /**
-@private
 Constructor subclass for Bar Chart.
 */
 export class BarChart extends ChartMain {
@@ -11,7 +10,17 @@ export class BarChart extends ChartMain {
     super();
   }
 
+  /**
+  @private
+  @function build
+  @description Builds up the bar chart
+  @returns {Object} context Chart object
+  */
+
   build() {
+    /*
+    Calls each of the methods on Internal object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.selectElement(this);
     Internal.setXscale(this, 'ordinal', 'string');
     Internal.setYscale(this, 'linear', 'number');
@@ -25,7 +34,14 @@ export class BarChart extends ChartMain {
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
     InternalBar.buildChartComponents(this);
     InternalBar.styleChart(this);
+
+    return this;
   }
+
+  /**
+  @private
+  @function render
+  */
 
   render() {
     // used for data updates?
@@ -35,60 +51,67 @@ export class BarChart extends ChartMain {
 
   /**
   @private
-  @function Calls InternalBar to updates the bar on chart
-  @param {Object} context
-    @description Chart object
-  @returns {Object} this
-    @description Chart object
+  @function updateChartComponents
+  @description Calls InternalBar to update the bar on chart
+  @returns {Object} this Chart object
   */
 
   updateChartComponents() {
+    /* Calls method on InternalBar to recreate all the chart components. Used to reflect any changes made to property values (e.g. font-size, axis-label, etc.)
+    */
     InternalBar.updateChartComponents(this);
+
+    return this;
   }
 
   /**
   @private
-  @function Updates the chart's height on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateHeight
+  @description Updates the chart's height on the element itself
+  @returns {Object} context Chart object
   */
 
   updateHeight() {
+    /*
+    Calls each of the methods on Internal object necessary to update the height of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.updateSVGElement(this);
     Internal.setYscale(this, 'linear', 'number');
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
     Internal.updateXAxisPosition(this);
+
     return this;
   }
 
   /**
   @private
-  @function Updates the chart's margin on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateMargins
+  @description Updates the chart's margin on the element itself
+  @returns {Object} context Chart object
   */
 
   updateMargins() {
+    /*
+    Calls updateHeight and updateWidth on this instance to reflect the new margins.
+    */
     this.updateHeight();
     this.updateWidth();
+
     return this;
   }
 
   /**
   @private
-  @function Updates the chart's width on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateWidth
+  @description Updates the chart's width on the element itself
+  @returns {Object} context Chart object
   */
 
   updateWidth() {
+    /*
+    Calls each of the methods on Internal object necessary to update the width of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.updateSVGElement(this);
     Internal.setXscale(this, 'ordinal', 'string');
     Internal.updateXAxisScale(this);
@@ -98,12 +121,20 @@ export class BarChart extends ChartMain {
   }
 
   /**
-  @function Calls InternalBar to update color of bar chart after initial render
-  @param {Array} colors
-    @description Array of colors to update the chart to
+  @private
+  @function updateColors
+  @description Calls InternalBar to update color of bar chart after initial render
+  @param {Array} colors Array of colors to update the chart to
+  @returns {Object} context Chart object
   */
+
   updateColors(colors) {
+    /*
+    Calls InternalBar object to update the colors on the bar chart. InternalBar does the d3 manipulation
+    */
     InternalBar.updateColors(colors, this);
+
+    return this;
   }
 
 }

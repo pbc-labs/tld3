@@ -3,15 +3,24 @@ import Internal from './internal';
 import InternalLine from '../internal-charts/internalLine';
 
 /**
-@private
-Constructor subclass for Bar Chart.
+Constructor subclass for Line Chart.
 */
 export class LineChart extends ChartMain {
   constructor() {
     super();
   }
 
+  /**
+  @private
+  @function build
+  @description Builds up the bar chart
+  @returns {Object} context Chart object
+  */
+
   build() {
+    /*
+    Calls each of the methods on Internal and InternalLine object necessary to build up all the components of the chart. Internal and InternalLine hold all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.selectElement(this);
     InternalLine.setXScale(this);
     InternalLine.setYScale(this);
@@ -25,7 +34,14 @@ export class LineChart extends ChartMain {
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
     InternalLine.buildChartComponents(this);
     InternalLine.styleChart(this);
+
+    return this;
   }
+
+  /**
+  @private
+  @function render
+  */
 
   render() {
     // used for data updates?
@@ -35,27 +51,30 @@ export class LineChart extends ChartMain {
 
   /**
   @private
-  @function Calls InternalLine to update the line on the chart
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateChartComponents
+  @description Calls InternalLine to update the line on chart
+  @returns {Object} this Chart object
   */
 
   updateChartComponents() {
+    /* Calls method on InternalLine to recreate all the chart components. Used to reflect any changes made to property values (e.g. font-size, axis-label, etc.)
+    */
     InternalLine.updateChartComponents(this);
+
+    return this;
   }
 
   /**
   @private
-  @function Updates the chart's height on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateHeight
+  @description Updates the chart's height on the element itself
+  @returns {Object} context Chart object
   */
 
   updateHeight() {
+    /*
+    Calls each of the methods on Internal and InternalLine object necessary to update the height of the chart. Internal and Internal Line hold all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.updateSVGElement(this);
     Internal.setYscale(this, 'linear', 'number');
     Internal.updateYAxisScale(this);
@@ -68,14 +87,15 @@ export class LineChart extends ChartMain {
 
   /**
   @private
-  @function Updates the chart's margin on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateMargins
+  @description Updates the chart's margin on the element itself
+  @returns {Object} context Chart object
   */
 
   updateMargins() {
+    /*
+    Calls updateHeight and updateWidth on this instance to reflect the new margins.
+    */
     this.updateHeight();
     this.updateWidth();
 
@@ -84,16 +104,16 @@ export class LineChart extends ChartMain {
 
   /**
   @private
-  @function Updates the chart's width on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateWidth
+  @description Updates the chart's width on the element itself
+  @returns {Object} context Chart object
   */
 
   updateWidth() {
+    /*
+    Calls each of the methods on Internal and InternalLine object necessary to update the width of the chart. Internal and InternalLine hold all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.updateSVGElement(this);
-    // TODO: make scale type a chart properties
     InternalLine.setXScale(this);
     Internal.updateXAxisScale(this);
     Internal.updateXAxis(this);
@@ -104,12 +124,20 @@ export class LineChart extends ChartMain {
 
 
   /**
-  @function Calls InternalLine function to update color of line on chart after initial render
-  @param {Array} colors
-    @description Array of colors to update the chart to
+  @private
+  @function updateColors
+  @description Calls InternalLine to update color of line chart after initial render
+  @param {Array} colors Array of colors to update the chart to
+  @returns {Object} context Chart object
   */
+
   updateColors(colors) {
+    /*
+    Calls InternalLine object to update the colors on the line chart. InternalLine does the d3 manipulation
+    */
     InternalLine.updateColors(colors, this);
+
+    return this;
   }
 
 }
