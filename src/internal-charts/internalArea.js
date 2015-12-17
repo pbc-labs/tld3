@@ -3,22 +3,6 @@ import utils from '../utils/utils';
 const internalArea = {
 
   buildChartComponents(context) {
-    const tooltip = d3.select('body')
-    .append('div')
-    .attr('class', 'tooltip')
-    .style({
-      position: 'absolute',
-      color: 'black',
-      'text-align': 'center',
-      width: '100px',
-      padding: '2px',
-      font: '12px sans-serif',
-      background: '#f2f2f2',
-      border: '0px',
-      'border-radius': '1px',
-      cursor: 'pointer',
-    });
-
     const d0 = context.area(context.data.map(() => { return { [context.xColumnName]: context.xScale.domain()[0], [context.yColumnName]: context.yScale.domain()[0] }; }));
     const d1 = context.area(context.data);
 
@@ -43,12 +27,12 @@ const internalArea = {
     const area = d3.select('.area');
 
     area.on('mousemove', () => {
-      tooltip.transition()
+      context.tooltip.transition()
        .duration(200)
        .style('display', 'block')
        .style('opacity', 0.9);
 
-      tooltip
+      context.tooltip
        .html(() => {
          return `${context.xColumnName}: ${context.xScale.invert(d3.event.pageX - context.getMargins.left - context.getMargins.right).toLocaleString()}\
         ${context.yColumnName}: ${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}`;
@@ -58,7 +42,7 @@ const internalArea = {
     });
 
     area.on('mouseout', () => {
-      tooltip.transition()
+      context.tooltip.transition()
       .style('opacity', 0)
       .style('display', 'none');
     });

@@ -101,21 +101,6 @@ const InternalLine = {
   @returns {Object} context Chart object
    */
   buildChartComponents(context) {
-    const tooltip = d3.select('body')
-      .append('div')
-      .attr('class', 'tooltip')
-      .style({
-        position: 'absolute',
-        color: 'black',
-        'text-align': 'center',
-        width: '100px',
-        padding: '2px',
-        font: '12px sans-serif',
-        background: '#f2f2f2',
-        border: '0px',
-        'border-radius': '1px',
-        cursor: 'pointer',
-      });
     context.svg.append('path')
             .datum(context.data)
             .attr('class', 'line')
@@ -129,31 +114,34 @@ const InternalLine = {
 
     d3.timer(() => {
       if (k > 0) {
-        k -= 5;
+        k -= 7;
         line.attr('d', () => {
           return context.line(context.data.slice(0, context.data.length - k));
         });
       } else {
+        line.attr('d', () => {
+          return context.line(context.data);
+        });
         return true;
       }
     });
 
     line.on('mouseover', () => {
-      tooltip.transition()
+      context.tooltip.transition()
        .duration(200)
        .style('opacity', 0.9);
 
-      tooltip
+      context.tooltip
        .html(() => {
-         return `${context.xColumnName}: ${context.xScale.invert(d3.event.pageX).toLocaleString()}\
-        ${context.yColumnName}: ${context.yScale.invert(d3.event.pageY).toFixed(3)}`;
+         return `${context.xColumnName}: ${context.xScale.invert(d3.event.pageX - context.getMargins.left - context.getMargins.right).toLocaleString()}\
+        ${context.yColumnName}: ${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}`;
        })
        .style('left', (d3.event.pageX + 'px'))
        .style('top', (d3.event.pageY + 'px'));
     });
 
     line.on('mouseout', () => {
-      tooltip.transition().style('opacity', 0);
+      context.tooltip.transition().style('opacity', 0);
     });
 
     return context;

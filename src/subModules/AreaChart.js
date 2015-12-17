@@ -22,6 +22,7 @@ export class AreaChart extends ChartMain {
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
     InternalArea.updateColors(this);
+    Internal.createToolTip(this);
     InternalArea.buildChartComponents(this);
     InternalArea.styleChart(this);
 

@@ -34,6 +34,7 @@ export class LineChart extends ChartMain {
     InternalLine.buildLine(this);
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
+    Internal.createToolTip(this);
     InternalLine.buildChartComponents(this);
     InternalLine.styleChart(this);
 
