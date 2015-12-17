@@ -2,17 +2,22 @@
 import { ChartMain } from '../core/ChartMain';
 import Internal from './internal';
 import InternalScatter from '../internal-charts/internalScatter';
-/**
-@private
-Constructor subclass for Scatter Chart.
+
+/*
+Defines the subclass for the Scatter Chart.
 */
+
 export class ScatterChart extends ChartMain {
   constructor() {
     super();
-    // overwrites default colors with ordinal scale
+    // Sets the default color scale for the chart
     this._colors = d3.scale.category10();
   }
 
+/*
+Calls the necessary internal methods from Internal object and InternalScatter
+to build the scatter chart.
+*/
   build() {
     Internal.selectElement(this);
     InternalScatter.setColumns(this);
@@ -32,36 +37,28 @@ export class ScatterChart extends ChartMain {
     InternalScatter.createLegend(this);
   }
 
-  render() {
-    // used for data updates?
-    // need to think about how we are "rendering" upon instantiation and upon update
-    // I think this render needs to be a customized update function depending on what attribute is being updated
-  }
-
   /**
   @private
   @function Updates the dots on chart. Calls the internal update function.
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
   */
   updateChartComponents() {
     InternalScatter.updateChartComponents(this);
+
+    return this;
   }
 
   /**
   @private
-  @function Updates the chart's height on the element itself
-  @param {Object} context
-    @description Chart object
+  @function updateHeight
+  @description Updates the chart's height on the element itself
   @returns {Object} context
-    @description Chart object
   */
 
   updateHeight() {
+    /*
+    Calls each of the methods on Internal object necessary to update the height of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.updateSVGElement(this);
-    // TODO: make scale type a chart property
     InternalScatter.setYscale(this);
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
@@ -71,14 +68,15 @@ export class ScatterChart extends ChartMain {
 
   /**
   @private
-  @function Updates the chart's margin on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateMargins
+  @description Updates the chart's margin on the element itself
+  @returns {Object} context Chart object
   */
 
   updateMargins() {
+    /*
+    Calls updateHeight and updateWidth on this instance to reflect the new margins.
+    */
     this.updateHeight();
     this.updateWidth();
     return this;
@@ -86,23 +84,29 @@ export class ScatterChart extends ChartMain {
 
   /**
   @private
-  @function Updates the chart's width on the element itself
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateWidth
+  @description Updates the chart's width on the element itself
+  @returns {Object} context Chart object
   */
 
   updateWidth() {
+    /*
+    Calls each of the methods on Internal object necessary to update the width of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.updateSVGElement(this);
-    // TODO: make scale type a chart properties
     InternalScatter.setXscale(this);
     Internal.updateXAxisScale(this);
     Internal.updateXAxis(this);
 
     return this;
   }
+  /**
 
+  @private
+  @function setColors
+  @description Overrides the default ChartMain setColors setter - maps to an ordinal scale
+  @param {Array} colors Array of colors to update the chart to
+  */
   set setColors(newColors) {
     const color = d3.scale.ordinal()
                     .domain(this.getColors.domain())
@@ -110,13 +114,13 @@ export class ScatterChart extends ChartMain {
     this._colors = color;
   }
 
-/**
-@private
-@function Updates color of bar chart after initial render
-@param {Array} colors
-  @description Array of colors to update the chart to
-*/
-// TODO: possible update to ordinal colors in general internal
+  /**
+  @private
+  @function updateColors
+  @description Calls InternalScatter to update color of scatter chart after initial render
+  @param {Array} colors Array of colors to update the chart to
+  @returns {Object} context Chart object
+  */
   updateColors() {
     InternalScatter.updateColors(this);
   }
