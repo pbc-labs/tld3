@@ -2,12 +2,27 @@
 import utils from '../utils/utils';
 
 const waffle = {
+  /**
+  @private
+  @function setColumns
+  @description Parses and sets the column names for a particular WaffleChart instance.
+  @param {Object} Chart instance
+  @returns modified Chart instance
+  */
   setColumns(context) {
     context.xColumnName = utils.getFirstOrdinalColumn(context.data);
     context.yColumnName = utils.getColumnNames(context.data)[1];
     return context;
   },
-
+  /**
+  @private
+  @function processData
+  @description Processes the data input and calculates the required number of squares and colors
+  @param {Object} context
+    @description Chart instance
+  @returns {Object} context
+    @description modified Chart instance
+  */
   processData(context) {
     const total = d3.sum(context.data, (d) => { return d[context.yColumnName]; });
     context.processedData = [];
@@ -33,12 +48,26 @@ const waffle = {
     return context;
   },
 
+  /**
+  @private
+  @function calculateSize
+  @description Calculates the size of each square
+  @param {Object} context
+    @description Chart instance
+  @returns {Object} context
+    @description modified Chart instance
+  */
   calculateSize(context) {
     context.setWidth = ((context.getSquareSize * context.getSquareWidth) + context.getSquareWidth * context.getGapSize + context.getSquareSize);
     context.setHeight = ((context.getSquareSize * context.getSquareHeight) + context.getSquareHeight * context.getGapSize + context.getSquareSize);
     return context;
   },
 
+  /**
+  @private
+  @function buildChartComponents
+  @description Builds the actual chart components (dots) and tooltip with data.
+  */
   buildChartComponents(context) {
     const tooltip = d3.select('body')
     .append('div')
@@ -113,6 +142,15 @@ const waffle = {
     return context;
   },
 
+  /**
+  @private
+  @function styleChart
+  @description Updates the chart's style on the element
+  @param {Object} context
+    @description Chart instance
+  @returns {Object} context
+    @description modified Chart instance
+  */
   styleChart(context) {
     context.element.select('svg')
            .style('font-family', context.getFontStyle)
@@ -124,6 +162,16 @@ const waffle = {
            .text(`${context.xColumnName} | ${context.yColumnName}`);
     return context;
   },
+
+  /**
+  @private
+  @function createLegend
+  @description Creates a legend for the chart according to colors and data used
+  @param {Object} context
+    @description Chart instance
+  @returns {Object} context
+    @description modified Chart instance
+  */
 
   createLegend(context) {
     const legend = context.svg.append('g')
@@ -149,6 +197,15 @@ const waffle = {
         .text((d) => { return context.data[d][context.xColumnName]; });
   },
 
+  /**
+  @private
+  @function  updateColors
+  @description Updates the chart's colors
+  @param {Object} context
+    @description Chart instance
+  @returns {Object} context
+    @description modified Chart instance
+  */
   updateColors(context) {
     context.element.select('svg')
         .selectAll('.square')
