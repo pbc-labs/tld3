@@ -421,6 +421,7 @@ const Internal = {
                         font: '12px Arial',
                         background: '#f2f2f2',
                         border: '1px',
+                        opacity: 0,
                         'border-color': '#606060',
                         'border-style': 'solid',
                         'border-radius': '1px',
