@@ -221,7 +221,7 @@ const DonutChart = {
     context.svg.append('text')
     .attr('class', 'title')
     .attr('text-anchor', 'middle')
-    .text('Default Tilte');
+    .text(context.getTitle);
     return this;
   },
 
