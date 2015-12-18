@@ -42,7 +42,7 @@ const DonutChart = {
     context.colorScale = d3.scale.ordinal()
     .range(context.getColors);
     return context;
-  },  
+  },
 
   /**
   @private
