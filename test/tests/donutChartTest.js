@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-expressions, no-unused-vars */
 import chai from '../../node_modules/chai';
 import Browser from '../../node_modules/zombie';
-import csv from '../../node_modules/fast-csv';
-
 import utils from './utils/utils';
+
 const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
