@@ -9,9 +9,10 @@ export class WaffleChart extends ChartMain {
   constructor() {
     super();
     // Adds default waffleChart configuration
-    this._squareWidth = 20;
-    this._squareHeight = 5;
+    this._numColumns = 20;
+    this._numRows = 5;
     this._squareValue = 0;
+    this._squareSize = 25;
     this._gap = 1;
     // Overwrites default colors with ordinal scale
     this._colors = d3.scale.category10();
@@ -29,18 +30,29 @@ export class WaffleChart extends ChartMain {
     this._squareValue = squareValue;
   }
 
-  get getSquareWidth() {
-    return this._squareWidth;
+  get getNumColumns() {
+    return this._numColumns;
   }
 
-  get getSquareHeight() {
-    return this._squareHeight;
+  set setNumColumns(num) {
+    this._numColumns = num;
+  }
+
+  set setNumRows(num) {
+    this._numRows = num;
+  }
+
+  get getNumRows() {
+    return this._numRows;
   }
 
   get getSquareSize() {
-    return this._squareHeight + this._squareWidth;
+    return this._squareSize;
   }
 
+  set setSquareSize(size) {
+    this._squareSize = size;
+  }
   get getGapSize() {
     return this._gap;
   }
@@ -71,13 +83,42 @@ export class WaffleChart extends ChartMain {
     InternalWaffle.updateChartComponents(this);
   }
 
-  // TODO: Calculate change in squares for updateHeight and updateWidth
-  updateHeight() {
+// overwrite setHeight for wafflechart
+  set setHeight(height) {
+    this.setNumRows = Math.floor(height / this.getSquareSize);
+    this._height = height;
+  }
 
+  set setWidth(width) {
+    this.setNumColumns = Math.floor(width / this.getSquareSize);
+    this._width = width;
+  }
+
+  changeColumns(columns) {
+    this.setNumColumns = columns;
+    Internal.updateSVGElement(this);
+    InternalWaffle.updateChartComponents(this);
+  }
+
+  changeSquareSize(size) {
+    this.setSquareSize = size;
+    Internal.updateSVGElement(this);
+    InternalWaffle.updateChartComponents(this);
+  }
+  changeRows(rows) {
+    this.setNumRows = rows;
+    Internal.updateSVGElement(this);
+    InternalWaffle.updateChartComponents(this);
   }
 
   updateWidth() {
+    Internal.updateSVGElement(this);
+    InternalWaffle.updateChartComponents(this);
+  }
 
+  updateHeight() {
+    Internal.updateSVGElement(this);
+    InternalWaffle.updateChartComponents(this);
   }
 
   /**

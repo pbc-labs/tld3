@@ -24,12 +24,15 @@ const waffle = {
     @description modified Chart instance
   */
   processData(context) {
+    // sum of dataset
     const total = d3.sum(context.data, (d) => { return d[context.yColumnName]; });
     context.processedData = [];
-    context.setSquareValue = total / (context.getSquareWidth * context.getSquareHeight);
+    // setting square value to sum of data set divided by number of squares in the chart
+    context.setSquareValue = total / (context.getNumColumns * context.getNumRows);
 // Remap the data
     context.data.forEach((d, i) => {
       d[context.yColumnName] = +d[context.yColumnName];
+      // Figure out how many squares are needed
       d.units = Math.floor(d[context.yColumnName] / context.getSquareValue);
       context.processedData = context.processedData.concat(Array(d.units + 1)
                                    .join(1)
@@ -58,8 +61,8 @@ const waffle = {
     @description modified Chart instance
   */
   calculateSize(context) {
-    context.setWidth = ((context.getSquareSize * context.getSquareWidth) + context.getSquareWidth * context.getGapSize + context.getSquareSize);
-    context.setHeight = ((context.getSquareSize * context.getSquareHeight) + context.getSquareHeight * context.getGapSize + context.getSquareSize);
+    context.setWidth = ((context.getSquareSize * context.getNumColumns) + context.getNumColumns * context.getGapSize + context.getSquareSize);
+    context.setHeight = ((context.getSquareSize * context.getNumRows) + context.getNumRows * context.getGapSize + context.getSquareSize);
     return context;
   },
 
@@ -81,6 +84,7 @@ const waffle = {
       font: '12px sans-serif',
       background: '#f2f2f2',
       border: '0px',
+      opacity: '0',
       'border-radius': '1px',
       cursor: 'pointer',
     });
@@ -110,7 +114,7 @@ const waffle = {
                    .style('opacity', 1);
                  tooltip
                    .html(() => {
-                     return `${d[context.xColumnName]}`;
+                     return `${d[context.xColumnName]}, ${d[context.yColumnName]}`;
                    });
                })
               .on('mouseout', () => {
@@ -124,7 +128,7 @@ const waffle = {
                .style('opacity', 0)
                .attr('x', (d, i) => {
                 //  groups n squares for column
-                 const col = Math.floor(i / context.getSquareHeight);
+                 const col = Math.floor(i / context.getNumRows);
                  return (col * context.getSquareSize) + (col * context.getGapSize);
                })
                .attr('y', 300)
@@ -134,8 +138,8 @@ const waffle = {
                .transition()
                .delay((d, i) => { return i * 10; })
               .attr('y', (d, i) => {
-                const row = i % context.getSquareHeight;
-                return (context.getSquareHeight * context.getSquareSize) - ((row * context.getSquareSize) + (row * context.getGapSize) + 10);
+                const row = i % context.getNumRows;
+                return (context.getNumRows * context.getSquareSize) - ((row * context.getSquareSize) + (row * context.getGapSize) + 10) - 17;
               })
               .style('opacity', 1);
 
@@ -176,16 +180,16 @@ const waffle = {
   createLegend(context) {
     const legend = context.svg.append('g')
         .attr('class', 'legend')
-        .attr('transform', 'translate(' + context.getSquareWidth + ', 0)')
+        .attr('transform', 'translate(' + context.getNumColumns + ', 0)')
         .selectAll('.legend-data')
         .data(context.getColors.domain())
         .enter().append('g')
         .attr('class', 'legend-data')
         // Makes each rect spaced by 20px
-        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getHeight) + ')'; });
+        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getHeight - 10) + ')'; });
     legend.append('rect')
         .attr('x', 10)
-        .attr('width', context.getSquareWidth)
+        .attr('width', context.getNumColumns)
         .attr('height', 5)
         // Setting colors
         .style('fill', context.getColors);
@@ -212,6 +216,14 @@ const waffle = {
         .style('fill', (d) => { return context.getColors(d[context.yColumnName]); });
     context.element.selectAll('.legend-data rect')
     .style('fill', context.getColors);
+  },
+
+  updateChartComponents(context) {
+    context.element.select('svg').remove();
+    this.processData(context);
+    context.build(context);
+
+    return context;
   },
 };
 
