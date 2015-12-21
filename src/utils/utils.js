@@ -218,13 +218,23 @@ const utils = {
   @param {Object} data
     @description The graph data object
   @param {String} column
+    @description The current column that needs to be parsed
+  @param (String) format
+    @description Specifies a posiible time format
   @returns {String} Time parsed data
   */
 
-  parseTimeData(data, column) {
-    data.forEach(item => {
-      item[column] = new Date(item[column]);
-    });
+  parseTimeData(data, column, format) {
+    if (format) {
+      const parser = d3.time.format(format).parse;
+      data.forEach(item => {
+        item[column] = parser(item[column]);
+      });
+    } else {
+      data.forEach(item => {
+        item[column] = new Date(item[column]);
+      });
+    }
     return data;
   },
 
