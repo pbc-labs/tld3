@@ -37,6 +37,7 @@ export class LineChart extends ChartMain {
     Internal.createToolTip(this);
     InternalLine.buildChartComponents(this);
     InternalLine.styleChart(this);
+    InternalLine.updateColors(this);
 
     return this;
   }

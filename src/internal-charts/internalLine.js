@@ -32,8 +32,8 @@ const InternalLine = {
     Build the d3 line using by mapping the x and y values to the data
     */
     context.line = d3.svg.line()
-        .x((d) => { return context.xScale(d[context.getxAxisLabel]); })
-        .y((d) => { return context.yScale(d[context.getyAxisLabel]); });
+        .x((d) => { return context.xScale(d.x); })
+        .y((d) => { return context.yScale(d.y); });
 
     return context;
   },
@@ -65,12 +65,12 @@ const InternalLine = {
   @returns {Object} context Chart object
   */
   setXScale(context) {
-    context.xColumnName = utils.getFirstTimeColumn(context.data);
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.time.scale()
                     .range([0, context.getWidth]);
-    context.xScale.domain(d3.extent(context.data, (d) => { return d[context.xColumnName]; }));
-
+    context.xScale.domain(
+      [d3.min(context.data, d => { return d3.min(d.values, v => {return v[context.xColumnName]; }); }),
+      d3.max(context.data, d => { return d3.max(d.values, v => {return v[context.xColumnName]; }); })]);
     return context;
   },
 
@@ -81,12 +81,15 @@ const InternalLine = {
   @returns {Object} context Chart object
   */
   setYScale(context) {
-    context.yColumnName = utils.getFirstLinearColumn(context.data);
-    context.setyAxisLabel = context.yColumnName;
+    // context.yColumnName = utils.getFirstLinearColumn(context.data);
+
+    context.setyAxisLabel = 'Default Label';
     context.yScale = d3.scale.linear()
                     .range([context.getHeight, 0]);
 
-    context.yScale.domain(d3.extent(context.data, (d) => { return d[context.yColumnName]; }));
+    context.yScale.domain(
+      [d3.min(context.data, d => { return d3.min(d.values, v => {return v[d.name]; }); }),
+      d3.max(context.data, d => { return d3.max(d.values, v => {return v[d.name]; }); })]);
 
     return context;
   },
@@ -98,32 +101,28 @@ const InternalLine = {
   @returns {Object} context Chart object
    */
   buildChartComponents(context) {
-    context.svg.append('path')
-            .datum(context.data)
-            .attr('class', 'line')
-            .style({
-              fill: 'none',
-              stroke: context.getColors[0],
-              'stroke-width': 'crispEdges',
-            });
-    const line = context.svg.select('.line');
-    let k = context.data.length - 1;
+    const groups = context.svg.selectAll('.line')
+    .data(context.data)
+    .enter()
+    .append('g');
 
+    const lines = groups.append('path')
+                        .attr('class', 'line');
+    let k = context.data[0].values.length;
+    const length = k;
     d3.timer(() => {
       if (k > 0) {
         k -= 7;
-        line.attr('d', () => {
-          return context.line(context.data.slice(0, context.data.length - k));
-        });
+        lines.attr('d', (d) => {
+          return context.line(d.values.map(v => {
+            return { x: v[context.xColumnName], y: v[d.name] };
+          }).slice(0, length - k)); });
       } else {
-        line.attr('d', () => {
-          return context.line(context.data);
-        });
         return true;
       }
     });
 
-    line.on('mouseover', () => {
+    lines.on('mouseover', () => {
       context.tooltip.transition()
        .duration(200)
        .style('opacity', 0.9);
@@ -137,7 +136,7 @@ const InternalLine = {
        .style('top', (d3.event.pageY + 'px'));
     });
 
-    line.on('mouseout', () => {
+    lines.on('mouseout', () => {
       context.tooltip.transition().style('opacity', 0);
     });
 
@@ -174,13 +173,15 @@ const InternalLine = {
   @param {Array} colors Array of colors to update the chart to
   @param {Object} context Chart object
   */
-  updateColors(colors, context) {
+  updateColors(context) {
     context.element.select('svg')
-        .select('.line')
+        .selectAll('.line')
         .style({
           fill: 'none',
-          stroke: context.getColors[0],
           'stroke-width': 'crispEdges',
+        })
+        .style('stroke', (d, i) => {
+          return context.getColors[i];
         });
 
     return context;
@@ -193,8 +194,24 @@ const InternalLine = {
   @param {Object} context Chart object
   */
   convertData(context) {
-    context.data = utils.parseTimeData(context.data, context.xColumnName);
-    context.data = utils.parseNumberData(context.data, context.yColumnName);
+    context.data = utils.parseTimeData(context.data, context.xColumnName, '%Y%m%d');
+
+    const list = [];
+    const dataWorker = (i, columns) => {
+      list.push({
+        name: columns[i],
+        values: context.data.map(val => {
+          return { [context.xColumnName]: val[context.xColumnName], [columns[i]]: Number(val[columns[i]]) };
+        }),
+      });
+    };
+    const columns = utils.getColumnNames(context.data);
+    for (let i = 0; i < columns.length; i++) {
+      if (columns[i] !== context.xColumnName && utils.isLinear(context.data, columns[i])) {
+        dataWorker(i, columns);
+      }
+    }
+    context.data = list;
     return context;
   },
 
@@ -205,10 +222,10 @@ const InternalLine = {
   @param {Object} context Chart object
   */
   setColumnNames(context) {
-    context.yColumnName = utils.getFirstLinearColumn(context.data);
-    context.xColumnName = utils.getFirstTimeColumn(context.data);
+    context.xColumnName = utils.getFirstOrdinalColumn(context.data, '%Y%m%d');
+    context.xColumnName = 'date';
+    // This a check for data sets that have more than one linear column
   },
 };
-
 
 export default InternalLine;
