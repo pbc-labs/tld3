@@ -2,6 +2,12 @@ import utils from '../utils/utils';
 /*  global d3  */
 const internalArea = {
 
+  /**
+  @private
+  @function buildChartComponents
+  @description Builds the actual chart components with data, including the tooltips
+  @returns {Object} context Chart object
+   */
   buildChartComponents(context) {
     const d0 = context.area(context.data.map(() => { return { [context.xColumnName]: context.xScale.domain()[0], [context.yColumnName]: context.yScale.domain()[0] }; }));
     const d1 = context.area(context.data);
@@ -50,6 +56,14 @@ const internalArea = {
     return context;
   },
 
+  /**
+  @private
+  @function pathTween
+  @description Does the path tweening for the area chart transitions
+  @param {String} d1 the path to be transitioned to
+  @param {Number} precision the precision needed for the graph
+  @returns {Function} function
+   */
   pathTween(d1, precision) {
     return function worker() {
       const path0 = this;
@@ -81,6 +95,13 @@ const internalArea = {
     };
   },
 
+  /**
+  @private
+  @function updateChartComponents
+  @description Updates the bar on chart
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   updateChartComponents(context) {
     context.svg.select('.area')
             .datum(context.data)
@@ -89,12 +110,26 @@ const internalArea = {
     return context;
   },
 
+  /**
+  @private
+  @function setColumnNames
+  @description Sets the columnNames for the graph
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   setColumnNames(context) {
     context.xColumnName = utils.getFirstTimeColumn(context.data);
     context.yColumnName = utils.getFirstLinearColumn(context.data);
     return this;
   },
 
+  /**
+  @private
+  @function setXScale
+  @description Sets the x scale
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   setXScale(context) {
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.time.scale()
@@ -104,6 +139,13 @@ const internalArea = {
     return context;
   },
 
+  /**
+  @private
+  @function setXScale
+  @description Sets the y scale
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   setYScale(context) {
     context.setyAxisLabel = context.yColumnName;
     context.yScale = d3.scale.linear()
@@ -113,6 +155,13 @@ const internalArea = {
     return context;
   },
 
+  /**
+  @private
+  @function updateColors
+  @description Update chart colors
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   updateColors(context) {
     context.element.select('svg')
         .select('.area')
@@ -125,6 +174,13 @@ const internalArea = {
     return context;
   },
 
+  /**
+  @private
+  @function buildArea
+  @description Create the area drawing function
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   buildArea(context) {
     context.area = d3.svg.area()
         .x((d) => { return context.xScale(d[context.getxAxisLabel]); })
@@ -134,6 +190,13 @@ const internalArea = {
     return context;
   },
 
+  /**
+  @private
+  @function buildYAxis
+  @description Adds the y axis to the chart
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   buildYAxis(context) {
     context.svg.append('g')
              .attr('class', 'y axis')
@@ -148,12 +211,26 @@ const internalArea = {
     return context;
   },
 
+ /**
+  @private
+  @function convertData
+  @description Convert chart data
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   convertData(context) {
     context.data = utils.parseTimeData(context.data, context.xColumnName);
     context.data = utils.parseNumberData(context.data, context.yColumnName);
     return context;
   },
 
+ /**
+  @private
+  @function styleChart
+  @description Updates the style on the chart
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
   styleChart(context) {
     context.element.select('svg')
         .style('font-family', context.getFontStyle)

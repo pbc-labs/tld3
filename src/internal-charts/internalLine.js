@@ -44,7 +44,6 @@ const InternalLine = {
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
-
   buildYAxis(context) {
     context.svg.append('g')
              .attr('class', 'y axis')
@@ -65,7 +64,6 @@ const InternalLine = {
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
-
   setXScale(context) {
     context.xColumnName = utils.getFirstTimeColumn(context.data);
     context.setxAxisLabel = context.xColumnName;
@@ -82,7 +80,6 @@ const InternalLine = {
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
-
   setYScale(context) {
     context.yColumnName = utils.getFirstLinearColumn(context.data);
     context.setyAxisLabel = context.yColumnName;
@@ -172,7 +169,7 @@ const InternalLine = {
 
   /**
   @private
-  @function
+  @function updateColors
   @description Updates color of line on chart after initial render
   @param {Array} colors Array of colors to update the chart to
   @param {Object} context Chart object
@@ -189,12 +186,24 @@ const InternalLine = {
     return context;
   },
 
+  /**
+  @private
+  @function convertData
+  @description Converts the data needed for the chart
+  @param {Object} context Chart object
+  */
   convertData(context) {
     context.data = utils.parseTimeData(context.data, context.xColumnName);
     context.data = utils.parseNumberData(context.data, context.yColumnName);
     return context;
   },
 
+  /**
+  @private
+  @function setColumnNames
+  @description Sets the column names
+  @param {Object} context Chart object
+  */
   setColumnNames(context) {
     context.yColumnName = utils.getFirstLinearColumn(context.data);
     context.xColumnName = utils.getFirstTimeColumn(context.data);
