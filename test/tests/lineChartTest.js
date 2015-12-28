@@ -9,7 +9,7 @@ const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
 
-describe('Line Chart methods functionality', () => {
+xdescribe('Line Chart methods functionality', () => {
   const browser = new Browser();
   let data = [];
   let lineChart;
