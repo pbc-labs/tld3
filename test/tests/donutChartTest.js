@@ -65,7 +65,7 @@ describe('Donut Chart methods functionality', () => {
 
     describe('changeMargins', () => {
       it('should change margins', () => {
-        expect(donutChart.getMargins).to.eql({ top: 30, bottom: 30, left: 50, right: 30 });
+        expect(donutChart.getMargins).to.eql({ top: 30, bottom: 60, left: 60, right: 30 });
         donutChart.changeMargins({ top: 10, bottom: 10, left: 10, right: 10 });
         expect(donutChart.getMargins).to.eql({ top: 10, bottom: 10, left: 10, right: 10 });
         expect(Number(browser.window.d3.select('svg').attr('height'))).to.equal(donutChart.getHeight + donutChart.getMargins.top + donutChart.getMargins.bottom);
