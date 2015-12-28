@@ -160,15 +160,15 @@ const DonutChart = {
             d.endAngle = i(t);
             return context.arc(d);
           };
-        }).each('end', d => {
-          g.append('text')
-            .attr('transform', 'translate(' + context.arc.centroid(d) + ')')
+        });
+    context.svg.selectAll('.arc').append('text')
+            .attr('transform', (d) => { return 'translate(' + context.arc.centroid(d) + ')'; })
             .attr('dx', '.35em')
             .style('opacity', 0)
-            .text(d.data[context.ordinalColumn])
+            .text((d) => { return d.data[context.ordinalColumn]; })
             .transition().duration(200)
             .style('opacity', 1);
-        });
+
 
     g.on('mouseover', d => {
       tooltip.transition()
@@ -221,7 +221,7 @@ const DonutChart = {
     context.svg.append('text')
     .attr('class', 'title')
     .attr('text-anchor', 'middle')
-    .text('Default Tilte');
+    .text(context.getTitle);
     return this;
   },
 

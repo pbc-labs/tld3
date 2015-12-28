@@ -76,7 +76,8 @@ const Internal = {
     */
     context.xAxis = d3.svg.axis()
                       .scale(context.xScale)
-                      .orient(context.getxAxisOrientation);
+                      .orient(context.getxAxisOrientation)
+                      .ticks(6);
 
     return context;
   },

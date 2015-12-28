@@ -196,4 +196,17 @@ describe('Utils Tests', () => {
       expect(utils.getFirstTimeColumn(data)).to.be.null;
     });
   });
+
+  describe('parseTimeData', () => {
+    it('should convert data into time format', () => {
+      expect(utils.parseTimeData([{ test: '02-12-2012' }, { test: '02-11-2012' }, { test: '02-11-2015' }], 'test'))
+      .to.eql([{ test: new Date('02-12-2012') }, { test: new Date('02-11-2012') }, { test: new Date('02-11-2015') }]);
+    });
+  });
+
+  describe('parseNumberData', () => {
+    it('should convert data into Number', () => {
+      expect(utils.parseNumberData([{ test: '2' }, { test: '7' }, { test: '8' }], 'test')).to.be.eql([{ test: 2 }, { test: 7 }, { test: 8 }]);
+    });
+  });
 });

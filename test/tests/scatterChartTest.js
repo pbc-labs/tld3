@@ -7,63 +7,90 @@ import Browser from '../../node_modules/zombie';
 const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
+import utils from './utils/utils';
 
 describe('Scatter Chart methods functionality', () => {
   const browser = new Browser();
-  const dataScatterChart =
-    [
-    { 'letter': 'A', 'frequency': 0.08167 },
-    { 'letter': 'B', 'frequency': 0.01492 },
-    { 'letter': 'C', 'frequency': 0.02782 },
-    { 'letter': 'D', 'frequency': 0.04253 },
-    { 'letter': 'E', 'frequency': 0.12702 },
-    { 'letter': 'F', 'frequency': 0.02288 },
-    { 'letter': 'G', 'frequency': 0.02015 },
-    { 'letter': 'H', 'frequency': 0.06094 },
-    { 'letter': 'I', 'frequency': 0.06966 },
-    { 'letter': 'J', 'frequency': 0.00153 },
-    { 'letter': 'K', 'frequency': 0.00772 },
-    { 'letter': 'L', 'frequency': 0.04025 },
-    { 'letter': 'M', 'frequency': 0.02406 },
-    { 'letter': 'N', 'frequency': 0.06749 },
-    { 'letter': 'O', 'frequency': 0.07507 },
-    { 'letter': 'P', 'frequency': 0.01929 },
-    { 'letter': 'Q', 'frequency': 0.00095 },
-    { 'letter': 'R', 'frequency': 0.05987 },
-    { 'letter': 'S', 'frequency': 0.06327 },
-    { 'letter': 'T', 'frequency': 0.09056 },
-    { 'letter': 'U', 'frequency': 0.02758 },
-    { 'letter': 'V', 'frequency': 0.00978 },
-    { 'letter': 'W', 'frequency': 0.0236 },
-    { 'letter': 'X', 'frequency': 0.0015 },
-    { 'letter': 'Y', 'frequency': 0.01974 },
-    { 'letter': 'Z', 'frequency': 0.00074 },
-    ];
-
+  let data = [];
+  let scatterChart;
   before(() => {
-    return browser.visit('file://' + __dirname + '/../index.html');
+    return browser.visit('file://' + __dirname + '/../index.html')
+      .then(() => {
+        return utils.csv(__dirname + '/../data/scatterData.csv', 'testSepalLength', 'testSepalWidth', 'testPetalLength', 'tsetPetalWidth', 'testSpecies');
+      })
+      .then(newdata => {
+        data = newdata;
+      });
   });
 
   describe('Scatter Chart methods', () => {
-    xit('should make a chart in a div with id "barchart"', () => {
-      const scatterChart = browser.window.d3fault.make('ScatterChart');
-      scatterChart.using(dataScatterChart).in('#scatterChart');
+    it('should make a chart in a div with id "barchart"', () => {
+      scatterChart = browser.window.d3fault.make('ScatterChart');
+      scatterChart.using(data).in('#scatterchart');
       const scatterId = scatterChart.element.attr('id');
-      expect(scatterId).to.equal('scatterChart').and.to.be.an('String');
+      expect(scatterId).to.equal('scatterchart').and.to.be.an('String');
     });
 
-    xit('should make a chart with a class "scatter"', () => {
-      const scatterChart = browser.window.d3fault.make('ScatterChart');
-      scatterChart.using(dataScatterChart).in('#scatterChart');
-      const scatterClass = browser.window.d3.select('#scatterChart').select('rect').attr('class');
-      expect(scatterClass).to.equal('scatter').and.to.be.an('String');
+    it('should make cirlces to represent data for the scatter chart', () => {
+      const scatterCircles = browser.window.d3.select('#scatterchart').selectAll('circle');
+      expect(scatterCircles[0].length).to.equal(data.length);
     });
+  });
 
-    xit('should make rects to represent data for the scatter chart', () => {
-      const scatterChart = browser.window.d3fault.make('ScatterChart');
-      scatterChart.using(dataScatterChart).in('#scatterChart');
-      const scatterRect = browser.window.d3.select('#scatterChart').select('rect');
-      expect(scatterRect).to.exist;
+  describe('changeColors', () => {
+    it('should make circles red', () => {
+      const donutPaths = browser.window.d3.select('svg').selectAll('circle');
+      expect(browser.window.d3.select(donutPaths[0][0]).style('fill')).to.equal('#1f77b4');
+      scatterChart.changeColors(['red']);
+      expect(browser.window.d3.select(donutPaths[0][0]).style('fill')).to.equal('red');
+    });
+  });
+
+  describe('changeFontStyle', () => {
+    it('should change font style', () => {
+      const current = browser.window.d3.select('svg').style('font-family');
+      scatterChart.changeFontStyle('sans-serif');
+      expect(current === browser.window.d3.select('svg').style('font-family')).to.be.false;
+    });
+  });
+
+  describe('changeFontSize', () => {
+    it('should change font size', () => {
+      scatterChart.changeFontSize(100);
+      expect(browser.window.d3.select('svg').attr('font-size')).to.equal('100');
+    });
+  });
+
+  describe('changeMargins', () => {
+    it('should change margins', () => {
+      expect(scatterChart.getMargins).to.eql({ top: 30, bottom: 30, left: 50, right: 30 });
+      scatterChart.changeMargins({ top: 10, bottom: 10, left: 10, right: 10 });
+      expect(scatterChart.getMargins).to.eql({ top: 10, bottom: 10, left: 10, right: 10 });
+      expect(Number(browser.window.d3.select('svg').attr('height'))).to.equal(scatterChart.getHeight + scatterChart.getMargins.top + scatterChart.getMargins.bottom);
+      expect(Number(browser.window.d3.select('svg').attr('width'))).to.equal(scatterChart.getWidth + scatterChart.getMargins.left + scatterChart.getMargins.right);
+    });
+  });
+
+  describe('changeHeight', () => {
+    it('should change chart height', () => {
+      scatterChart.changeHeight(460);
+      expect(Number(browser.window.d3.select('svg').attr('height'))).to.equal(460 + scatterChart.getMargins.top + scatterChart.getMargins.bottom);
+    });
+  });
+
+  describe('changeWidth', () => {
+    it('should change chart width', () => {
+      scatterChart.changeWidth(999);
+      expect(Number(browser.window.d3.select('svg').attr('width'))).to.equal(999 + scatterChart.getMargins.right + scatterChart.getMargins.left);
+    });
+  });
+
+  describe('changeTitle', () => {
+    it('should change the title', () => {
+      const oldTile = scatterChart.getTitle;
+      expect(oldTile).to.equal(browser.window.d3.select('svg').select('.title').text());
+      scatterChart.changeTitle('Hello World!');
+      expect(browser.window.d3.select('svg').select('.title').text()).to.equal('Hello World!');
     });
   });
 });
