@@ -247,18 +247,6 @@ export class ChartMain {
     return this;
   }
 
-  // updateAxisColor(color) {
-  //   // TODO
-  // }
-  //
-  // updateTextColor(color) {
-  //   // TODO
-  // }
-  //
-  // createLegend() {
-  // // TODO
-  // }
-
   /**
   @function changeColors
   @description Updates the colors on the chart.
