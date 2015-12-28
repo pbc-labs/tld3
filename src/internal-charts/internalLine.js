@@ -108,6 +108,7 @@ const InternalLine = {
 
     const lines = groups.append('path')
                         .attr('class', 'line');
+
     let k = context.data[0].values.length;
     const length = k;
     d3.timer(() => {
@@ -122,9 +123,17 @@ const InternalLine = {
       }
     });
 
-    lines.on('mouseover', () => {
+    lines.on('mouseover', (d, i) => {
+      context.element.selectAll('.line')
+      .style('opacity', (data, index) => {
+        if (index !== i) {
+          return 0.25;
+        }
+        return 1;
+      });
       context.tooltip.transition()
        .duration(200)
+       .style('display', 'block')
        .style('opacity', 0.9);
 
       context.tooltip
@@ -137,7 +146,8 @@ const InternalLine = {
     });
 
     lines.on('mouseout', () => {
-      context.tooltip.transition().style('opacity', 0);
+      context.tooltip.transition().delay(1000).style('opacity', 0).style('display', 'none');
+      context.element.selectAll('.line').transition().delay(1000).style('opacity', 1.0);
     });
 
     return context;
