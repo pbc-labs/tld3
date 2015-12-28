@@ -1,6 +1,6 @@
 /* global d3 */
 import { ChartMain } from '../core/ChartMain';
-import Internal from './internal';
+import Internal from '../internal-charts/internal';
 import InternalWaffle from '../internal-charts/internalWaffle';
 /**
 Constructor subclass for Waffle Chart.

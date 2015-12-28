@@ -157,8 +157,8 @@ const Internal = {
                .call(context.xAxis)
                .append('text')
                .attr('class', 'x-axis-label')
-               .attr('x', context.getWidth)
-               .attr('y', -6)
+               .attr('x', context.getWidth * 0.5)
+               .attr('y', 20)
                .style('text-anchor', 'end')
                .text(context.getxAxisLabel);
 

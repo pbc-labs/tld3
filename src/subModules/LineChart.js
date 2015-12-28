@@ -1,5 +1,5 @@
 import { ChartMain } from '../core/ChartMain';
-import Internal from './internal';
+import Internal from '../internal-charts/internal';
 import InternalLine from '../internal-charts/internalLine';
 
 /**
