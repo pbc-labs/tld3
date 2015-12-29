@@ -33,7 +33,7 @@ const D3fault = {
   },
   uploadFirebase(url) {
     return utils.getFirebaseData(url);
-  }
+  },
 };
 
 export default D3fault;

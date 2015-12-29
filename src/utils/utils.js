@@ -75,8 +75,8 @@ const utils = {
   /*
   @private
   @function getFirebaseData
-  @description Gets Firebase data
-  @param {Object/String} url Firebase url
+  @description Gets Firebase data from Firebase url passed in
+  @param {String} url Firebase database url
   @returns {Promise} A promise resolved when the data is available
   */
 
@@ -86,12 +86,12 @@ const utils = {
 
     return new Promise((resolve, reject) => {
       ref.on('value', (snapshot) => {
-        var data = snapshot.val();
+        const data = snapshot.val();
         if (!data) {
-            reject(error);
-          } else {
-            resolve(data);
-          }
+          reject('Firebase data failed to load :(');
+        } else {
+          resolve(data);
+        }
       });
     });
   },

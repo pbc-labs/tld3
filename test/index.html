@@ -58,16 +58,16 @@
       //            .in('#barchart');
       // });
 
-      d3fault.uploadFirebase('https://d3fault.firebaseio.com/', function(err) {
-        if (err) {
-          console.log(err);
-        }
-      }).then(function(data) {
-          d3fault.make('BarChart')
-                 .using(data)
-                 .in('#barchart')
-                 .refreshData('https://d3fault.firebaseio.com/');
-      });
+      // d3fault.uploadFirebase('https://d3fault.firebaseio.com/', function(err) {
+      //   if (err) {
+      //     console.log(err);
+      //   }
+      // }).then(function(data) {
+      //     d3fault.make('BarChart')
+      //            .using(data)
+      //            .in('#barchart')
+      //            .refreshFirebaseData('https://d3fault.firebaseio.com/');
+      // });
 
 
     </script>

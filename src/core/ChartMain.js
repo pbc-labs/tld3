@@ -307,10 +307,17 @@ export class ChartMain {
     return this;
   }
 
-  refreshData(url) {
+  /*
+  @function refreshFirebaseData
+  @description If using Firebase database as data source, chaining this method will capture updates to data in real-time. And chart will update without refresh
+  @param {String} url Firebase database url
+  @returns {Object} this (ChartMain class)
+  */
+
+  refreshFirebaseData(url) {
     const ref = new Firebase(url);
 
-    ref.on('value', function (snapshot) {
+    ref.on('value', (snapshot) => {
       this.data = snapshot.val();
       this.updateChartComponents();
     }, this);

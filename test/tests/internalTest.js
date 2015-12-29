@@ -174,8 +174,8 @@ describe('Internal Tests', () => {
     });
 
     it('should update the title', () => {
-      expect(chart.getTitle).to.equal('Default title, YO!');
-      expect(d3.select('#chart .title').text()).to.equal('Default title, YO!');
+      expect(chart.getTitle).to.equal('Default title');
+      expect(d3.select('#chart .title').text()).to.equal('Default title');
       chart.setTitle = 'Not Default';
       expect(chart.getTitle).to.equal('Not Default');
       internal.updateTitle(chart);
