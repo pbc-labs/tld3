@@ -47,15 +47,16 @@
      //   console.error(err);
      // });
       //
-      d3fault.upload('./data/scatterData.csv', function(err) {
+      d3fault.upload('./data/barData.csv', function(err) {
         if (!err) {
           console.log(err);
         }
       }).then(function(data) {
-          d3fault.make('ScatterChart')
+          d3fault.make('BarChart')
                  .using(data)
-                 .in('#scatterchart')
-                 .changeyAxisLabel('new asd');
+                 .in('#barchart')
+                 .changeTitle('Letter Frequency')
+                 .changeFontStyle('Comic Sans MS');
       });
 
     </script>

@@ -12,8 +12,8 @@ export class ChartMain {
     this._width = width || 600;
     this._height = height || 300;
     this._margins = margins || { top: 30, right: 30, bottom: 60, left: 60 };
-    this._colors = colors || ['steelblue', 'red', 'green'];
-    this._title = title || 'Default title, YO!';
+    this._colors = colors || ['#E71D36', '#26408B', '#FF9F1C', '#767B91', '#0FA3B1'];
+    this._title = title || 'Default title';
     this._fontSize = fontSize || 14;
     this._fontStyle = fontStyle || 'Arial';
     this._xAxisLabel = xAxisLabel || 'x Axis Label';
