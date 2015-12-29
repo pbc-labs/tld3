@@ -199,7 +199,8 @@ const Internal = {
            .append('text')
            .attr('class', 'y-axis-label')
            .attr('transform', 'rotate(-90)')
-           .attr('y', 12)
+           .attr('y', -45)
+           .attr('x', -context.getHeight * 0.5 + context.getMargins.top)
            .style('text-anchor', 'end')
            .text(context.getyAxisLabel);
     return context;
@@ -224,7 +225,8 @@ const Internal = {
     context.element.select('.y-axis-label')
            .attr('class', 'y-axis-label')
            .attr('transform', 'rotate(-90)')
-           .attr('y', 12)
+           .attr('y', -45)
+           .attr('x', -context.getHeight * 0.5 + context.getMargins.top)
            .style('text-anchor', 'end')
            .text(context.getyAxisLabel);
 

@@ -139,4 +139,36 @@ export class BarChartLeft extends ChartMain {
     return this;
   }
 
+  /**
+  @private
+  @function updatexAxisLabel
+  @description Calls Internal to x-axis label
+  @returns {Object} context Chart object
+  */
+
+  updatexAxisLabel() {
+    /*
+    Calls Internal object to update the x-axis label
+    */
+    InternalBarLeft.updateXAxis(this);
+
+    return this;
+  }
+
+  /**
+  @private
+  @function updatexAxisLabel
+  @description Calls Internal to x-axis label
+  @returns {Object} context Chart object
+  */
+
+  updateyAxisLabel() {
+    /*
+    Calls Internal object to update the x-axis label
+    */
+    InternalBarLeft.updateYAxis(this);
+
+    return this;
+  }
+
 }

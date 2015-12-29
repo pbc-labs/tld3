@@ -225,7 +225,7 @@ export class ChartMain {
   changexAxisLabel(label) {
     // Use setter to update x-axis-label property
     this.setxAxisLabel = label;
-    Internal.updateXAxis(this);
+    this.updatexAxisLabel();
 
     return this;
   }
@@ -238,9 +238,9 @@ export class ChartMain {
   */
 
   changeyAxisLabel(label) {
-    this.setyAxisLabel = label;
     // Use setter to update y-axis-label property
-    Internal.updateYAxis(this);
+    this.setyAxisLabel = label;
+    this.updateyAxisLabel();
 
     return this;
   }
