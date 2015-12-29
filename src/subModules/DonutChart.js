@@ -21,10 +21,11 @@ export class DonutChart extends ChartMain {
   build() {
     Internal.selectElement(this);
     Internal.createSVGElement(this);
+    Internal.createToolTip(this);
     InternalDonut.updateStyle(this);
     InternalDonut.updateTranslation(this);
-    InternalDonut.updateOrdinalColunm(this);
-    InternalDonut.updateLinearColunm(this);
+    InternalDonut.updateOrdinalColumn(this);
+    InternalDonut.updateLinearColumn(this);
     InternalDonut.convertData(this);
     InternalDonut.updateRadius(this);
     InternalDonut.updateColors(this);
