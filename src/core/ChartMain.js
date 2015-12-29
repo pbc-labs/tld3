@@ -1,13 +1,8 @@
 /*  global d3  */
-<<<<<<< HEAD
 import Internal from '../internal-charts/internal';
 import Firebase from 'firebase';
-
-=======
-// import Internal from '../subModules/internal';
-import Internal from '../subModules/internal';
 import errors from '../utils/errors';
->>>>>>> update to throw errors
+
 /*
 Defines the main Chart class. This is the super class for
 all chart types. The ChartMain class defines the default inherited property values, setters and getters for property values, and the user-facing API.
