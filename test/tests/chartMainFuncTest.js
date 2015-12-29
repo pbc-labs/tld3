@@ -74,10 +74,9 @@ describe('Chart Main methods functionality', () => {
     it('should change colors when \'changeColors\' method is invoked with options', () => {
       const chart = d3fault.make('BarChart');
       chart.using(data).in('#chart');
-      const newColors = ['blueblueblue', 'greengreen'];
+      const newColors = ['red', 'purple'];
       chart.changeColors(newColors);
-      const currentColor = d3.select('#chart').select('svg').select('.bar').style('fill').split(',');
-      expect(currentColor).to.deep.equal(newColors).and.to.be.an('Array');
+      expect(chart.getColors).to.deep.equal(newColors).and.to.be.an('Array');
     });
 
     it('should change height when \'changeHeight\' method is invoked with options', () => {

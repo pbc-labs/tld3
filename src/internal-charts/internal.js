@@ -413,7 +413,7 @@ const Internal = {
   @returns {Object} this (Chart object)
   */
 
-  createTooltip(context) {
+  createToolTip(context) {
     context.tooltip = d3.select('body')
                       .append('div')
                       .attr('class', 'tooltip')

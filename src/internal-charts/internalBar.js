@@ -15,6 +15,8 @@ const InternalBar = {
     /*
     Uses d3 to build the chart components for bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
     */
+    const tooltip = context.tooltip;
+
     context.svg.selectAll('.bar')
          .data(context.data)
          .enter()
@@ -22,26 +24,19 @@ const InternalBar = {
          .attr('class', 'bar')
          .on('mouseover', (d) => {
            d3.select(d3.event.target).transition()
-             .duration(200);
-           context.tooltip.transition()
-                  .duration(200)
-                  .style('opacity', 0.9);
-           context.tooltip
-                  .html(() => {
-                    return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
-                    <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
-                  })
-                  .style('left', (d3.event.pageX + 'px'))
-                  .style('top', (d3.event.pageY + 'px'));
+           .duration(200);
+
+           tooltip.show();
+           tooltip.setContent(`<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
+             <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`);
+
            d3.select(d3.event.target)
-             .style('fill', 'orangered');
+              .style('fill', context.getColors[1]);
          })
           .on('mouseout', () => {
             d3.select(d3.event.target).transition()
               .duration(200);
-            context.tooltip.transition()
-                   .duration(500)
-                   .style('opacity', 0);
+            tooltip.hide();
             d3.select(d3.event.target)
               .style('fill', context.getColors[0]);
           })
@@ -101,6 +96,7 @@ const InternalBar = {
         .attr('y', 20)
         .text(context.getTitle);
 
+
     return context;
   },
 
@@ -112,11 +108,10 @@ const InternalBar = {
     @description Array of colors to update the chart to
   */
 
-  updateColors(colors, context) {
-    context.element.select('svg')
-           .selectAll('.bar')
-           .style('fill', colors);
-
+  updateColors(context) {
+    context.element.select('svg').selectAll('rect')
+           .remove();
+    this.buildChartComponents(context);
     return context;
   },
 
