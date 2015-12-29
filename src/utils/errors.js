@@ -89,7 +89,9 @@ const errors = {
     constructor() {
       super();
       this.name = 'DateError';
-      this.message = 'Error formatting date, use setDateFormat function set custom formatting';
+      this.message = 'Error formatting date, use updateTimeFormat function set custom formatting';
+      this.constructor = this;
+      Error.captureStackTrace(this, this.constructor.name);
     }
   },
 
