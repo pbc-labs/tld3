@@ -8,6 +8,7 @@ Constructor subclass for Line Chart.
 export class LineChart extends ChartMain {
   constructor() {
     super();
+    this.dateFormat = '';
   }
 
   /*
@@ -165,5 +166,15 @@ export class LineChart extends ChartMain {
     return this;
   }
 
+  /*
+  @private
+  @function updateDateFormat
+  @description Updates the time format and call chart update functions
+  @returns {Object} this Chart object
+  */
 
+  updateTimeFormat(newDateFormat) {
+    this.dateFormat = newDateFormat;
+    return this;
+  }
 }

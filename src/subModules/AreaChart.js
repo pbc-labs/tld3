@@ -5,6 +5,7 @@ import InternalArea from '../internal-charts/internalArea';
 export class AreaChart extends ChartMain {
   constructor() {
     super();
+    this.dateFormat = '';
   }
 
   /*
