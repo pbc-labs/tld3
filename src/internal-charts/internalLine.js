@@ -251,8 +251,7 @@ const InternalLine = {
   */
 
   convertData(context) {
-    context.data = utils.parseTimeData(context.data, context.xColumnName, '%Y%m%d');
-    // , '%Y%m%d'
+    context.data = utils.parseTimeData(context.data, context.xColumnName, context.dateFormat);
     const list = [];
     const dataWorker = (i, columns) => {
       list.push({
@@ -281,7 +280,7 @@ const InternalLine = {
   */
 
   setColumnNames(context) {
-    context.xColumnName = utils.getFirstOrdinalColumn(context.data, '%Y%m%d');
+    context.xColumnName = utils.getFirstOrdinalColumn(context.data, context.dateFormat);
     context.xColumnName = 'date';
     // This a check for data sets that have more than one linear column
   },
