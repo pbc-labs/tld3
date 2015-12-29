@@ -21,8 +21,9 @@ This defines our main library object.
 
 import charts from '../subModules/charts';
 import utils from '../utils/utils';
-import internal from '../internal-charts/internal';
-const D3fault = {
+
+import internal from '../subModules/internal';
+const lib = {
   internal,
   version: '1.0.0',
   make(chartType) {
@@ -36,4 +37,4 @@ const D3fault = {
   },
 };
 
-export default D3fault;
+export { lib as default };

@@ -169,7 +169,7 @@ const DonutChart = {
         .style('fill', d => { return context.colorScale(d.data[context.ordinalColumn]); })
         .transition()
         .attrTween('d', d => {
-          const i = d3.interpolate(d.startAngle + 0.1, d.endAngle);
+          const i = d3.interpolate(d.startAngle, d.endAngle + 0.1);
           return (t) => {
             d.endAngle = i(t);
             return context.arc(d);
