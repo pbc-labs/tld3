@@ -1,6 +1,6 @@
 /*  global d3  */
 // import Internal from '../subModules/internal';
-import Internal from '../subModules/internal';
+import Internal from '../internal-charts/internal';
 
 /*
 Defines the main Chart class. This is the super class for
@@ -13,7 +13,7 @@ export class ChartMain {
   constructor(width, height, margins, colors, title, fontSize, fontStyle, xAxisLabel, yAxisLabel, xAxisOrientation, yAxisOrientation) {
     this._width = width || 600;
     this._height = height || 300;
-    this._margins = margins || { top: 30, right: 30, bottom: 30, left: 50 };
+    this._margins = margins || { top: 30, right: 30, bottom: 60, left: 60 };
     this._colors = colors || ['steelblue', 'red', 'green'];
     this._title = title || 'Default title, YO!';
     this._fontSize = fontSize || 14;
@@ -225,8 +225,7 @@ export class ChartMain {
   changexAxisLabel(label) {
     // Use setter to update x-axis-label property
     this.setxAxisLabel = label;
-    Internal.updatexAxis(// TODO
-    );
+    this.updatexAxisLabel();
 
     return this;
   }
@@ -239,25 +238,12 @@ export class ChartMain {
   */
 
   changeyAxisLabel(label) {
-    this.setyAxisLabel = label;
     // Use setter to update y-axis-label property
-    Internal.updatexAxis(// TODO
-    );
+    this.setyAxisLabel = label;
+    this.updateyAxisLabel();
 
     return this;
   }
-
-  // updateAxisColor(color) {
-  //   // TODO
-  // }
-  //
-  // updateTextColor(color) {
-  //   // TODO
-  // }
-  //
-  // createLegend() {
-  // // TODO
-  // }
 
   /**
   @function changeColors

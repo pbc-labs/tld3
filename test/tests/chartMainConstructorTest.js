@@ -39,7 +39,7 @@ describe('Main Chart Constructor', () => {
     });
 
     it('should have default top margins property of 30', () => {
-      const defaultMargins = { top: 30, right: 30, bottom: 30, left: 50 };
+      const defaultMargins = { top: 30, right: 30, bottom: 60, left: 60 };
       expect(chart.getMargins).to.deep.equal(defaultMargins);
     });
 

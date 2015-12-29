@@ -63,7 +63,7 @@ describe('Scatter Chart methods functionality', () => {
 
   describe('changeMargins', () => {
     it('should change margins', () => {
-      expect(scatterChart.getMargins).to.eql({ top: 30, bottom: 30, left: 50, right: 30 });
+      expect(scatterChart.getMargins).to.eql({ top: 30, bottom: 60, left: 60, right: 30 });
       scatterChart.changeMargins({ top: 10, bottom: 10, left: 10, right: 10 });
       expect(scatterChart.getMargins).to.eql({ top: 10, bottom: 10, left: 10, right: 10 });
       expect(Number(browser.window.d3.select('svg').attr('height'))).to.equal(scatterChart.getHeight + scatterChart.getMargins.top + scatterChart.getMargins.bottom);

@@ -50,10 +50,39 @@ const InternalLine = {
              .call(context.yAxis)
              .append('text')
              .attr('transform', 'rotate(-90)')
-             .attr('y', 6)
-             .attr('dy', '.71em')
+             .attr('y', -45)
+             .attr('x', -context.getMargins.bottom * 2)
+             .attr('dy', '.4em')
              .style('text-anchor', 'end')
              .text(context.getyAxisLabel);
+
+    return context;
+  },
+
+  /**
+  @private
+  @function Updates the up the y-axis
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
+
+  updateYAxis(context) {
+    /*
+    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    */
+    context.element
+           .select('svg')
+           .selectAll('g .y.axis')
+           .call(context.yAxis);
+
+    context.element.select('.y-axis-label')
+           .attr('class', 'y-axis-label')
+           .attr('transform', 'rotate(-90)')
+           .attr('y', -45)
+           .attr('x', -context.getMargins.bottom * 2)
+           .attr('dy', '.4em')
+           .style('text-anchor', 'end')
+           .text(context.getyAxisLabel);
 
     return context;
   },
@@ -205,7 +234,7 @@ const InternalLine = {
   */
   convertData(context) {
     context.data = utils.parseTimeData(context.data, context.xColumnName, '%Y%m%d');
-
+    // , '%Y%m%d'
     const list = [];
     const dataWorker = (i, columns) => {
       list.push({

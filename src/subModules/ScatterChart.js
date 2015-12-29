@@ -1,6 +1,6 @@
 /* global d3 */
 import { ChartMain } from '../core/ChartMain';
-import Internal from './internal';
+import Internal from '../internal-charts/internal';
 import InternalScatter from '../internal-charts/internalScatter';
 
 /*
@@ -124,4 +124,37 @@ to build the scatter chart.
   updateColors() {
     InternalScatter.updateColors(this);
   }
+
+  /**
+  @private
+  @function updatexAxisLabel
+  @description Calls Internal to x-axis label
+  @returns {Object} context Chart object
+  */
+
+  updatexAxisLabel() {
+    /*
+    Calls Internal object to update the x-axis label
+    */
+    Internal.updateXAxis(this);
+
+    return this;
+  }
+
+  /**
+  @private
+  @function updatexAxisLabel
+  @description Calls Internal to x-axis label
+  @returns {Object} context Chart object
+  */
+
+  updateyAxisLabel() {
+    /*
+    Calls Internal object to update the x-axis label
+    */
+    Internal.updateYAxis(this);
+
+    return this;
+  }
+
 }

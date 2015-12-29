@@ -157,9 +157,9 @@ const Internal = {
                .call(context.xAxis)
                .append('text')
                .attr('class', 'x-axis-label')
-               .attr('x', context.getWidth)
-               .attr('y', -6)
-               .style('text-anchor', 'end')
+               .attr('x', context.getWidth * 0.5)
+               .attr('y', 35)
+               .style('text-anchor', 'middle')
                .text(context.getxAxisLabel);
 
     return context;
@@ -199,7 +199,8 @@ const Internal = {
            .append('text')
            .attr('class', 'y-axis-label')
            .attr('transform', 'rotate(-90)')
-           .attr('y', 12)
+           .attr('y', -45)
+           .attr('x', -context.getHeight * 0.5 + context.getMargins.top)
            .style('text-anchor', 'end')
            .text(context.getyAxisLabel);
     return context;
@@ -220,10 +221,12 @@ const Internal = {
            .select('svg')
            .selectAll('g .y.axis')
            .call(context.yAxis);
+
     context.element.select('.y-axis-label')
            .attr('class', 'y-axis-label')
            .attr('transform', 'rotate(-90)')
-           .attr('y', 12)
+           .attr('y', -45)
+           .attr('x', -context.getHeight * 0.5 + context.getMargins.top)
            .style('text-anchor', 'end')
            .text(context.getyAxisLabel);
 
@@ -247,9 +250,9 @@ const Internal = {
            .selectAll('g .x.axis')
            .call(context.xAxis);
     context.element.select('.x-axis-label')
-           .attr('x', context.getWidth)
-           .attr('y', -6)
-           .style('text-anchor', 'end')
+           .attr('x', context.getWidth * 0.5)
+           .attr('y', 35)
+           .style('text-anchor', 'middle')
            .text(context.getxAxisLabel);
 
     return context;

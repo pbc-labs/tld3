@@ -1,5 +1,5 @@
 import { ChartMain } from '../core/ChartMain';
-import Internal from './internal';
+import Internal from '../internal-charts/internal';
 import InternalBar from '../internal-charts/internalBar';
 
 /**
@@ -133,6 +133,38 @@ export class BarChart extends ChartMain {
     Calls InternalBar object to update the colors on the bar chart. InternalBar does the d3 manipulation
     */
     InternalBar.updateColors(colors, this);
+
+    return this;
+  }
+
+  /**
+  @private
+  @function updatexAxisLabel
+  @description Calls Internal to x-axis label
+  @returns {Object} context Chart object
+  */
+
+  updatexAxisLabel() {
+    /*
+    Calls Internal object to update the x-axis label
+    */
+    Internal.updateXAxis(this);
+
+    return this;
+  }
+
+  /**
+  @private
+  @function updatexAxisLabel
+  @description Calls Internal to x-axis label
+  @returns {Object} context Chart object
+  */
+
+  updateyAxisLabel() {
+    /*
+    Calls Internal object to update the x-axis label
+    */
+    Internal.updateYAxis(this);
 
     return this;
   }

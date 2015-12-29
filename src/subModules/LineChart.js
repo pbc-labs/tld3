@@ -1,5 +1,5 @@
 import { ChartMain } from '../core/ChartMain';
-import Internal from './internal';
+import Internal from '../internal-charts/internal';
 import InternalLine from '../internal-charts/internalLine';
 
 /**
@@ -143,5 +143,38 @@ export class LineChart extends ChartMain {
 
     return this;
   }
+
+  /**
+  @private
+  @function updatexAxisLabel
+  @description Calls Internal to x-axis label
+  @returns {Object} context Chart object
+  */
+
+  updatexAxisLabel() {
+    /*
+    Calls Internal object to update the x-axis label
+    */
+    Internal.updateXAxis(this);
+
+    return this;
+  }
+
+  /**
+  @private
+  @function updatexAxisLabel
+  @description Calls Internal to x-axis label
+  @returns {Object} context Chart object
+  */
+
+  updateyAxisLabel() {
+    /*
+    Calls Internal object to update the x-axis label
+    */
+    InternalLine.updateYAxis(this);
+
+    return this;
+  }
+
 
 }

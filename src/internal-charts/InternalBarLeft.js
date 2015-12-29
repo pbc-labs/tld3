@@ -126,8 +126,8 @@ const InternalBarLeft = {
                .append('text')
                .attr('class', 'x-axis-label')
                .text(context.getxAxisLabel)
-               .attr('dy', '-10px')
-               .attr('dx', context.getWidth - context.getMargins.right * 2);
+               .attr('dy', '35px')
+               .attr('dx', context.getWidth * 0.5 - context.getMargins.right * 0.5);
 
     return context;
   },
@@ -146,14 +146,68 @@ const InternalBarLeft = {
            .call(context.yAxis)
            .append('text')
            .attr('class', 'y-axis-label')
-           .attr('x', context.getMargins.right)
+           .attr('x', 0)
            .text(context.getyAxisLabel)
-           .attr('dx', '-50px')
-           .attr('dy', '-5px')
+           .attr('transform', 'rotate(-90)')
+           .attr('dx', -context.getHeight * 0.5 - context.getMargins.right * 0.5)
+           .attr('dy', '-30px')
            .style('text-anchor', 'top');
 
     return context;
   },
+
+  /**
+  @private
+  @function Updates the up the y-axis
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
+
+  updateYAxis(context) {
+    /*
+    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    */
+    context.element
+           .select('svg')
+           .selectAll('g .y.axis')
+           .call(context.yAxis);
+
+    context.element.select('.y-axis-label')
+           .attr('class', 'y-axis-label')
+           .attr('x', 0)
+           .text(context.getyAxisLabel)
+           .attr('transform', 'rotate(-90)')
+           .attr('dx', -context.getHeight * 0.5 - context.getMargins.right * 0.5)
+           .attr('dy', '-30px')
+           .style('text-anchor', 'top');
+
+    return context;
+  },
+
+  /**
+  @private
+  @function updateXAxis
+  @description Updates the up the x-axis scale
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
+  */
+
+  updateXAxis(context) {
+    /*
+    Updated the x-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    */
+    context.element
+           .select('svg')
+           .selectAll('g .x.axis')
+           .call(context.xAxis);
+    context.element.select('.x-axis-label')
+            .text(context.getxAxisLabel)
+            .attr('dy', '35px')
+            .attr('dx', context.getWidth * 0.5 - context.getMargins.right * 0.5);
+
+    return context;
+  },
+
 
   /**
   @private
