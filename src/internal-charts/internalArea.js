@@ -225,7 +225,7 @@ const internalArea = {
   */
 
   convertData(context) {
-    context.data = utils.parseTimeData(context.data, context.xColumnName);
+    context.data = utils.parseTimeData(context.data, context.xColumnName, context.dateFormat);
     context.data = utils.parseNumberData(context.data, context.yColumnName);
     return context;
   },

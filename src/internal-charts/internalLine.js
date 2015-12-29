@@ -280,9 +280,7 @@ const InternalLine = {
   */
 
   setColumnNames(context) {
-    context.xColumnName = utils.getFirstOrdinalColumn(context.data, context.dateFormat);
-    context.xColumnName = 'date';
-    // This a check for data sets that have more than one linear column
+    context.xColumnName = utils.getFirstTimeColumn(context.data, context.dateFormat);
   },
 };
 
