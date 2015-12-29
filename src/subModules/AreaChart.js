@@ -17,6 +17,7 @@ export class AreaChart extends ChartMain {
   build() {
     Internal.selectElement(this);
     Internal.createSVGElement(this);
+    Internal.createToolTip(this);
     InternalArea.setColumnNames(this);
     InternalArea.convertData(this);
     InternalArea.setXScale(this);
@@ -29,7 +30,6 @@ export class AreaChart extends ChartMain {
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
     InternalArea.updateColors(this);
-    Internal.createToolTip(this);
     InternalArea.buildChartComponents(this);
     InternalArea.styleChart(this);
 

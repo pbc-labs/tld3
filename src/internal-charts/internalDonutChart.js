@@ -151,6 +151,7 @@ const DonutChart = {
         .data(context.pie(context.data))
         .enter().append('g')
         .attr('class', (d, i) => { return `arc data-id-${i}`; });
+
     g.append('path')
         .style('stroke', '#fff')
         .style('stroke-width', '3px')
@@ -163,6 +164,7 @@ const DonutChart = {
             return context.arc(d);
           };
         });
+
     context.svg.selectAll('.arc').append('text')
             .attr('transform', (d) => { return 'translate(' + context.arc.centroid(d) + ')'; })
             .attr('dx', '.35em')
@@ -185,20 +187,13 @@ const DonutChart = {
         .duration(200)
         .style('opacity', 1);
 
-      tooltip.transition()
-        .duration(200)
-        .style('opacity', 0.9);
-      tooltip
-        .html(() => {
-          return `${context.ordinalColumn}: ${d.data[context.ordinalColumn]}
-          ${context.linearColumn}: ${d.data[context.linearColumn]}`;
-        })
-        .style('left', (d3.event.pageX + 'px'))
-        .style('top', (d3.event.pageY + 'px'));
+      tooltip.show();
+      tooltip.setContent(`${context.ordinalColumn}: ${d.data[context.ordinalColumn]}\
+       ${context.linearColumn}: ${d.data[context.linearColumn]}`);
     });
 
     g.on('mouseout', () => {
-      tooltip.transition().style('opacity', 0);
+      tooltip.hide();
       d3.selectAll('.arc').transition()
         .duration(200)
         .style('opacity', 1);

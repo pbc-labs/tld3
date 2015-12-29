@@ -74,6 +74,7 @@ export class WaffleChart extends ChartMain {
     InternalWaffle.processData(this);
     InternalWaffle.calculateSize(this);
     Internal.createSVGElement(this);
+    Internal.createTooltip(this);
     InternalWaffle.buildChartComponents(this);
     InternalWaffle.styleChart(this);
     InternalWaffle.createLegend(this);

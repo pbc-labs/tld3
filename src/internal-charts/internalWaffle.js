@@ -81,22 +81,7 @@ const waffle = {
   */
 
   buildChartComponents(context) {
-    const tooltip = d3.select('body')
-    .append('div')
-    .attr('class', 'tooltip')
-    .style({
-      position: 'absolute',
-      color: 'black',
-      'text-align': 'center',
-      width: '100px',
-      padding: '2px',
-      font: '12px sans-serif',
-      background: '#f2f2f2',
-      border: '0px',
-      opacity: '0',
-      'border-radius': '1px',
-      cursor: 'pointer',
-    });
+    const tooltip = context.tooltip;
 
     context.svg.append('g')
                .selectAll('div')
@@ -108,11 +93,8 @@ const waffle = {
                .attr('height', context.getSquareSize)
                .attr('class', (d) => { return 'square ' + context.xColumnName + d.groupIndex; })
                .on('mouseover', (d) => {
-                 tooltip.transition()
-                   .duration(200)
-                   .style('opacity', 0.9)
-                   .style('left', (d3.event.pageX + 'px'))
-                   .style('top', (d3.event.pageY + 'px'));
+                 tooltip.show();
+
                  d3.selectAll('rect').transition()
                   .duration(200)
                   .style('opacity', 0.6);
@@ -121,18 +103,14 @@ const waffle = {
                  d3.selectAll('.' + d3.select(d3.event.target).attr('class').split(' ')[1]).transition()
                    .duration(200)
                    .style('opacity', 1);
-                 tooltip
-                   .html(() => {
-                     return `${d[context.xColumnName]}, ${d[context.yColumnName]}`;
-                   });
+
+                 tooltip.setContent(`${d[context.xColumnName]}, ${d[context.yColumnName]}`);
                })
               .on('mouseout', () => {
                 d3.selectAll('rect').transition()
                   .duration(500)
                   .style('opacity', 1);
-                tooltip.transition()
-                   .duration(500)
-                   .style('opacity', 0);
+                tooltip.hide();
               })
                .style('opacity', 0)
                .attr('x', (d, i) => {
