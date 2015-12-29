@@ -1,16 +1,20 @@
+/*
+This is required for d3 to load.
+*/
 /* global d3 */
 
 import utils from '../utils/utils';
 
 const InternalBarLeft = {
-  /**
+  /*
   @private
   @function buildChartComponents
   @description Builds up the bar chart
   */
+
   buildChartComponents(context) {
     /*
-    Uses d3 to build the chart components for bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
+    Uses d3 to build the chart components for left bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
     */
     context.svg.selectAll('.bar')
            .data(context.data)
@@ -24,7 +28,7 @@ const InternalBarLeft = {
              context.tooltip.transition()
             .duration(200)
             .style('opacity', 0.9);
-             context.tooltip
+             context.tooltip // Set the tooltips
                     .html(() => {
                       return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
                       <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
@@ -57,7 +61,7 @@ const InternalBarLeft = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateChartComponents
   @description Calls InternalBar to updates the bar on chart
@@ -78,7 +82,7 @@ const InternalBarLeft = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function createxAxis
   @description Creates d3 x-axis
@@ -94,7 +98,7 @@ const InternalBarLeft = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function createyAxis
   @description Creates d3 axis - y
@@ -110,7 +114,7 @@ const InternalBarLeft = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function buildXAxis
   @description Builds up the x-axis
@@ -132,7 +136,7 @@ const InternalBarLeft = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function buildYAxis
   @description Builds up the y-axis
@@ -156,7 +160,7 @@ const InternalBarLeft = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function Updates the up the y-axis
   @param {Object} context Chart object
@@ -184,7 +188,7 @@ const InternalBarLeft = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateXAxis
   @description Updates the up the x-axis scale
@@ -209,7 +213,7 @@ const InternalBarLeft = {
   },
 
 
-  /**
+  /*
   @private
   @function setYscale
   @description Sets the appropriate y-scale
@@ -232,7 +236,7 @@ const InternalBarLeft = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function setXscale
   @description Sets the appropriate x-scale

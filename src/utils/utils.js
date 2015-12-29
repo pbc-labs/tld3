@@ -1,3 +1,6 @@
+/*
+This is required for d3 to load.
+*/
 /* global d3 */
 
 /*
@@ -16,7 +19,7 @@ const utils = {
     return extension in okayExtensions;
   },
 
-  /**
+  /*
   @private
   @function getDataType
   @description Checks the data type for a given input
@@ -39,7 +42,7 @@ const utils = {
     }
   },
 
-  /**
+  /*
   @private
   @function getData
   @description Gets all a file
@@ -68,7 +71,7 @@ const utils = {
     }
   },
 
-  /**
+  /*
   @private
   @function isOridinal
   @description Checks the scale of column and returns if it ordinal
@@ -91,7 +94,7 @@ const utils = {
     return true;
   },
 
-  /**
+  /*
   @private
   @function Checks the scale of column and returns if it linear
   @param {Object} data The graph data object
@@ -106,7 +109,7 @@ const utils = {
     return false;
   },
 
-  /**
+  /*
   @private
   @function isTime
   @description Checks the scale of column and returns if it linear
@@ -122,7 +125,7 @@ const utils = {
     return false;
   },
 
-  /**
+  /*
   @private
   @function isAcceptableTimeFormat
   @description Returns true a given timeStamp can be writen in a time format
@@ -141,7 +144,7 @@ const utils = {
     return false;
   },
 
-  /**
+  /*
   @private
   @function getColumnNames
   @description Gets all the column names for the data set
@@ -158,7 +161,7 @@ const utils = {
     }
   },
 
-  /**
+  /*
   @private
   @function getFirstOrdinalColumn
   @description Gets the first possible ordinal column
@@ -176,7 +179,7 @@ const utils = {
     return null;
   },
 
-  /**
+  /*
   @private
   @function getFirstLinearColumn
   @description Gets the first possible linear column
@@ -194,7 +197,7 @@ const utils = {
     return null;
   },
 
-  /**
+  /*
   @private
   @function getFirstTimeColumn
   @description Gets the first possible time scale column
@@ -212,7 +215,7 @@ const utils = {
     return null;
   },
 
-  /**
+  /*
   @private
   @function Parses time data
   @param {Object} data
@@ -238,7 +241,7 @@ const utils = {
     return data;
   },
 
-  /**
+  /*
   @private
   @function Parses strings to numbers
   @param {Object} data

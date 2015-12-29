@@ -1,11 +1,12 @@
+/*
+This is required for d3 to load.
+*/
 /* global d3 */
+
 import utils from '../utils/utils';
 
 const Internal = {
-  config: {
-  },
-
-  /**
+  /*
   @private
   @function selectElement
   @description Creates a d3 element and assigns it to our internal 'element' property
@@ -14,14 +15,14 @@ const Internal = {
   */
 
   selectElement(context) {
-    /* Use d3 to select the DOM element where the chart will be drawm. Set the element to our chart's 'element' property
+    /* Use d3 to select the DOM element where the chart will be drawn. Set the element to our chart's 'element' property
     */
     context.element = d3.select(context.location);
 
     return context;
   },
 
-  /**
+  /*
   @private
   @function createSVGElement
   @description Creates the main SVG element
@@ -42,7 +43,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateSVGElement
   @description Updates the main SVG element
@@ -54,15 +55,15 @@ const Internal = {
     /* Select current SVG element and tpdates the width and height of the SVG.
     */
     context.element.select('svg')
-      .attr('width', context.getWidth + context.getMargins.left + context.getMargins.right)
-      .attr('height', context.getHeight + context.getMargins.top + context.getMargins.bottom)
-      .append('g')
-      .attr('transform', 'translate(' + context.getMargins.left + ',' + context.getMargins.top + ')');
+           .attr('width', context.getWidth + context.getMargins.left + context.getMargins.right)
+           .attr('height', context.getHeight + context.getMargins.top + context.getMargins.bottom)
+           .append('g')
+           .attr('transform', 'translate(' + context.getMargins.left + ',' + context.getMargins.top + ')');
 
     return context;
   },
 
-  /**
+  /*
   @private
   @function createxAxis
   @description Creates d3 x-axis
@@ -82,7 +83,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function createyAxis
   @description Creates d3 y-axis
@@ -101,7 +102,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateYAxisScale
   @description Updates the up the y-axis scale
@@ -120,7 +121,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateXAxisScale
   @description Updates the up the x-axis scale
@@ -139,7 +140,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function buildXAxis
   @description Builds up the x-axis
@@ -165,7 +166,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateXAxisPosition
   @description Translates the x-axis
@@ -182,7 +183,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function buildYAxis
   @description Builds up the y-axis and adds the label
@@ -206,7 +207,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function Updates the up the y-axis
   @param {Object} context Chart object
@@ -215,7 +216,7 @@ const Internal = {
 
   updateYAxis(context) {
     /*
-    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    Updated the y-axis on chart by rebuilding it. Used when axis properties on a chart are changed and require a rebuild.
     */
     context.element
            .select('svg')
@@ -233,7 +234,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateXAxis
   @description Updates the up the x-axis scale
@@ -243,7 +244,7 @@ const Internal = {
 
   updateXAxis(context) {
     /*
-    Updated the x-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    Updated the x-axis on chart by rebuilding it. Used when axis properties on a chart are changed and require a rebuild.
     */
     context.element
            .select('svg')
@@ -259,7 +260,7 @@ const Internal = {
   },
 
 
-  /**
+  /*
   @private
   @function updateFontSize
   @description Updates the chart's font size on the element itself
@@ -274,14 +275,14 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateFontStyle
   @description Updates the chart's font style on the element itself
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
-// TODO: make styling uniform - some of these use attr by default and some use style
+
   updateFontStyle(context) {
     context.element.select('svg')
            .style('font-family', context.getFontStyle);
@@ -289,7 +290,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateTitle
   @description Updates the chart's title on the element itself
@@ -304,7 +305,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function setXscale
   @description Sets the xScale for chart. Checks for the type of scale passed in, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
@@ -343,7 +344,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function setYscale
   @description Sets the yScale for chart. Checks for the type of scale passed in, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
@@ -382,7 +383,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function
   @description Sets style properties for chart axis
@@ -404,7 +405,7 @@ const Internal = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function createToolTip
   @description Creates tooltips on chart

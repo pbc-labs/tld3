@@ -1,11 +1,16 @@
+/*
+This is required for d3 to load.
+*/
 /*  global d3  */
+
 import utils from '../utils/utils';
 
 const InternalLine = {
 
-  /**
+  /*
   @private
-  @function Updates the chart's style on the element
+  @function styleChart
+  @description Updates the chart's style on the element
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
@@ -19,11 +24,14 @@ const InternalLine = {
         .attr('x', context.getWidth * 0.5)
         .attr('y', 20)
         .text(context.getTitle);
+
+    return context;
   },
 
-  /**
+  /*
   @private
-  @function Builds up the line
+  @function buildLine
+  @description Builds up the line
   @returns {Object} context Chart object
   */
 
@@ -38,12 +46,14 @@ const InternalLine = {
     return context;
   },
 
-  /**
+  /*
   @private
-  @function Builds up the y-axis
+  @function buildYAxis
+  @description Builds up the y-axis
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   buildYAxis(context) {
     context.svg.append('g')
              .attr('class', 'y axis')
@@ -59,9 +69,10 @@ const InternalLine = {
     return context;
   },
 
-  /**
+  /*
   @private
-  @function Updates the up the y-axis
+  @function updateYAxis
+  @description Updates and rebuilds the y-axis
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
@@ -87,9 +98,10 @@ const InternalLine = {
     return context;
   },
 
-  /**
+  /*
   @private
-  @function Builds up the line
+  @function setXScale
+  @description Sets the x-scale according to the data
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
@@ -100,12 +112,14 @@ const InternalLine = {
     context.xScale.domain(
       [d3.min(context.data, d => { return d3.min(d.values, v => {return v[context.xColumnName]; }); }),
       d3.max(context.data, d => { return d3.max(d.values, v => {return v[context.xColumnName]; }); })]);
+
     return context;
   },
 
-  /**
+  /*
   @private
-  @function Builds up the line
+  @function setYScale
+  @description Sets the y-scale according to the data
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
@@ -123,12 +137,14 @@ const InternalLine = {
     return context;
   },
 
-  /**
+  /*
   @private
-  @function Builds the actual chart components with data.
+  @function buildChartComponents
+  @description Builds the actual chart components with data
   @param {Object} context Chart object
   @returns {Object} context Chart object
    */
+
   buildChartComponents(context) {
     const groups = context.svg.selectAll('.line')
     .data(context.data)
@@ -182,10 +198,10 @@ const InternalLine = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateChartComponents
-  @description Updates the line on the chart
+  @description Rebuilds the line on the chart
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
@@ -205,13 +221,14 @@ const InternalLine = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateColors
-  @description Updates color of line on chart after initial render
-  @param {Array} colors Array of colors to update the chart to
-  @param {Object} context Chart object
+  @description Updates color of bar chart after initial render
+  @param {Array} colors
+    @description Array of colors to update the chart to
   */
+
   updateColors(context) {
     context.element.select('svg')
         .selectAll('.line')
@@ -226,12 +243,13 @@ const InternalLine = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function convertData
   @description Converts the data needed for the chart
   @param {Object} context Chart object
   */
+
   convertData(context) {
     context.data = utils.parseTimeData(context.data, context.xColumnName, '%Y%m%d');
     // , '%Y%m%d'
@@ -251,15 +269,17 @@ const InternalLine = {
       }
     }
     context.data = list;
+
     return context;
   },
 
-  /**
+  /*
   @private
   @function setColumnNames
   @description Sets the column names
   @param {Object} context Chart object
   */
+
   setColumnNames(context) {
     context.xColumnName = utils.getFirstOrdinalColumn(context.data, '%Y%m%d');
     context.xColumnName = 'date';

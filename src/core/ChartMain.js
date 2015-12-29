@@ -1,11 +1,9 @@
 /*  global d3  */
-// import Internal from '../subModules/internal';
 import Internal from '../internal-charts/internal';
 
 /*
 Defines the main Chart class. This is the super class for
-all chart types. The Main Chart class holds all the common
-methods that every chart would use.
+all chart types. The ChartMain class defines the default inherited property values, setters and getters for property values, and the user-facing API.
 */
 
 export class ChartMain {
@@ -115,9 +113,9 @@ export class ChartMain {
     return this._yAxisOrientation;
   }
 
-  /**
+  /*
   @function changeMargins
-  @description Updates the margins of the chart.
+  @description Updates the margins of the chart
   @param {Object} options New margin values formatted as such: { top: 30, right: 30, bottom: 30, left: 50 }
   @returns {Object} this (ChartMain class)
   */
@@ -127,14 +125,15 @@ export class ChartMain {
     this.setMargins = options;
     // Call the updateMargins method that exists on the subclass
     this.updateMargins();
-    // Call the updateChartComponents method on the subclass to recreate the chart components so the changes are visible
+    // Call the updateChartComponents method on the subclass
+    // to recreate the chart components so the changes are visible
     this.updateChartComponents();
     return this;
   }
 
-  /**
+  /*
   @function changeWidth
-  @description Update the width of the chart.
+  @description Update the width of the chart
   @param {Number} width New width in px
   @returns {Object} this (ChartMain class)
   */
@@ -144,14 +143,15 @@ export class ChartMain {
     this.setWidth = width;
     // Call the updateWidth method that exists on the subclass
     this.updateWidth();
-    // Call the updateChartComponents method on the subclass to recreate the chart components so the changes are visible
+    // Call the updateChartComponents method on the subclass
+    // to recreate the chart components so the changes are visible
     this.updateChartComponents();
     return this;
   }
 
-  /**
+  /*
   @function changeHeight
-  @description Updates the height of the chart.
+  @description Updates the height of the chart
   @param {Number} height New height in px
   @returns {Object} this (ChartMain class)
   */
@@ -159,17 +159,18 @@ export class ChartMain {
   changeHeight(height) {
     // Use setter to update height property
     this.setHeight = height;
-    // Call the updateWidth method that exists on the subclass
+    // Call the updateHeight method that exists on the subclass
     this.updateHeight();
-    // Call the updateChartComponents method on the subclass to recreate the chart components so the changes are visible
+    // Call the updateChartComponents method on the subclass
+    // to recreate the chart components so the changes are visible
     this.updateChartComponents();
 
     return this;
   }
 
-  /**
+  /*
   @function changeTitle
-  @description Updates the title of the chart.
+  @description Updates the title of the chart
   @param {String} title New chart title
   @returns {Object} this (ChartMain class)
   */
@@ -177,15 +178,16 @@ export class ChartMain {
   changeTitle(title) {
     // Use setter to update title property
     this.setTitle = title;
-    // Call the updateTitle method on Internal config object which handles the d3 manipulation
+    // Call the updateTitle method on Internal config object
+    // which handles the d3 manipulation
     Internal.updateTitle(this);
 
     return this;
   }
 
-  /**
+  /*
   @function changeFontSize
-  @description Updates the font size on the chart.
+  @description Updates the font size on the chart
   @param {Number} size New font size
   @returns {Object} this (ChartMain class)
   */
@@ -193,15 +195,16 @@ export class ChartMain {
   changeFontSize(size) {
     // Use setter to update size property
     this.setFontSize = size;
-    // Call the updateFontSize method on Internal config object which handles the d3 manipulation
+    // Call the updateFontSize method on Internal config object
+    // which handles the d3 manipulation
     Internal.updateFontSize(this);
 
     return this;
   }
 
-  /**
+  /*
   @function changeFontStyle
-  @description Updates the font style on the chart.
+  @description Updates the font style on the chart
   @param {String} font New font style
   @returns {Object} this (ChartMain class)
   */
@@ -209,15 +212,16 @@ export class ChartMain {
   changeFontStyle(font) {
     // Use setter to update font style property
     this.setFontStyle = font;
-    // Call the updateDontStyle method on Internal config object which handles the d3 manipulation
+    // Call the updateFontStyle method on Internal config object
+    // which handles the d3 manipulation
     Internal.updateFontStyle(this);
 
     return this;
   }
 
-  /**
+  /*
   @function changexAxisLabel
-  @description Updates the x-axis label on the chart.
+  @description Updates the x-axis label on the chart
   @param {String} label New x-axis label
   @returns {Object} this (ChartMain class)
   */
@@ -225,6 +229,9 @@ export class ChartMain {
   changexAxisLabel(label) {
     // Use setter to update x-axis-label property
     this.setxAxisLabel = label;
+    // Call the updateFontStyle method on the subclass instance.
+    // The update functionality varies for each chart type,
+    // hence why we call the method on the instance
     this.updatexAxisLabel();
 
     return this;
@@ -240,12 +247,15 @@ export class ChartMain {
   changeyAxisLabel(label) {
     // Use setter to update y-axis-label property
     this.setyAxisLabel = label;
+    // Call the updateFontStyle method on the subclass instance.
+    // The update functionality varies for each chart type,
+    // hence why we call the method on the instance
     this.updateyAxisLabel();
 
     return this;
   }
 
-  /**
+  /*
   @function changeColors
   @description Updates the colors on the chart.
   @param {Array} colors New chart colors. Can be RGB or HEX values.
@@ -255,13 +265,15 @@ export class ChartMain {
   changeColors(colors) {
     // Use setter to update colors property
     this.setColors = colors;
-    // Call the updateColors method that exists on the subclass
+    // Call the updateFontStyle method on the subclass instance.
+    // The update functionality varies for each chart type,
+    // hence why we call the method on the instance
     this.updateColors(colors);
 
     return this;
   }
 
-  /**
+  /*
   @function in
   @description Sets the div element in which the d3 chart will created.
   @param {String} classOrid Class or Id of the div element where d3 chart will be created
@@ -269,15 +281,18 @@ export class ChartMain {
   */
 
   in(classOrid) {
-    // Set the location of the d3 chart element to the DOM element with the class or id passed in
+    // Set the location of the d3 chart element to the DOM
+    // element with the class or id passed in
     this.location = classOrid;
-    // Builds up the d3 chart
+    // Builds up the d3 chart. The functionality for building the
+    // chart varies by Chart type, hence why it lives on the
+    // subclass instance
     this.build();
 
     return this;
   }
 
-  /**
+  /*
   @function using
   @description Sets the data for the chart.
   @param {Object/JSON/URL} dataInput Data for D3 chart

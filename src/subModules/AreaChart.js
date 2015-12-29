@@ -7,6 +7,13 @@ export class AreaChart extends ChartMain {
     super();
   }
 
+  /*
+  @private
+  @function build
+  @description Build up all the components for the chart
+  @returns {Object} this Chart object
+  */
+
   build() {
     Internal.selectElement(this);
     Internal.createSVGElement(this);
@@ -29,13 +36,11 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
-  @function Updates the area on the chart
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateChartComponents
+  @description Updates the area on the chart
+  @returns {Object} this Chart object
   */
 
   updateChartComponents() {
@@ -44,13 +49,11 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
-  @function Updates the chart's height on the element
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateHeight
+  @description Updates the chart's height on the element
+  @returns {Object} this Chart object
   */
 
   updateHeight() {
@@ -65,13 +68,11 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
-  @function Updates the chart's width on the element
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateWidth
+  @description Updates the chart's width on the element
+  @returns {Object} this Chart object
   */
 
   updateWidth() {
@@ -84,13 +85,11 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
-  @function Updates the chart's margin on the element
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @function updateMargins
+  @description Updates the chart's margin on the element
+  @@returns {Object} this Chart object
   */
 
   updateMargins() {
@@ -99,10 +98,10 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
-  /**
-  @function Update color of line on chart
-  @param {Array} colors
-    @description Array of colors to update the chart to
+  /*
+  @function updateColors
+  @description Update color of area in chart
+  @returns {Object} this Chart object
   */
 
   updateColors() {

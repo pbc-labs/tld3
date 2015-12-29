@@ -1,15 +1,20 @@
+/*
+This is required for d3 to load.
+*/
 /*  global d3  */
+
 import utils from '../utils/utils';
 
 const DonutChart = {
 
-  /**
+  /*
   @private
   @function updateStyle
   @description Updates the chart style
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   updateStyle(context) {
     context.svg.style({
       font: 'sans-serif',
@@ -19,38 +24,41 @@ const DonutChart = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateRadius
   @description Updates the radius
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   updateRadius(context) {
     context.radius = Math.min(context.getHeight, context.getWidth) / 2;
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateColors
   @description Updates the donut slice colors
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   updateColors(context) {
     context.colorScale = d3.scale.ordinal()
     .range(context.getColors);
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateArc
   @description Updates the arc slices with a new scale
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   updateArc(context) {
     context.arc = d3.svg.arc()
                .outerRadius(context.radius - 80)
@@ -58,13 +66,14 @@ const DonutChart = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updatePie
   @description Updates the pie slices with a new scale
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   updatePie(context) {
     context.pie = d3.layout.pie()
                .sort(null)
@@ -72,7 +81,7 @@ const DonutChart = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateLinearColunm
   @description Update the linear name for ordinal data
@@ -80,12 +89,13 @@ const DonutChart = {
   @param {String} the new column name
   @returns {Object} context Chart object
   */
+
   updateLinearColunm(context, columnName) {
     context.linearColumn = columnName || utils.getFirstLinearColumn(context.data);
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateOrdinalColunm
   @description Update the colunm name for ordinal data
@@ -93,18 +103,20 @@ const DonutChart = {
   @param {String} the new column name
   @returns {Object} context Chart object
   */
+
   updateOrdinalColunm(context, columnName) {
     context.ordinalColumn = columnName || utils.getFirstOrdinalColumn(context.data);
     return context;
   },
 
-  /**
+  /*
   @private
   @function convertData
   @description Coverts the charts data to the correct format
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   convertData(context) {
     context.data.forEach(item => {
       item[context.linearColumn] = Number(item[context.linearColumn]);
@@ -112,24 +124,26 @@ const DonutChart = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateTranslation
   @description Updates the donut's position
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   updateTranslation(context) {
     context.svg.attr('transform', 'translate(' + context.getWidth / 2 + ',' + context.getHeight / 2 + ')');
     return context;
   },
 
-  /**
+  /*
   @private
   @function buildChartComponents
   @description Builds the actual chart components with data, including the tooltips
   @returns {Object} context Chart object
    */
+
   buildChartComponents(context) {
     const tooltip = d3.select('body')
     .append('div')
@@ -190,13 +204,14 @@ const DonutChart = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateChartComponents
   @description Updates the donut slices on chart
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   updateChartComponents(context) {
     const g = context.svg.selectAll('.arc')
           .data(context.pie(context.data));
@@ -210,13 +225,14 @@ const DonutChart = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateTitle
   @description Updates the title on the chart
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
+
   updateTitle(context) {
     context.svg.append('text')
     .attr('class', 'title')

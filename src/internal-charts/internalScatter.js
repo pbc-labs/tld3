@@ -1,37 +1,52 @@
+/*
+This is required for d3 to load.
+*/
 /* global d3 */
+
 import utils from '../utils/utils';
 
 const scatter = {
-/**
+/*
 @private
 @function setColumns
-@description Parses and sets the column names for a particular chart instance.
+@description Parses and sets the column names for a particular chart instance
+@param {Object} context Chart object
+@returns {Object} context Chart object
 */
+
   setColumns(context) {
     context.xColumnName = utils.getFirstLinearColumn(context.data);
     context.yColumnName = utils.getColumnNames(context.data)[1];
     context.ordinalNames = utils.getFirstOrdinalColumn(context.data);
+
     return context;
   },
 
-/**
+/*
 @private
 @function setXscale
 @description Sets the scale for the X-axis based on the results of the setColumns function
+@param {Object} context Chart object
+@returns {Object} context Chart object
 */
+
   setXscale(context) {
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.scale.linear()
                     .range([0, context.getWidth]);
     context.xScale.domain(d3.extent(context.data, (d) => { return +d[context.xColumnName]; })).nice();
+
     return context;
   },
 
-/**
+/*
 @private
 @function setYscale
 @description Sets the scale for the Y-axis based on the results of the setColumns function
+@param {Object} context Chart object
+@returns {Object} context Chart object
 */
+
   setYscale(context) {
     context.setyAxisLabel = context.yColumnName;
     context.yScale = d3.scale.linear()
@@ -39,11 +54,15 @@ const scatter = {
     context.yScale.domain(d3.extent(context.data, (d) => { return +d[context.yColumnName]; })).nice();
     return context;
   },
-/**
+
+/*
 @private
 @function buildChartComponents
-@description Builds the actual chart components with data.
+@description Builds the actual chart components with data
+@param {Object} context Chart object
+@returns {Object} context Chart object
 */
+
   buildChartComponents(context) {
     const tooltip = d3.select('body')
     .append('div')
@@ -102,15 +121,14 @@ const scatter = {
     return context;
   },
 
-/**
+/*
 @private
 @function styleChart
 @description Updates the chart's style on the element
-@param {Object} context
-  @description Chart object
-@returns {Object} context
-  @description Chart object
+@param {Object} context Chart object
+@returns {Object} context Chart object
 */
+
   styleChart(context) {
     context.element.select('svg')
         .style('font-family', context.getFontStyle)
@@ -157,16 +175,16 @@ const scatter = {
         .attr('y', 12)
         .style('text-anchor', 'end')
         .text((d) => { return d; });
+
+    return context;
   },
 
-  /**
+  /*
   @private
   @function  updateColors
   @description Updates the chart's colors
-  @param {Object} context
-    @description Chart object
-  @returns {Object} context
-    @description Chart object
+  @param {Object} context Chart object
+  @returns {Object} context Chart object
   */
 
   updateColors(context) {
@@ -176,6 +194,8 @@ const scatter = {
 
     context.element.selectAll('.legend-data rect')
     .style('fill', context.getColors);
+
+    return context;
   },
 
 
