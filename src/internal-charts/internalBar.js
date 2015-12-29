@@ -23,9 +23,6 @@ const InternalBar = {
          .append('rect')
          .attr('class', 'bar')
          .on('mouseover', (d) => {
-           d3.select(d3.event.target).transition()
-           .duration(200);
-
            tooltip.show();
            tooltip.setContent(`<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
              <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`);
@@ -34,8 +31,6 @@ const InternalBar = {
               .style('fill', context.getColors[1]);
          })
           .on('mouseout', () => {
-            d3.select(d3.event.target).transition()
-              .duration(200);
             tooltip.hide();
             d3.select(d3.event.target)
               .style('fill', context.getColors[0]);

@@ -26,21 +26,16 @@ const InternalBarLeft = {
            .attr('class', 'bar')
            .on('mouseover', (d) => {
              d3.select(d3.event.target).transition()
-               .duration(200);
+               .style('fill', context.getColors[1]);
           //  Set tooltips
              tooltip.show();
              tooltip.setContent(`<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
              <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`);
-
-             d3.select(d3.event.target)
-               .style('fill', 'orangered');
            })
            .on('mouseout', () => {
-             d3.select(d3.event.target).transition()
-               .duration(200);
              tooltip.hide();
              d3.select(d3.event.target)
-               .style('fill', context.getColors[1]);
+               .style('fill', context.getColors[0]);
            })
            .attr('height', context.y.rangeBand())
            .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
@@ -65,15 +60,10 @@ const InternalBarLeft = {
   */
 
   updateChartComponents(context) {
-    context.svg.selectAll('.bar')
-               .data(context.data)
-               .attr('class', 'bar')
-               .attr('height', context.y.rangeBand())
-               .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
-               .attr('width', d => { const label = context.getxAxisLabel; return context.x(d[label]); })
-               .attr('x', d => { const label = context.getxAxisLabel; return d[label]; })
-              .style('fill', context.getColors[0]);
+    context.svg.selectAll('rect')
+           .remove();
 
+    this.buildChartComponents(context);
     return context;
   },
 
