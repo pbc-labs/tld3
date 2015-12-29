@@ -16,6 +16,8 @@ const InternalBarLeft = {
     /*
     Uses d3 to build the chart components for left bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
     */
+    const tooltip = context.tooltip;
+
     context.svg.selectAll('.bar')
            .data(context.data)
            .enter()
@@ -25,27 +27,20 @@ const InternalBarLeft = {
            .on('mouseover', (d) => {
              d3.select(d3.event.target).transition()
                .duration(200);
-             context.tooltip.transition()
-            .duration(200)
-            .style('opacity', 0.9);
-             context.tooltip // Set the tooltips
-                    .html(() => {
-                      return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
-                      <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
-                    })
-             .style('left', (d3.event.pageX + 'px'))
-             .style('top', (d3.event.pageY + 'px'));
+          //  Set tooltips
+             tooltip.show();
+             tooltip.setContent(`<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
+             <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`);
+
              d3.select(d3.event.target)
                .style('fill', 'orangered');
            })
            .on('mouseout', () => {
              d3.select(d3.event.target).transition()
                .duration(200);
-             context.tooltip.transition()
-                    .duration(500)
-                    .style('opacity', 0);
+             tooltip.hide();
              d3.select(d3.event.target)
-               .style('fill', context.getColors[0]);
+               .style('fill', context.getColors[1]);
            })
            .attr('height', context.y.rangeBand())
            .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
