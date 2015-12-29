@@ -1,4 +1,8 @@
+/*
+This is required for d3 to load.
+*/
 /* global d3 */
+
 import { ChartMain } from '../core/ChartMain';
 import Internal from '../internal-charts/internal';
 import InternalScatter from '../internal-charts/internalScatter';
@@ -14,10 +18,13 @@ export class ScatterChart extends ChartMain {
     this._colors = d3.scale.category10();
   }
 
-/*
-Calls the necessary internal methods from Internal object and InternalScatter
-to build the scatter chart.
-*/
+  /*
+  @private
+  @function build
+  @description Calls the necessary internal methods from Internal object and InternalScatter to build the scatter chart.
+  @returns {Object} this Chart object
+  */
+
   build() {
     Internal.selectElement(this);
     InternalScatter.setColumns(this);
@@ -37,9 +44,11 @@ to build the scatter chart.
     InternalScatter.createLegend(this);
   }
 
-  /**
+  /*
   @private
-  @function Updates the dots on chart. Calls the internal update function.
+  @function updateChartComponents
+  @description Updates the dots on chart. Calls the internal update function
+  @returns {Object} this Chart object
   */
   updateChartComponents() {
     InternalScatter.updateChartComponents(this);
@@ -47,11 +56,11 @@ to build the scatter chart.
     return this;
   }
 
-  /**
+  /*
   @private
   @function updateHeight
   @description Updates the chart's height on the element itself
-  @returns {Object} context
+  @returns {Object} this
   */
 
   updateHeight() {
@@ -63,14 +72,15 @@ to build the scatter chart.
     Internal.updateYAxisScale(this);
     Internal.updateYAxis(this);
     Internal.updateXAxisPosition(this);
+
     return this;
   }
 
-  /**
+  /*
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
 
   updateMargins() {
@@ -82,11 +92,11 @@ to build the scatter chart.
     return this;
   }
 
-  /**
+  /*
   @private
   @function updateWidth
   @description Updates the chart's width on the element itself
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
 
   updateWidth() {
@@ -101,12 +111,13 @@ to build the scatter chart.
     return this;
   }
 
-  /**
+  /*
   @private
   @function setColors
   @description Overrides the default ChartMain setColors setter - maps to an ordinal scale
   @param {Array} colors Array of colors to update the chart to
   */
+
   set setColors(newColors) {
     const color = d3.scale.ordinal()
                     .domain(this.getColors.domain())
@@ -114,22 +125,23 @@ to build the scatter chart.
     this._colors = color;
   }
 
-  /**
+  /*
   @private
   @function updateColors
   @description Calls InternalScatter to update color of scatter chart after initial render
-  @param {Array} colors Array of colors to update the chart to
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
   updateColors() {
     InternalScatter.updateColors(this);
+
+    return this;
   }
 
-  /**
+  /*
   @private
   @function updatexAxisLabel
-  @description Calls Internal to x-axis label
-  @returns {Object} context Chart object
+  @description Calls Internal to update x-axis label
+  @returns {Object} this Chart object
   */
 
   updatexAxisLabel() {
@@ -141,11 +153,11 @@ to build the scatter chart.
     return this;
   }
 
-  /**
+  /*
   @private
-  @function updatexAxisLabel
-  @description Calls Internal to x-axis label
-  @returns {Object} context Chart object
+  @function updateyAxisLabel
+  @description Calls Internal to update y-axis label
+  @returns {Object} this Chart object
   */
 
   updateyAxisLabel() {

@@ -6,7 +6,7 @@ import { WaffleChart } from '../subModules/WaffleChart';
 import { BarChartLeft } from '../subModules/BarChartLeft';
 import { AreaChart } from '../subModules/AreaChart';
 
-/**
+/*
 @private
 @description This holds all our chart types within main library.
 A subclass exists for each chart type.

@@ -1,4 +1,8 @@
+/*
+This is required for d3 to load.
+*/
 /* global d3 */
+
 import { ChartMain } from '../core/ChartMain';
 import Internal from '../internal-charts/internal';
 import InternalWaffle from '../internal-charts/internalWaffle';
@@ -57,10 +61,11 @@ export class WaffleChart extends ChartMain {
     return this._gap;
   }
 
-  /**
+  /*
   @private
   @function build
   @description Builds up the waffle chart
+  @returns {Object} this Chart object
   */
 
   build() {
@@ -72,18 +77,23 @@ export class WaffleChart extends ChartMain {
     InternalWaffle.buildChartComponents(this);
     InternalWaffle.styleChart(this);
     InternalWaffle.createLegend(this);
+
+    return this;
   }
 
-  /**
+  /*
   @private
   @function updateChartComponents
   @description Calls InternalWaffle to update the waffle chart components
+  @returns {Object} this Chart object
   */
   updateChartComponents() {
     InternalWaffle.updateChartComponents(this);
+
+    return this;
   }
 
-// overwrite setHeight for wafflechart
+// overwrites setHeight for wafflechart
   set setHeight(height) {
     this.setNumRows = Math.floor(height / this.getSquareSize);
     this._height = height;
@@ -121,7 +131,7 @@ export class WaffleChart extends ChartMain {
     InternalWaffle.updateChartComponents(this);
   }
 
-  /**
+  /*
   @private
   @function setColors
   @description Overrides the default ChartMain setColors setter - maps to an ordinal scale
@@ -134,13 +144,14 @@ export class WaffleChart extends ChartMain {
     this._colors = color;
   }
 
-/**
+/*
 @private
 @function Updates color of waffle chart after initial render
-@param {Array} colors
-  @description Array of colors to update the chart to
+@returns {Object} this Chart object
 */
   updateColors() {
     InternalWaffle.updateColors(this);
+
+    return this;
   }
 }

@@ -1,12 +1,16 @@
+/*
+This is required for d3 to load.
+*/
 /* global d3 */
 
 const InternalBar = {
-  /**
+  /*
   @private
   @function buildChartComponents
   @description Builds the actual chart components with data, including the tooltips
   @returns {Object} context Chart object
    */
+
   buildChartComponents(context) {
     /*
     Uses d3 to build the chart components for bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
@@ -55,7 +59,7 @@ const InternalBar = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateChartComponents
   @description Updates the bar on chart
@@ -76,14 +80,13 @@ const InternalBar = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function styleChart
   @description Updates the chart's style on the element
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
-
 
   styleChart(context) {
     /*
@@ -101,13 +104,14 @@ const InternalBar = {
     return context;
   },
 
-  /**
+  /*
   @private
   @function updateColors
   @description Updates color of bar chart after initial render
   @param {Array} colors
     @description Array of colors to update the chart to
   */
+
   updateColors(colors, context) {
     context.element.select('svg')
            .selectAll('.bar')

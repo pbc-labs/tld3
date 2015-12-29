@@ -3,7 +3,7 @@ import Internal from '../internal-charts/internal';
 import InternalBar from '../internal-charts/internalBar';
 import InternalBarLeft from '../internal-charts/InternalBarLeft';
 
-/**
+/*
 Constructor subclass for Left Bar Chart.
 */
 export class BarChartLeft extends ChartMain {
@@ -13,11 +13,11 @@ export class BarChartLeft extends ChartMain {
     this._yAxisOrientation = yAxisOrientation || 'left';
   }
 
-  /**
+  /*
   @private
   @function build
-  @description Builds up the bar chart
-  @returns {Object} context Chart object
+  @description Builds up the left bar chart
+  @returns {Object} this Chart object
   */
 
   build() {
@@ -41,18 +41,7 @@ export class BarChartLeft extends ChartMain {
     return this;
   }
 
-  /**
-  @private
-  @function render
-  */
-
-  render() {
-    // used for data updates?
-    // need to think about how we are "rendering" upon instantiation and upon update
-    // I think this render needs to be a customized update function depending on what attribute is being updated
-  }
-
-  /**
+  /*
   @private
   @function updateChartComponents
   @description Calls InternalBar to updates the bar on chart
@@ -67,11 +56,11 @@ export class BarChartLeft extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
   @function updateHeight
   @description Updates the chart's height on the element itself
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
 
   updateHeight() {
@@ -87,11 +76,11 @@ export class BarChartLeft extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
 
   updateMargins() {
@@ -103,11 +92,12 @@ export class BarChartLeft extends ChartMain {
 
     return this;
   }
-  /**
+
+  /*
   @private
   @function updateWidth
   @description Updates the chart's width on the element itself
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
 
   updateWidth() {
@@ -122,12 +112,12 @@ export class BarChartLeft extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
   @function updateColors
   @description Calls InternalBar to update color of left bar chart after initial render
   @param {Array} colors Array of colors to update the chart to
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
 
   updateColors(colors) {
@@ -139,11 +129,11 @@ export class BarChartLeft extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
   @function updatexAxisLabel
   @description Calls Internal to x-axis label
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
 
   updatexAxisLabel() {
@@ -155,11 +145,11 @@ export class BarChartLeft extends ChartMain {
     return this;
   }
 
-  /**
+  /*
   @private
   @function updatexAxisLabel
   @description Calls Internal to x-axis label
-  @returns {Object} context Chart object
+  @returns {Object} this Chart object
   */
 
   updateyAxisLabel() {
