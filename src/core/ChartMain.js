@@ -1,5 +1,6 @@
 /*  global d3  */
 import Internal from '../internal-charts/internal';
+import Firebase from 'firebase';
 
 /*
 Defines the main Chart class. This is the super class for
@@ -302,6 +303,17 @@ export class ChartMain {
   using(dataInput) {
     // Set the data for the d3 chart using the data passed in
     this.data = dataInput;
+
+    return this;
+  }
+
+  refreshData(url) {
+    const ref = new Firebase(url);
+
+    ref.on('value', function (snapshot) {
+      this.data = snapshot.val();
+      this.updateChartComponents();
+    }, this);
 
     return this;
   }

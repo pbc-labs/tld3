@@ -3,6 +3,7 @@ This is required for d3 to load.
 */
 /* global d3 */
 
+import Firebase from 'firebase';
 /*
 Holds various utility functions used throughout the library,
 particularly for creating, building and modifying chart elements.
@@ -69,6 +70,30 @@ const utils = {
     } else {
       // throw new Error('Can only load files http://www.ourDocs.com/loadData')
     }
+  },
+
+  /*
+  @private
+  @function getFirebaseData
+  @description Gets Firebase data
+  @param {Object/String} url Firebase url
+  @returns {Promise} A promise resolved when the data is available
+  */
+
+  getFirebaseData(url) {
+    // assuming they have firebase source included in html file
+    const ref = new Firebase(url);
+
+    return new Promise((resolve, reject) => {
+      ref.on('value', (snapshot) => {
+        var data = snapshot.val();
+        if (!data) {
+            reject(error);
+          } else {
+            resolve(data);
+          }
+      });
+    });
   },
 
   /*

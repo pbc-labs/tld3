@@ -31,6 +31,9 @@ const D3fault = {
   upload(dataLocation) {
     return utils.getData(dataLocation);
   },
+  uploadFirebase(url) {
+    return utils.getFirebaseData(url);
+  }
 };
 
 export default D3fault;
