@@ -1,7 +1,13 @@
 /*  global d3  */
+<<<<<<< HEAD
 import Internal from '../internal-charts/internal';
 import Firebase from 'firebase';
 
+=======
+// import Internal from '../subModules/internal';
+import Internal from '../subModules/internal';
+import errors from '../utils/errors';
+>>>>>>> update to throw errors
 /*
 Defines the main Chart class. This is the super class for
 all chart types. The ChartMain class defines the default inherited property values, setters and getters for property values, and the user-facing API.
@@ -21,6 +27,7 @@ export class ChartMain {
     this._yAxisLabel = yAxisLabel || 'y Axis Label';
     this._xAxisOrientation = xAxisOrientation || 'bottom';
     this._yAxisOrientation = yAxisOrientation || 'left';
+    this._dateFormat = '';
   }
 
   /* All of the below setters and getters are used for the chart properties instantiated in the contructor function above.
@@ -122,6 +129,10 @@ export class ChartMain {
   */
 
   changeMargins(options) {
+    // Check for valid input
+    if (typeof options !== 'object' || Array.isArray(options)) {
+      throw new errors.MarginsFormatError;
+    }
     // Use setter to update margins property
     this.setMargins = options;
     // Call the updateMargins method that exists on the subclass
@@ -140,6 +151,10 @@ export class ChartMain {
   */
 
   changeWidth(width) {
+    // Check for valid input
+    if (typeof width !== 'number') {
+      throw new errors.WidthError;
+    }
     // Use setter to update width property
     this.setWidth = width;
     // Call the updateWidth method that exists on the subclass
@@ -158,6 +173,10 @@ export class ChartMain {
   */
 
   changeHeight(height) {
+    // Check for valid input
+    if (typeof height !== 'number') {
+      throw new errors.HeightError;
+    }
     // Use setter to update height property
     this.setHeight = height;
     // Call the updateHeight method that exists on the subclass
@@ -177,6 +196,10 @@ export class ChartMain {
   */
 
   changeTitle(title) {
+    // Check for valid input
+    if (typeof title !== 'string' && typeof title !== 'number') {
+      throw new errors.TitleError;
+    }
     // Use setter to update title property
     this.setTitle = title;
     // Call the updateTitle method on Internal config object
@@ -194,6 +217,10 @@ export class ChartMain {
   */
 
   changeFontSize(size) {
+    // Check for valid input
+    if (typeof size !== 'number') {
+      throw new errors.FontSizeError;
+    }
     // Use setter to update size property
     this.setFontSize = size;
     // Call the updateFontSize method on Internal config object
@@ -211,6 +238,10 @@ export class ChartMain {
   */
 
   changeFontStyle(font) {
+    // Check for valid input
+    if (typeof font !== 'string') {
+      throw new errors.FontStyleError;
+    }
     // Use setter to update font style property
     this.setFontStyle = font;
     // Call the updateFontStyle method on Internal config object
@@ -264,6 +295,10 @@ export class ChartMain {
   */
 
   changeColors(colors) {
+    // Check for valid input
+    if (!Array.isArray(colors)) {
+      throw new errors.ColorError;
+    }
     // Use setter to update colors property
     this.setColors = colors;
     // Call the updateFontStyle method on the subclass instance.
@@ -282,6 +317,10 @@ export class ChartMain {
   */
 
   in(classOrid) {
+    // Check to make sure data has already been set
+    if (!this.data) {
+      throw new errors.InBeforeUsingError;
+    }
     // Set the location of the d3 chart element to the DOM
     // element with the class or id passed in
     this.location = classOrid;
@@ -301,6 +340,10 @@ export class ChartMain {
   */
 
   using(dataInput) {
+    // Check for valid input
+    if (!dataInput) {
+      throw new errors.NoDataError;
+    }
     // Set the data for the d3 chart using the data passed in
     this.data = dataInput;
 
