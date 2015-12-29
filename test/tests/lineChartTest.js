@@ -9,7 +9,7 @@ const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
 
-xdescribe('Line Chart methods functionality', () => {
+describe('Line Chart methods functionality', () => {
   const browser = new Browser();
   let data = [];
   let lineChart;
@@ -46,7 +46,7 @@ xdescribe('Line Chart methods functionality', () => {
       expect(xColumnNameActual).to.equal('testDate');
     });
 
-    it('should change set the y-axis column name properly (to the one which is linear scale)', () => {
+    xit('should change set the y-axis column name properly (to the one which is linear scale)', () => {
       const yColumnNameActual = lineChart.yColumnName;
       expect(yColumnNameActual).to.equal('testClose');
     });
@@ -65,7 +65,7 @@ xdescribe('Line Chart methods functionality', () => {
       });
     });
 
-    describe('changeMargins', () => {
+    xdescribe('changeMargins', () => {
       it('should change margins', () => {
         expect(lineChart.getMargins).to.eql({ top: 30, bottom: 30, left: 50, right: 30 });
         lineChart.changeMargins({ top: 10, bottom: 10, left: 10, right: 10 });
@@ -75,7 +75,7 @@ xdescribe('Line Chart methods functionality', () => {
       });
     });
 
-    describe('changeColors', () => {
+    xdescribe('changeColors', () => {
       it('should make line red', () => {
         const linePath = browser.window.d3.select('svg').select('.line');
         expect(browser.window.d3.select(linePath[0][0]).style('stroke')).to.equal('steelblue');
