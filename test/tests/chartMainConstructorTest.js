@@ -50,7 +50,7 @@ describe('Main Chart Constructor', () => {
     });
 
     it('should have a default colors array', () => {
-      expect(chart.getColors).to.deep.equal(['steelblue', 'red', 'green']).and.to.be.an('array');
+      expect(chart.getColors).to.deep.equal(['#E71D36', '#26408B', '#FF9F1C', '#767B91', '#0FA3B1']).and.to.be.an('array');
     });
 
     it('should use setter method to update default colors array', () => {
@@ -59,7 +59,7 @@ describe('Main Chart Constructor', () => {
     });
 
     it('should have a default chart title', () => {
-      expect(chart.getTitle).to.equal('Default title, YO!').and.to.be.a('string');
+      expect(chart.getTitle).to.equal('Default title').and.to.be.a('string');
     });
 
     it('should use setter method to update default chart title', () => {

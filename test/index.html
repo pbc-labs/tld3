@@ -5,6 +5,7 @@
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="../dist/lib.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script></script>
   </head>
   <body>
@@ -47,16 +48,27 @@
      //   console.error(err);
      // });
       //
-      d3fault.upload('./data/scatterData.csv', function(err) {
-        if (!err) {
-          console.log(err);
-        }
-      }).then(function(data) {
-          d3fault.make('ScatterChart')
-                 .using(data)
-                 .in('#scatterchart')
-                 .changeyAxisLabel('new asd');
-      });
+      // d3fault.uploadFirebase('https://d3fault.firebaseio.com/', function(err) {
+      //   if (err) {
+      //     console.log(err);
+      //   }
+      // }).then(function(data) {
+      //     d3fault.make('BarChart')
+      //            .using(data)
+      //            .in('#barchart');
+      // });
+
+      // d3fault.uploadFirebase('https://d3fault.firebaseio.com/', function(err) {
+      //   if (err) {
+      //     console.log(err);
+      //   }
+      // }).then(function(data) {
+      //     d3fault.make('BarChart')
+      //            .using(data)
+      //            .in('#barchart')
+      //            .liveUpdateFirebaseData('https://d3fault.firebaseio.com/');
+      // });
+
 
     </script>
   </body>

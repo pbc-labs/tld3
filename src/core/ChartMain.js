@@ -1,5 +1,6 @@
 /*  global d3  */
 import Internal from '../internal-charts/internal';
+import Firebase from 'firebase';
 
 /*
 Defines the main Chart class. This is the super class for
@@ -12,8 +13,8 @@ export class ChartMain {
     this._width = width || 600;
     this._height = height || 300;
     this._margins = margins || { top: 30, right: 30, bottom: 60, left: 60 };
-    this._colors = colors || ['steelblue', 'red', 'green'];
-    this._title = title || 'Default title, YO!';
+    this._colors = colors || ['#E71D36', '#26408B', '#FF9F1C', '#767B91', '#0FA3B1'];
+    this._title = title || 'Default title';
     this._fontSize = fontSize || 14;
     this._fontStyle = fontStyle || 'Arial';
     this._xAxisLabel = xAxisLabel || 'x Axis Label';
@@ -302,6 +303,24 @@ export class ChartMain {
   using(dataInput) {
     // Set the data for the d3 chart using the data passed in
     this.data = dataInput;
+
+    return this;
+  }
+
+  /*
+  @function refreshFirebaseData
+  @description If using Firebase database as data source, chaining this method will capture updates to data in real-time. And chart will update without refresh
+  @param {String} url Firebase database url
+  @returns {Object} this (ChartMain class)
+  */
+
+  liveUpdateFirebaseData(url) {
+    const ref = new Firebase(url);
+
+    ref.on('value', (snapshot) => {
+      this.data = snapshot.val();
+      this.updateChartComponents();
+    }, this);
 
     return this;
   }
