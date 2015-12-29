@@ -22,7 +22,7 @@ This defines our main library object.
 import charts from '../subModules/charts';
 import utils from '../utils/utils';
 
-import internal from '../subModules/internal';
+import internal from '../internal-charts/internal';
 const lib = {
   internal,
   version: '1.0.0',

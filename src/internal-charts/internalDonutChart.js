@@ -18,7 +18,7 @@ const DonutChart = {
   updateStyle(context) {
     context.svg.style({
       font: 'sans-serif',
-      'font-size': '10px',
+      'font-size': '11px',
       'text-anchor': 'middle',
     });
     return context;
@@ -166,6 +166,8 @@ const DonutChart = {
         .enter().append('g')
         .attr('class', 'arc');
     g.append('path')
+        .style('stroke', '#fff')
+        .style('stroke-width', '3px')
         .style('fill', d => { return context.colorScale(d.data[context.ordinalColumn]); })
         .transition()
         .attrTween('d', d => {
@@ -178,6 +180,9 @@ const DonutChart = {
     context.svg.selectAll('.arc').append('text')
             .attr('transform', (d) => { return 'translate(' + context.arc.centroid(d) + ')'; })
             .attr('dx', '.35em')
+            .style('text-anchor', 'middle')
+            .style('font-family', 'sans-serif')
+            .style('fill', '#fff')
             .style('opacity', 0)
             .text((d) => { return d.data[context.ordinalColumn]; })
             .transition().duration(200)
@@ -198,6 +203,9 @@ const DonutChart = {
     });
 
     g.on('mouseout', () => {
+      d3.select(d3.event.target).transition()
+        .duration(100)
+        .style('stroke', '#fff');
       tooltip.transition().style('opacity', 0);
     });
 
