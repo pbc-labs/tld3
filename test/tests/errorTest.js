@@ -1,7 +1,6 @@
 import chai from '../../node_modules/chai';
 import Browser from '../../node_modules/zombie';
 import utils from './utils/utils';
-import errors from '../../src/utils/errors';
 
 const expect = chai.expect;
 
