@@ -314,7 +314,7 @@ export class ChartMain {
   @returns {Object} this (ChartMain class)
   */
 
-  refreshFirebaseData(url) {
+  liveUpdateFirebaseData(url) {
     const ref = new Firebase(url);
 
     ref.on('value', (snapshot) => {
