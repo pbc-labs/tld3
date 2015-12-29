@@ -31,6 +31,7 @@ export class ScatterChart extends ChartMain {
     InternalScatter.setXscale(this);
     InternalScatter.setYscale(this);
     Internal.createSVGElement(this);
+    Internal.createToolTip(this);
     // x-axis
     Internal.createxAxis(this);
     Internal.buildXAxis(this);

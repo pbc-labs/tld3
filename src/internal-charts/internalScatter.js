@@ -64,21 +64,7 @@ const scatter = {
 */
 
   buildChartComponents(context) {
-    const tooltip = d3.select('body')
-    .append('div')
-    .attr('class', 'tooltip')
-    .style({
-      position: 'absolute',
-      color: 'black',
-      'text-align': 'center',
-      width: '100px',
-      padding: '2px',
-      font: '12px sans-serif',
-      background: '#f2f2f2',
-      border: '0px',
-      'border-radius': '1px',
-      cursor: 'pointer',
-    });
+    const tooltip = context.tooltip;
 
     context.svg.selectAll('.scatter')
          .data(context.data)
@@ -87,26 +73,17 @@ const scatter = {
          .attr('class', 'dot')
          .on('mouseover', (d) => {
            d3.select(d3.event.target).transition()
-             .duration(200)
-             .attr('r', 7);
-           tooltip.transition()
-             .duration(200)
-             .style('opacity', 0.9);
-           tooltip
-             .html(() => {
-               return `${context.yColumnName}: ${d[context.yColumnName]}\
-              ${context.xColumnName}: ${d[context.xColumnName]}`;
-             })
-             .style('left', (d3.event.pageX + 'px'))
-             .style('top', (d3.event.pageY + 'px'));
+           .duration(200)
+           .attr('r', 7);
+           tooltip.show();
+           tooltip.setContent(`${context.yColumnName}: ${d[context.yColumnName]}\
+           ${context.xColumnName}: ${d[context.xColumnName]}`);
          })
         .on('mouseout', () => {
           d3.select(d3.event.target).transition()
             .duration(200)
             .attr('r', 4);
-          tooltip.transition()
-             .duration(500)
-             .style('opacity', 0);
+          tooltip.hide();
         })
          .attr('r', 4)
          .attr('cx', (d) => { return context.xScale(d[context.getxAxisLabel]); })
