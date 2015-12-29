@@ -47,14 +47,15 @@
      //   console.error(err);
      // });
       //
-      d3fault.upload('./data/lineData.csv', function(err) {
+      d3fault.upload('./data/scatterData.csv', function(err) {
         if (!err) {
           console.log(err);
         }
       }).then(function(data) {
-          d3fault.make('LineChart')
+          d3fault.make('ScatterChart')
                  .using(data)
-                 .in('#linechart');
+                 .in('#scatterchart')
+                 .changeyAxisLabel('new asd');
       });
 
     </script>
