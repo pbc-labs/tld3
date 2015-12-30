@@ -1,7 +1,7 @@
 # Documentation overview
 - Docco: For API documentation that explains the methods and modules. For explaining the flow of code. Great for reading your source code with the comments right beside.
 
-## How to comment your
+## How to comment your code
 - Comments should be placed immediately before the code being documented.
 -  We support 2 types of tags:
   - __Block tags__, which are at the top level of a comment
@@ -60,7 +60,8 @@ Shoe.prototype.setLaceType = function(color, type) {
  * @private
  * @param {Array} array The array to iterate over.
  * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns `array`.
+ * @returns {Array} array The resulting array after performing the iteration
+ * function on each item in array
  */
 function arrayEach(array, iteratee) {
   var index = -1,
