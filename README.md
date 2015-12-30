@@ -1,5 +1,5 @@
-# d3fault
-[![Build Status](https://travis-ci.org/pbc-labs/d3fault.svg?branch=master)](https://travis-ci.org/pbc-labs/d3fault)
+# tld3
+[![Build Status](https://travis-ci.org/pbc-labs/tld3.svg?branch=master)](https://travis-ci.org/pbc-labs/tld3)
 > An expressive, modular library for [D3.js](https://github.com/mbostock/d3).
 
 ## Team
@@ -33,8 +33,8 @@
 
 ```sh
 sudo npm install -g bower
-npm install d3fault
-bower install d3fault
+npm install tld3
+bower install tld3
 ```
 
 ### Roadmap

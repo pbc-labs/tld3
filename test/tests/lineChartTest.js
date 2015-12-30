@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions, no-unused-vars */
-import d3fault from '../../src/core/core';
+import tld3 from '../../src/core/core';
 import d3 from '../../node_modules/d3';
 import chai from '../../node_modules/chai';
 import Browser from '../../node_modules/zombie';
@@ -25,7 +25,7 @@ xdescribe('Line Chart methods functionality', () => {
 
   describe('Line Chart methods', () => {
     it('should make a chart in a div with id "linechart"', () => {
-      lineChart = browser.window.d3fault.make('LineChart');
+      lineChart = browser.window.tld3.make('LineChart');
       lineChart.using(data).in('#linechart');
       const lineId = lineChart.element.attr('id');
       expect(lineId).to.equal('linechart').and.to.be.an('String');

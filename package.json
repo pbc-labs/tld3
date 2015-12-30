@@ -1,11 +1,11 @@
 {
-  "name": "d3fault",
+  "name": "tld3",
   "version": "1.0.0",
   "description": "An expressive, modular library for D3.js.",
-  "main": "src/d3fault.js",
+  "main": "dist/tld3.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pbc-labs/d3fault.git"
+    "url": "https://github.com/pbc-labs/tld3.git"
   },
   "scripts": {
     "lint": "gulp lint-strict"
@@ -19,9 +19,9 @@
   "author": "Banun Atina Idris <banun.a.idris@gmail.com> (http://bthehuman.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pbc-labs/d3fault/issues"
+    "url": "https://github.com/pbc-labs/tld3/issues"
   },
-  "homepage": "https://github.com/pbc-labs/d3fault#readme",
+  "homepage": "https://github.com/pbc-labs/tld3#readme",
   "dependencies": {
     "d3": "3.5.10",
     "firebase": "^2.3.2"

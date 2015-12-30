@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions, no-unused-vars */
-import d3fault from '../../src/core/core';
+import tld3 from '../../src/core/core';
 import d3 from '../../node_modules/d3';
 import chai from '../../node_modules/chai';
 import Browser from '../../node_modules/zombie';
@@ -46,35 +46,35 @@ describe('Bar Chart methods functionality', () => {
 
   describe('Bar Chart methods', () => {
     it('should make a chart in a div with id "barchart"', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
+      const barChart = browser.window.tld3.make('BarChart');
       barChart.using(dataBarChart).in('#barchart');
       const barId = barChart.element.attr('id');
       expect(barId).to.equal('barchart').and.to.be.an('String');
     });
 
     it('should make a chart with a class "bar"', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
+      const barChart = browser.window.tld3.make('BarChart');
       barChart.using(dataBarChart).in('#barchart');
       const barClass = browser.window.d3.select('#barchart').select('rect').attr('class');
       expect(barClass).to.equal('bar').and.to.be.an('String');
     });
 
     it('should make rects to represent data for the bar chart', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
+      const barChart = browser.window.tld3.make('BarChart');
       barChart.using(dataBarChart).in('#barchart');
       const barRect = browser.window.d3.select('#barchart').select('rect')[0];
       expect(barRect).to.exist;
     });
 
     it('should set the right x-column name', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
+      const barChart = browser.window.tld3.make('BarChart');
       barChart.using(dataBarChart).in('#barchart');
       const barXColumn = barChart.getxAxisLabel;
       expect(barXColumn).to.equal('letterTest');
     });
 
     it('should set the right x-column name', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
+      const barChart = browser.window.tld3.make('BarChart');
       barChart.using(dataBarChart).in('#barchart');
       const barYColumn = barChart.getyAxisLabel;
       expect(barYColumn).to.equal('frequencyTest');

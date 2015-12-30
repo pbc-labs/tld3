@@ -274,7 +274,7 @@ const charts = {
   BarChart,
 };
 
-const d3fault = {
+const tld3 = {
   version: '1.0.0',
   make(chartType) {
     return new charts[chartType]();
@@ -282,6 +282,6 @@ const d3fault = {
 };
 
 
-d3fault.make('BarChart')
+tld3.make('BarChart')
         .using(data)
         .in('#yo');

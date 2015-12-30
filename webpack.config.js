@@ -4,10 +4,10 @@ module.exports = {
   entry: './core/core.js',
   output: {
     // export library to global var
-    filename: 'lib.js',
+    filename: 'tld3.js',
     path: __dirname + '/dist',
     libraryTarget: "umd",
-    library: "d3fault",
+    library: "tld3",
     umdNamedDefine: true,
 },
 externals: {
@@ -27,6 +27,6 @@ externals: {
 
 // Config for normal dist export:
 // output: {
-//   filename: 'd3fault.js',
+//   filename: 'tld3.js',
 //   path: __dirname + '/dist'
 // },

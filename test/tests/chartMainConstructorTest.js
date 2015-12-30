@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions, no-unused-vars */
-import d3fault from '../../src/core/core';
+import tld3 from '../../src/core/core';
 import d3 from '../../node_modules/d3';
 import chai from '../../node_modules/chai';
 import Browser from '../../node_modules/zombie';
@@ -11,15 +11,15 @@ const should = chai.should();
 
 describe('Main Chart Constructor', () => {
   it('should return an object when called to make a chart', () => {
-    expect(d3fault.make('BarChart')).to.exist;
+    expect(tld3.make('BarChart')).to.exist;
   });
 
   it('should return an object when called to make a chart', () => {
-    expect(d3fault.make('BarChart')).to.be.an('Object');
+    expect(tld3.make('BarChart')).to.be.an('Object');
   });
 
   describe('Default properties', () => {
-    const chart = d3fault.make('BarChart');
+    const chart = tld3.make('BarChart');
     it('should have a default width property of 600', () => {
       expect(chart.getWidth).to.equal(600);
     });
@@ -123,7 +123,7 @@ describe('Main Chart Constructor', () => {
   });
 
   describe('Chart Main Update Methods Exist', () => {
-    const chart = d3fault.make('BarChart');
+    const chart = tld3.make('BarChart');
     describe('Creation Methods', () => {
       it('should have a using method', () => {
         expect(chart.using).to.exist;
