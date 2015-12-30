@@ -27,42 +27,48 @@
     </div>
     <script>
 
-      var d3fault = d3fault.default;
+      // var tld3 = tld3.default;
 
-      // var parseDate = d3.time.format("%d-%b-%y").parse;
-      // d3fault.upload('./data/dataLine.csv', function(err) {
-      //   if (!err) {
-      //     console.log(err);
-      //   }
-      // }).then(function(data) {
-      //   data.forEach(function(d) {
-      //     d.date = parseDate(d.date);
-      //     d.close = +d.close;
-      //   });
-      //   d3fault.make('LineChart')
-      //          .using(data)
-      //          .in('#linechart');
-      // });
+      tld3.upload('./data/multiLineData.csv')
+          .then((data) => {
+            tld3.make('LineChart')
+                .updateTimeFormat('%Y%m%d')
+                .using(data)
+                .in('#linechart');
+          })
+          .catch((err) => {
+            console.error(err);
+          });
 
-    //  var scatter;
-    //  d3fault.upload('./data/scatterData.csv')
+      // tld3.upload('./data/lineData.csv')
+      //        .then((data) => {
+      //          tld3.make('LineChart')
+      //                 .using(data)
+      //                 .in('#linechart');
+      //        })
+      //        .catch((err) => {
+      //          console.error(err);
+      //        });
+
+      // tld3.upload('./data/donutData.csv')
+      //        .then((data) => {
+      //          tld3.make('DonutChart')
+      //                 .using(data)
+      //                 .in('#donutchart')
+      //                 .changeTitle('Age vs. Population');
+      //        })
+      //        .catch((err) => {
+      //          console.error(err);
+      //        });
+    //  tld3.upload('./data/waffleData.csv')
     //         .then((data) => {
-    //           d3fault.make('ScatterChart')
-    //                  .using(data).in('#scatterchart');
+    //           tld3.make('WaffleChart')
+    //                  .using(data)
+    //                  .in('#wafflechart');
     //         })
     //         .catch((err) => {
     //           console.error(err);
     //         });
-
-     d3fault.upload('./data/waffleData.csv')
-            .then((data) => {
-              d3fault.make('WaffleChart')
-                     .using(data)
-                     .in('#wafflechart');
-            })
-            .catch((err) => {
-              console.error(err);
-            });
 
       // d3fault.uploadFirebase('https://d3fault.firebaseio.com/')
       //        .then((data) => {

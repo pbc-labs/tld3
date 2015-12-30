@@ -1,28 +1,22 @@
 # Documentation overview
-- JSDoc 3 (with a Docstrap theme): For API documentation that explains the methods and modules. Great for looking up on how to use a method, the parameters and type.
-- Docco: For explaining the flow of code. Great for reading your source code with the comments right beside.
+- Docco: For API documentation that explains the methods and modules. For explaining the flow of code. Great for reading your source code with the comments right beside.
 
-## How does JSDoc work
-- You add documentation comments directly to your source code, right along side the code itself. The JSDoc Tool will scan your source code, and generate a complete HTML documentation website for you.
-- JSDoc comments should be placed immediately before the code being documented.
-- It must start with a __backslash + asterisk + asterisk__ sequence in order to be recognized by the JSDoc parser. Comments beginning with __backslash + asterisk__, __backslash + asterisk + asterisk + asterisk__, or more than 3 asterisks will be ignored.
-
-## How to Use Block and Inline Tags
-- JSDoc supports 2 type of tags:
-  - __Block tags__, which are at the top level of a JSDoc comment
+## How to comment your
+- Comments should be placed immediately before the code being documented.
+-  We support 2 types of tags:
+  - __Block tags__, which are at the top level of a comment
   - __Inline tags__, which are within the text of a block tag or a description
 - Block tags usually provide detailed information about your code, such as the parameters that a function accepts.
 - Inline tags usually link to other parts of the documentation, similar to the anchor tag (<a>) in HTML.
 - Block tags always begin with an at sign (@). Each block tag must be followed by a line break, with the exception of the last block tag in a JSDoc comment.
 - Inline tags also begin with an at sign. However, inline tags and their text must be enclosed in curly braces ({ and }). The { denotes the start of the inline tag, and the } denotes the end of the inline tag. If your tag's text includes a closing curly brace (}), you must escape it with a leading backslash (\). You do not need to use a line break after inline tags.
-- Most JSDoc tags are block tags. So will most of the tags in your code.
-- You should also use inline comments within each method and module when appropriate. These inline comments prefaced with // will be picked up by Docco
-- Docco doesn't consider /** comments as a prose, which is good, because JSDoc uses them
+- Most tags in your code will be block tagd.
+- You should also use inline comments within each method and module as needed
 - Every method and module must have a brief description explaining what it does and why. DO NOT include details on "how" the function does this. This should be implicit within the function itself, assuming you write good code :)
 
 - __Example 1:__ In the following example, @param is a block tag, and {@link} is an inline tag:
 ```
-/**
+/*
  * Set the shoe's color. Use {@link Shoe#setSize} to set the shoe size.
  *
  * @param {string} color - The shoe's color.
@@ -34,7 +28,7 @@ Shoe.prototype.setColor = function(color) {
 - __Example 2:__
 Inline tag used within a block tag
 ```
-/**
+/*
  * Set the shoe's color.
  *
  * @param {SHOE_COLORS} color - The shoe color. Must be an enumerated
@@ -46,7 +40,7 @@ Shoe.prototype.setColor = function(color) {
 ```
 - __Example 3:__ Multiple block tags separated by line breaks
 ```
-/**
+/*
  * Set the color and type of the shoelaces.
  *
  * @param {LACE_COLORS} color - The shoelace color.
@@ -59,7 +53,7 @@ Shoe.prototype.setLaceType = function(color, type) {
 - __Example 4:__ Private method with multiple block tags
 
 ```
-/**
+/*
  * A specialized version of `_.forEach` for arrays without support for
  * callback shorthands.
  *
@@ -82,7 +76,7 @@ function arrayEach(array, iteratee) {
 
 ```
 
-### Block Tags & Definitions
+### Block Tags & Definitions (taken from JSDocs)
 - __@abstract (synonyms: @virtual)__
 This member must be implemented (or overridden) by the inheritor.
 - __@access__
@@ -213,12 +207,3 @@ Documents the version number of an item.
 Link to another item in the documentation.
 - __{@tutorial}__
 Link to a tutorial.
-
-### Inspiration
-- https://github.com/lodash/lodash/blob/master/lodash.js
-- https://github.com/yui/yui3
-- https://github.com/jashkenas/backbone/blob/master/backbone.js
-
-### Resources
-- For detailed explanations of JS Docs block and inline tags, go here: http://usejsdoc.org/
-- Articles on using JS Doc and Docco: http://samwize.com/2014/01/31/the-best-documentation-generator-for-node/
