@@ -14,6 +14,8 @@ const internalArea = {
    */
 
   buildChartComponents(context) {
+    const tooltip = context.tooltip;
+
     const d0 = context.area(context.data.map(() => { return { [context.xColumnName]: context.xScale.domain()[0], [context.yColumnName]: context.yScale.domain()[0] }; }));
     const d1 = context.area(context.data);
 
@@ -38,24 +40,14 @@ const internalArea = {
     const area = d3.select('.area');
 
     area.on('mousemove', () => {
-      context.tooltip.transition()
-             .duration(200)
-             .style('display', 'block')
-             .style('opacity', 0.9);
+      tooltip.show();
 
-      context.tooltip
-             .html(() => {
-               return `${context.xColumnName}: ${context.xScale.invert(d3.event.pageX - context.getMargins.left - context.getMargins.right).toLocaleString()}\
-               ${context.yColumnName}: ${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}`;
-             })
-             .style('left', (d3.event.pageX + 'px'))
-             .style('top', (d3.event.pageY + 'px'));
+      tooltip.setContent(`${context.xColumnName}: ${context.xScale.invert(d3.event.pageX - context.getMargins.left - context.getMargins.right).toLocaleString()}\
+      ${context.yColumnName}: ${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}`);
     });
 
     area.on('mouseout', () => {
-      context.tooltip.transition()
-      .style('opacity', 0)
-      .style('display', 'none');
+      tooltip.hide();
     });
 
     return context;

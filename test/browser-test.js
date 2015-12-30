@@ -17,8 +17,8 @@ describe('Browser Test', () => {
     browser.assert.element('#chart');
   });
 
-  it('should have the d3fault library loaded', () => {
-    browser.assert.global('d3fault');
+  it('should have the tld3 library loaded', () => {
+    browser.assert.global('tld3');
   });
 
   it('should have the d3 library loaded', () => {
@@ -26,7 +26,7 @@ describe('Browser Test', () => {
   });
 
   it('should make a chart', () => {
-    const chart = browser.window.d3fault.make('BarChart');
+    const chart = browser.window.tld3.make('BarChart');
     expect(chart).to.exist;
     expect(chart).to.be.an('Object');
   });

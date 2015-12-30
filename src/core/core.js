@@ -1,8 +1,8 @@
 /*
-D3fault.js 1.0.0
-http://d3faultjs.org
+tld3.js 1.0.0
+http://tld3js.org
 (c) 2015 Preethi Kasireddy, Banun Atina Idris and Colin Seale
-D3fault may be freely distributed under the MIT license.
+tld3 may be freely distributed under the MIT license.
 */
 
 /*
@@ -21,8 +21,10 @@ This defines our main library object.
 
 import charts from '../subModules/charts';
 import utils from '../utils/utils';
+
 import internal from '../internal-charts/internal';
-const D3fault = {
+
+const lib = {
   internal,
   version: '1.0.0',
   make(chartType) {
@@ -36,4 +38,4 @@ const D3fault = {
   },
 };
 
-export default D3fault;
+module.exports = lib;

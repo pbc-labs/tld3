@@ -4,14 +4,15 @@ module.exports = {
   entry: './core/core.js',
   output: {
     // export library to global var
-    filename: 'lib.js',
+    filename: 'tld3.js',
     path: __dirname + '/dist',
-    libraryTarget: "var",
-    library: "d3fault"
+    libraryTarget: "umd",
+    library: "tld3",
+    umdNamedDefine: true,
 },
 externals: {
-        // require("jquery") is external and available
-        //  on the global var jQuery
+        // require("d3") is external and available
+        //  on the global var d3
         "d3": "d3"
     },
 // create sourcemap for debugging - for DEV ONLY
@@ -26,6 +27,6 @@ externals: {
 
 // Config for normal dist export:
 // output: {
-//   filename: 'd3fault.js',
+//   filename: 'tld3.js',
 //   path: __dirname + '/dist'
 // },

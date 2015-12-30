@@ -23,7 +23,7 @@ describe('Donut Chart methods functionality', () => {
   describe('Donut Chart methods', () => {
     describe('Donut Chart', () => {
       it('should make a chart in a div with id "donutchart"', () => {
-        donutChart = browser.window.d3fault.make('DonutChart').using(data).in('#donutchart');
+        donutChart = browser.window.tld3.make('DonutChart').using(data).in('#donutchart');
         const donutId = donutChart.element.attr('id');
         expect(donutId).to.equal('donutchart').and.to.be.an('String');
       });

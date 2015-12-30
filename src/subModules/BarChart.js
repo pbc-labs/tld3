@@ -117,12 +117,11 @@ export class BarChart extends ChartMain {
   @returns {Object} this Chart object
   */
 
-  updateColors(colors) {
+  updateColors() {
     /*
     Calls InternalBar object to update the colors on the bar chart. InternalBar does the d3 manipulation
     */
-    InternalBar.updateColors(colors, this);
-
+    InternalBar.updateColors(this);
     return this;
   }
 

@@ -81,22 +81,7 @@ const waffle = {
   */
 
   buildChartComponents(context) {
-    const tooltip = d3.select('body')
-    .append('div')
-    .attr('class', 'tooltip')
-    .style({
-      position: 'absolute',
-      color: 'black',
-      'text-align': 'center',
-      width: '100px',
-      padding: '2px',
-      font: '12px sans-serif',
-      background: '#f2f2f2',
-      border: '0px',
-      opacity: '0',
-      'border-radius': '1px',
-      cursor: 'pointer',
-    });
+    const tooltip = context.tooltip;
 
     context.svg.append('g')
                .selectAll('div')
@@ -108,11 +93,6 @@ const waffle = {
                .attr('height', context.getSquareSize)
                .attr('class', (d) => { return 'square ' + context.xColumnName + d.groupIndex; })
                .on('mouseover', (d) => {
-                 tooltip.transition()
-                   .duration(200)
-                   .style('opacity', 0.9)
-                   .style('left', (d3.event.pageX + 'px'))
-                   .style('top', (d3.event.pageY + 'px'));
                  d3.selectAll('rect').transition()
                   .duration(200)
                   .style('opacity', 0.6);
@@ -121,18 +101,15 @@ const waffle = {
                  d3.selectAll('.' + d3.select(d3.event.target).attr('class').split(' ')[1]).transition()
                    .duration(200)
                    .style('opacity', 1);
-                 tooltip
-                   .html(() => {
-                     return `${d[context.xColumnName]}, ${d[context.yColumnName]}`;
-                   });
+
+                 tooltip.show();
+                 tooltip.setContent(`${d[context.xColumnName]}, ${d[context.yColumnName]}`);
                })
               .on('mouseout', () => {
+                tooltip.hide();
                 d3.selectAll('rect').transition()
                   .duration(500)
                   .style('opacity', 1);
-                tooltip.transition()
-                   .duration(500)
-                   .style('opacity', 0);
               })
                .style('opacity', 0)
                .attr('x', (d, i) => {
@@ -186,13 +163,12 @@ const waffle = {
   createLegend(context) {
     const legend = context.svg.append('g')
         .attr('class', 'legend')
-        .attr('transform', 'translate(' + context.getNumColumns + ', 0)')
         .selectAll('.legend-data')
         .data(context.getColors.domain())
         .enter().append('g')
         .attr('class', 'legend-data')
         // Makes each rect spaced by 20px
-        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getHeight - 10) + ')'; });
+        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getHeight) + ')'; });
     legend.append('rect')
         .attr('x', 10)
         .attr('width', context.getNumColumns)

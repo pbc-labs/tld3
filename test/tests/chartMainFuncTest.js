@@ -9,13 +9,13 @@ const should = chai.should();
 
 describe('Chart Main methods functionality', () => {
   const browser = new Browser();
-  let d3fault;
+  let tld3;
   let d3;
 
   before((done) => {
     browser.visit('file://' + __dirname + '/../index.html', () => {
       d3 = browser.window.d3;
-      d3fault = browser.window.d3fault;
+      tld3 = browser.window.tld3;
       done();
     });
   });
@@ -25,8 +25,8 @@ describe('Chart Main methods functionality', () => {
       browser.assert.element('#chart');
     });
 
-    it('should have the d3fault library loaded', () => {
-      browser.assert.global('d3fault');
+    it('should have the tld3 library loaded', () => {
+      browser.assert.global('tld3');
     });
 
     it('should have the d3 library loaded', () => {
@@ -34,33 +34,33 @@ describe('Chart Main methods functionality', () => {
     });
 
     it('should make a chart', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       expect(chart).to.exist;
       expect(chart).to.be.an('Object');
     });
 
     it('should add data to chart object when the \'using\' method is called with data', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data);
       expect(chart.data).to.deep.equal(data);
     });
 
     it('should change set the x-axis column name properly', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       const xColumnNameActual = chart.xColumnName;
       expect(xColumnNameActual).to.equal('letter');
     });
 
     it('should change set the y-axis column name properly', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       const yColumnNameActual = chart.yColumnName;
       expect(yColumnNameActual).to.equal('frequency');
     });
 
     it('should change margins when \'changeMargins\' method is invoked with options', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       const newMargins = { top: 60, right: 40, bottom: 60, left: 40 };
       chart.changeMargins(newMargins);
@@ -72,16 +72,15 @@ describe('Chart Main methods functionality', () => {
     });
 
     it('should change colors when \'changeColors\' method is invoked with options', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
-      const newColors = ['blueblueblue', 'greengreen'];
+      const newColors = ['red', 'purple'];
       chart.changeColors(newColors);
-      const currentColor = d3.select('#chart').select('svg').select('.bar').style('fill').split(',');
-      expect(currentColor).to.deep.equal(newColors).and.to.be.an('Array');
+      expect(chart.getColors).to.deep.equal(newColors).and.to.be.an('Array');
     });
 
     it('should change height when \'changeHeight\' method is invoked with options', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       chart.changeHeight(500);
       const currentHeight = d3.select('#chart').select('svg').attr('height') - chart.getMargins.top - chart.getMargins.bottom;
@@ -89,7 +88,7 @@ describe('Chart Main methods functionality', () => {
     });
 
     it('should change width when \'changeWidth\' method is invoked with options', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       chart.changeWidth(800);
       const currentWidth = d3.select('#chart').select('svg').attr('width') - chart.getMargins.right - chart.getMargins.left;
@@ -97,7 +96,7 @@ describe('Chart Main methods functionality', () => {
     });
 
     it('should change title when \'changeTitle\' method is invoked with options', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       chart.changeTitle('new new new old gone');
       const currentTitle = d3.select('#chart').select('svg').select('.title').text();
@@ -105,7 +104,7 @@ describe('Chart Main methods functionality', () => {
     });
 
     it('should change font size when \'changeFontSize\' method is invoked with options', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       chart.changeFontSize(30);
       const currentFontSize = d3.select('#chart').select('svg').attr('font-size');
@@ -113,7 +112,7 @@ describe('Chart Main methods functionality', () => {
     });
 
     it('should change font style when \'changeFontStyle\' method is invoked with options', () => {
-      const chart = d3fault.make('BarChart');
+      const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       chart.changeFontStyle('Comic Sans');
       const currentFontStyle = d3.select('#chart').select('svg').style('font-family');

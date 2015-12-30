@@ -418,20 +418,67 @@ const Internal = {
                       .append('div')
                       .attr('class', 'tooltip')
                       .style({
-                        position: 'absolute',
-                        color: 'black',
+                        'position': 'absolute',
+                        'color': 'black',
                         'text-align': 'center',
-                        width: '120px',
-                        padding: '5px',
-                        font: '12px Arial',
-                        background: '#f2f2f2',
-                        border: '1px',
-                        opacity: 0,
+                        'width': '120px',
+                        'padding': '5px',
+                        'font': '12px Arial',
+                        'background': '#f2f2f2',
+                        'border': '1px',
+                        'opacity': '0',
                         'border-color': '#606060',
                         'border-style': 'solid',
                         'border-radius': '1px',
-                        cursor: 'pointer',
+                        'cursor': 'pointer',
                       });
+    function show(time = 200) {
+      this.transition()
+          .duration(time)
+          .style('opacity', 1);
+    }
+
+    function hide(time = 200) {
+      this.transition()
+          .duration(time)
+          .style('opacity', 0);
+    }
+
+    function setContent(content = 'Tooltip') {
+      this.html(() => {
+        return content;
+      })
+      .style('left', (d3.event.pageX + 'px'))
+      .style('top', (d3.event.pageY + 'px'));
+    }
+
+    context.tooltip.show = show;
+    context.tooltip.hide = hide;
+    context.tooltip.setContent = setContent;
+    return context;
+  },
+
+  createLegend(context) {
+    context.legend = context.svg.append('g')
+      .attr('class', 'legend')
+      .selectAll('.legend-data')
+      .data(context.getColors.domain())
+      .enter().append('g')
+      .attr('class', 'legend-data')
+      .attr('transform', (d, i) => { return 'translate(0,' + i * 20 + ')'; });
+
+    context.legend.append('rect')
+      .attr('x', context.getWidth - 18)
+      .attr('width', 18)
+      .attr('height', 18)
+      // Setting colors
+      .style('fill', context.getColors);
+    // // append the name of ordinal data
+    context.legend.append('text')
+      .attr('x', context.getWidth - 24)
+      .attr('y', 12)
+      .style('text-anchor', 'end')
+      .text((d) => { return d; });
 
     return context;
   },

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions, no-unused-vars */
 
 import Browser from '../../node_modules/zombie';
-import d3fault from '../../src/core/core';
+import tld3 from '../../src/core/core';
 import d3 from '../../node_modules/d3';
 import chai from '../../node_modules/chai';
 import utils from '../../src/utils/utils';
@@ -96,13 +96,13 @@ describe('Utils Tests', () => {
     });
 
     it('should be able to upload data from a tsv file', () => {
-      return browser.window.d3fault.upload('data/data.json')
+      return browser.window.tld3.upload('data/data.json')
       .then(newdata => {
         expect(newdata).to.equal(data);
       });
     });
     it('should be able to upload data from a json file', () => {
-      return browser.window.d3fault.upload('data/data.tsv')
+      return browser.window.tld3.upload('data/data.tsv')
       .then(newdata => {
         expect(newdata).to.equal(data);
       });

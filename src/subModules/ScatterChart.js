@@ -31,6 +31,7 @@ export class ScatterChart extends ChartMain {
     InternalScatter.setXscale(this);
     InternalScatter.setYscale(this);
     Internal.createSVGElement(this);
+    Internal.createToolTip(this);
     // x-axis
     Internal.createxAxis(this);
     Internal.buildXAxis(this);
@@ -41,7 +42,7 @@ export class ScatterChart extends ChartMain {
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
     InternalScatter.buildChartComponents(this);
     InternalScatter.styleChart(this);
-    InternalScatter.createLegend(this);
+    Internal.createLegend(this);
   }
 
   /*
@@ -52,7 +53,7 @@ export class ScatterChart extends ChartMain {
   */
   updateChartComponents() {
     InternalScatter.updateChartComponents(this);
-
+    Internal.createLegend(this);
     return this;
   }
 

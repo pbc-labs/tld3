@@ -16,6 +16,8 @@ const InternalBarLeft = {
     /*
     Uses d3 to build the chart components for left bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
     */
+    const tooltip = context.tooltip;
+
     context.svg.selectAll('.bar')
            .data(context.data)
            .enter()
@@ -24,26 +26,14 @@ const InternalBarLeft = {
            .attr('class', 'bar')
            .on('mouseover', (d) => {
              d3.select(d3.event.target).transition()
-               .duration(200);
-             context.tooltip.transition()
-            .duration(200)
-            .style('opacity', 0.9);
-             context.tooltip // Set the tooltips
-                    .html(() => {
-                      return `<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
-                      <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`;
-                    })
-             .style('left', (d3.event.pageX + 'px'))
-             .style('top', (d3.event.pageY + 'px'));
-             d3.select(d3.event.target)
-               .style('fill', 'orangered');
+               .style('fill', context.getColors[1]);
+          //  Set tooltips
+             tooltip.show();
+             tooltip.setContent(`<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
+             <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`);
            })
            .on('mouseout', () => {
-             d3.select(d3.event.target).transition()
-               .duration(200);
-             context.tooltip.transition()
-                    .duration(500)
-                    .style('opacity', 0);
+             tooltip.hide();
              d3.select(d3.event.target)
                .style('fill', context.getColors[0]);
            })
@@ -70,15 +60,10 @@ const InternalBarLeft = {
   */
 
   updateChartComponents(context) {
-    context.svg.selectAll('.bar')
-               .data(context.data)
-               .attr('class', 'bar')
-               .attr('height', context.y.rangeBand())
-               .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
-               .attr('width', d => { const label = context.getxAxisLabel; return context.x(d[label]); })
-               .attr('x', d => { const label = context.getxAxisLabel; return d[label]; })
-              .style('fill', context.getColors[0]);
+    context.svg.selectAll('rect')
+           .remove();
 
+    this.buildChartComponents(context);
     return context;
   },
 

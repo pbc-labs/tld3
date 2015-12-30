@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions, no-unused-vars */
-import d3fault from '../../src/core/core';
+import tld3 from '../../src/core/core';
 import d3 from '../../node_modules/d3';
 import chai from '../../node_modules/chai';
 import Browser from '../../node_modules/zombie';
@@ -46,35 +46,35 @@ describe('Bar Chart Left methods functionality', () => {
 
   describe('Bar Chart Left methods', () => {
     it('should make a chart in a div with id "barchartleft"', () => {
-      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      const barChartLeft = browser.window.tld3.make('BarChartLeft');
       barChartLeft.using(dataBarChartLeft).in('#barchartleft');
       const barId = barChartLeft.element.attr('id');
       expect(barId).to.equal('barchartleft').and.to.be.an('String');
     });
 
     it('should make a chart with a class "bar"', () => {
-      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      const barChartLeft = browser.window.tld3.make('BarChartLeft');
       barChartLeft.using(dataBarChartLeft).in('#barchartleft');
       const barClass = browser.window.d3.select('#barchartleft').select('rect').attr('class');
       expect(barClass).to.equal('bar').and.to.be.an('String');
     });
 
     it('should make rects to represent data for the bar chart', () => {
-      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      const barChartLeft = browser.window.tld3.make('BarChartLeft');
       barChartLeft.using(dataBarChartLeft).in('#barchartleft');
       const barRect = browser.window.d3.select('#barchartleft').select('rect')[0];
       expect(barRect).to.exist;
     });
 
     it('should set the Left x-column name', () => {
-      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      const barChartLeft = browser.window.tld3.make('BarChartLeft');
       barChartLeft.using(dataBarChartLeft).in('#barchartleft');
       const barXColumn = barChartLeft.getxAxisLabel;
       expect(barXColumn).to.equal('frequencyTest');
     });
 
     it('should set the Left x-column name', () => {
-      const barChartLeft = browser.window.d3fault.make('BarChartLeft');
+      const barChartLeft = browser.window.tld3.make('BarChartLeft');
       barChartLeft.using(dataBarChartLeft).in('#barchartleft');
       const barYColumn = barChartLeft.getyAxisLabel;
       expect(barYColumn).to.equal('letterTest');
