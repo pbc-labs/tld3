@@ -93,8 +93,6 @@ const waffle = {
                .attr('height', context.getSquareSize)
                .attr('class', (d) => { return 'square ' + context.xColumnName + d.groupIndex; })
                .on('mouseover', (d) => {
-                 tooltip.show();
-
                  d3.selectAll('rect').transition()
                   .duration(200)
                   .style('opacity', 0.6);
@@ -104,13 +102,14 @@ const waffle = {
                    .duration(200)
                    .style('opacity', 1);
 
+                 tooltip.show();
                  tooltip.setContent(`${d[context.xColumnName]}, ${d[context.yColumnName]}`);
                })
               .on('mouseout', () => {
+                tooltip.hide();
                 d3.selectAll('rect').transition()
                   .duration(500)
                   .style('opacity', 1);
-                tooltip.hide();
               })
                .style('opacity', 0)
                .attr('x', (d, i) => {
@@ -164,13 +163,12 @@ const waffle = {
   createLegend(context) {
     const legend = context.svg.append('g')
         .attr('class', 'legend')
-        .attr('transform', 'translate(' + context.getNumColumns + ', 0)')
         .selectAll('.legend-data')
         .data(context.getColors.domain())
         .enter().append('g')
         .attr('class', 'legend-data')
         // Makes each rect spaced by 20px
-        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getHeight - 10) + ')'; });
+        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getHeight) + ')'; });
     legend.append('rect')
         .attr('x', 10)
         .attr('width', context.getNumColumns)
