@@ -20,7 +20,7 @@ describe('Errors For User Inputs', () => {
 
   describe('WidthError', () => {
     it('should throw a WidthError', () => {
-      lineChart = browser.window.d3fault.make('LineChart');
+      lineChart = browser.window.tld3.make('LineChart');
       lineChart.using(data).in('#linechart');
       expect(() => { lineChart.changeWidth('1234567'); }).to.throw('Width must be a Number');
     });
@@ -64,14 +64,14 @@ describe('Errors For User Inputs', () => {
 
   describe('InBeforeUsingError', () => {
     it('should throw a InBeforeUsingError', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
+      const barChart = browser.window.tld3.make('BarChart');
       expect(() => { barChart.in('#BarChart'); }).to.throw('The "in" function can only be used after the "using" function has been used');
     });
   });
 
   describe('NoDataError', () => {
     it('should throw a NoDataError', () => {
-      const barChart = browser.window.d3fault.make('BarChart');
+      const barChart = browser.window.tld3.make('BarChart');
       expect(() => { barChart.using(); }).to.throw('Must pass in data, data cannot be undefined');
     });
   });
