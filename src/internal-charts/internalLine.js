@@ -180,11 +180,10 @@ const InternalLine = {
        .duration(200)
        .style('display', 'block')
        .style('opacity', 0.9);
-
       context.tooltip
        .html(() => {
          return `${context.xColumnName}: ${context.xScale.invert(d3.event.pageX - context.getMargins.left - context.getMargins.right).toLocaleString()}\
-        ${context.yColumnName}: ${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}`;
+         ${d.name}: ${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}`;
        })
        .style('left', (d3.event.pageX + 'px'))
        .style('top', (d3.event.pageY + 'px'));
@@ -230,8 +229,7 @@ const InternalLine = {
   */
 
   updateColors(context) {
-    context.element.select('svg')
-        .selectAll('.line')
+    context.svg.selectAll('.line')
         .style({
           fill: 'none',
           'stroke-width': 'crispEdges',
@@ -251,8 +249,7 @@ const InternalLine = {
   */
 
   convertData(context) {
-    context.data = utils.parseTimeData(context.data, context.xColumnName, '%Y%m%d');
-    // , '%Y%m%d'
+    context.data = utils.parseTimeData(context.data, context.xColumnName, context.dateFormat);
     const list = [];
     const dataWorker = (i, columns) => {
       list.push({
@@ -281,9 +278,7 @@ const InternalLine = {
   */
 
   setColumnNames(context) {
-    context.xColumnName = utils.getFirstOrdinalColumn(context.data, '%Y%m%d');
-    context.xColumnName = 'date';
-    // This a check for data sets that have more than one linear column
+    context.xColumnName = utils.getFirstTimeColumn(context.data, context.dateFormat);
   },
 };
 

@@ -2,6 +2,7 @@
 This is required for d3 to load.
 */
 /* global d3 */
+import errors from './errors';
 
 import Firebase from 'firebase';
 /*
@@ -68,7 +69,7 @@ const utils = {
         });
       }
     } else {
-      // throw new Error('Can only load files http://www.ourDocs.com/loadData')
+      throw new errors.UnacceptableFileExtensionError;
     }
   },
 
@@ -143,8 +144,8 @@ const utils = {
   @returns {Boolean} If the column scale is Linear
   */
 
-  isTime(data, columnName) {
-    if (utils.isAcceptableTimeFormat(data[0][columnName])) {
+  isTime(data, columnName, format) {
+    if (utils.isAcceptableTimeFormat(data[0][columnName], format)) {
       return true;
     }
     return false;
@@ -158,11 +159,11 @@ const utils = {
   @returns {Boolean} If the timeStamp is a valid time
   */
 
-  isAcceptableTimeFormat(timeStamp, context) {
+  isAcceptableTimeFormat(timeStamp, format) {
     const _timeStamp = String(timeStamp);
-    if (context && context.timeFormat) {
-      const parser = d3.time.format(context.timeFormat).parse;
-      return parser(_timeStamp) === null;
+    if (format) {
+      const parser = d3.time.format(format).parse;
+      return parser(_timeStamp) !== null;
     } else if (_timeStamp.split(' ').length > 1 || _timeStamp.split('/').length > 1 || _timeStamp.split('-').length > 1) {
       return new Date(_timeStamp).toString() !== 'Invalid Date';
     }
@@ -230,10 +231,10 @@ const utils = {
   @returns {String} The first column that can be linear
   */
 
-  getFirstTimeColumn(data) {
+  getFirstTimeColumn(data, format) {
     const columnNames = utils.getColumnNames(data);
     for (let i = 0; i < columnNames.length; i++) {
-      if (utils.isTime(data, columnNames[i])) {
+      if (utils.isTime(data, columnNames[i], format)) {
         return columnNames[i];
       }
     }
@@ -257,10 +258,17 @@ const utils = {
       const parser = d3.time.format(format).parse;
       data.forEach(item => {
         item[column] = parser(item[column]);
+
+        if (!(item[column] instanceof Date)) {
+          throw new errors.DateError;
+        }
       });
     } else {
       data.forEach(item => {
         item[column] = new Date(item[column]);
+        if (item[column].toString() === 'Invalid Date') {
+          throw new errors.DateError;
+        }
       });
     }
     return data;
