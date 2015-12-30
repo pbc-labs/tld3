@@ -6,12 +6,13 @@ module.exports = {
     // export library to global var
     filename: 'lib.js',
     path: __dirname + '/dist',
-    libraryTarget: "var",
-    library: "d3fault"
+    libraryTarget: "umd",
+    library: "d3fault",
+    umdNamedDefine: true,
 },
 externals: {
-        // require("jquery") is external and available
-        //  on the global var jQuery
+        // require("d3") is external and available
+        //  on the global var d3
         "d3": "d3"
     },
 // create sourcemap for debugging - for DEV ONLY

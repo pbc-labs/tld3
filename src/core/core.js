@@ -38,4 +38,4 @@ const lib = {
   },
 };
 
-export { lib as default };
+module.exports = lib;
