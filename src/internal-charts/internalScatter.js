@@ -126,36 +126,9 @@ const scatter = {
     context.element.select('.title').remove();
 
     this.buildChartComponents(context);
-    this.createLegend(context);
     this.styleChart(context);
     return context;
   },
-// TODO: move into general internal
-  createLegend(context) {
-    const legend = context.svg.append('g')
-        .attr('class', 'legend')
-        .selectAll('.legend-data')
-        .data(context.getColors.domain())
-        .enter().append('g')
-        .attr('class', 'legend-data')
-        // Makes each rect spaced by 20px
-        .attr('transform', (d, i) => { return 'translate(0,' + i * 20 + ')'; });
-    legend.append('rect')
-        .attr('x', context.getWidth - 18)
-        .attr('width', 18)
-        .attr('height', 18)
-        // Setting colors
-        .style('fill', context.getColors);
-    // // append the name of ordinal data
-    legend.append('text')
-        .attr('x', context.getWidth - 24)
-        .attr('y', 12)
-        .style('text-anchor', 'end')
-        .text((d) => { return d; });
-
-    return context;
-  },
-
   /*
   @private
   @function  updateColors

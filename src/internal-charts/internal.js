@@ -458,6 +458,31 @@ const Internal = {
     return context;
   },
 
+  createLegend(context) {
+    context.legend = context.svg.append('g')
+      .attr('class', 'legend')
+      .selectAll('.legend-data')
+      .data(context.getColors.domain())
+      .enter().append('g')
+      .attr('class', 'legend-data')
+      .attr('transform', (d, i) => { return 'translate(0,' + i * 20 + ')'; });
+
+    context.legend.append('rect')
+      .attr('x', context.getWidth - 18)
+      .attr('width', 18)
+      .attr('height', 18)
+      // Setting colors
+      .style('fill', context.getColors);
+    // // append the name of ordinal data
+    context.legend.append('text')
+      .attr('x', context.getWidth - 24)
+      .attr('y', 12)
+      .style('text-anchor', 'end')
+      .text((d) => { return d; });
+
+    return context;
+  },
+
 
 };
 
