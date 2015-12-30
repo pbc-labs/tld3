@@ -125,11 +125,11 @@ export class LineChart extends ChartMain {
   @returns {Object} this Chart object
   */
 
-  updateColors(colors) {
+  updateColors() {
     /*
     Calls InternalLine object to update the colors on the line chart. InternalLine does the d3 manipulation
     */
-    InternalLine.updateColors(colors, this);
+    InternalLine.updateColors(this);
 
     return this;
   }

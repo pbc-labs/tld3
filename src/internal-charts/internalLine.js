@@ -229,8 +229,7 @@ const InternalLine = {
   */
 
   updateColors(context) {
-    context.element.select('svg')
-        .selectAll('.line')
+    context.svg.selectAll('.line')
         .style({
           fill: 'none',
           'stroke-width': 'crispEdges',
