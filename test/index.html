@@ -23,7 +23,68 @@
     </div>
     <div id="donutchart">
     </div>
+    <div id="wafflechart">
+    </div>
     <script>
+
+      var d3fault = d3fault.default;
+
+      // var parseDate = d3.time.format("%d-%b-%y").parse;
+      // d3fault.upload('./data/dataLine.csv', function(err) {
+      //   if (!err) {
+      //     console.log(err);
+      //   }
+      // }).then(function(data) {
+      //   data.forEach(function(d) {
+      //     d.date = parseDate(d.date);
+      //     d.close = +d.close;
+      //   });
+      //   d3fault.make('LineChart')
+      //          .using(data)
+      //          .in('#linechart');
+      // });
+
+    //  var scatter;
+    //  d3fault.upload('./data/scatterData.csv')
+    //         .then((data) => {
+    //           d3fault.make('ScatterChart')
+    //                  .using(data).in('#scatterchart');
+    //         })
+    //         .catch((err) => {
+    //           console.error(err);
+    //         });
+
+     d3fault.upload('./data/waffleData.csv')
+            .then((data) => {
+              d3fault.make('WaffleChart')
+                     .using(data)
+                     .in('#wafflechart');
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+
+      // d3fault.uploadFirebase('https://d3fault.firebaseio.com/')
+      //        .then((data) => {
+      //          d3fault.make('BarChart')
+      //            .using(data)
+      //            .in('#barchart')
+      //            .changeTitle('Letter Frequency')
+      //            .changeFontStyle('monospace')
+      //            .changeColors(['#26408B']);
+      // });
+      //
+      // d3fault.uploadFirebase('https://d3fault.firebaseio.com/', function(err) {
+      //   if (err) {
+      //     console.log(err);
+      //   }
+      // }).then(function(data) {
+      //     d3fault.make('BarChart')
+      //            .using(data)
+      //            .in('#barchart')
+      //            .liveUpdateFirebaseData('https://d3fault.firebaseio.com/');
+      // });
+
     </script>
   </body>
 </html>
