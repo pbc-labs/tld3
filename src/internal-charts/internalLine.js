@@ -180,11 +180,10 @@ const InternalLine = {
        .duration(200)
        .style('display', 'block')
        .style('opacity', 0.9);
-
       context.tooltip
        .html(() => {
          return `${context.xColumnName}: ${context.xScale.invert(d3.event.pageX - context.getMargins.left - context.getMargins.right).toLocaleString()}\
-        ${context.yColumnName}: ${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}`;
+         ${d.name}: ${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}`;
        })
        .style('left', (d3.event.pageX + 'px'))
        .style('top', (d3.event.pageY + 'px'));
