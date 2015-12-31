@@ -55,7 +55,7 @@ const InternalBarLeft = {
   /*
   @private
   @function updateChartComponents
-  @description Calls InternalBar to updates the bar on chart
+  @description Calls InternalBar to update and rerender the bars on chart
   @param {Object} context (chart instance)
   @returns {Object} context (chart instance)
   */

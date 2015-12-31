@@ -22,7 +22,7 @@ const InternalBar = {
          .enter()
          .append('rect')
          .attr('class', 'bar')
-         .on('mouseover', (d) => {
+         .on('mouseover', (d) => { // Set up tooltips
            tooltip.show();
            tooltip.setContent(`<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
              <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`);
@@ -35,12 +35,12 @@ const InternalBar = {
             d3.select(d3.event.target)
               .style('fill', context.getColors[0]);
           })
-         .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); })
+         .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); }) // start position before transition
          .attr('y', context.getHeight)
          .attr('width', context.xScale.rangeBand())
          .attr('height', 0)
          .style('fill', context.getColors[0])
-         .transition()
+         .transition() // transiiton to ending position of rects
          .duration(300)
          .delay((d, i) => { return i * 50; })
          .attr('y', d => { return context.yScale(d[context.getyAxisLabel]); })
@@ -52,7 +52,7 @@ const InternalBar = {
   /*
   @private
   @function updateChartComponents
-  @description Updates the bar on chart
+  @description Updates and recreates the bars on chart
   @param {Object} context (chart instance)
   @returns {Object} context (chart instance)
   */
@@ -106,6 +106,7 @@ const InternalBar = {
   updateColors(context) {
     context.element.select('svg').selectAll('rect')
            .remove();
+
     this.buildChartComponents(context);
 
     return context;
