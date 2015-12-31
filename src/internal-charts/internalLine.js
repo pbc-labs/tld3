@@ -11,8 +11,8 @@ const InternalLine = {
   @private
   @function styleChart
   @description Updates the chart's style on the element
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   styleChart(context) {
@@ -32,7 +32,8 @@ const InternalLine = {
   @private
   @function buildLine
   @description Builds up the line
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   buildLine(context) {
@@ -50,8 +51,8 @@ const InternalLine = {
   @private
   @function buildYAxis
   @description Builds up the y-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   buildYAxis(context) {
@@ -73,8 +74,8 @@ const InternalLine = {
   @private
   @function updateYAxis
   @description Updates and rebuilds the y-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateYAxis(context) {
@@ -102,8 +103,8 @@ const InternalLine = {
   @private
   @function setXScale
   @description Sets the x-scale according to the data
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
   setXScale(context) {
     context.setxAxisLabel = context.xColumnName;
@@ -120,12 +121,10 @@ const InternalLine = {
   @private
   @function setYScale
   @description Sets the y-scale according to the data
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
   setYScale(context) {
-    // context.yColumnName = utils.getFirstLinearColumn(context.data);
-
     context.setyAxisLabel = 'Default Label';
     context.yScale = d3.scale.linear()
                     .range([context.getHeight, 0]);
@@ -141,8 +140,8 @@ const InternalLine = {
   @private
   @function buildChartComponents
   @description Builds the actual chart components with data
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
    */
 
   buildChartComponents(context) {
@@ -201,8 +200,8 @@ const InternalLine = {
   @private
   @function updateChartComponents
   @description Rebuilds the line on the chart
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateChartComponents(context) {
@@ -224,8 +223,8 @@ const InternalLine = {
   @private
   @function updateColors
   @description Updates color of bar chart after initial render
-  @param {Array} colors
-    @description Array of colors to update the chart to
+  @@param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateColors(context) {
@@ -245,7 +244,8 @@ const InternalLine = {
   @private
   @function convertData
   @description Converts the data needed for the chart
-  @param {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   convertData(context) {
@@ -274,11 +274,14 @@ const InternalLine = {
   @private
   @function setColumnNames
   @description Sets the column names
-  @param {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   setColumnNames(context) {
     context.xColumnName = utils.getFirstTimeColumn(context.data, context.dateFormat);
+
+    return context;
   },
 
   /*
