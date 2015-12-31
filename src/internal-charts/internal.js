@@ -79,7 +79,6 @@ const Internal = {
                       .scale(context.xScale)
                       .orient(context.getxAxisOrientation)
                       .ticks(6);
-
     return context;
   },
 

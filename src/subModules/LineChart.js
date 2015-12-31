@@ -170,11 +170,43 @@ export class LineChart extends ChartMain {
   @private
   @function updateDateFormat
   @description Updates the time format and call chart update functions
+  @param {String} newDateFormat A new time format specifier
   @returns {Object} this Chart object
   */
 
-  updateTimeFormat(newDateFormat) {
-    this.dateFormat = newDateFormat;
+  updateTimeFormat(dateFormat) {
+    this.dateFormat = dateFormat;
     return this;
   }
+
+  /*
+  @private
+  @function updateTickFormat
+  @description Updates the formatting for the chart ticks
+  @param {String} tickFormat A new time format specifier for ticks
+  @returns {Object} this Chart object
+  */
+
+  updateTickFormat(tickFormat) {
+    InternalLine.setTickFormat(this, tickFormat);
+    Internal.updateXAxis(this);
+    return this;
+  }
+
+  /*
+  @private
+  @function updateTickCount
+  @description Updates the amount of ticks
+  @param {String} tickCount The number of ticks wanted
+  @param {String} countBy What interval ticks should count e.g. by month, year, minute
+  @returns {Object} this Chart object
+  */
+
+  updateTickCount(tickCount, countBy) {
+    InternalLine.setTickCount(this, tickCount, countBy);
+    Internal.updateXAxis(this);
+    return this;
+  }
+
+
 }
