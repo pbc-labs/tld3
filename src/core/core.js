@@ -21,18 +21,43 @@ This defines our main library object.
 
 import charts from '../subModules/charts';
 import utils from '../utils/utils';
-
 import internal from '../internal-charts/internal';
 
 const lib = {
   internal,
+
   version: '1.0.0',
+
+  /*
+  @function make
+  @description Returns the appropriate chart instance that matches the
+  chart type passed in
+  @param {String} chartType Type of chart to create
+  @returns {Object} this (the chart instance)
+  */
+
   make(chartType) {
     return new charts[chartType]();
   },
-  upload(dataLocation) {
-    return utils.getData(dataLocation);
+
+  /*
+  @function upload
+  @description Fetches data from the url passed in
+  @param {String} dataLocation Url of the file where data is located
+  @returns {Object} A Promise
+  */
+
+  upload(dataUrl) {
+    return utils.getData(dataUrl);
   },
+
+  /*
+  @function uploadFirebase
+  @description Fetches data from the Firebase url passed in
+  @param {String} url Url of the Firebase database where data is stored
+  @returns {Object} this (the chart instance)
+  */
+
   uploadFirebase(url) {
     return utils.getFirebaseData(url);
   },

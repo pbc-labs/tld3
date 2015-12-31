@@ -10,6 +10,7 @@ const InternalBarLeft = {
   @private
   @function buildChartComponents
   @description Builds up the bar chart
+  @returns {Object} context (chart instance)
   */
 
   buildChartComponents(context) {
@@ -55,8 +56,8 @@ const InternalBarLeft = {
   @private
   @function updateChartComponents
   @description Calls InternalBar to updates the bar on chart
-  @param {Object} context Chart object
-  @returns {Object} this Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateChartComponents(context) {
@@ -71,8 +72,8 @@ const InternalBarLeft = {
   @private
   @function createxAxis
   @description Creates d3 x-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   createxAxis(context) {
@@ -87,8 +88,8 @@ const InternalBarLeft = {
   @private
   @function createyAxis
   @description Creates d3 axis - y
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   createyAxis(context) {
@@ -103,11 +104,12 @@ const InternalBarLeft = {
   @private
   @function buildXAxis
   @description Builds up the x-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   buildXAxis(context) {
+    // Sets up x-axis positioning. Then appends x-axis label
     context.svg.append('g')
                .attr('class', 'x axis')
                 .attr('transform', 'translate(0,' + context.getHeight + ')')
@@ -125,11 +127,12 @@ const InternalBarLeft = {
   @private
   @function buildYAxis
   @description Builds up the y-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   buildYAxis(context) {
+    // Sets up y-axis positioning. Then appends x-axis label
     context.svg.append('g')
            .attr('class', 'y axis')
            .call(context.yAxis)
@@ -148,8 +151,8 @@ const InternalBarLeft = {
   /*
   @private
   @function Updates the up the y-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateYAxis(context) {
@@ -177,8 +180,8 @@ const InternalBarLeft = {
   @private
   @function updateXAxis
   @description Updates the up the x-axis scale
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateXAxis(context) {
@@ -202,8 +205,8 @@ const InternalBarLeft = {
   @private
   @function setYscale
   @description Sets the appropriate y-scale
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   setYscale(context) {
@@ -225,8 +228,8 @@ const InternalBarLeft = {
   @private
   @function setXscale
   @description Sets the appropriate x-scale
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   setXscale(context) {

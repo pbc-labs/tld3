@@ -4,8 +4,9 @@ import Firebase from 'firebase';
 import errors from '../utils/errors';
 
 /*
-Defines the main Chart class. This is the super class for
-all chart types. The ChartMain class defines the default inherited property values, setters and getters for property values, and the user-facing API.
+Defines the main Chart class that servers as the super class for all
+chart types. The ChartMain class defines the default inherited property
+values, setters and getters, and the user-facing API.
 */
 
 export class ChartMain {
@@ -118,9 +119,9 @@ export class ChartMain {
 
   /*
   @function changeMargins
-  @description Updates the margins of the chart
+  @description Updates the margins on the chart
   @param {Object} options New margin values formatted as such: { top: 30, right: 30, bottom: 30, left: 50 }
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   changeMargins(options) {
@@ -140,9 +141,9 @@ export class ChartMain {
 
   /*
   @function changeWidth
-  @description Update the width of the chart
+  @description Updates the width of the chart
   @param {Number} width New width in px
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   changeWidth(width) {
@@ -164,7 +165,7 @@ export class ChartMain {
   @function changeHeight
   @description Updates the height of the chart
   @param {Number} height New height in px
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   changeHeight(height) {
@@ -187,7 +188,7 @@ export class ChartMain {
   @function changeTitle
   @description Updates the title of the chart
   @param {String} title New chart title
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   changeTitle(title) {
@@ -208,7 +209,7 @@ export class ChartMain {
   @function changeFontSize
   @description Updates the font size on the chart
   @param {Number} size New font size
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   changeFontSize(size) {
@@ -229,7 +230,7 @@ export class ChartMain {
   @function changeFontStyle
   @description Updates the font style on the chart
   @param {String} font New font style
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   changeFontStyle(font) {
@@ -250,13 +251,13 @@ export class ChartMain {
   @function changexAxisLabel
   @description Updates the x-axis label on the chart
   @param {String} label New x-axis label
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   changexAxisLabel(label) {
     // Use setter to update x-axis-label property
     this.setxAxisLabel = label;
-    // Call the updateFontStyle method on the subclass instance.
+    // Call the updatexAxisLabel method on the subclass instance.
     // The update functionality varies for each chart type,
     // hence why we call the method on the instance
     this.updatexAxisLabel();
@@ -268,13 +269,13 @@ export class ChartMain {
   @function changeyAxisLabel
   @description Updates the y-axis label on the chart.
   @param {String} label New y-axis label
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   changeyAxisLabel(label) {
     // Use setter to update y-axis-label property
     this.setyAxisLabel = label;
-    // Call the updateFontStyle method on the subclass instance.
+    // Call the updateyAxisLAbel method on the subclass instance.
     // The update functionality varies for each chart type,
     // hence why we call the method on the instance
     this.updateyAxisLabel();
@@ -285,8 +286,9 @@ export class ChartMain {
   /*
   @function changeColors
   @description Updates the colors on the chart.
-  @param {Array} colors New chart colors. Can be RGB or HEX values.
-  @returns {Object} this (ChartMain class)
+  @param {Array} colors New chart colors. Can be RGB, HEX or string
+  color name
+  @returns {Object} this (the chart instance)
   */
 
   changeColors(colors) {
@@ -296,7 +298,7 @@ export class ChartMain {
     }
     // Use setter to update colors property
     this.setColors = colors;
-    // Call the updateFontStyle method on the subclass instance.
+    // Call the updateColors method on the subclass instance.
     // The update functionality varies for each chart type,
     // hence why we call the method on the instance
     this.updateColors();
@@ -307,8 +309,9 @@ export class ChartMain {
   /*
   @function in
   @description Sets the div element in which the d3 chart will created.
-  @param {String} classOrid Class or Id of the div element where d3 chart will be created
-  @returns {Object} this (ChartMain class)
+  @param {String} classOrid Class or Id of the div element where d3 chart
+  will be created
+  @returns {Object} this (the chart instance)
   */
 
   in(classOrid) {
@@ -331,7 +334,7 @@ export class ChartMain {
   @function using
   @description Sets the data for the chart.
   @param {Object/JSON/URL} dataInput Data for D3 chart
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   using(dataInput) {
@@ -349,7 +352,7 @@ export class ChartMain {
   @function refreshFirebaseData
   @description If using Firebase database as data source, chaining this method will capture updates to data in real-time. And chart will update without refresh
   @param {String} url Firebase database url
-  @returns {Object} this (ChartMain class)
+  @returns {Object} this (the chart instance)
   */
 
   liveUpdateFirebaseData(url) {

@@ -8,7 +8,7 @@ const InternalBar = {
   @private
   @function buildChartComponents
   @description Builds the actual chart components with data, including the tooltips
-  @returns {Object} context Chart object
+  @returns {Object} context (chart instance)
    */
 
   buildChartComponents(context) {
@@ -53,8 +53,8 @@ const InternalBar = {
   @private
   @function updateChartComponents
   @description Updates the bar on chart
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateChartComponents(context) {
@@ -74,8 +74,8 @@ const InternalBar = {
   @private
   @function styleChart
   @description Updates the chart's style on the element
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   styleChart(context) {
@@ -99,14 +99,15 @@ const InternalBar = {
   @private
   @function updateColors
   @description Updates color of bar chart after initial render
-  @param {Array} colors
-    @description Array of colors to update the chart to
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateColors(context) {
     context.element.select('svg').selectAll('rect')
            .remove();
     this.buildChartComponents(context);
+
     return context;
   },
 

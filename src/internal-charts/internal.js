@@ -10,8 +10,8 @@ const Internal = {
   @private
   @function selectElement
   @description Creates a d3 element and assigns it to our internal 'element' property
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   selectElement(context) {
@@ -26,8 +26,8 @@ const Internal = {
   @private
   @function createSVGElement
   @description Creates the main SVG element
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   createSVGElement(context) {
@@ -47,8 +47,8 @@ const Internal = {
   @private
   @function updateSVGElement
   @description Updates the main SVG element
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateSVGElement(context) {
@@ -67,8 +67,8 @@ const Internal = {
   @private
   @function createxAxis
   @description Creates d3 x-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   createxAxis(context) {
@@ -87,8 +87,8 @@ const Internal = {
   @private
   @function createyAxis
   @description Creates d3 y-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   createyAxis(context) {
@@ -106,13 +106,15 @@ const Internal = {
   @private
   @function updateYAxisScale
   @description Updates the up the y-axis scale
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateYAxisScale(context) {
     /*
-    Updates y-axis using the new scale
+    Updates y-axis using the new scale. Used when user
+    updates some chart property that requires recreation
+    of Axis
     */
     context.yAxis = d3.svg.axis()
                       .scale(context.yScale)
@@ -125,13 +127,15 @@ const Internal = {
   @private
   @function updateXAxisScale
   @description Updates the up the x-axis scale
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateXAxisScale(context) {
     /*
-    Updates x-axis using the new scale
+    Updates x-axis using the new scale. Used when user
+    updates some chart property that requires recreation
+    of Axis
     */
     context.xAxis = d3.svg.axis()
                       .scale(context.xScale)
@@ -144,8 +148,8 @@ const Internal = {
   @private
   @function buildXAxis
   @description Builds up the x-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   buildXAxis(context) {
@@ -170,8 +174,8 @@ const Internal = {
   @private
   @function updateXAxisPosition
   @description Translates the x-axis
-  @param {Object} context Chart object
-  @returns {Object} contextsetXscale Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} contextsetXscale (chart instance)
   */
 
   updateXAxisPosition(context) {
@@ -187,8 +191,8 @@ const Internal = {
   @private
   @function buildYAxis
   @description Builds up the y-axis and adds the label
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
   buildYAxis(context) {
     /*
@@ -210,13 +214,13 @@ const Internal = {
   /*
   @private
   @function Updates the up the y-axis
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateYAxis(context) {
     /*
-    Updated the y-axis on chart by rebuilding it. Used when axis properties on a chart are changed and require a rebuild.
+    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed that requires axis rebuild.
     */
     context.element
            .select('svg')
@@ -238,13 +242,13 @@ const Internal = {
   @private
   @function updateXAxis
   @description Updates the up the x-axis scale
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateXAxis(context) {
     /*
-    Updated the x-axis on chart by rebuilding it. Used when axis properties on a chart are changed and require a rebuild.
+    Updated the x-axis on chart by rebuilding it. Used when properties on a chart are changed that requires axis rebuild.
     */
     context.element
            .select('svg')
@@ -263,9 +267,9 @@ const Internal = {
   /*
   @private
   @function updateFontSize
-  @description Updates the chart's font size on the element itself
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @description Updates the chart's font size on the svg
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateFontSize(context) {
@@ -278,9 +282,9 @@ const Internal = {
   /*
   @private
   @function updateFontStyle
-  @description Updates the chart's font style on the element itself
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @description Updates the chart's font style on the svg
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateFontStyle(context) {
@@ -293,9 +297,9 @@ const Internal = {
   /*
   @private
   @function updateTitle
-  @description Updates the chart's title on the element itself
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @description Updates the chart's title on the svg
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateTitle(context) {
@@ -309,16 +313,17 @@ const Internal = {
   @private
   @function setXscale
   @description Sets the xScale for chart. Checks for the type of scale passed in, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
-  @param {Object} context  Chart object
+  @param {Object} context (chart instance)
   @param {String} type Type of scale (ordinal vs. linear)
   @param {String} dataDomain Type of data to map the scale to (String vs. Number)
-  @returns {Object} context (Chart object)
+  @returns {Object} context (chart instance)
   */
 
   setXscale(context, type, dataDomain) {
     /*
     If check for the type of axis and build accordingly.
-    In addition, we use helper functions to get the column name and set it to be the axis label.
+    In addition, we use helper functions to get the column name and
+    set it to be the axis label.
     */
     if (type === 'ordinal') {
       context.xColumnName = utils.getFirstOrdinalColumn(context.data);
@@ -348,10 +353,10 @@ const Internal = {
   @private
   @function setYscale
   @description Sets the yScale for chart. Checks for the type of scale passed in, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
-  @param {Object} context Chart object
+  @param {Object} context (chart instance)
   @param {String} type Type of scale (ordinal vs. linear)
   @param {String} dataDomain Type of data to map the scale to (String vs. Number)
-  @returns {Object} this (Chart object)
+  @returns {Object} this (chart instance)
   */
 
   setYscale(context, type, dataDomain) {
@@ -387,11 +392,12 @@ const Internal = {
   @private
   @function
   @description Sets style properties for chart axis
-  @param {Object} context Chart object
+  @param {Object} context (chart instance)
   @param {String} part The part of the axis we are generating
   @param {String} fill Fill color of axis
   @param {String} stroke Stroke style of axis
-  @returns {String} shapeRerendering Style property to make the axis line thinner
+  @param {String} shapeRerendering Style property to make the axis line thinner
+  @returns {Object} this (chart instance)
   */
 
   setAxisStyle(context, part, fill, stroke, shapeRerendering) {
@@ -409,8 +415,8 @@ const Internal = {
   @private
   @function createToolTip
   @description Creates tooltips on chart
-  @param {Object} context Chart object
-  @returns {Object} this (Chart object)
+  @param {Object} context (chart instance)
+  @returns {Object} this (chart instance)
   */
 
   createToolTip(context) {
