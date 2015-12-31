@@ -25,7 +25,7 @@ export class ChartMain {
     this._dateFormat = '';
   }
 
-  /* All of the below setters and getters are used for the chart properties instantiated in the contructor function above.
+  /* All of the below setters and getters are used for the chart properties instantiated in the constructor function above.
   */
 
   set setWidth(newWidth) {
@@ -359,6 +359,20 @@ export class ChartMain {
       this.data = snapshot.val();
       this.updateChartComponents();
     }, this);
+
+    return this;
+  }
+
+  /*
+  @function with
+  @description Allows for customization of chart configuration before rendering.
+  @param {Object} configuration object
+  @returns {Object} this (ChartMain class)
+  */
+  with(config) {
+    Object.keys(config).forEach(key => {
+      this[`_${key}`] = config[key];
+    });
 
     return this;
   }
