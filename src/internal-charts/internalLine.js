@@ -280,6 +280,34 @@ const InternalLine = {
   setColumnNames(context) {
     context.xColumnName = utils.getFirstTimeColumn(context.data, context.dateFormat);
   },
+
+  /*
+  @private
+  @function setTickFormat
+  @description Sets the tick format for xAxis
+  @param {Object} context Chart object
+  @param {String} tickFormat a format specifier
+  */
+
+  setTickFormat(context, tickFormat) {
+    context.xAxis
+    .tickFormat(d3.time.format(tickFormat));
+  },
+
+  /*
+  @private
+  @function setTickCount
+  @description Sets the tick count for xAxis
+  @param {Object} context Chart object
+  @param {String} tickCount A count for the number of ticks
+  @param {String} countBy countBy What interval ticks should count e.g. by month, year, minute
+  */
+
+  setTickCount(context, tickCount, countBy) {
+    context.xAxis
+    .ticks(d3.time[countBy], tickCount);
+  },
+
 };
 
 export default InternalLine;
