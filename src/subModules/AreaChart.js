@@ -12,10 +12,14 @@ export class AreaChart extends ChartMain {
   @private
   @function build
   @description Build up all the components for the chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   build() {
+    /*
+    Calls each of the methods on Internal and InternalArea object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    */
+
     Internal.selectElement(this);
     Internal.createSVGElement(this);
     Internal.createToolTip(this);
@@ -40,8 +44,8 @@ export class AreaChart extends ChartMain {
   /*
   @private
   @function updateChartComponents
-  @description Updates the area on the chart
-  @returns {Object} this Chart object
+  @description Updates the area components on the chart
+  @returns {Object} this (chart instance)
   */
 
   updateChartComponents() {
@@ -54,7 +58,7 @@ export class AreaChart extends ChartMain {
   @private
   @function updateHeight
   @description Updates the chart's height on the element
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateHeight() {
@@ -73,7 +77,7 @@ export class AreaChart extends ChartMain {
   @private
   @function updateWidth
   @description Updates the chart's width on the element
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateWidth() {
@@ -90,7 +94,7 @@ export class AreaChart extends ChartMain {
   @private
   @function updateMargins
   @description Updates the chart's margin on the element
-  @@returns {Object} this Chart object
+  @@returns {Object} this (chart instance)
   */
 
   updateMargins() {
@@ -102,7 +106,7 @@ export class AreaChart extends ChartMain {
   /*
   @function updateColors
   @description Update color of area in chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateColors() {

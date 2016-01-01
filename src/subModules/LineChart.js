@@ -15,7 +15,7 @@ export class LineChart extends ChartMain {
   @private
   @function build
   @description Builds up the bar chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   build() {
@@ -47,7 +47,7 @@ export class LineChart extends ChartMain {
   @private
   @function updateChartComponents
   @description Calls InternalLine to update the line on chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateChartComponents() {
@@ -62,7 +62,7 @@ export class LineChart extends ChartMain {
   @private
   @function updateHeight
   @description Updates the chart's height on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateHeight() {
@@ -83,7 +83,7 @@ export class LineChart extends ChartMain {
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateMargins() {
@@ -100,7 +100,7 @@ export class LineChart extends ChartMain {
   @private
   @function updateWidth
   @description Updates the chart's width on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateWidth() {
@@ -122,7 +122,7 @@ export class LineChart extends ChartMain {
   @function updateColors
   @description Calls InternalLine to update color of line chart after initial render
   @param {Array} colors Array of colors to update the chart to
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateColors() {
@@ -138,7 +138,7 @@ export class LineChart extends ChartMain {
   @private
   @function updatexAxisLabel
   @description Calls Internal to x-axis label
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updatexAxisLabel() {
@@ -153,8 +153,8 @@ export class LineChart extends ChartMain {
   /*
   @private
   @function updatexAxisLabel
-  @description Calls Internal to x-axis label
-  @returns {Object} this Chart object
+  @description Calls InternalLine to update y-axis label
+  @returns {Object} this (chart instance)
   */
 
   updateyAxisLabel() {
@@ -169,9 +169,9 @@ export class LineChart extends ChartMain {
   /*
   @private
   @function updateDateFormat
-  @description Updates the time format and call chart update functions
+  @description Updates the time format and calls chart update functions
   @param {String} newDateFormat A new time format specifier
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateTimeFormat(dateFormat) {
@@ -184,7 +184,7 @@ export class LineChart extends ChartMain {
   @function updateTickFormat
   @description Updates the formatting for the chart ticks
   @param {String} tickFormat A new time format specifier for ticks
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateTickFormat(tickFormat) {
@@ -199,7 +199,7 @@ export class LineChart extends ChartMain {
   @description Updates the amount of ticks
   @param {String} tickCount The number of ticks wanted
   @param {String} countBy What interval ticks should count e.g. by month, year, minute
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateTickCount(tickCount, countBy) {

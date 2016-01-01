@@ -219,7 +219,7 @@ const Internal = {
 
   updateYAxis(context) {
     /*
-    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed that requires axis rebuild.
+    Updates the y-axis on chart by rebuilding it. Used when properties on a chart are changed that requires axis rebuild.
     */
     context.element
            .select('svg')
@@ -437,18 +437,22 @@ const Internal = {
                         'border-radius': '1px',
                         'cursor': 'pointer',
                       });
+    // Turns on visibility of tooltip
     function show(time = 200) {
       this.transition()
           .duration(time)
           .style('opacity', 1);
     }
 
+    // Turns off visibility of tooltip
     function hide(time = 200) {
       this.transition()
           .duration(time)
           .style('opacity', 0);
     }
 
+    // Determines the location the tooltip should render
+    // Sets the content of the tooltip
     function setContent(content = 'Tooltip') {
       this.html(() => {
         return content;
@@ -462,6 +466,15 @@ const Internal = {
     context.tooltip.setContent = setContent;
     return context;
   },
+
+
+  /*
+  @private
+  @function createLegend
+  @description Creates legend on chart
+  @param {Object} context (chart instance)
+  @returns {Object} this (chart instance)
+  */
 
   createLegend(context) {
     context.legend = context.svg.append('g')
@@ -478,7 +491,7 @@ const Internal = {
       .attr('height', 18)
       // Setting colors
       .style('fill', context.getColors);
-    // // append the name of ordinal data
+    // append the name of ordinal data
     context.legend.append('text')
       .attr('x', context.getWidth - 24)
       .attr('y', 12)

@@ -10,8 +10,8 @@ const scatter = {
 @private
 @function setColumns
 @description Parses and sets the column names for a particular chart instance
-@param {Object} context Chart object
-@returns {Object} context Chart object
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
 */
 
   setColumns(context) {
@@ -25,9 +25,9 @@ const scatter = {
 /*
 @private
 @function setXscale
-@description Sets the scale for the X-axis based on the results of the setColumns function
-@param {Object} context Chart object
-@returns {Object} context Chart object
+@description Sets the scale for the x-axis based on the results of the setColumns function
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
 */
 
   setXscale(context) {
@@ -42,9 +42,9 @@ const scatter = {
 /*
 @private
 @function setYscale
-@description Sets the scale for the Y-axis based on the results of the setColumns function
-@param {Object} context Chart object
-@returns {Object} context Chart object
+@description Sets the scale for the y-axis based on the results of the setColumns function
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
 */
 
   setYscale(context) {
@@ -59,8 +59,8 @@ const scatter = {
 @private
 @function buildChartComponents
 @description Builds the actual chart components with data
-@param {Object} context Chart object
-@returns {Object} context Chart object
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
 */
 
   buildChartComponents(context) {
@@ -102,8 +102,8 @@ const scatter = {
 @private
 @function styleChart
 @description Updates the chart's style on the element
-@param {Object} context Chart object
-@returns {Object} context Chart object
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
 */
 
   styleChart(context) {
@@ -133,8 +133,8 @@ const scatter = {
   @private
   @function  updateColors
   @description Updates the chart's colors
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context(chart instance)
   */
 
   updateColors(context) {

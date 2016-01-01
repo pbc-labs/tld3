@@ -55,7 +55,7 @@ const InternalBarLeft = {
   /*
   @private
   @function updateChartComponents
-  @description Calls InternalBar to updates the bar on chart
+  @description Calls InternalBar to update and rerender the bars on chart
   @param {Object} context (chart instance)
   @returns {Object} context (chart instance)
   */
@@ -157,7 +157,7 @@ const InternalBarLeft = {
 
   updateYAxis(context) {
     /*
-    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    Updates the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
     */
     context.element
            .select('svg')
@@ -186,7 +186,7 @@ const InternalBarLeft = {
 
   updateXAxis(context) {
     /*
-    Updated the x-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    Updates the x-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
     */
     context.element
            .select('svg')

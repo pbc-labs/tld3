@@ -27,9 +27,19 @@
     </div>
     <script>
 
-      // var tld3 = tld3.default;
 
       // tld3.upload('./data/multiLineData.csv')
+      //     .then((data) => {
+      //       tld3.make('LineChart')
+      //           .updateTimeFormat('%Y%m%d')
+      //           .using(data)
+      //           .in('#linechart');
+      //     })
+      //     .catch((err) => {
+      //       console.error(err);
+      //     });
+
+      // tld3.uploadFirebase('https://tld3-multi-line.firebaseio.com/')
       //     .then((data) => {
       //       tld3.make('LineChart')
       //           .updateTimeFormat('%Y%m%d')
@@ -50,12 +60,22 @@
       //          console.error(err);
       //        });
 
-      // tld3.upload('./data/donutData.csv')
+      // tld3.uploadFirebase('https://tld3-line.firebaseio.com/')
       //        .then((data) => {
-      //          tld3.make('DonutChart')
+      //          tld3.make('LineChart')
       //                 .using(data)
-      //                 .in('#donutchart')
-      //                 .changeTitle('Age vs. Population');
+      //                 .in('#linechart')
+      //                 .changeTitle('yo yo yo');
+      //        })
+      //        .catch((err) => {
+      //          console.error(err);
+      //        });
+
+      // tld3.uploadFirebase('https://tlde-scatter.firebaseio.com/')
+      //        .then((data) => {
+      //          tld3.make('ScatterChart')
+      //                 .using(data)
+      //                 .in('#scatterchart');
       //        })
       //        .catch((err) => {
       //          console.error(err);

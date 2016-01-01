@@ -65,7 +65,7 @@ export class WaffleChart extends ChartMain {
   @private
   @function build
   @description Builds up the waffle chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   build() {
@@ -86,7 +86,7 @@ export class WaffleChart extends ChartMain {
   @private
   @function updateChartComponents
   @description Calls InternalWaffle to update the waffle chart components
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
   updateChartComponents() {
     InternalWaffle.updateChartComponents(this);
@@ -148,7 +148,7 @@ export class WaffleChart extends ChartMain {
 /*
 @private
 @function Updates color of waffle chart after initial render
-@returns {Object} this Chart object
+@returns {Object} this (chart instance)
 */
   updateColors() {
     InternalWaffle.updateColors(this);

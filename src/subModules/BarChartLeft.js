@@ -17,12 +17,12 @@ export class BarChartLeft extends ChartMain {
   @private
   @function build
   @description Builds up the left bar chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   build() {
     /*
-    Calls each of the methods on Internal and InternalBar object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    Calls each of the methods on Internal, InternalBar and InternalBarLeft object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
     */
     Internal.selectElement(this);
     InternalBarLeft.setXscale(this);
@@ -44,8 +44,8 @@ export class BarChartLeft extends ChartMain {
   /*
   @private
   @function updateChartComponents
-  @description Calls InternalBar to updates the bar on chart
-  @returns {Object} this Chart object
+  @description Calls InternalBarLeft to update the bar on chart
+  @returns {Object} this (chart instance)
   */
 
   updateChartComponents() {
@@ -60,7 +60,7 @@ export class BarChartLeft extends ChartMain {
   @private
   @function updateHeight
   @description Updates the chart's height on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateHeight() {
@@ -80,7 +80,7 @@ export class BarChartLeft extends ChartMain {
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateMargins() {
@@ -97,7 +97,7 @@ export class BarChartLeft extends ChartMain {
   @private
   @function updateWidth
   @description Updates the chart's width on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateWidth() {
@@ -117,7 +117,7 @@ export class BarChartLeft extends ChartMain {
   @function updateColors
   @description Calls InternalBar to update color of left bar chart after initial render
   @param {Array} colors Array of colors to update the chart to
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateColors(colors) {
@@ -133,7 +133,7 @@ export class BarChartLeft extends ChartMain {
   @private
   @function updatexAxisLabel
   @description Calls Internal to x-axis label
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updatexAxisLabel() {
@@ -149,7 +149,7 @@ export class BarChartLeft extends ChartMain {
   @private
   @function updatexAxisLabel
   @description Calls Internal to x-axis label
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateyAxisLabel() {
