@@ -98,7 +98,7 @@ class ChartMain {
     return this;
   }
 
-  setWidth(width) {
+  setChartWidth(width) {
     if (!this.width) {
       this.width = new Internal.config.Width(200);
     } else {
@@ -107,7 +107,7 @@ class ChartMain {
     return this;
   }
 
-  setHeight(height) {
+  setChartHeight(height) {
     if (!this.height) {
       this.height = new Internal.config.Height(120);
     } else {
@@ -240,8 +240,8 @@ class BarChart extends ChartMain {
   render() {
     return this.selectElement()
                 .setMargin()
-                .setWidth()
-                .setHeight()
+                .setChartWidth()
+                .setChartHeight()
                 .setXscale()
                 .setYscale()
                 .createSVG()

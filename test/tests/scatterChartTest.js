@@ -66,8 +66,8 @@ describe('Scatter Chart methods functionality', () => {
       expect(scatterChart.getMargins).to.eql({ top: 30, bottom: 60, left: 60, right: 30 });
       scatterChart.changeMargins({ top: 10, bottom: 10, left: 10, right: 10 });
       expect(scatterChart.getMargins).to.eql({ top: 10, bottom: 10, left: 10, right: 10 });
-      expect(Number(browser.window.d3.select('svg').attr('height'))).to.equal(scatterChart.getHeight + scatterChart.getMargins.top + scatterChart.getMargins.bottom);
-      expect(Number(browser.window.d3.select('svg').attr('width'))).to.equal(scatterChart.getWidth + scatterChart.getMargins.left + scatterChart.getMargins.right);
+      expect(Number(browser.window.d3.select('svg').attr('height'))).to.equal(scatterChart.getChartHeight + scatterChart.getMargins.top + scatterChart.getMargins.bottom);
+      expect(Number(browser.window.d3.select('svg').attr('width'))).to.equal(scatterChart.setChartWidth + scatterChart.getMargins.left + scatterChart.getMargins.right);
     });
   });
 
