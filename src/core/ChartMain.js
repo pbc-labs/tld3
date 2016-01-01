@@ -2,6 +2,7 @@
 import Internal from '../internal-charts/internal';
 import Firebase from 'firebase';
 import errors from '../utils/errors';
+import themes from '../utils/themes';
 
 /*
 Defines the main Chart class that servers as the super class for all
@@ -374,6 +375,12 @@ export class ChartMain {
   */
   with(config) {
     Object.keys(config).forEach(key => {
+      // If the key is theme, we set the colors to the theme's color
+      // (stored in themes config object)
+      if (key === 'theme') {
+        this._colors = themes[config[key]];
+      }
+
       this[`_${key}`] = config[key];
     });
 
