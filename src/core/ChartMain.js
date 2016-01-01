@@ -61,6 +61,10 @@ export class ChartMain {
     return this._colors;
   }
 
+  get getColorScale() {
+    return this._colorScale;
+  }
+
   set setTitle(newTitle) {
     this._title = newTitle;
   }

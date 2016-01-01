@@ -412,6 +412,21 @@ const Internal = {
 
   /*
   @private
+  @function convertColorsToScale
+  @description Creates an ordinal color scale according to categories passed in
+  @param {Object} context (chart instance)
+  @param {Array} categories (Data to be mapped to by scale)
+  @returns {Object} this (chart instance)
+  */
+  convertColorsToScale(context, categories) {
+    context._colorScale = d3.scale.ordinal()
+                            .domain(categories)
+                            .range(context.getColors);
+    return context;
+  },
+
+  /*
+  @private
   @function createToolTip
   @description Creates tooltips on chart
   @param {Object} context (chart instance)
