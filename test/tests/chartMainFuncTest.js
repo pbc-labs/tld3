@@ -64,10 +64,10 @@ describe('Chart Main methods functionality', () => {
       chart.using(data).in('#chart');
       const newMargins = { top: 60, right: 40, bottom: 60, left: 40 };
       chart.changeMargins(newMargins);
-      const topNew = d3.select('#chart').select('svg').attr('height') - chart.getHeight - chart.getMargins.bottom;
-      const bottomNew = d3.select('#chart').select('svg').attr('height') - chart.getHeight - chart.getMargins.top;
-      const rightNew = d3.select('#chart').select('svg').attr('width') - chart.getWidth - chart.getMargins.left;
-      const leftNew = d3.select('#chart').select('svg').attr('width') - chart.getWidth - chart.getMargins.right;
+      const topNew = d3.select('#chart').select('svg').attr('height') - chart.getChartHeight - chart.getMargins.bottom;
+      const bottomNew = d3.select('#chart').select('svg').attr('height') - chart.getChartHeight - chart.getMargins.top;
+      const rightNew = d3.select('#chart').select('svg').attr('width') - chart.setChartWidth - chart.getMargins.left;
+      const leftNew = d3.select('#chart').select('svg').attr('width') - chart.setChartWidth - chart.getMargins.right;
       expect({ top: topNew, right: rightNew, bottom: bottomNew, left: leftNew }).to.deep.equal(newMargins);
     });
 

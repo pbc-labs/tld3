@@ -23,6 +23,8 @@ export class DonutChart extends ChartMain {
     Calls each of the methods on Internal and InternalDonut object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
     */
     Internal.selectElement(this);
+    Internal.getParentDimensions(this);
+    Internal.getChartDimensions(this);
     Internal.createSVGElement(this);
     Internal.createToolTip(this);
     InternalDonut.updateStyle(this);

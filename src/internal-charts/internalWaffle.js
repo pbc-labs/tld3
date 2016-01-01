@@ -66,8 +66,8 @@ const waffle = {
   */
 
   calculateSize(context) {
-    context.setWidth = ((context.getSquareSize * context.getNumColumns) + context.getNumColumns * context.getGapSize + context.getSquareSize);
-    context.setHeight = ((context.getSquareSize * context.getNumRows) + context.getNumRows * context.getGapSize + context.getSquareSize);
+    context.setChartWidth = ((context.getSquareSize * context.getNumColumns) + context.getNumColumns * context.getGapSize + context.getSquareSize);
+    context.setChartHeight = ((context.getSquareSize * context.getNumRows) + context.getNumRows * context.getGapSize + context.getSquareSize);
 
     return context;
   },
@@ -146,7 +146,7 @@ const waffle = {
            .attr('font-size', context.getFontSize)
            .append('text')
            .attr('class', 'title')
-           .attr('x', context.getWidth * 0.5)
+           .attr('x', context.getChartWidth * 0.5)
            .attr('y', 20)
            .text(`${context.xColumnName} | ${context.yColumnName}`);
     return context;
@@ -168,7 +168,7 @@ const waffle = {
         .enter().append('g')
         .attr('class', 'legend-data')
         // Makes each rect spaced by 20px
-        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getHeight) + ')'; });
+        .attr('transform', (d, i) => { return 'translate(' + (i * 50) + ', ' + (context.getChartHeight) + ')'; });
     legend.append('rect')
         .attr('x', 10)
         .attr('width', context.getNumColumns)

@@ -134,7 +134,7 @@ const internalArea = {
   setXScale(context) {
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.time.scale()
-                    .range([0, context.getWidth])
+                    .range([0, context.getChartWidth])
                     .domain(d3.extent(context.data, (d) => { return d[context.xColumnName]; }));
 
     return context;
@@ -151,7 +151,7 @@ const internalArea = {
   setYScale(context) {
     context.setyAxisLabel = context.yColumnName;
     context.yScale = d3.scale.linear()
-                    .range([context.getHeight, 0])
+                    .range([context.getChartHeight, 0])
                     .domain([0, d3.max(context.data, (d) => { return d[context.yColumnName]; })]);
 
     return context;
@@ -188,7 +188,7 @@ const internalArea = {
   buildArea(context) {
     context.area = d3.svg.area()
         .x((d) => { return context.xScale(d[context.getxAxisLabel]); })
-        .y0(context.getHeight)
+        .y0(context.getChartHeight)
         .y1((d) => { return context.yScale(d[context.getyAxisLabel]); });
 
     return context;
@@ -244,7 +244,7 @@ const internalArea = {
         .attr('font-size', context.getFontSize)
         .append('text')
         .attr('class', 'title')
-        .attr('x', context.getWidth * 0.5)
+        .attr('x', context.getChartWidth * 0.5)
         .attr('y', 20)
         .text(context.getTitle);
   },
