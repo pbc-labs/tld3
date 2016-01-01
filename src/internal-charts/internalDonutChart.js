@@ -33,7 +33,7 @@ const DonutChart = {
   */
 
   updateRadius(context) {
-    context.radius = Math.min(context.getHeight, context.getWidth) / 2;
+    context.radius = Math.min(context.getChartHeight, context.getChartWidth) / 2;
     return context;
   },
 
@@ -133,7 +133,7 @@ const DonutChart = {
   */
 
   updateTranslation(context) {
-    context.svg.attr('transform', 'translate(' + context.getWidth / 2 + ',' + context.getHeight / 2 + ')');
+    context.svg.attr('transform', 'translate(' + context.getChartWidth / 2 + ',' + context.getChartHeight / 2 + ')');
     return context;
   },
 

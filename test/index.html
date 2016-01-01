@@ -28,17 +28,23 @@
     <script>
 
       // var tld3 = tld3.default;
-
-      // tld3.upload('./data/multiLineData.csv')
-      //     .then((data) => {
-      //       tld3.make('LineChart')
-      //           .updateTimeFormat('%Y%m%d')
-      //           .using(data)
-      //           .in('#linechart');
-      //     })
-      //     .catch((err) => {
-      //       console.error(err);
-      //     });
+      // var bar;
+      // tld3.upload('./data/barData.csv').then((data) => {
+      //     bar = tld3.make('BarChartLeft').using(data).in('#chart');
+      // }).catch((err) => {
+      //   console.error(err);
+      // });
+      var line;
+      tld3.upload('./data/multiLineData.csv')
+          .then((data) => {
+           line = tld3.make('LineChart')
+                .updateTimeFormat('%Y%m%d')
+                .using(data)
+                .in('#linechart');
+          })
+          .catch((err) => {
+            console.error(err);
+          });
 
       // tld3.upload('./data/lineData.csv')
       //        .then((data) => {

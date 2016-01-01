@@ -27,6 +27,8 @@ export class ScatterChart extends ChartMain {
 
   build() {
     Internal.selectElement(this);
+    Internal.getParentDimensions(this);
+    Internal.getChartDimensions(this);
     InternalScatter.setColumns(this);
     InternalScatter.setXscale(this);
     InternalScatter.setYscale(this);

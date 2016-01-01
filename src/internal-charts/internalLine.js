@@ -21,7 +21,7 @@ const InternalLine = {
         .attr('font-size', context.getFontSize)
         .append('text')
         .attr('class', 'title')
-        .attr('x', context.getWidth * 0.5)
+        .attr('x', context.getChartWidth * 0.5)
         .attr('y', 20)
         .text(context.getTitle);
 
@@ -109,7 +109,7 @@ const InternalLine = {
   setXScale(context) {
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.time.scale()
-                    .range([0, context.getWidth]);
+                    .range([0, context.getChartWidth]);
     context.xScale.domain(
       [d3.min(context.data, d => { return d3.min(d.values, v => {return v[context.xColumnName]; }); }),
       d3.max(context.data, d => { return d3.max(d.values, v => {return v[context.xColumnName]; }); })]);
@@ -127,7 +127,7 @@ const InternalLine = {
   setYScale(context) {
     context.setyAxisLabel = 'Default Label';
     context.yScale = d3.scale.linear()
-                    .range([context.getHeight, 0]);
+                    .range([context.getChartHeight, 0]);
 
     context.yScale.domain(
       [d3.min(context.data, d => { return d3.min(d.values, v => {return v[d.name]; }); }),

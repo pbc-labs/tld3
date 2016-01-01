@@ -70,6 +70,8 @@ export class WaffleChart extends ChartMain {
 
   build() {
     Internal.selectElement(this);
+    Internal.getParentDimensions(this);
+    Internal.getChartDimensions(this);
     InternalWaffle.setColumns(this);
     InternalWaffle.processData(this);
     InternalWaffle.calculateSize(this);
@@ -94,13 +96,13 @@ export class WaffleChart extends ChartMain {
     return this;
   }
 
-// overwrites setHeight for wafflechart
-  set setHeight(height) {
+// overwrites setChartHeight for wafflechart
+  set setChartHeight(height) {
     this.setNumRows = Math.floor(height / this.getSquareSize);
     this._height = height;
   }
 
-  set setWidth(width) {
+  set setChartWidth(width) {
     this.setNumColumns = Math.floor(width / this.getSquareSize);
     this._width = width;
   }

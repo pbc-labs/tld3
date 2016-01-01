@@ -17,6 +17,8 @@ export class AreaChart extends ChartMain {
 
   build() {
     Internal.selectElement(this);
+    Internal.getParentDimensions(this);
+    Internal.getChartDimensions(this);
     Internal.createSVGElement(this);
     Internal.createToolTip(this);
     InternalArea.setColumnNames(this);

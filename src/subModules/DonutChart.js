@@ -20,6 +20,8 @@ export class DonutChart extends ChartMain {
   */
   build() {
     Internal.selectElement(this);
+    Internal.getParentDimensions(this);
+    Internal.getChartDimensions(this);
     Internal.createSVGElement(this);
     Internal.createToolTip(this);
     InternalDonut.updateStyle(this);
