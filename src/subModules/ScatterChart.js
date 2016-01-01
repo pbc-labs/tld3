@@ -22,10 +22,13 @@ export class ScatterChart extends ChartMain {
   @private
   @function build
   @description Calls the necessary internal methods from Internal object and InternalScatter to build the scatter chart.
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   build() {
+    /*
+    Calls each of the methods on Internal and InternalScatter object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.selectElement(this);
     InternalScatter.setColumns(this);
     InternalScatter.setXscale(this);
@@ -49,7 +52,7 @@ export class ScatterChart extends ChartMain {
   @private
   @function updateChartComponents
   @description Updates the dots on chart. Calls the internal update function
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
   updateChartComponents() {
     InternalScatter.updateChartComponents(this);
@@ -61,7 +64,7 @@ export class ScatterChart extends ChartMain {
   @private
   @function updateHeight
   @description Updates the chart's height on the element itself
-  @returns {Object} this
+  @returns {Object} this (chart instance)
   */
 
   updateHeight() {
@@ -81,7 +84,7 @@ export class ScatterChart extends ChartMain {
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateMargins() {
@@ -97,7 +100,7 @@ export class ScatterChart extends ChartMain {
   @private
   @function updateWidth
   @description Updates the chart's width on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateWidth() {

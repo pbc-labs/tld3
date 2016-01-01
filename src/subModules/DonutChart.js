@@ -16,9 +16,12 @@ export class DonutChart extends ChartMain {
   @private
   @function build
   @description Builds up the Donut chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
   build() {
+    /*
+    Calls each of the methods on Internal and InternalDonut object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
+    */
     Internal.selectElement(this);
     Internal.createSVGElement(this);
     Internal.createToolTip(this);
@@ -41,7 +44,7 @@ export class DonutChart extends ChartMain {
   @private
   @function updateChartComponents
   @description Calls InternalDonut to update the Donut on chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
   updateChartComponents() {
     /* Calls method on InternalDonut to recreate all the chart components. Used to reflect any changes made to property values (e.g. font-size, axis-label, etc.)

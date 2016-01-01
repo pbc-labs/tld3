@@ -11,8 +11,8 @@ const DonutChart = {
   @private
   @function updateStyle
   @description Updates the chart style
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateStyle(context) {
@@ -28,8 +28,8 @@ const DonutChart = {
   @private
   @function updateRadius
   @description Updates the radius
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateRadius(context) {
@@ -41,8 +41,8 @@ const DonutChart = {
   @private
   @function updateColors
   @description Updates the donut slice colors
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateColors(context) {
@@ -55,8 +55,8 @@ const DonutChart = {
   @private
   @function updateArc
   @description Updates the arc slices with a new scale
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateArc(context) {
@@ -70,8 +70,8 @@ const DonutChart = {
   @private
   @function updatePie
   @description Updates the pie slices with a new scale
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updatePie(context) {
@@ -85,9 +85,9 @@ const DonutChart = {
   @private
   @function updateLinearColunm
   @description Update the linear name for ordinal data
-  @param {Object} context Chart object
-  @param {String} the new column name
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @param {String} columnName The new column name
+  @returns {Object} context (chart instance)
   */
 
   updateLinearColumn(context, columnName) {
@@ -99,9 +99,9 @@ const DonutChart = {
   @private
   @function updateOrdinalColunm
   @description Update the colunm name for ordinal data
-  @param {Object} context Chart object
-  @param {String} the new column name
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @param {String} columnName the new column name
+  @returns {Object} context Char(chart instance)
   */
 
   updateOrdinalColumn(context, columnName) {
@@ -113,8 +113,8 @@ const DonutChart = {
   @private
   @function convertData
   @description Coverts the charts data to the correct format
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   convertData(context) {
@@ -128,8 +128,8 @@ const DonutChart = {
   @private
   @function updateTranslation
   @description Updates the donut's position
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateTranslation(context) {
@@ -141,7 +141,8 @@ const DonutChart = {
   @private
   @function buildChartComponents
   @description Builds the actual chart components with data, including the tooltips
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
    */
 
   buildChartComponents(context) {
@@ -206,8 +207,8 @@ const DonutChart = {
   @private
   @function updateChartComponents
   @description Updates the donut slices on chart
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateChartComponents(context) {
@@ -227,8 +228,8 @@ const DonutChart = {
   @private
   @function updateTitle
   @description Updates the title on the chart
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateTitle(context) {

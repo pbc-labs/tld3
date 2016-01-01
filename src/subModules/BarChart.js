@@ -14,7 +14,7 @@ export class BarChart extends ChartMain {
   @private
   @function build
   @description Builds up the bar chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   build() {
@@ -42,7 +42,7 @@ export class BarChart extends ChartMain {
   @private
   @function updateChartComponents
   @description Calls InternalBar to update the bar on chart
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateChartComponents() {
@@ -57,7 +57,7 @@ export class BarChart extends ChartMain {
   @private
   @function updateHeight
   @description Updates the chart's height on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateHeight() {
@@ -77,7 +77,7 @@ export class BarChart extends ChartMain {
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateMargins() {
@@ -94,7 +94,7 @@ export class BarChart extends ChartMain {
   @private
   @function updateWidth
   @description Updates the chart's width on the element itself
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateWidth() {
@@ -114,7 +114,7 @@ export class BarChart extends ChartMain {
   @function updateColors
   @description Calls InternalBar to update color of bar chart after initial render
   @param {Array} colors Array of colors to update the chart to
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateColors() {
@@ -129,7 +129,7 @@ export class BarChart extends ChartMain {
   @private
   @function updatexAxisLabel
   @description Calls Internal to x-axis label
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updatexAxisLabel() {
@@ -145,7 +145,7 @@ export class BarChart extends ChartMain {
   @private
   @function updatexAxisLabel
   @description Calls Internal to x-axis label
-  @returns {Object} this Chart object
+  @returns {Object} this (chart instance)
   */
 
   updateyAxisLabel() {

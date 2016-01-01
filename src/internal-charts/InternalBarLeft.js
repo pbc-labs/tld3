@@ -157,7 +157,7 @@ const InternalBarLeft = {
 
   updateYAxis(context) {
     /*
-    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    Updates the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
     */
     context.element
            .select('svg')
@@ -186,7 +186,7 @@ const InternalBarLeft = {
 
   updateXAxis(context) {
     /*
-    Updated the x-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    Updates the x-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
     */
     context.element
            .select('svg')

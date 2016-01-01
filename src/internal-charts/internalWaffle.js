@@ -10,8 +10,8 @@ const waffle = {
   @private
   @function setColumns
   @description Parses and sets the column names for a particular WaffleChart instance
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   setColumns(context) {
@@ -25,8 +25,8 @@ const waffle = {
   @private
   @function processData
   @description Processes the data input and calculates the required number of squares and colors
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context(chart instance)
   */
 
   processData(context) {
@@ -61,8 +61,8 @@ const waffle = {
   @private
   @function calculateSize
   @description Calculates the size of each square
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   calculateSize(context) {
@@ -76,8 +76,8 @@ const waffle = {
   @private
   @function buildChartComponents
   @description Builds the actual chart components (dots) and tooltip with data.
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   buildChartComponents(context) {
@@ -136,8 +136,8 @@ const waffle = {
   @private
   @function styleChart
   @description Updates the chart's style on the element
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   styleChart(context) {
@@ -156,8 +156,8 @@ const waffle = {
   @private
   @function createLegend
   @description Creates a legend for the chart according to colors and data used
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   createLegend(context) {
@@ -189,8 +189,8 @@ const waffle = {
   @private
   @function updateColors
   @description Updates the chart's colors
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateColors(context) {
@@ -208,8 +208,8 @@ const waffle = {
   @private
   @function updateChartComponents
   @description Updates the chart components by re-processing the data
-  @param {Object} context Chart object
-  @returns {Object} context Chart object
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
   */
 
   updateChartComponents(context) {
