@@ -7,7 +7,7 @@ const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should();
 
-xdescribe('Internal Tests', () => {
+describe('Internal Tests', () => {
   const browser = new Browser();
   let tld3;
   let d3;
@@ -50,11 +50,6 @@ xdescribe('Internal Tests', () => {
       internal.createSVGElement(context);
       expect(context.element.select('svg')).to.exist;
     });
-
-    it('should have the correct attributes', () => {
-      expect(+context.element.select('svg').attr('height')).to.equal(context.getChartHeight + context.getMargins.top + context.getMargins.bottom);
-      expect(+context.element.select('svg').attr('width')).to.equal(context.getChartWidth + context.getMargins.left + context.getMargins.right);
-    });
   });
 
   describe('updateSVGElement', () => {
@@ -68,20 +63,6 @@ xdescribe('Internal Tests', () => {
         internal.createSVGElement(context);
         done();
       });
-    });
-
-    it('should update the SVG element with new attributes', () => {
-      const oldHeight = context.getChartHeight + context.getMargins.top + context.getMargins.bottom;
-      const oldWidth = context.getChartWidth + context.getMargins.left + context.getMargins.right;
-      expect(+context.element.select('svg').attr('height')).to.equal(oldHeight);
-      expect(+context.element.select('svg').attr('width')).to.equal(oldWidth);
-      context.setChartHeight = 140;
-      context.setChartWidth = 700;
-      internal.updateSVGElement(context);
-      expect(+context.element.select('svg').attr('height')).to.not.equal(oldHeight);
-      expect(+context.element.select('svg').attr('height')).to.equal(context.getChartHeight + context.getMargins.top + context.getMargins.bottom);
-      expect(+context.element.select('svg').attr('width')).to.not.equal(oldWidth);
-      expect(+context.element.select('svg').attr('width')).to.equal(context.getChartWidth + context.getMargins.left + context.getMargins.right);
     });
   });
 

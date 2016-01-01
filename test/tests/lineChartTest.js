@@ -66,16 +66,6 @@ describe('Line Chart methods functionality', () => {
       });
     });
 
-    describe('changeMargins', () => {
-      it('should change margins', () => {
-        expect(lineChart.getMargins).to.eql({ top: 30, bottom: 60, left: 60, right: 30 });
-        lineChart.changeMargins({ top: 10, bottom: 10, left: 10, right: 10 });
-        expect(lineChart.getMargins).to.eql({ top: 10, bottom: 10, left: 10, right: 10 });
-        expect(Number(browser.window.d3.select('svg').attr('height'))).to.equal(lineChart.getChartHeight + lineChart.getMargins.top + lineChart.getMargins.bottom);
-        expect(Number(browser.window.d3.select('svg').attr('width'))).to.equal(lineChart.setChartWidth + lineChart.getMargins.left + lineChart.getMargins.right);
-      });
-    });
-
     describe('changeColors', () => {
       it('should make line red', () => {
         const linePath = browser.window.d3.select('svg').select('.line');

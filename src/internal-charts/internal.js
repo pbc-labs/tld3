@@ -32,8 +32,7 @@ const Internal = {
 
   getParentDimensions(context) {
     context.setParentHeight = parseInt(d3.select(context.location).style('height'), 10) || window.innerHeight;
-
-    context.setParentWidth = parseInt(d3.select(context.location).style('width'), 10);
+    context.setParentWidth = parseInt(d3.select(context.location).style('width'), 10) || window.innerWidth;
 
     context.element.style('height', `${context._parentHeight}px`);
 

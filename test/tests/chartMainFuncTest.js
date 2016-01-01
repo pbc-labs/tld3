@@ -66,8 +66,8 @@ describe('Chart Main methods functionality', () => {
       chart.changeMargins(newMargins);
       const topNew = d3.select('#chart').select('svg').attr('height') - chart.getChartHeight - chart.getMargins.bottom;
       const bottomNew = d3.select('#chart').select('svg').attr('height') - chart.getChartHeight - chart.getMargins.top;
-      const rightNew = d3.select('#chart').select('svg').attr('width') - chart.setChartWidth - chart.getMargins.left;
-      const leftNew = d3.select('#chart').select('svg').attr('width') - chart.setChartWidth - chart.getMargins.right;
+      const rightNew = d3.select('#chart').select('svg').attr('width') - chart.getChartWidth - chart.getMargins.left;
+      const leftNew = d3.select('#chart').select('svg').attr('width') - chart.getChartWidth - chart.getMargins.right;
       expect({ top: topNew, right: rightNew, bottom: bottomNew, left: leftNew }).to.deep.equal(newMargins);
     });
 
@@ -83,8 +83,8 @@ describe('Chart Main methods functionality', () => {
       const chart = tld3.make('BarChart');
       chart.using(data).in('#chart');
       chart.changeHeight(500);
-      const currentHeight = d3.select('#chart').select('svg').attr('height') - chart.getMargins.top - chart.getMargins.bottom;
-      expect(currentHeight).to.deep.equal(500).and.to.be.a('Number');
+      const currentHeight = Number(d3.select('#chart').select('svg').attr('height')) - chart.getMargins.top - chart.getMargins.bottom;
+      expect(Math.round(currentHeight)).to.deep.equal(500).and.to.be.a('Number');
     });
 
     it('should change width when \'changeWidth\' method is invoked with options', () => {

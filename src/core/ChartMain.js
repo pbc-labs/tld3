@@ -15,7 +15,6 @@ export class ChartMain {
   constructor(width, height, margins, colors, title, fontSize, fontStyle, xAxisLabel, yAxisLabel, xAxisOrientation, yAxisOrientation) {
     // this._width = width || 600;
     // this._height = height || 300;
-    // this._margins = margins || { top: 30, right: 30, bottom: 60, left: 60 };
     this._colors = colors || ['#E71D36', '#26408B', '#FF9F1C', '#767B91', '#0FA3B1'];
     this._title = title || 'Default title';
     this._fontSize = fontSize || 14;
@@ -24,7 +23,10 @@ export class ChartMain {
     this._yAxisLabel = yAxisLabel || 'y Axis Label';
     this._xAxisOrientation = xAxisOrientation || 'bottom';
     this._yAxisOrientation = yAxisOrientation || 'left';
-    this._dateFormat = '';
+    this._dateFormat = null;
+    this._chartWidth = null;
+    this._chartHeight = null;
+    this._margins = margins || { top: null, right: null, bottom: null, left: null };
   }
 
   /* All of the below setters and getters are used for the chart properties instantiated in the constructor function above.
