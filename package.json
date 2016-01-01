@@ -8,7 +8,8 @@
     "url": "https://github.com/pbc-labs/tld3.git"
   },
   "scripts": {
-    "lint": "gulp lint-strict"
+    "lint": "gulp lint-strict",
+    "prepublish": "gulp build"
   },
   "keywords": [
     "d3",
@@ -17,6 +18,15 @@
     "visualizations"
   ],
   "author": "Banun Atina Idris <banun.a.idris@gmail.com> (http://bthehuman.com/)",
+  "contributors": [
+    {
+      "name": "Preethi Kasireddy",
+      "email": "iam.preethi.k@gmail.com"
+    },
+    {
+      "name": "Colin Seale",
+      "email": "ceseale3@gmail.com"
+      }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pbc-labs/tld3/issues"
