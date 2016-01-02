@@ -26,12 +26,13 @@ const InternalBarLeft = {
            .append('rect')
            .attr('class', 'bar')
            .on('mouseover', (d) => {
-             d3.select(d3.event.target).transition()
-               .style('fill', context.getColors[1]);
-          //  Set tooltips
+             //  Set tooltips
              tooltip.show();
              tooltip.setContent(`<strong>${context.yColumnName}:</strong> ${d[context.yColumnName]}</br>
-             <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`);
+               <strong>${context.xColumnName}:</strong> ${d[context.xColumnName]}`);
+
+             d3.select(d3.event.target)
+               .style('fill', context.getColors[1]);
            })
            .on('mouseout', () => {
              tooltip.hide();
@@ -39,14 +40,20 @@ const InternalBarLeft = {
                .style('fill', context.getColors[0]);
            })
            .attr('height', context.y.rangeBand())
-           .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
-           .attr('x', context.getChartWidth)
+           .attr('y', (d) => {
+             const label = context.getyAxisLabel;
+             return context.yScale(d[label]);
+           })
+           .attr('x', 0)
            .attr('width', 0)
            .style('fill', context.getColors[0])
            .transition()
-           .duration(700)
+           .duration(300)
            .delay((d, i) => { return i * 50; })
-           .attr('x', d => { const label = context.getxAxisLabel; return d[label]; })
+           .attr('x', d => {
+             const label = context.getxAxisLabel;
+             return d[label];
+           })
            .attr('width', d => { const label = context.getxAxisLabel; return context.x(d[label]); });
 
     return context;
