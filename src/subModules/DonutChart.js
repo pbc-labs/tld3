@@ -4,8 +4,8 @@ This is required for d3 to load.
 /*  global d3  */
 
 import { ChartMain } from '../core/ChartMain';
-import Internal from '../internal-charts/internal';
-import InternalDonut from '../internal-charts/internalDonutChart';
+import Internal from '../internalCharts/internal';
+import InternalDonut from '../internalCharts/internalDonutChart';
 
 export class DonutChart extends ChartMain {
   constructor() {

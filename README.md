@@ -1,4 +1,4 @@
-# tld3
+# tl;d3
 [![Build Status](https://travis-ci.org/pbc-labs/tld3.svg?branch=master)](https://travis-ci.org/pbc-labs/tld3)
 > An expressive, modular library for [D3.js](https://github.com/mbostock/d3).
 

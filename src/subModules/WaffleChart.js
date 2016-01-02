@@ -4,8 +4,8 @@ This is required for d3 to load.
 /* global d3 */
 
 import { ChartMain } from '../core/ChartMain';
-import Internal from '../internal-charts/internal';
-import InternalWaffle from '../internal-charts/internalWaffle';
+import Internal from '../internalCharts/internal';
+import InternalWaffle from '../internalCharts/internalWaffle';
 /**
 Constructor subclass for Waffle Chart.
 */

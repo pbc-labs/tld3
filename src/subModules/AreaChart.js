@@ -1,6 +1,6 @@
 import { ChartMain } from '../core/ChartMain';
-import Internal from '../internal-charts/internal';
-import InternalArea from '../internal-charts/internalArea';
+import Internal from '../internalCharts/internal';
+import InternalArea from '../internalCharts/internalArea';
 
 export class AreaChart extends ChartMain {
   constructor() {

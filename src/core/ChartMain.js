@@ -1,5 +1,5 @@
 /*  global d3  */
-import Internal from '../internal-charts/internal';
+import Internal from '../internalCharts/internal';
 import Firebase from 'firebase';
 import errors from '../utils/errors';
 import themes from '../utils/themes';
