@@ -537,7 +537,7 @@ const Internal = {
     context.legend = context.svg.append('g')
       .attr('class', 'legend')
       .selectAll('.legend-data')
-      .data(context.getColors.domain())
+      .data(context.getColorScale.domain())
       .enter().append('g')
       .attr('class', 'legend-data')
       .attr('transform', (d, i) => { return 'translate(0,' + i * 20 + ')'; });
@@ -547,7 +547,7 @@ const Internal = {
       .attr('width', 18)
       .attr('height', 18)
       // Setting colors
-      .style('fill', context.getColors);
+      .style('fill', context.getColorScale);
     // append the name of ordinal data
     context.legend.append('text')
       .attr('x', context.getChartWidth - 24)
