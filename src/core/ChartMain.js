@@ -329,7 +329,7 @@ export class ChartMain {
     // Call the updateColors method on the subclass instance.
     // The update functionality varies for each chart type,
     // hence why we call the method on the instance
-    this.updateColors();
+    this.updateColors(this);
 
     return this;
   }
