@@ -1,7 +1,5 @@
 
-/*
-Holds various error classes used throughout the library
-*/
+// Holds various error classes used throughout the library
 
 const errors = {
 
