@@ -37,7 +37,6 @@ export class DonutChart extends ChartMain {
     InternalDonut.updatePie(this);
     InternalDonut.buildChartComponents(this);
     InternalDonut.updateTitle(this);
-    Internal.createLegend(this);
 
     return this;
   }
