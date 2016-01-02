@@ -89,7 +89,6 @@ export class DonutChart extends ChartMain {
   */
   updateWidth() {
     Internal.updateSVGElement(this);
-    InternalDonut.updateTranslation(this);
     InternalDonut.updateRadius(this);
     InternalDonut.updateArc(this);
     InternalDonut.updatePie(this);
@@ -106,7 +105,6 @@ export class DonutChart extends ChartMain {
   */
   updateHeight() {
     Internal.updateSVGElement(this);
-    InternalDonut.updateTranslation(this);
     InternalDonut.updateRadius(this);
     InternalDonut.updateArc(this);
     InternalDonut.updatePie(this);
