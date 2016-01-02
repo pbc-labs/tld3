@@ -28,7 +28,6 @@ export class DonutChart extends ChartMain {
     Internal.createSVGElement(this);
     Internal.createToolTip(this);
     InternalDonut.updateStyle(this);
-    InternalDonut.updateTranslation(this);
     InternalDonut.updateOrdinalColumn(this);
     Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalColumn]; }));
     InternalDonut.updateLinearColumn(this);
@@ -90,7 +89,6 @@ export class DonutChart extends ChartMain {
   */
   updateWidth() {
     Internal.updateSVGElement(this);
-    InternalDonut.updateTranslation(this);
     InternalDonut.updateRadius(this);
     InternalDonut.updateArc(this);
     InternalDonut.updatePie(this);
@@ -107,7 +105,6 @@ export class DonutChart extends ChartMain {
   */
   updateHeight() {
     Internal.updateSVGElement(this);
-    InternalDonut.updateTranslation(this);
     InternalDonut.updateRadius(this);
     InternalDonut.updateArc(this);
     InternalDonut.updatePie(this);
