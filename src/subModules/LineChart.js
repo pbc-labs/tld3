@@ -2,15 +2,16 @@ import { ChartMain } from '../core/ChartMain';
 import Internal from '../internalCharts/internal';
 import InternalLine from '../internalCharts/internalLine';
 
-/*
-Constructor subclass for Line Chart.
-*/
+
+// Constructor subclass for Line Chart.
+
 export class LineChart extends ChartMain {
   constructor() {
     super();
     this.dateFormat = '';
   }
 
+  // Builds up the components of the line chart
   /*
   @private
   @function build
@@ -19,9 +20,12 @@ export class LineChart extends ChartMain {
   */
 
   build() {
-    /*
-    Calls each of the methods on Internal and InternalLine object necessary to build up all the components of the chart. Internal and InternalLine hold all the methods that do d3 manipulation to create and update various parts of the chart
-    */
+    // Calls each of the methods on Internal and InternalLine
+    // object necessary to build up all the components of the
+    // chart. Internal and InternalLine hold all the methods
+    // that do d3 manipulation to create and update various
+    // parts of the chart
+
     Internal.selectElement(this);
     Internal.getParentDimensions(this);
     Internal.getChartDimensions(this);
@@ -46,6 +50,8 @@ export class LineChart extends ChartMain {
     return this;
   }
 
+  // Calls InternalLine to update the line on chart
+  // Used when a property changes that requires a re-render.
   /*
   @private
   @function updateChartComponents
@@ -54,13 +60,16 @@ export class LineChart extends ChartMain {
   */
 
   updateChartComponents() {
-    /* Calls method on InternalLine to recreate all the chart components. Used to reflect any changes made to property values (e.g. font-size, axis-label, etc.)
-    */
+    // Calls method on InternalLine to recreate all the
+    // chart components. Used to reflect any changes made
+    // to property values (e.g. font-size, axis-label, etc.)
     InternalLine.updateChartComponents(this);
 
     return this;
   }
 
+  // Updates the chart's height on the element itself
+  // Used when the height changes that requires a re-render.
   /*
   @private
   @function updateHeight
@@ -69,9 +78,10 @@ export class LineChart extends ChartMain {
   */
 
   updateHeight() {
-    /*
-    Calls each of the methods on Internal and InternalLine object necessary to update the height of the chart. Internal and Internal Line hold all the methods that do d3 manipulation to create and update various parts of the chart
-    */
+    // Calls each of the methods on Internal and InternalLine
+    // object necessary to update the height of the chart.
+    // Internal and Internal Line hold all the methods that do
+    // d3 manipulation to create and update various chart elements
     Internal.updateSVGElement(this);
     Internal.setYscale(this, 'linear', 'number');
     Internal.updateYAxisScale(this);
@@ -82,6 +92,8 @@ export class LineChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's margin on the element itself
+  // Used when the margins change that requires a re-render.
   /*
   @private
   @function updateMargins
@@ -90,15 +102,16 @@ export class LineChart extends ChartMain {
   */
 
   updateMargins() {
-    /*
-    Calls updateHeight and updateWidth on this instance to reflect the new margins.
-    */
+    // Calls updateHeight and updateWidth on this instance
+    // to reflect the new margins.
     this.updateHeight();
     this.updateWidth();
 
     return this;
   }
 
+  // Updates the chart's width on the element itself
+  // Used when the width changes that requires a re-render.
   /*
   @private
   @function updateWidth
@@ -107,9 +120,11 @@ export class LineChart extends ChartMain {
   */
 
   updateWidth() {
-    /*
-    Calls each of the methods on Internal and InternalLine object necessary to update the width of the chart. Internal and InternalLine hold all the methods that do d3 manipulation to create and update various parts of the chart
-    */
+    // Calls each of the methods on Internal and InternalLine
+    // object necessary to update the width of the chart.
+    // Internal and InternalLine hold all the methods that do
+    // d3 manipulation to create and update various chart elements
+
     Internal.updateSVGElement(this);
     InternalLine.setXScale(this);
     Internal.updateXAxisScale(this);
@@ -120,6 +135,8 @@ export class LineChart extends ChartMain {
   }
 
 
+  // Calls InternalLine to update color of line chart after
+  // initial render. InternalLine does the d3 manipulation
   /*
   @private
   @function updateColors
@@ -129,30 +146,28 @@ export class LineChart extends ChartMain {
   */
 
   updateColors() {
-    /*
-    Calls InternalLine object to update the colors on the line chart. InternalLine does the d3 manipulation
-    */
     InternalLine.updateColors(this);
 
     return this;
   }
 
+  // Calls Internal to update x-axis label
+  // Used when the x-axis label changes that requires a re-render.
   /*
   @private
   @function updatexAxisLabel
-  @description Calls Internal to x-axis label
+  @description Calls Internal to update x-axis label
   @returns {Object} this (chart instance)
   */
 
   updatexAxisLabel() {
-    /*
-    Calls Internal object to update the x-axis label
-    */
     Internal.updateXAxis(this);
 
     return this;
   }
 
+  // Calls InternalLine to update y-axis label
+  // Used when the y-axis label changes that requires a re-render.
   /*
   @private
   @function updatexAxisLabel
@@ -161,14 +176,13 @@ export class LineChart extends ChartMain {
   */
 
   updateyAxisLabel() {
-    /*
-    Calls InternalLine object to update the x-axis label
-    */
     InternalLine.updateYAxis(this);
 
     return this;
   }
 
+  // Updates the time format and calls chart update functions
+  // Used when the time format changes that requires a re-render.
   /*
   @private
   @function updateDateFormat
@@ -182,6 +196,8 @@ export class LineChart extends ChartMain {
     return this;
   }
 
+  // Updates the formatting for the chart ticks
+  // Used when tick formatting changes that requires a re-render.
   /*
   @private
   @function updateTickFormat
@@ -196,10 +212,12 @@ export class LineChart extends ChartMain {
     return this;
   }
 
+  // Updates the number of ticks.
+  // Used when tick count changes that requires a re-render.
   /*
   @private
   @function updateTickCount
-  @description Updates the amount of ticks
+  @description Updates the number of ticks
   @param {String} tickCount The number of ticks wanted
   @param {String} countBy What interval ticks should count e.g. by month, year, minute
   @returns {Object} this (chart instance)
@@ -211,6 +229,8 @@ export class LineChart extends ChartMain {
     return this;
   }
 
+  // Overrides the default ChartMain setColors setter.
+  // Maps to an ordinal scale
   /*
   @private
   @function setColors

@@ -5,17 +5,15 @@ http://tld3js.org
 tld3 may be freely distributed under the MIT license.
 */
 
-/*
-This is required for d3 to load.
-*/
+// This is required for d3 to load.
+
 /* global d3 */
 
-/**
-Import all necessary submodules into the core module
-*/
 
+// Import all necessary submodules into the core module
+
+// This defines our main library object.
 /*
-This defines our main library object.
 @private
 */
 
@@ -28,6 +26,7 @@ const lib = {
 
   version: '1.0.0',
 
+  // Returns the appropriate chart instance that matches the
   /*
   @function make
   @description Returns the appropriate chart instance that matches the
@@ -40,6 +39,7 @@ const lib = {
     return new charts[chartType]();
   },
 
+  // Fetches data from the url passed in
   /*
   @function upload
   @description Fetches data from the url passed in
@@ -51,6 +51,7 @@ const lib = {
     return utils.getData(dataUrl);
   },
 
+  // Fetches data from the Firebase url passed in
   /*
   @function uploadFirebase
   @description Fetches data from the Firebase url passed in

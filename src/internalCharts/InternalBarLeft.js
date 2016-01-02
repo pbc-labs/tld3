@@ -1,11 +1,10 @@
-/*
-This is required for d3 to load.
-*/
+// This is required for d3 to load.
 /* global d3 */
 
 import utils from '../utils/utils';
 
 const InternalBarLeft = {
+  // Builds up the bar chart
   /*
   @private
   @function buildChartComponents
@@ -14,9 +13,10 @@ const InternalBarLeft = {
   */
 
   buildChartComponents(context) {
-    /*
-    Uses d3 to build the chart components for left bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
-    */
+    // Uses d3 to build the chart components for left bar chart
+    // using the chart data. Sets event listeners mouseover and
+    // mouseout to hide/show tooltips. Uses transition to
+    // transition the bars into view.
     const tooltip = context.tooltip;
 
     context.svg.selectAll('.bar')
@@ -59,6 +59,7 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Calls InternalBar to update and rerender the bars on chart
   /*
   @private
   @function updateChartComponents
@@ -75,6 +76,7 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Creates d3 x-axis
   /*
   @private
   @function createxAxis
@@ -91,6 +93,7 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Creates d3 axis - y
   /*
   @private
   @function createyAxis
@@ -107,6 +110,7 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Builds up the x-axis
   /*
   @private
   @function buildXAxis
@@ -130,6 +134,7 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Builds up the y-axis
   /*
   @private
   @function buildYAxis
@@ -139,7 +144,7 @@ const InternalBarLeft = {
   */
 
   buildYAxis(context) {
-    // Sets up y-axis positioning. Then appends x-axis label
+    // Sets up y-axis positioning. Then appends the x-axis label.
     context.svg.append('g')
            .attr('class', 'y axis')
            .call(context.yAxis)
@@ -155,6 +160,7 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Updates the up the y-axis
   /*
   @private
   @function Updates the up the y-axis
@@ -163,9 +169,8 @@ const InternalBarLeft = {
   */
 
   updateYAxis(context) {
-    /*
-    Updates the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
-    */
+    // Updates the y-axis on chart by rebuilding it. Used when
+    // properties on a chart are changed and require a rebuild.
     context.element
            .select('svg')
            .selectAll('g .y.axis')
@@ -183,18 +188,19 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Updates the x-axis scale
   /*
   @private
   @function updateXAxis
-  @description Updates the up the x-axis scale
+  @description Updates the x-axis scale
   @param {Object} context (chart instance)
   @returns {Object} context (chart instance)
   */
 
   updateXAxis(context) {
-    /*
-    Updates the x-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
-    */
+    // Updates the x-axis on chart by rebuilding it.
+    //  Used when properties on a chart are changed and
+    // require a rebuild.
     context.element
            .select('svg')
            .selectAll('g .x.axis')
@@ -207,7 +213,7 @@ const InternalBarLeft = {
     return context;
   },
 
-
+  // Sets the appropriate y-scale
   /*
   @private
   @function setYscale
@@ -217,9 +223,7 @@ const InternalBarLeft = {
   */
 
   setYscale(context) {
-    /*
-    Sets the y-scale to be ordinal. Then maps the data to the scale's domain.
-    */
+    // Sets the y-scale to be ordinal. Then maps the data to the scale's domain.
     context.yColumnName = utils.getFirstOrdinalColumn(context.data);
     context.setyAxisLabel = context.yColumnName;
     context.yScale = d3.scale.ordinal()
@@ -231,6 +235,7 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Sets the appropriate x-scale
   /*
   @private
   @function setXscale
@@ -240,9 +245,7 @@ const InternalBarLeft = {
   */
 
   setXscale(context) {
-    /*
-    Sets the x-scale to be linear. Then maps the data to the scale's domain.
-    */
+    // Sets the x-scale to be linear. Then maps the data to the scale's domain.
     context.xColumnName = utils.getFirstLinearColumn(context.data);
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.scale.linear()

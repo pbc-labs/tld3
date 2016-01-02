@@ -1,14 +1,11 @@
-/*
-This is required for d3 to load.
-*/
+// This is required for d3 to load.
 /* global d3 */
 
 import { ChartMain } from '../core/ChartMain';
 import Internal from '../internalCharts/internal';
 import InternalWaffle from '../internalCharts/internalWaffle';
-/**
-Constructor subclass for Waffle Chart.
-*/
+// Constructor subclass for Waffle Chart.
+
 export class WaffleChart extends ChartMain {
   constructor() {
     super();
@@ -22,9 +19,8 @@ export class WaffleChart extends ChartMain {
     this._colors = d3.scale.category10();
   }
 
-  /*
-  All of the below setters and getters are used for the chart properties instantiated in the contructor function above.
-  */
+  // All of the below setters and getters are used for the chart
+  // properties instantiated in the contructor function above.
 
   get getSquareValue() {
     return this._squareValue;
@@ -61,6 +57,7 @@ export class WaffleChart extends ChartMain {
     return this._gap;
   }
 
+  // Builds up the elements of the waffle chart
   /*
   @private
   @function build
@@ -84,6 +81,8 @@ export class WaffleChart extends ChartMain {
     return this;
   }
 
+  // Calls InternalWaffle to update the waffle chart components.
+  // Used when a property changes that requires a re-render.
   /*
   @private
   @function updateChartComponents
@@ -96,7 +95,8 @@ export class WaffleChart extends ChartMain {
     return this;
   }
 
-// overwrites setChartHeight for wafflechart
+// Overwrites setChartHeight for wafflechart (wafflechart is differet
+// from the other charts)
   set setChartHeight(height) {
     this.setNumRows = Math.floor(height / this.getSquareSize);
     this._height = height;
@@ -134,6 +134,8 @@ export class WaffleChart extends ChartMain {
     InternalWaffle.updateChartComponents(this);
   }
 
+  // Overrides the default ChartMain setColors setter.
+  // Maps to an ordinal scale
   /*
   @private
   @function setColors
@@ -147,14 +149,16 @@ export class WaffleChart extends ChartMain {
     this._colors = color;
   }
 
-/*
-@private
-@function Updates color of waffle chart after initial render
-@returns {Object} this (chart instance)
-*/
-  updateColors() {
-    InternalWaffle.updateColors(this);
+  // Updates color of waffle chart after initial render
+  // Used when a property changes that requires a re-render.
+  /*
+  @private
+  @function Updates color of waffle chart after initial render
+  @returns {Object} this (chart instance)
+  */
+    updateColors() {
+      InternalWaffle.updateColors(this);
 
-    return this;
-  }
+      return this;
+    }
 }

@@ -8,6 +8,7 @@ export class AreaChart extends ChartMain {
     this.dateFormat = '';
   }
 
+  // Build up all the components for the chart
   /*
   @private
   @function build
@@ -16,9 +17,10 @@ export class AreaChart extends ChartMain {
   */
 
   build() {
-    /*
-    Calls each of the methods on Internal and InternalArea object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */
+    // Calls each of the methods on Internal and InternalArea object
+    // necessary to build up all the components of the chart. Internal
+    // holds all the methods that do d3 manipulation to create and
+    // update various parts of the chart
 
     Internal.selectElement(this);
     Internal.getParentDimensions(this);
@@ -43,6 +45,8 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
+  // Updates the area components on the chart
+  // Used when a property changes that requires a re-render.
   /*
   @private
   @function updateChartComponents
@@ -56,6 +60,8 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's height on the element
+  // Used when the height changes that requires a re-render.
   /*
   @private
   @function updateHeight
@@ -75,6 +81,8 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's width on the element
+  // Used when the width changes that requires a re-render.
   /*
   @private
   @function updateWidth
@@ -92,6 +100,8 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's margin on the element
+  // Used when the margins change that requires a re-render.
   /*
   @private
   @function updateMargins
@@ -105,6 +115,8 @@ export class AreaChart extends ChartMain {
     return this;
   }
 
+  // Update color of area in chart
+  // Used when the color property changes that requires a re-render.
   /*
   @function updateColors
   @description Update color of area in chart

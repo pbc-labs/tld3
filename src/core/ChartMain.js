@@ -4,11 +4,9 @@ import Firebase from 'firebase';
 import errors from '../utils/errors';
 import themes from '../utils/themes';
 
-/*
-Defines the main Chart class that servers as the super class for all
-chart types. The ChartMain class defines the default inherited property
-values, setters and getters, and the user-facing API.
-*/
+// Defines the main Chart class that servers as the super class for all
+// chart types. The ChartMain class defines the default inherited
+// property values, setters and getters, and the user-facing API.
 
 export class ChartMain {
   // Sets the default inherited property values for all charts
@@ -29,8 +27,8 @@ export class ChartMain {
     this._margins = margins || { top: null, right: null, bottom: null, left: null };
   }
 
-  /* All of the below setters and getters are used for the chart properties instantiated in the constructor function above.
-  */
+  // All of the below setters and getters are used for the chart
+  // properties instantiated in the constructor function above.
 
   set setParentHeight(newHeight) {
     this._parentHeight = newHeight;
@@ -140,6 +138,7 @@ export class ChartMain {
     return this._yAxisOrientation;
   }
 
+  // Updates the margins on the chart
   /*
   @function changeMargins
   @description Updates the margins on the chart
@@ -162,6 +161,7 @@ export class ChartMain {
     return this;
   }
 
+  // Updates the width of the chart
   /*
   @function changeWidth
   @description Updates the width of the chart
@@ -184,6 +184,7 @@ export class ChartMain {
     return this;
   }
 
+  // Updates the height of the chart
   /*
   @function changeHeight
   @description Updates the height of the chart
@@ -207,6 +208,7 @@ export class ChartMain {
     return this;
   }
 
+  // Updates the title of the chart
   /*
   @function changeTitle
   @description Updates the title of the chart
@@ -228,6 +230,7 @@ export class ChartMain {
     return this;
   }
 
+  // Updates the font size on the chart
   /*
   @function changeFontSize
   @description Updates the font size on the chart
@@ -249,6 +252,7 @@ export class ChartMain {
     return this;
   }
 
+  // Updates the font style on the chart
   /*
   @function changeFontStyle
   @description Updates the font style on the chart
@@ -270,6 +274,7 @@ export class ChartMain {
     return this;
   }
 
+  // Updates the x-axis label on the chart
   /*
   @function changexAxisLabel
   @description Updates the x-axis label on the chart
@@ -288,6 +293,7 @@ export class ChartMain {
     return this;
   }
 
+  // Updates the y-axis label on the chart.
   /**
   @function changeyAxisLabel
   @description Updates the y-axis label on the chart.
@@ -306,6 +312,7 @@ export class ChartMain {
     return this;
   }
 
+  // Updates the colors on the chart.
   /*
   @function changeColors
   @description Updates the colors on the chart.
@@ -329,6 +336,7 @@ export class ChartMain {
     return this;
   }
 
+  // Sets the div element in which the d3 chart will created.
   /*
   @function in
   @description Sets the div element in which the d3 chart will created.
@@ -353,6 +361,7 @@ export class ChartMain {
     return this;
   }
 
+  // Sets the data for the chart.
   /*
   @function using
   @description Sets the data for the chart.
@@ -370,6 +379,10 @@ export class ChartMain {
 
     return this;
   }
+
+  // If using Firebase database as data source, chaining this method
+  // will capture updates to data in real-time. And chart will update
+  // without refresh
 
   /*
   @function refreshFirebaseData
@@ -391,6 +404,7 @@ export class ChartMain {
     return this;
   }
 
+  // Allows for customization of chart configuration before rendering.
   /*
   @function with
   @description Allows for customization of chart configuration before rendering.

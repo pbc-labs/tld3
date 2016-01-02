@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>internalDonutChart.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="ChartMain.html">
+                  ChartMain.js
+                </a>
+              
+                
+                <a class="source" href="core.html">
+                  core.js
+                </a>
+              
+                
+                <a class="source" href="InternalBarLeft.html">
+                  InternalBarLeft.js
+                </a>
+              
+                
+                <a class="source" href="internal.html">
+                  internal.js
+                </a>
+              
+                
+                <a class="source" href="internalArea.html">
+                  internalArea.js
+                </a>
+              
+                
+                <a class="source" href="internalBar.html">
+                  internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalDonutChart.html">
+                  internalDonutChart.js
+                </a>
+              
+                
+                <a class="source" href="internalLine.html">
+                  internalLine.js
+                </a>
+              
+                
+                <a class="source" href="internalScatter.html">
+                  internalScatter.js
+                </a>
+              
+                
+                <a class="source" href="internalWaffle.html">
+                  internalWaffle.js
+                </a>
+              
+                
+                <a class="source" href="AreaChart.html">
+                  AreaChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChart.html">
+                  BarChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChartLeft.html">
+                  BarChartLeft.js
+                </a>
+              
+                
+                <a class="source" href="DonutChart.html">
+                  DonutChart.js
+                </a>
+              
+                
+                <a class="source" href="LineChart.html">
+                  LineChart.js
+                </a>
+              
+                
+                <a class="source" href="ScatterChart.html">
+                  ScatterChart.js
+                </a>
+              
+                
+                <a class="source" href="WaffleChart.html">
+                  WaffleChart.js
+                </a>
+              
+                
+                <a class="source" href="charts.html">
+                  charts.js
+                </a>
+              
+                
+                <a class="source" href="data.html">
+                  data.js
+                </a>
+              
+                
+                <a class="source" href="errors.html">
+                  errors.js
+                </a>
+              
+                
+                <a class="source" href="themes.html">
+                  themes.js
+                </a>
+              
+                
+                <a class="source" href="utils.html">
+                  utils.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>internalDonutChart.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
+This is required for d3 to load.
+*/</span>
+<span class="hljs-comment">/*  global d3  */</span>
+
+<span class="hljs-keyword">import</span> utils <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/utils'</span>;
+
+<span class="hljs-keyword">const</span> DonutChart = {
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateStyle
+  @description Updates the chart style
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateStyle(context) {
+    context.svg.style({
+      font: <span class="hljs-string">'sans-serif'</span>,
+      <span class="hljs-string">'font-size'</span>: <span class="hljs-string">'11px'</span>,
+      <span class="hljs-string">'text-anchor'</span>: <span class="hljs-string">'middle'</span>,
+    });
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateRadius
+  @description Updates the radius
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateRadius(context) {
+    context.radius = <span class="hljs-built_in">Math</span>.min(context.getChartHeight, context.getChartWidth) / <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateArc
+  @description Updates the arc slices with a new scale
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateArc(context) {
+    context.arc = d3.svg.arc()
+               .outerRadius(context.radius - <span class="hljs-number">80</span>)
+               .innerRadius(context.radius - <span class="hljs-number">10</span>);
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updatePie
+  @description Updates the pie slices with a new scale
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updatePie(context) {
+    context.pie = d3.layout.pie()
+      .sort(<span class="hljs-literal">null</span>)
+      .value(d =&gt; { <span class="hljs-keyword">return</span> d[context.linearColumn]; });
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateLinearColunm
+  @description Update the linear name for ordinal data
+  @param {Object} context (chart instance)
+  @param {String} columnName The new column name
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateLinearColumn(context, columnName) {
+    context.linearColumn = columnName || utils.getFirstLinearColumn(context.data);
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateOrdinalColunm
+  @description Update the colunm name for ordinal data
+  @param {Object} context (chart instance)
+  @param {String} columnName the new column name
+  @returns {Object} context Char(chart instance)
+  */</span>
+
+  updateOrdinalColumn(context, columnName) {
+    context.ordinalColumn = columnName || utils.getFirstOrdinalColumn(context.data);
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function convertData
+  @description Coverts the charts data to the correct format
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  convertData(context) {
+    context.data.forEach(item =&gt; {
+      item[context.linearColumn] = <span class="hljs-built_in">Number</span>(item[context.linearColumn]);
+    });
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function buildChartComponents
+  @description Builds the actual chart components with data, including the tooltips
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+   */</span>
+
+  buildChartComponents(context) {
+    <span class="hljs-keyword">const</span> tooltip = context.tooltip;
+
+    <span class="hljs-keyword">const</span> g = context.svg.append(<span class="hljs-string">'g'</span>)
+        .selectAll(<span class="hljs-string">'.arc'</span>)
+        .data(context.pie(context.data))
+        .enter().append(<span class="hljs-string">'g'</span>)
+        .attr(<span class="hljs-string">'class'</span>, (d, i) =&gt; { <span class="hljs-keyword">return</span> <span class="hljs-string">`arc data-id-<span class="hljs-subst">${i}</span>`</span>; });
+
+    g.append(<span class="hljs-string">'path'</span>)
+        .style(<span class="hljs-string">'stroke'</span>, <span class="hljs-string">'#fff'</span>)
+        .style(<span class="hljs-string">'stroke-width'</span>, <span class="hljs-string">'3px'</span>)
+        .style(<span class="hljs-string">'fill'</span>, d =&gt; { <span class="hljs-keyword">return</span> context.getColorScale(d.data[context.ordinalColumn]); })
+        .transition()
+        .attrTween(<span class="hljs-string">'d'</span>, d =&gt; {
+          <span class="hljs-keyword">const</span> i = d3.interpolate(d.startAngle, d.endAngle);
+          <span class="hljs-keyword">return</span> (t) =&gt; {
+            d.endAngle = i(t);
+            <span class="hljs-keyword">return</span> context.arc(d);
+          };
+        });
+
+    context.svg.selectAll(<span class="hljs-string">'.arc'</span>).append(<span class="hljs-string">'text'</span>)
+            .attr(<span class="hljs-string">'transform'</span>, (d) =&gt; { <span class="hljs-keyword">return</span> <span class="hljs-string">'translate('</span> + context.arc.centroid(d) + <span class="hljs-string">')'</span>; })
+            .attr(<span class="hljs-string">'dx'</span>, <span class="hljs-string">'.35em'</span>)
+            .style(<span class="hljs-string">'text-anchor'</span>, <span class="hljs-string">'middle'</span>)
+            .style(<span class="hljs-string">'font-family'</span>, <span class="hljs-string">'sans-serif'</span>)
+            .style(<span class="hljs-string">'fill'</span>, <span class="hljs-string">'#fff'</span>)
+            .style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">0</span>)
+            .text((d) =&gt; { <span class="hljs-keyword">return</span> d.data[context.ordinalColumn]; })
+            .transition().duration(<span class="hljs-number">200</span>)
+            .style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">1</span>);
+
+
+    g.on(<span class="hljs-string">'mouseover'</span>, (d, i) =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>select all unfocused arcs and lowers opacity</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      d3.selectAll(<span class="hljs-string">'.arc'</span>).transition()
+        .duration(<span class="hljs-number">200</span>)
+        .style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">0.6</span>);
+
+      d3.select(<span class="hljs-string">`.data-id-<span class="hljs-subst">${i}</span>`</span>).transition()
+        .duration(<span class="hljs-number">200</span>)
+        .style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">1</span>);
+
+      tooltip.show();
+      tooltip.setContent(<span class="hljs-string">`<span class="hljs-subst">${context.ordinalColumn}</span>: <span class="hljs-subst">${d.data[context.ordinalColumn]}</span>\
+       <span class="hljs-subst">${context.linearColumn}</span>: <span class="hljs-subst">${d.data[context.linearColumn]}</span>`</span>);
+    });
+
+    g.on(<span class="hljs-string">'mouseout'</span>, () =&gt; {
+      tooltip.hide();
+      d3.selectAll(<span class="hljs-string">'.arc'</span>).transition()
+        .duration(<span class="hljs-number">200</span>)
+        .style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">1</span>);
+    });
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateChartComponents
+  @description Updates the donut slices on chart
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateChartComponents(context) {
+    <span class="hljs-keyword">const</span> g = context.svg.selectAll(<span class="hljs-string">'.arc'</span>)
+          .data(context.pie(context.data));
+    g.selectAll(<span class="hljs-string">'path'</span>)
+          .attr(<span class="hljs-string">'d'</span>, context.arc)
+          .style(<span class="hljs-string">'fill'</span>, d =&gt; { <span class="hljs-keyword">return</span> context.getColorScale(d.data[context.ordinalColumn]); });
+    g.selectAll(<span class="hljs-string">'text'</span>)
+          .attr(<span class="hljs-string">'transform'</span>, d =&gt;{ <span class="hljs-keyword">return</span> <span class="hljs-string">'translate('</span> + context.arc.centroid(d) + <span class="hljs-string">')'</span>; })
+          .attr(<span class="hljs-string">'dy'</span>, <span class="hljs-string">'.35em'</span>)
+          .text(d =&gt; { <span class="hljs-keyword">return</span> d.data[context.ordinalColumn]; });
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateTitle
+  @description Updates the title on the chart
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateTitle(context) {
+    context.svg.append(<span class="hljs-string">'text'</span>)
+    .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'title'</span>)
+    .attr(<span class="hljs-string">'font-size'</span>, context.getFontSize)
+    .attr(<span class="hljs-string">'text-anchor'</span>, <span class="hljs-string">'middle'</span>)
+    .text(context.getTitle);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  },
+
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> DonutChart;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
