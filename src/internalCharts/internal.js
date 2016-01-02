@@ -79,7 +79,6 @@ const Internal = {
                                          'display': 'inline-block',
                                          'position': 'relative',
                                          'width': '100%',
-                                         'padding-bottom': '100%',
                                          'vertical-align': 'middle',
                                          'overflow': 'hidden',
                                        });

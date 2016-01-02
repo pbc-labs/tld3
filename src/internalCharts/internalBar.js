@@ -61,6 +61,7 @@ const InternalBar = {
   updateChartComponents(context) {
     context.svg.selectAll('.bar')
              .data(context.data)
+             .transition()
              .attr('class', 'bar')
              .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); })
              .attr('width', context.xScale.rangeBand())
