@@ -144,7 +144,7 @@ const InternalBarLeft = {
   */
 
   buildYAxis(context) {
-    // Sets up y-axis positioning. Then appends x-axis label
+    // Sets up y-axis positioning. Then appends the x-axis label.
     context.svg.append('g')
            .attr('class', 'y axis')
            .call(context.yAxis)
