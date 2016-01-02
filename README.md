@@ -36,6 +36,7 @@ If you aren't using npm or a modern module bundler, you can use a pre-built vers
 
 __tl;dr:__ Creating a bar chart in tld3.js is as simple as:
 
+__Example 1:__ Using raw JSON data
 ```javascript
 const data = [
               	{	"letter":"A",
@@ -58,6 +59,7 @@ tld3.make('BarChart')
     .using(data)
     .in('#barchart');
 ```
+__Example 2:__ Using CSV file
 
 ```javascript
 tld3.upload('./data/scatterData.csv') // uploading csv data from a file
@@ -70,7 +72,7 @@ tld3.upload('./data/scatterData.csv') // uploading csv data from a file
       console.error(err);
     });
 ```
-
+__Example 3:__ Using Firebase database url
 ```javascript
 
 tld3.uploadFirebase('https://tld3.firebaseio.com/') // upload data from from Firebase database
