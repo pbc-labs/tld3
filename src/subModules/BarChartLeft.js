@@ -1,7 +1,7 @@
 import { ChartMain } from '../core/ChartMain';
-import Internal from '../internal-charts/internal';
-import InternalBar from '../internal-charts/internalBar';
-import InternalBarLeft from '../internal-charts/InternalBarLeft';
+import Internal from '../internalCharts/internal';
+import InternalBar from '../internalCharts/internalBar';
+import InternalBarLeft from '../internalCharts/InternalBarLeft';
 
 /*
 Constructor subclass for Left Bar Chart.

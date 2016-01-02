@@ -4,8 +4,8 @@ This is required for d3 to load.
 /* global d3 */
 
 import { ChartMain } from '../core/ChartMain';
-import Internal from '../internal-charts/internal';
-import InternalScatter from '../internal-charts/internalScatter';
+import Internal from '../internalCharts/internal';
+import InternalScatter from '../internalCharts/internalScatter';
 
 /*
 Defines the subclass for the Scatter Chart.

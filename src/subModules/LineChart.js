@@ -1,6 +1,6 @@
 import { ChartMain } from '../core/ChartMain';
-import Internal from '../internal-charts/internal';
-import InternalLine from '../internal-charts/internalLine';
+import Internal from '../internalCharts/internal';
+import InternalLine from '../internalCharts/internalLine';
 
 /*
 Constructor subclass for Line Chart.
