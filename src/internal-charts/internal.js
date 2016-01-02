@@ -74,11 +74,21 @@ const Internal = {
     context.translateX = (context.getParentWidth / 2) - (context.getChartWidth / 2);
 
     context.translateY = (context.getParentHeight / 2) - (context.getChartHeight / 2);
-
-    context.svg = context.element
+    context.container = context.element.append('div')
+                                       .style({
+                                         'display': 'inline-block',
+                                         'position': 'relative',
+                                         'width': '100%',
+                                         'padding-bottom': '100%',
+                                         'vertical-align': 'middle',
+                                         'overflow': 'hidden',
+                                       });
+    context.svg = context.container
                           .append('svg')
                           .attr('width', '100%')
                           .attr('height', '100%')
+                          .attr('viewBox', () => { return `0 0 ${context.getParentWidth} ${context.getParentHeight}`; })
+                          .attr('preserveAspectRatio', 'xMinYMin meet')
                           .append('g')
                           .attr('transform', `translate(${context.translateX}, ${context.translateY})`);
 
