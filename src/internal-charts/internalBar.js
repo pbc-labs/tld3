@@ -35,8 +35,9 @@ const InternalBar = {
             d3.select(d3.event.target)
               .style('fill', context.getColors[0]);
           })
+
          .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); }) // start position before transition
-         .attr('y', context.getHeight)
+         .attr('y', context.getChartHeight)
          .attr('width', context.xScale.rangeBand())
          .attr('height', 0)
          .style('fill', context.getColors[0])
@@ -44,7 +45,7 @@ const InternalBar = {
          .duration(300)
          .delay((d, i) => { return i * 50; })
          .attr('y', d => { return context.yScale(d[context.getyAxisLabel]); })
-         .attr('height', d => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); });
+         .attr('height', d => { return context.getChartHeight - context.yScale(d[context.getyAxisLabel]); });
 
     return context;
   },
@@ -64,7 +65,7 @@ const InternalBar = {
              .attr('x', d => { return context.xScale(d[context.getxAxisLabel]); })
              .attr('width', context.xScale.rangeBand())
              .attr('y', d => { return context.yScale(d[context.getyAxisLabel]); })
-             .attr('height', d => { return context.getHeight - context.yScale(d[context.getyAxisLabel]); })
+             .attr('height', d => { return context.getChartHeight - context.yScale(d[context.getyAxisLabel]); })
              .style('fill', context.getColors[0]);
 
     return context;
@@ -87,7 +88,7 @@ const InternalBar = {
         .attr('font-size', context.getFontSize)
         .append('text')
         .attr('class', 'title')
-        .attr('x', context.getWidth * 0.5)
+        .attr('x', context.getChartWidth * 0.5)
         .attr('y', 20)
         .text(context.getTitle);
 

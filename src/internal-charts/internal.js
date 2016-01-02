@@ -24,6 +24,44 @@ const Internal = {
 
   /*
   @private
+  @function getParentDimensions
+  @description Obtains the height and width of the containing element. If the width is 0, the width of the window is used.
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */
+
+  getParentDimensions(context) {
+    context.setParentHeight = parseInt(d3.select(context.location).style('height'), 10) || window.innerHeight;
+    context.setParentWidth = parseInt(d3.select(context.location).style('width'), 10) || window.innerWidth;
+
+    context.element.style('height', `${context._parentHeight}px`);
+
+    return context;
+  },
+
+  /*
+  @private
+  @function getChartDimensions
+  @description Calculates the height and width of the chart according to the size of the containing element
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */
+  getChartDimensions(context) {
+    context.setChartWidth = 0.9 * context.getParentWidth;
+    context.setChartHeight = 0.8 * context.getParentHeight;
+
+    context.setMargins = {
+      top: 0.1 * context.getParentHeight,
+      right: 0.05 * context.getParentWidth,
+      bottom: 0.1 * context.getParentHeight,
+      left: 0.05 * context.getParentWidth,
+    };
+
+    return context;
+  },
+
+  /*
+  @private
   @function createSVGElement
   @description Creates the main SVG element
   @param {Object} context (chart instance)
@@ -33,12 +71,16 @@ const Internal = {
   createSVGElement(context) {
     /* Appends the SVG to our chart element. Sets the width and height of the SVG.
     */
+    context.translateX = (context.getParentWidth / 2) - (context.getChartWidth / 2);
+
+    context.translateY = (context.getParentHeight / 2) - (context.getChartHeight / 2);
+
     context.svg = context.element
                           .append('svg')
-                          .attr('width', context.getWidth + context.getMargins.left + context.getMargins.right)
-                          .attr('height', context.getHeight + context.getMargins.top + context.getMargins.bottom)
+                          .attr('width', '100%')
+                          .attr('height', '100%')
                           .append('g')
-                          .attr('transform', 'translate(' + context.getMargins.left + ',' + context.getMargins.top + ')');
+                          .attr('transform', `translate(${context.translateX}, ${context.translateY})`);
 
     return context;
   },
@@ -55,8 +97,8 @@ const Internal = {
     /* Select current SVG element and tpdates the width and height of the SVG.
     */
     context.element.select('svg')
-           .attr('width', context.getWidth + context.getMargins.left + context.getMargins.right)
-           .attr('height', context.getHeight + context.getMargins.top + context.getMargins.bottom)
+           .attr('width', context.getChartWidth + context.getMargins.left + context.getMargins.right)
+           .attr('height', context.getChartHeight + context.getMargins.top + context.getMargins.bottom)
            .append('g')
            .attr('transform', 'translate(' + context.getMargins.left + ',' + context.getMargins.top + ')');
 
@@ -157,11 +199,11 @@ const Internal = {
     */
     context.svg.append('g')
                .attr('class', 'x axis')
-               .attr('transform', 'translate(0, ' + context.getHeight + ')')
+               .attr('transform', 'translate(0, ' + context.getChartHeight + ')')
                .call(context.xAxis)
                .append('text')
                .attr('class', 'x-axis-label')
-               .attr('x', context.getWidth * 0.5)
+               .attr('x', context.getChartWidth * 0.5)
                .attr('y', 35)
                .style('text-anchor', 'middle')
                .text(context.getxAxisLabel);
@@ -181,7 +223,7 @@ const Internal = {
     context.element
            .select('svg')
            .select('g .x.axis')
-           .attr('transform', 'translate(0, ' + context.getHeight + ')');
+           .attr('transform', 'translate(0, ' + context.getChartHeight + ')');
 
     return context;
   },
@@ -204,7 +246,7 @@ const Internal = {
            .attr('class', 'y-axis-label')
            .attr('transform', 'rotate(-90)')
            .attr('y', -45)
-           .attr('x', -context.getHeight * 0.5 + context.getMargins.top)
+           .attr('x', -context.getChartHeight * 0.5 + context.getMargins.top)
            .style('text-anchor', 'end')
            .text(context.getyAxisLabel);
     return context;
@@ -230,7 +272,7 @@ const Internal = {
            .attr('class', 'y-axis-label')
            .attr('transform', 'rotate(-90)')
            .attr('y', -45)
-           .attr('x', -context.getHeight * 0.5 + context.getMargins.top)
+           .attr('x', -context.getChartHeight * 0.5 + context.getMargins.top)
            .style('text-anchor', 'end')
            .text(context.getyAxisLabel);
 
@@ -254,7 +296,7 @@ const Internal = {
            .selectAll('g .x.axis')
            .call(context.xAxis);
     context.element.select('.x-axis-label')
-           .attr('x', context.getWidth * 0.5)
+           .attr('x', context.getChartWidth * 0.5)
            .attr('y', 35)
            .style('text-anchor', 'middle')
            .text(context.getxAxisLabel);
@@ -328,12 +370,12 @@ const Internal = {
       context.xColumnName = utils.getFirstOrdinalColumn(context.data);
       context.setxAxisLabel = context.xColumnName;
       context.xScale = d3.scale.ordinal()
-                      .rangeRoundBands([0, context.getWidth], 0.1);
+                      .rangeRoundBands([0, context.getChartWidth], 0.1);
     } else if (type === 'linear') {
       context.xColumnName = utils.getFirstLinearColumn(context.data);
       context.setxAxisLabel = context.xColumnName;
       context.xScale = d3.scale.linear()
-                      .range([context.getWidth, 0]);
+                      .range([context.getChartWidth, 0]);
     }
 
     /*
@@ -367,12 +409,12 @@ const Internal = {
       context.yColumnName = utils.getFirstOrdinalColumn(context.data);
       context.setyAxisLabel = context.yColumnName;
       context.yScale = d3.scale.linear()
-                      .range([context.getHeight, 0]);
+                      .range([context.getChartHeight, 0]);
     } else if (type === 'linear') {
       context.yColumnName = utils.getFirstLinearColumn(context.data);
       context.setyAxisLabel = context.yColumnName;
       context.yScale = d3.scale.linear()
-                      .range([context.getHeight, 0]);
+                      .range([context.getChartHeight, 0]);
     }
 
     /*
@@ -407,6 +449,21 @@ const Internal = {
              'shape-rendering': shapeRerendering,
            });
 
+    return context;
+  },
+
+  /*
+  @private
+  @function convertColorsToScale
+  @description Creates an ordinal color scale according to categories passed in
+  @param {Object} context (chart instance)
+  @param {Array} categories (Data to be mapped to by scale)
+  @returns {Object} this (chart instance)
+  */
+  convertColorsToScale(context, categories) {
+    context._colorScale = d3.scale.ordinal()
+                            .domain(categories)
+                            .range(context.getColors);
     return context;
   },
 
@@ -486,14 +543,14 @@ const Internal = {
       .attr('transform', (d, i) => { return 'translate(0,' + i * 20 + ')'; });
 
     context.legend.append('rect')
-      .attr('x', context.getWidth - 18)
+      .attr('x', context.getChartWidth - 18)
       .attr('width', 18)
       .attr('height', 18)
       // Setting colors
       .style('fill', context.getColors);
     // append the name of ordinal data
     context.legend.append('text')
-      .attr('x', context.getWidth - 24)
+      .attr('x', context.getChartWidth - 24)
       .attr('y', 12)
       .style('text-anchor', 'end')
       .text((d) => { return d; });

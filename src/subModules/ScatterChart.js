@@ -30,6 +30,8 @@ export class ScatterChart extends ChartMain {
     Calls each of the methods on Internal and InternalScatter object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
     */
     Internal.selectElement(this);
+    Internal.getParentDimensions(this);
+    Internal.getChartDimensions(this);
     InternalScatter.setColumns(this);
     InternalScatter.setXscale(this);
     InternalScatter.setYscale(this);

@@ -20,26 +20,26 @@ describe('Main Chart Constructor', () => {
 
   describe('Default properties', () => {
     const chart = tld3.make('BarChart');
-    it('should have a default width property of 600', () => {
-      expect(chart.getWidth).to.equal(600);
+    it('should have a default width property of null', () => {
+      expect(chart.getChartWidth).to.equal(null);
     });
 
     it('should use setter method to update default width property to 700', () => {
-      chart.setWidth = 700;
-      expect(chart.getWidth).to.equal(700);
+      chart.setChartWidth = 700;
+      expect(chart.getChartWidth).to.equal(700);
     });
 
     it('should have a default height property of 300', () => {
-      expect(chart.getHeight).to.equal(300);
+      expect(chart.getChartHeight).to.equal(null);
     });
 
     it('should use setter method to update default height property to 400', () => {
-      chart.setHeight = 400;
-      expect(chart.getHeight).to.equal(400);
+      chart.setChartHeight = 400;
+      expect(chart.getChartHeight).to.equal(400);
     });
 
-    it('should have default top margins property of 30', () => {
-      const defaultMargins = { top: 30, right: 30, bottom: 60, left: 60 };
+    it('should have default null margins properties', () => {
+      const defaultMargins = { top: null, right: null, bottom: null, left: null };
       expect(chart.getMargins).to.deep.equal(defaultMargins);
     });
 

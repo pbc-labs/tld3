@@ -13,9 +13,8 @@ values, setters and getters, and the user-facing API.
 export class ChartMain {
   // Sets the default inherited property values for all charts
   constructor(width, height, margins, colors, title, fontSize, fontStyle, xAxisLabel, yAxisLabel, xAxisOrientation, yAxisOrientation) {
-    this._width = width || 600;
-    this._height = height || 300;
-    this._margins = margins || { top: 30, right: 30, bottom: 60, left: 60 };
+    // this._width = width || 600;
+    // this._height = height || 300;
     this._colors = colors || ['#E71D36', '#26408B', '#FF9F1C', '#767B91', '#0FA3B1'];
     this._title = title || 'Default title';
     this._fontSize = fontSize || 14;
@@ -24,26 +23,45 @@ export class ChartMain {
     this._yAxisLabel = yAxisLabel || 'y Axis Label';
     this._xAxisOrientation = xAxisOrientation || 'bottom';
     this._yAxisOrientation = yAxisOrientation || 'left';
-    this._dateFormat = '';
+    this._dateFormat = null;
+    this._chartWidth = null;
+    this._chartHeight = null;
+    this._margins = margins || { top: null, right: null, bottom: null, left: null };
   }
 
   /* All of the below setters and getters are used for the chart properties instantiated in the constructor function above.
   */
 
-  set setWidth(newWidth) {
-    this._width = newWidth;
+  set setParentHeight(newHeight) {
+    this._parentHeight = newHeight;
   }
 
-  get getWidth() {
-    return this._width;
+  get getParentHeight() {
+    return this._parentHeight;
   }
 
-  set setHeight(newHeight) {
-    this._height = newHeight;
+  set setParentWidth(newWidth) {
+    this._parentWidth = newWidth;
   }
 
-  get getHeight() {
-    return this._height;
+  get getParentWidth() {
+    return this._parentWidth;
+  }
+
+  set setChartHeight(newHeight) {
+    this._chartHeight = newHeight;
+  }
+
+  get getChartHeight() {
+    return this._chartHeight;
+  }
+
+  set setChartWidth(newWidth) {
+    this._chartWidth = newWidth;
+  }
+
+  get getChartWidth() {
+    return this._chartWidth;
   }
 
   set setMargins(newMargins) {
@@ -60,6 +78,10 @@ export class ChartMain {
 
   get getColors() {
     return this._colors;
+  }
+
+  get getColorScale() {
+    return this._colorScale;
   }
 
   set setTitle(newTitle) {
@@ -153,7 +175,7 @@ export class ChartMain {
       throw new errors.WidthError;
     }
     // Use setter to update width property
-    this.setWidth = width;
+    this.setChartWidth = width;
     // Call the updateWidth method that exists on the subclass
     this.updateWidth();
     // Call the updateChartComponents method on the subclass
@@ -175,7 +197,7 @@ export class ChartMain {
       throw new errors.HeightError;
     }
     // Use setter to update height property
-    this.setHeight = height;
+    this.setChartHeight = height;
     // Call the updateHeight method that exists on the subclass
     this.updateHeight();
     // Call the updateChartComponents method on the subclass

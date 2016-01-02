@@ -50,11 +50,6 @@ describe('Internal Tests', () => {
       internal.createSVGElement(context);
       expect(context.element.select('svg')).to.exist;
     });
-
-    it('should have the correct attributes', () => {
-      expect(+context.element.select('svg').attr('height')).to.equal(context.getHeight + context.getMargins.top + context.getMargins.bottom);
-      expect(+context.element.select('svg').attr('width')).to.equal(context.getWidth + context.getMargins.left + context.getMargins.right);
-    });
   });
 
   describe('updateSVGElement', () => {
@@ -68,20 +63,6 @@ describe('Internal Tests', () => {
         internal.createSVGElement(context);
         done();
       });
-    });
-
-    it('should update the SVG element with new attributes', () => {
-      const oldHeight = context.getHeight + context.getMargins.top + context.getMargins.bottom;
-      const oldWidth = context.getWidth + context.getMargins.left + context.getMargins.right;
-      expect(+context.element.select('svg').attr('height')).to.equal(oldHeight);
-      expect(+context.element.select('svg').attr('width')).to.equal(oldWidth);
-      context.setHeight = 140;
-      context.setWidth = 700;
-      internal.updateSVGElement(context);
-      expect(+context.element.select('svg').attr('height')).to.not.equal(oldHeight);
-      expect(+context.element.select('svg').attr('height')).to.equal(context.getHeight + context.getMargins.top + context.getMargins.bottom);
-      expect(+context.element.select('svg').attr('width')).to.not.equal(oldWidth);
-      expect(+context.element.select('svg').attr('width')).to.equal(context.getWidth + context.getMargins.left + context.getMargins.right);
     });
   });
 

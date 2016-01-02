@@ -40,7 +40,7 @@ const InternalBarLeft = {
            })
            .attr('height', context.y.rangeBand())
            .attr('y', d => { const label = context.getyAxisLabel; return context.y(d[label]); })
-           .attr('x', context.getWidth)
+           .attr('x', context.getChartWidth)
            .attr('width', 0)
            .style('fill', context.getColors[0])
            .transition()
@@ -112,13 +112,13 @@ const InternalBarLeft = {
     // Sets up x-axis positioning. Then appends x-axis label
     context.svg.append('g')
                .attr('class', 'x axis')
-                .attr('transform', 'translate(0,' + context.getHeight + ')')
+                .attr('transform', 'translate(0,' + context.getChartHeight + ')')
                .call(context.xAxis)
                .append('text')
                .attr('class', 'x-axis-label')
                .text(context.getxAxisLabel)
                .attr('dy', '35px')
-               .attr('dx', context.getWidth * 0.5 - context.getMargins.right * 0.5);
+               .attr('dx', context.getChartWidth * 0.5 - context.getMargins.right * 0.5);
 
     return context;
   },
@@ -141,7 +141,7 @@ const InternalBarLeft = {
            .attr('x', 0)
            .text(context.getyAxisLabel)
            .attr('transform', 'rotate(-90)')
-           .attr('dx', -context.getHeight * 0.5 - context.getMargins.right * 0.5)
+           .attr('dx', -context.getChartHeight * 0.5 - context.getMargins.right * 0.5)
            .attr('dy', '-30px')
            .style('text-anchor', 'top');
 
@@ -169,7 +169,7 @@ const InternalBarLeft = {
            .attr('x', 0)
            .text(context.getyAxisLabel)
            .attr('transform', 'rotate(-90)')
-           .attr('dx', -context.getHeight * 0.5 - context.getMargins.right * 0.5)
+           .attr('dx', -context.getChartHeight * 0.5 - context.getMargins.right * 0.5)
            .attr('dy', '-30px')
            .style('text-anchor', 'top');
 
@@ -195,7 +195,7 @@ const InternalBarLeft = {
     context.element.select('.x-axis-label')
             .text(context.getxAxisLabel)
             .attr('dy', '35px')
-            .attr('dx', context.getWidth * 0.5 - context.getMargins.right * 0.5);
+            .attr('dx', context.getChartWidth * 0.5 - context.getMargins.right * 0.5);
 
     return context;
   },
@@ -216,8 +216,8 @@ const InternalBarLeft = {
     context.yColumnName = utils.getFirstOrdinalColumn(context.data);
     context.setyAxisLabel = context.yColumnName;
     context.yScale = d3.scale.ordinal()
-                    .range([0, context.getHeight])
-                    .rangeRoundBands([0, context.getHeight], 0.1);
+                    .range([0, context.getChartHeight])
+                    .rangeRoundBands([0, context.getChartHeight], 0.1);
 
     context.y = context.yScale.domain(context.data.map(d => { return d[context.yColumnName]; }));
 
@@ -239,7 +239,7 @@ const InternalBarLeft = {
     context.xColumnName = utils.getFirstLinearColumn(context.data);
     context.setxAxisLabel = context.xColumnName;
     context.xScale = d3.scale.linear()
-                    .range([0, context.getWidth]);
+                    .range([0, context.getChartWidth]);
     context.x = context.xScale.domain([0, d3.max(context.data, (d) => { const label = context.getxAxisLabel; return d[label]; })]);
     return context;
   },
