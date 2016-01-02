@@ -85,7 +85,7 @@ const scatter = {
          .attr('r', 4)
          .attr('cx', (d) => { return context.xScale(d[context.getxAxisLabel]); })
          .attr('cy', (d) => { return context.yScale(d[context.getyAxisLabel]); })
-         .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); })
+         .style('fill', (d) => { return context.getColorScale(d[context.ordinalNames]); })
          .style('opacity', 0)
          .transition()
          .delay((d, i) => { return i * (Math.random() * 20); })
@@ -137,7 +137,7 @@ const scatter = {
   updateColors(context) {
     context.element.select('svg')
         .selectAll('.dot')
-        .style('fill', (d) => { return context.getColors(d[context.ordinalNames]); });
+        .style('fill', (d) => { return context.getColorScale(d[context.ordinalNames]); });
 
     context.element.selectAll('.legend-data rect')
     .style('fill', context.getColors);

@@ -39,20 +39,6 @@ const DonutChart = {
 
   /*
   @private
-  @function updateColors
-  @description Updates the donut slice colors
-  @param {Object} context (chart instance)
-  @returns {Object} context (chart instance)
-  */
-
-  updateColors(context) {
-    context.colorScale = d3.scale.ordinal()
-    .range(context.getColors);
-    return context;
-  },
-
-  /*
-  @private
   @function updateArc
   @description Updates the arc slices with a new scale
   @param {Object} context (chart instance)
@@ -156,7 +142,7 @@ const DonutChart = {
     g.append('path')
         .style('stroke', '#fff')
         .style('stroke-width', '3px')
-        .style('fill', d => { return context.colorScale(d.data[context.ordinalColumn]); })
+        .style('fill', d => { return context.getColorScale(d.data[context.ordinalColumn]); })
         .transition()
         .attrTween('d', d => {
           const i = d3.interpolate(d.startAngle, d.endAngle);
@@ -216,7 +202,7 @@ const DonutChart = {
           .data(context.pie(context.data));
     g.selectAll('path')
           .attr('d', context.arc)
-          .style('fill', d => { return context.colorScale(d.data[context.ordinalColumn]); });
+          .style('fill', d => { return context.getColorScale(d.data[context.ordinalColumn]); });
     g.selectAll('text')
           .attr('transform', d =>{ return 'translate(' + context.arc.centroid(d) + ')'; })
           .attr('dy', '.35em')

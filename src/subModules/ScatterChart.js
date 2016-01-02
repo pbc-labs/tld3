@@ -14,8 +14,6 @@ Defines the subclass for the Scatter Chart.
 export class ScatterChart extends ChartMain {
   constructor() {
     super();
-    // Sets the default color scale for the chart
-    this._colors = d3.scale.category10();
   }
 
   /*
@@ -33,6 +31,7 @@ export class ScatterChart extends ChartMain {
     Internal.getParentDimensions(this);
     Internal.getChartDimensions(this);
     InternalScatter.setColumns(this);
+    Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalNames]; }));
     InternalScatter.setXscale(this);
     InternalScatter.setYscale(this);
     Internal.createSVGElement(this);
@@ -125,10 +124,8 @@ export class ScatterChart extends ChartMain {
   */
 
   set setColors(newColors) {
-    const color = d3.scale.ordinal()
-                    .domain(this.getColors.domain())
-                    .range(newColors);
-    this._colors = color;
+    this._colors = newColors;
+    Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalNames]; }));
   }
 
   /*

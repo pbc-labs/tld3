@@ -30,14 +30,15 @@ export class DonutChart extends ChartMain {
     InternalDonut.updateStyle(this);
     InternalDonut.updateTranslation(this);
     InternalDonut.updateOrdinalColumn(this);
+    Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalColumn]; }));
     InternalDonut.updateLinearColumn(this);
     InternalDonut.convertData(this);
     InternalDonut.updateRadius(this);
-    InternalDonut.updateColors(this);
     InternalDonut.updateArc(this);
     InternalDonut.updatePie(this);
     InternalDonut.buildChartComponents(this);
     InternalDonut.updateTitle(this);
+    Internal.createLegend(this);
 
     return this;
   }
@@ -63,9 +64,7 @@ export class DonutChart extends ChartMain {
   @returns {Object} this Chart object
   */
   updateColors() {
-    InternalDonut.updateColors(this);
     InternalDonut.updateChartComponents(this);
-
     return this;
   }
 
@@ -114,6 +113,19 @@ export class DonutChart extends ChartMain {
     InternalDonut.updatePie(this);
     InternalDonut.updateChartComponents(this);
 
+    return this;
+  }
+
+  /*
+  @private
+  @function setColors
+  @description Overrides the default ChartMain setColors setter - maps to an ordinal scale
+  @param {Array} colors Array of colors to update the chart to
+  */
+
+  set setColors(newColors) {
+    this._colors = newColors;
+    Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalColumn]; }));
     return this;
   }
 
