@@ -1,5 +1,6 @@
 # tl;d3
 [![Build Status](https://travis-ci.org/pbc-labs/tld3.svg?branch=master)](https://travis-ci.org/pbc-labs/tld3)
+
 tld3.js is a lightweight library that makes building [d3.js](http://d3js.org`/) graphs much simpler. It abstracts the intricacies of d3.js while harnessing the power of its data-driven DOM manipulation.
 
 ## Table of Contents
@@ -26,7 +27,6 @@ Check out our [docs](https://iam-peekay.gitbooks.io/tld3/content/) to get starte
 To install:
 ```sh
 npm install --save tld3
-bower install tld3
 ```
 This assumes that you’re using [npm](https://www.npmjs.com/) package manager. With npm, you can either use a module bundler like Webpack or Browserify to consume CommonJS modules, or if you don't prefer to use a module bundler, you can use ES6 to import tld3.js into your project file(s).
 
@@ -37,14 +37,55 @@ If you aren't using npm or a modern module bundler, you can use a pre-built vers
 __tl;dr:__ Creating a bar chart in tld3.js is as simple as:
 
 ```javascript
+const data = [
+              	{	"letter":"A",
+              		"frequency":".08167"
+              	},
+              	{	"letter":"B",
+              		"frequency":".01492"
+              	},
+              	{	"letter":"C",
+              		"frequency":".02782"
+              	},
+              	{	"letter":"D",
+              		"frequency":".04253"
+              	},
+                // ... etc
+              ];
+
 // tl;dr :)
 tld3.make('BarChart')
     .using(data)
     .in('#barchart');
 ```
-[Bar chart](http://imgur.com/3GjBMdS)
 
-We support data in many formats, including raw JSON (as shown above) or importing data from csv, tsv or JSON files. We also now support using your Firebase database link and support live data updates!
+```javascript
+tld3.upload('./data/scatterData.csv') // uploading csv data from a file
+    .then((data) => {
+      tld3.make('ScatterChart')
+          .using(data)
+          .in('#scatterchart');
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+```
+
+```javascript
+
+tld3.uploadFirebase('https://tld3.firebaseio.com/') // upload data from from Firebase database
+    .then((data) => { // if the promise returns successfully, create the chart
+      tld3.make('BarChart')
+          .using(data)
+          .in('#barchart');
+    })
+    .catch((err) => { // else handle error
+      console.error(err);
+    });
+
+```
+
+We support data in many formats, including raw JSON or importing data from csv, tsv or JSON files. We now also support Firebase database urls which allows you to have live data updates!
 
 See the [docs](https://iam-peekay.gitbooks.io/tld3/content/) for more information.
 
