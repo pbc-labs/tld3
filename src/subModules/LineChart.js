@@ -42,7 +42,7 @@ export class LineChart extends ChartMain {
     InternalLine.buildChartComponents(this);
     InternalLine.styleChart(this);
     InternalLine.updateColors(this);
-
+    Internal.createLegend(this);
     return this;
   }
 
