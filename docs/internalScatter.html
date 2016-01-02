@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>internalScatter.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="ChartMain.html">
+                  ChartMain.js
+                </a>
+              
+                
+                <a class="source" href="core.html">
+                  core.js
+                </a>
+              
+                
+                <a class="source" href="InternalBarLeft.html">
+                  InternalBarLeft.js
+                </a>
+              
+                
+                <a class="source" href="internal.html">
+                  internal.js
+                </a>
+              
+                
+                <a class="source" href="internalArea.html">
+                  internalArea.js
+                </a>
+              
+                
+                <a class="source" href="internalBar.html">
+                  internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalDonutChart.html">
+                  internalDonutChart.js
+                </a>
+              
+                
+                <a class="source" href="internalLine.html">
+                  internalLine.js
+                </a>
+              
+                
+                <a class="source" href="internalScatter.html">
+                  internalScatter.js
+                </a>
+              
+                
+                <a class="source" href="internalWaffle.html">
+                  internalWaffle.js
+                </a>
+              
+                
+                <a class="source" href="AreaChart.html">
+                  AreaChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChart.html">
+                  BarChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChartLeft.html">
+                  BarChartLeft.js
+                </a>
+              
+                
+                <a class="source" href="DonutChart.html">
+                  DonutChart.js
+                </a>
+              
+                
+                <a class="source" href="LineChart.html">
+                  LineChart.js
+                </a>
+              
+                
+                <a class="source" href="ScatterChart.html">
+                  ScatterChart.js
+                </a>
+              
+                
+                <a class="source" href="WaffleChart.html">
+                  WaffleChart.js
+                </a>
+              
+                
+                <a class="source" href="charts.html">
+                  charts.js
+                </a>
+              
+                
+                <a class="source" href="data.html">
+                  data.js
+                </a>
+              
+                
+                <a class="source" href="errors.html">
+                  errors.js
+                </a>
+              
+                
+                <a class="source" href="themes.html">
+                  themes.js
+                </a>
+              
+                
+                <a class="source" href="utils.html">
+                  utils.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>internalScatter.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global d3 */</span>
+
+<span class="hljs-keyword">import</span> utils <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/utils'</span>;
+
+<span class="hljs-keyword">const</span> scatter = {
+<span class="hljs-comment">/*
+@private
+@function setColumns
+@description Parses and sets the column names for a particular chart instance
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
+*/</span>
+
+  setColumns(context) {
+    context.xColumnName = utils.getFirstLinearColumn(context.data);
+    context.yColumnName = utils.getColumnNames(context.data)[<span class="hljs-number">1</span>];
+    context.ordinalNames = utils.getFirstOrdinalColumn(context.data);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+<span class="hljs-comment">/*
+@private
+@function setXscale
+@description Sets the scale for the x-axis based on the results of the setColumns function
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
+*/</span>
+
+  setXscale(context) {
+    context.setxAxisLabel = context.xColumnName;
+    context.xScale = d3.scale.linear()
+                    .range([<span class="hljs-number">0</span>, context.getChartWidth]);
+    context.xScale.domain(d3.extent(context.data, (d) =&gt; { <span class="hljs-keyword">return</span> +d[context.xColumnName]; })).nice();
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+<span class="hljs-comment">/*
+@private
+@function setYscale
+@description Sets the scale for the y-axis based on the results of the setColumns function
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
+*/</span>
+
+  setYscale(context) {
+    context.setyAxisLabel = context.yColumnName;
+    context.yScale = d3.scale.linear()
+                       .range([context.getChartHeight, <span class="hljs-number">0</span>]);
+    context.yScale.domain(d3.extent(context.data, (d) =&gt; { <span class="hljs-keyword">return</span> +d[context.yColumnName]; })).nice();
+    <span class="hljs-keyword">return</span> context;
+  },
+
+<span class="hljs-comment">/*
+@private
+@function buildChartComponents
+@description Builds the actual chart components with data
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
+*/</span>
+
+  buildChartComponents(context) {
+    <span class="hljs-keyword">const</span> tooltip = context.tooltip;
+
+    context.svg.selectAll(<span class="hljs-string">'.scatter'</span>)
+         .data(context.data)
+         .enter()
+         .append(<span class="hljs-string">'circle'</span>)
+         .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'dot'</span>)
+         .on(<span class="hljs-string">'mouseover'</span>, (d) =&gt; {
+           d3.select(d3.event.target).transition()
+           .duration(<span class="hljs-number">200</span>)
+           .attr(<span class="hljs-string">'r'</span>, <span class="hljs-number">7</span>);
+           tooltip.show();
+           tooltip.setContent(<span class="hljs-string">`<span class="hljs-subst">${context.yColumnName}</span>: <span class="hljs-subst">${d[context.yColumnName]}</span>\
+           <span class="hljs-subst">${context.xColumnName}</span>: <span class="hljs-subst">${d[context.xColumnName]}</span>`</span>);
+         })
+        .on(<span class="hljs-string">'mouseout'</span>, () =&gt; {
+          d3.select(d3.event.target).transition()
+            .duration(<span class="hljs-number">200</span>)
+            .attr(<span class="hljs-string">'r'</span>, <span class="hljs-number">4</span>);
+          tooltip.hide();
+        })
+         .attr(<span class="hljs-string">'r'</span>, <span class="hljs-number">4</span>)
+         .attr(<span class="hljs-string">'cx'</span>, (d) =&gt; { <span class="hljs-keyword">return</span> context.xScale(d[context.getxAxisLabel]); })
+         .attr(<span class="hljs-string">'cy'</span>, (d) =&gt; { <span class="hljs-keyword">return</span> context.yScale(d[context.getyAxisLabel]); })
+         .style(<span class="hljs-string">'fill'</span>, (d) =&gt; { <span class="hljs-keyword">return</span> context.getColorScale(d[context.ordinalNames]); })
+         .style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">0</span>)
+         .transition()
+         .delay((d, i) =&gt; { <span class="hljs-keyword">return</span> i * (<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">20</span>); })
+         .style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">1</span>);
+
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+<span class="hljs-comment">/*
+@private
+@function styleChart
+@description Updates the chart's style on the element
+@param {Object} context (chart instance)
+@returns {Object} context (chart instance)
+*/</span>
+
+  styleChart(context) {
+    context.element.select(<span class="hljs-string">'svg'</span>)
+        .style(<span class="hljs-string">'font-family'</span>, context.getFontStyle)
+        .attr(<span class="hljs-string">'font-size'</span>, context.getFontSize)
+        .append(<span class="hljs-string">'text'</span>)
+        .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'title'</span>)
+        .attr(<span class="hljs-string">'x'</span>, context.getChartWidth * <span class="hljs-number">0.5</span>)
+        .attr(<span class="hljs-string">'y'</span>, <span class="hljs-number">20</span>)
+        .text(context.getTitle);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  updateChartComponents(context) {
+    context.svg.select(<span class="hljs-string">'.scatter'</span>).remove();
+    context.svg.selectAll(<span class="hljs-string">'.dot'</span>).remove();
+    context.svg.selectAll(<span class="hljs-string">'.legend'</span>).remove();
+    context.element.select(<span class="hljs-string">'.title'</span>).remove();
+
+    <span class="hljs-keyword">this</span>.buildChartComponents(context);
+    <span class="hljs-keyword">this</span>.styleChart(context);
+    <span class="hljs-keyword">return</span> context;
+  },
+  <span class="hljs-comment">/*
+  @private
+  @function  updateColors
+  @description Updates the chart's colors
+  @param {Object} context (chart instance)
+  @returns {Object} context(chart instance)
+  */</span>
+
+  updateColors(context) {
+    context.element.select(<span class="hljs-string">'svg'</span>)
+        .selectAll(<span class="hljs-string">'.dot'</span>)
+        .style(<span class="hljs-string">'fill'</span>, (d) =&gt; { <span class="hljs-keyword">return</span> context.getColorScale(d[context.ordinalNames]); });
+
+    context.element.selectAll(<span class="hljs-string">'.legend-data rect'</span>)
+    .style(<span class="hljs-string">'fill'</span>, context.getColors);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> scatter;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

@@ -16,7 +16,7 @@ gulp.task('default', ['clean', 'lint-strict', 'build', 'test', 'doc', 'stage'], 
 
 // generate docco on all src files
 gulp.task('doc', shell.task([
-  './node_modules/.bin/docco ./src/**/*.js -o docs/docco'
+  './node_modules/.bin/docco ./src/**/*.js -o docs/'
 ]));
 
 //Lint files using Airbnb config ESLinter

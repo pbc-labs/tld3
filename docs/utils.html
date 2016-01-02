@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>utils.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="ChartMain.html">
+                  ChartMain.js
+                </a>
+              
+                
+                <a class="source" href="core.html">
+                  core.js
+                </a>
+              
+                
+                <a class="source" href="InternalBarLeft.html">
+                  InternalBarLeft.js
+                </a>
+              
+                
+                <a class="source" href="internal.html">
+                  internal.js
+                </a>
+              
+                
+                <a class="source" href="internalArea.html">
+                  internalArea.js
+                </a>
+              
+                
+                <a class="source" href="internalBar.html">
+                  internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalDonutChart.html">
+                  internalDonutChart.js
+                </a>
+              
+                
+                <a class="source" href="internalLine.html">
+                  internalLine.js
+                </a>
+              
+                
+                <a class="source" href="internalScatter.html">
+                  internalScatter.js
+                </a>
+              
+                
+                <a class="source" href="internalWaffle.html">
+                  internalWaffle.js
+                </a>
+              
+                
+                <a class="source" href="AreaChart.html">
+                  AreaChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChart.html">
+                  BarChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChartLeft.html">
+                  BarChartLeft.js
+                </a>
+              
+                
+                <a class="source" href="DonutChart.html">
+                  DonutChart.js
+                </a>
+              
+                
+                <a class="source" href="LineChart.html">
+                  LineChart.js
+                </a>
+              
+                
+                <a class="source" href="ScatterChart.html">
+                  ScatterChart.js
+                </a>
+              
+                
+                <a class="source" href="WaffleChart.html">
+                  WaffleChart.js
+                </a>
+              
+                
+                <a class="source" href="charts.html">
+                  charts.js
+                </a>
+              
+                
+                <a class="source" href="data.html">
+                  data.js
+                </a>
+              
+                
+                <a class="source" href="errors.html">
+                  errors.js
+                </a>
+              
+                
+                <a class="source" href="themes.html">
+                  themes.js
+                </a>
+              
+                
+                <a class="source" href="utils.html">
+                  utils.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>utils.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
+This is required for d3 to load.
+*/</span>
+<span class="hljs-comment">/* global d3 */</span>
+
+<span class="hljs-keyword">import</span> errors <span class="hljs-keyword">from</span> <span class="hljs-string">'./errors'</span>;
+
+<span class="hljs-keyword">import</span> Firebase <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase'</span>;
+<span class="hljs-comment">/*
+Holds various utility functions used throughout the library,
+particularly for creating, building and modifying chart elements.
+*/</span>
+
+<span class="hljs-keyword">const</span> utils = {
+
+  isAcceptableFileExtension(extension) {
+    <span class="hljs-keyword">const</span> okayExtensions = {
+      <span class="hljs-string">'json'</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">'tsv'</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">'csv'</span>: <span class="hljs-literal">true</span>,
+    };
+    <span class="hljs-keyword">return</span> extension <span class="hljs-keyword">in</span> okayExtensions;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function getDataType
+  @description Checks the data type for a given input
+  @param {Object/String} rawData The raw data from user
+  @returns {String} The type of data that was entered
+  */</span>
+
+  getDataType(rawData) {
+    <span class="hljs-keyword">if</span> (rawData.constructor === <span class="hljs-built_in">String</span>) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-built_in">JSON</span>.parse(rawData);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'json'</span>;
+      } <span class="hljs-keyword">catch</span> (e) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'location'</span>;
+      }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(rawData)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'array'</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rawData <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'object'</span>;
+    }
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function getData
+  @description Gets all a file
+  @param {Object/String} rawData The raw data from user
+  @returns {Promise} A promise resolved when the data is available
+  */</span>
+
+  getData(rawData) {
+    <span class="hljs-keyword">const</span> dataType = utils.getDataType(rawData);
+    <span class="hljs-keyword">if</span> (dataType === <span class="hljs-string">'location'</span>) {
+      <span class="hljs-keyword">const</span> splitData = rawData.split(<span class="hljs-string">'.'</span>);
+      <span class="hljs-keyword">const</span> fileExtension = rawData.split(<span class="hljs-string">'.'</span>)[splitData.length - <span class="hljs-number">1</span>];
+      <span class="hljs-keyword">if</span> (utils.isAcceptableFileExtension(fileExtension)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((resolve, reject) =&gt; {
+          d3[fileExtension](rawData, (error, result) =&gt; {
+            <span class="hljs-keyword">if</span> (error) {
+              reject(error);
+            } <span class="hljs-keyword">else</span> {
+              resolve(result);
+            }
+          });
+        });
+      }
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.UnacceptableFileExtensionError;
+    }
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function getFirebaseData
+  @description Gets Firebase data from Firebase url passed in
+  @param {String} url Firebase database url
+  @returns {Promise} A promise resolved when the data is available
+  */</span>
+
+  getFirebaseData(url) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>assuming they have firebase source included in html file</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">const</span> ref = <span class="hljs-keyword">new</span> Firebase(url);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((resolve, reject) =&gt; {
+      ref.on(<span class="hljs-string">'value'</span>, (snapshot) =&gt; {
+        <span class="hljs-keyword">const</span> data = snapshot.val();
+        <span class="hljs-keyword">if</span> (!data) {
+          reject(<span class="hljs-string">'Firebase data failed to load :('</span>);
+        } <span class="hljs-keyword">else</span> {
+          resolve(data);
+        }
+      });
+    });
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function isOridinal
+  @description Checks the scale of column and returns if it ordinal
+  @param {Object} data The graph data object
+  @param {Object} columnName The column from the data
+  @returns {Boolean} If the column scale is Ordinal
+  */</span>
+
+  isOrdinal(data, columnName) {
+    <span class="hljs-keyword">const</span> dataType = utils.getDataType(data);
+    <span class="hljs-keyword">if</span> (dataType === <span class="hljs-string">'array'</span>) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Number</span>(data[<span class="hljs-number">0</span>][columnName])) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dataType === <span class="hljs-string">'object'</span>) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Number</span>(data[columnName])) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function Checks the scale of column and returns if it linear
+  @param {Object} data The graph data object
+  @param {Object} columnName The column from the data
+  @returns {Boolean} If the column scale is Linear
+  */</span>
+
+  isLinear(data, columnName) {
+    <span class="hljs-keyword">if</span> (!utils.isOrdinal(data, columnName) &amp;&amp; !utils.isTime(data, columnName)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function isTime
+  @description Checks the scale of column and returns if it linear
+  @param {Object} data The graph data object
+  @param {Object} columnName The column from the data
+  @returns {Boolean} If the column scale is Linear
+  */</span>
+
+  isTime(data, columnName, format) {
+    <span class="hljs-keyword">if</span> (utils.isAcceptableTimeFormat(data[<span class="hljs-number">0</span>][columnName], format)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function isAcceptableTimeFormat
+  @description Returns true a given timeStamp can be writen in a time format
+  @param {String} timeStamp A UTC time or string
+  @returns {Boolean} If the timeStamp is a valid time
+  */</span>
+
+  isAcceptableTimeFormat(timeStamp, format) {
+    <span class="hljs-keyword">const</span> _timeStamp = <span class="hljs-built_in">String</span>(timeStamp);
+    <span class="hljs-keyword">if</span> (format) {
+      <span class="hljs-keyword">const</span> parser = d3.time.format(format).parse;
+      <span class="hljs-keyword">return</span> parser(_timeStamp) !== <span class="hljs-literal">null</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_timeStamp.split(<span class="hljs-string">' '</span>).length &gt; <span class="hljs-number">1</span> || _timeStamp.split(<span class="hljs-string">'/'</span>).length &gt; <span class="hljs-number">1</span> || _timeStamp.split(<span class="hljs-string">'-'</span>).length &gt; <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(_timeStamp).toString() !== <span class="hljs-string">'Invalid Date'</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function getColumnNames
+  @description Gets all the column names for the data set
+  @param {Object} data The graph data object
+  @returns {Boolean} If the column scale is Linear
+  */</span>
+
+  getColumnNames(data) {
+    <span class="hljs-keyword">const</span> dataType = utils.getDataType(data);
+    <span class="hljs-keyword">if</span> (dataType === <span class="hljs-string">'object'</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(data);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dataType === <span class="hljs-string">'array'</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(data[<span class="hljs-number">0</span>]);
+    }
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function getFirstOrdinalColumn
+  @description Gets the first possible ordinal column
+  @param {Object} data The graph data object
+  @returns {String} The first column that can be oridinal
+  */</span>
+
+  getFirstOrdinalColumn(data) {
+    <span class="hljs-keyword">const</span> columnNames = utils.getColumnNames(data);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; columnNames.length; i++) {
+      <span class="hljs-keyword">if</span> (utils.isOrdinal(data, columnNames[i])) {
+        <span class="hljs-keyword">return</span> columnNames[i];
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function getFirstLinearColumn
+  @description Gets the first possible linear column
+  @param {Object} data The graph data object
+  @returns {String} The first column that can be linear
+  */</span>
+
+  getFirstLinearColumn(data) {
+    <span class="hljs-keyword">const</span> columnNames = utils.getColumnNames(data);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; columnNames.length; i++) {
+      <span class="hljs-keyword">if</span> (utils.isLinear(data, columnNames[i])) {
+        <span class="hljs-keyword">return</span> columnNames[i];
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function getFirstTimeColumn
+  @description Gets the first possible time scale column
+  @param {Object} data The graph data object
+  @returns {String} The first column that can be linear
+  */</span>
+
+  getFirstTimeColumn(data, format) {
+    <span class="hljs-keyword">const</span> columnNames = utils.getColumnNames(data);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; columnNames.length; i++) {
+      <span class="hljs-keyword">if</span> (utils.isTime(data, columnNames[i], format)) {
+        <span class="hljs-keyword">return</span> columnNames[i];
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function Parses time data
+  @param {Object} data
+    @description The graph data object
+  @param {String} column
+    @description The current column that needs to be parsed
+  @param (String) format
+    @description Specifies a posiible time format
+  @returns {String} Time parsed data
+  */</span>
+
+  parseTimeData(data, column, format) {
+    <span class="hljs-keyword">if</span> (format) {
+      <span class="hljs-keyword">const</span> parser = d3.time.format(format).parse;
+      data.forEach(item =&gt; {
+        item[column] = parser(item[column]);
+
+        <span class="hljs-keyword">if</span> (!(item[column] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>)) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.DateError;
+        }
+      });
+    } <span class="hljs-keyword">else</span> {
+      data.forEach(item =&gt; {
+        item[column] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(item[column]);
+        <span class="hljs-keyword">if</span> (item[column].toString() === <span class="hljs-string">'Invalid Date'</span>) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.DateError;
+        }
+      });
+    }
+    <span class="hljs-keyword">return</span> data;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function Parses strings to numbers
+  @param {Object} data
+    @description The graph data object
+  @param {String} column
+  @returns {String} Column parsed as number
+  */</span>
+
+  parseNumberData(data, column) {
+    data.forEach(item =&gt; {
+      item[column] = <span class="hljs-built_in">Number</span>(item[column]);
+    });
+    <span class="hljs-keyword">return</span> data;
+  },
+
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> utils;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

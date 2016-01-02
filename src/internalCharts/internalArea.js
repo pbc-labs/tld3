@@ -6,6 +6,7 @@ This is required for d3 to load.
 import utils from '../utils/utils';
 
 const internalArea = {
+  // Builds the actual chart components with data, including the tooltips
   /*
   @private
   @function buildChartComponents
@@ -53,6 +54,7 @@ const internalArea = {
     return context;
   },
 
+  // Does the path tweening for the area chart transitions
   /*
   @private
   @function pathTween
@@ -93,10 +95,11 @@ const internalArea = {
     };
   },
 
+  // Updates the data area on chart
   /*
   @private
   @function updateChartComponents
-  @description Updates the bar on chart
+  @description Updates the data area on chart
   @param {Object} context Chart object
   @returns {Object} context Chart object
   */
@@ -109,6 +112,7 @@ const internalArea = {
     return context;
   },
 
+  // Sets the columnNames for the graph
   /*
   @private
   @function setColumnNames
@@ -123,6 +127,7 @@ const internalArea = {
     return this;
   },
 
+  // Sets the x scale
   /*
   @private
   @function setXScale
@@ -140,6 +145,7 @@ const internalArea = {
     return context;
   },
 
+  // Sets the y scale
   /*
   @private
   @function setYScale
@@ -157,6 +163,7 @@ const internalArea = {
     return context;
   },
 
+  // Update chart area colors
   /*
   @private
   @function updateColors
@@ -177,6 +184,7 @@ const internalArea = {
     return context;
   },
 
+  // Create the area drawing function
   /*
   @private
   @function buildArea
@@ -194,6 +202,7 @@ const internalArea = {
     return context;
   },
 
+  // Adds the y axis to the chart
   /*
   @private
   @function buildYAxis
@@ -216,6 +225,7 @@ const internalArea = {
     return context;
   },
 
+  // Convert chart data
  /*
   @private
   @function convertData
@@ -230,6 +240,7 @@ const internalArea = {
     return context;
   },
 
+  // Updates the style on the chart
  /*
   @private
   @function styleChart

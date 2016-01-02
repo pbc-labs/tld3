@@ -1,6 +1,5 @@
-/*
-This is required for d3 to load.
-*/
+// This is required for d3 to load.
+
 /*  global d3  */
 
 import { ChartMain } from '../core/ChartMain';
@@ -12,6 +11,7 @@ export class DonutChart extends ChartMain {
     super();
   }
 
+  // Builds up the Donut chart
   /*
   @private
   @function build
@@ -19,9 +19,11 @@ export class DonutChart extends ChartMain {
   @returns {Object} this (chart instance)
   */
   build() {
-    /*
-    Calls each of the methods on Internal and InternalDonut object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */
+    // Calls each of the methods on Internal and InternalDonut
+    // object necessary to build up all the components of the
+    // chart. Internal holds all the methods that do d3
+    // manipulation to create and update various parts of the chart
+
     Internal.selectElement(this);
     Internal.getParentDimensions(this);
     Internal.getChartDimensions(this);
@@ -41,6 +43,7 @@ export class DonutChart extends ChartMain {
     return this;
   }
 
+  // Calls InternalDonut to update the Donut on chart
   /*
   @private
   @function updateChartComponents
@@ -48,13 +51,17 @@ export class DonutChart extends ChartMain {
   @returns {Object} this (chart instance)
   */
   updateChartComponents() {
-    /* Calls method on InternalDonut to recreate all the chart components. Used to reflect any changes made to property values (e.g. font-size, axis-label, etc.)
-    */
+    // Calls method on InternalDonut to recreate all the
+    // chart components. Used to reflect any changes made
+    // to property values (e.g. font-size, axis-label, etc.)
     InternalDonut.updateChartComponents(this);
 
     return this;
   }
 
+  // Calls InternalDonut to update color of Donut chart after
+  // initial render.
+  // Used when a property changes that requires a re-render.
   /*
   @private
   @function updateColors
@@ -66,10 +73,12 @@ export class DonutChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's margin on the element itself
   /*
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
+  // Used when the margins change that requires a re-render.
   @returns {Object} this Chart object
   */
 
@@ -80,6 +89,8 @@ export class DonutChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's width on the element itself
+  // Used when the width changes that requires a re-render.
   /*
   @private
   @function updateWidth
@@ -96,6 +107,8 @@ export class DonutChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's height on the element itself
+  // Used when the height changes that requires a re-render.
   /*
   @private
   @function updateHeight
@@ -112,6 +125,8 @@ export class DonutChart extends ChartMain {
     return this;
   }
 
+  // Overrides the default ChartMain setColors setter
+  // Maps to an ordinal scale
   /*
   @private
   @function setColors

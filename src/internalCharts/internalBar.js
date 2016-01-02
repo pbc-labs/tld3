@@ -1,9 +1,8 @@
-/*
-This is required for d3 to load.
-*/
+// This is required for d3 to load.
 /* global d3 */
 
 const InternalBar = {
+  // Builds the actual chart components with data, including the tooltips
   /*
   @private
   @function buildChartComponents
@@ -12,9 +11,11 @@ const InternalBar = {
    */
 
   buildChartComponents(context) {
-    /*
-    Uses d3 to build the chart components for bar chart using the chart data. Sets event listeners mouseover and mouseout to hide/show tooltips. Uses transition to transition the bars into view.
-    */
+    // Uses d3 to build the chart components for bar chart
+    // using the chart data. Sets event listeners mouseover
+    // and mouseout to hide/show tooltips. Uses transition
+    // to transition the bars into view.
+
     const tooltip = context.tooltip;
 
     context.svg.selectAll('.bar')
@@ -50,6 +51,7 @@ const InternalBar = {
     return context;
   },
 
+  // Updates and recreates the bars on chart
   /*
   @private
   @function updateChartComponents
@@ -72,6 +74,7 @@ const InternalBar = {
     return context;
   },
 
+  // Updates the chart's style on the element
   /*
   @private
   @function styleChart
@@ -81,9 +84,7 @@ const InternalBar = {
   */
 
   styleChart(context) {
-    /*
-    Styles the chart's font-size, font-style, and title
-    */
+    // Styles the chart's font-size, font-style, and title
     context.element.select('svg')
         .style('font-family', context.getFontStyle)
         .attr('font-size', context.getFontSize)
@@ -97,6 +98,7 @@ const InternalBar = {
     return context;
   },
 
+  // Updates color of bar chart after initial render
   /*
   @private
   @function updateColors

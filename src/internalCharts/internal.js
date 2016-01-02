@@ -1,11 +1,10 @@
-/*
-This is required for d3 to load.
-*/
+// This is required for d3 to load.
 /* global d3 */
 
 import utils from '../utils/utils';
 
 const Internal = {
+  // Creates a d3 element and assigns it to our internal 'element' property
   /*
   @private
   @function selectElement
@@ -15,13 +14,15 @@ const Internal = {
   */
 
   selectElement(context) {
-    /* Use d3 to select the DOM element where the chart will be drawn. Set the element to our chart's 'element' property
-    */
+    // Use d3 to select the DOM element where the chart
+    // will be drawn. Set the element to our chart's 'element' property
     context.element = d3.select(context.location);
 
     return context;
   },
 
+  // Obtains the height and width of the containing element.
+  // If the width is 0, the width of the window is used.
   /*
   @private
   @function getParentDimensions
@@ -39,6 +40,8 @@ const Internal = {
     return context;
   },
 
+  // Calculates the height and width of the chart according
+  // to the size of the containing element
   /*
   @private
   @function getChartDimensions
@@ -60,6 +63,7 @@ const Internal = {
     return context;
   },
 
+  // Creates the main SVG element
   /*
   @private
   @function createSVGElement
@@ -69,8 +73,8 @@ const Internal = {
   */
 
   createSVGElement(context) {
-    /* Appends the SVG to our chart element. Sets the width and height of the SVG.
-    */
+    // Appends the SVG to our chart element.
+    // Sets the width and height of the SVG.
     context.translateX = (context.getParentWidth / 2) - (context.getChartWidth / 2);
 
     context.translateY = (context.getParentHeight / 2) - (context.getChartHeight / 2);
@@ -94,6 +98,7 @@ const Internal = {
     return context;
   },
 
+  // Updates the main SVG element
   /*
   @private
   @function updateSVGElement
@@ -103,8 +108,7 @@ const Internal = {
   */
 
   updateSVGElement(context) {
-    /* Select current SVG element and tpdates the width and height of the SVG.
-    */
+    // Select current SVG element and tpdates the width and height of the SVG.
     context.element.select('svg')
            .attr('width', context.getChartWidth + context.getMargins.left + context.getMargins.right)
            .attr('height', context.getChartHeight + context.getMargins.top + context.getMargins.bottom)
@@ -114,6 +118,8 @@ const Internal = {
     return context;
   },
 
+  // Creates a d3 x-axis using the appropriate scale and orientation
+  // for this chart instance
   /*
   @private
   @function createxAxis
@@ -123,15 +129,15 @@ const Internal = {
   */
 
   createxAxis(context) {
-    /*
-    Builds x-axis using the appropriate scale and orientation.
-    */
     context.xAxis = d3.svg.axis()
                       .scale(context.xScale)
                       .orient(context.getxAxisOrientation)
                       .ticks(6);
     return context;
   },
+
+  // Creates a d3 y-axis using the appropriate scale and orientation
+  // for this chart instance
 
   /*
   @private
@@ -152,6 +158,9 @@ const Internal = {
     return context;
   },
 
+  // Updates y-axis using the new scale. Used when user
+  // updates some chart property that requires recreation
+  // of axis.
   /*
   @private
   @function updateYAxisScale
@@ -161,11 +170,6 @@ const Internal = {
   */
 
   updateYAxisScale(context) {
-    /*
-    Updates y-axis using the new scale. Used when user
-    updates some chart property that requires recreation
-    of Axis
-    */
     context.yAxis = d3.svg.axis()
                       .scale(context.yScale)
                       .orient(context.getyAxisOrientation);
@@ -173,6 +177,9 @@ const Internal = {
     return context;
   },
 
+  // Updates x-axis using the new scale. Used when user
+  // updates some chart property that requires recreation
+  // of axis.
   /*
   @private
   @function updateXAxisScale
@@ -182,11 +189,6 @@ const Internal = {
   */
 
   updateXAxisScale(context) {
-    /*
-    Updates x-axis using the new scale. Used when user
-    updates some chart property that requires recreation
-    of Axis
-    */
     context.xAxis = d3.svg.axis()
                       .scale(context.xScale)
                       .orient(context.getxAxisOrientation);
@@ -194,6 +196,8 @@ const Internal = {
     return context;
   },
 
+  // Builds up the x-axis. Sets the class property, transforms
+  // the height to the bottom of graph, and appends an axis label.
   /*
   @private
   @function buildXAxis
@@ -203,9 +207,6 @@ const Internal = {
   */
 
   buildXAxis(context) {
-    /*
-    Builds up the x-axis. Sets the class property, transforms the height to the bottom of graph, and appends an axis label
-    */
     context.svg.append('g')
                .attr('class', 'x axis')
                .attr('transform', 'translate(0, ' + context.getChartHeight + ')')
@@ -220,6 +221,7 @@ const Internal = {
     return context;
   },
 
+  // Translates the x-axis to the right location
   /*
   @private
   @function updateXAxisPosition
@@ -237,6 +239,8 @@ const Internal = {
     return context;
   },
 
+  // Builds up the y-axis. Sets the class property, rotates
+  // the position to be to left of graph, and appends an axis label
   /*
   @private
   @function buildYAxis
@@ -245,9 +249,6 @@ const Internal = {
   @returns {Object} context (chart instance)
   */
   buildYAxis(context) {
-    /*
-    Builds up the y-axis. Sets the class property, rotates the position to be to left of graph, and appends an axis label
-    */
     context.svg.append('g')
            .attr('class', 'y axis')
            .call(context.yAxis)
@@ -261,6 +262,8 @@ const Internal = {
     return context;
   },
 
+  // Updates the y-axis on chart by rebuilding it. Used when
+  // properties on a chart are changed that requires axis rebuild.
   /*
   @private
   @function Updates the up the y-axis
@@ -269,9 +272,6 @@ const Internal = {
   */
 
   updateYAxis(context) {
-    /*
-    Updates the y-axis on chart by rebuilding it. Used when properties on a chart are changed that requires axis rebuild.
-    */
     context.element
            .select('svg')
            .selectAll('g .y.axis')
@@ -288,6 +288,8 @@ const Internal = {
     return context;
   },
 
+  // Updated the x-axis on chart by rebuilding it. Used when
+  // properties on a chart are changed that requires axis rebuild.
   /*
   @private
   @function updateXAxis
@@ -297,9 +299,6 @@ const Internal = {
   */
 
   updateXAxis(context) {
-    /*
-    Updated the x-axis on chart by rebuilding it. Used when properties on a chart are changed that requires axis rebuild.
-    */
     context.element
            .select('svg')
            .selectAll('g .x.axis')
@@ -313,7 +312,8 @@ const Internal = {
     return context;
   },
 
-
+  // Updates the chart's font size on the svg
+  // Used when the font size changes that requires a re-render
   /*
   @private
   @function updateFontSize
@@ -329,6 +329,8 @@ const Internal = {
     return context;
   },
 
+  // Updates the chart's font style on the svg
+  // Used when the font style changes that requires a re-render
   /*
   @private
   @function updateFontStyle
@@ -344,6 +346,8 @@ const Internal = {
     return context;
   },
 
+  // Updates the chart's title on the svg
+  // Used when the title changes that requires a re-render
   /*
   @private
   @function updateTitle
@@ -359,6 +363,7 @@ const Internal = {
     return context;
   },
 
+  // Sets the xScale for chart.
   /*
   @private
   @function setXscale
@@ -370,11 +375,10 @@ const Internal = {
   */
 
   setXscale(context, type, dataDomain) {
-    /*
-    If check for the type of axis and build accordingly.
-    In addition, we use helper functions to get the column name and
-    set it to be the axis label.
-    */
+    // If check for the type of axis and build accordingly.
+    // In addition, we use helper functions to get the column name
+    // and set it to be the axis label.
+
     if (type === 'ordinal') {
       context.xColumnName = utils.getFirstOrdinalColumn(context.data);
       context.setxAxisLabel = context.xColumnName;
@@ -387,9 +391,10 @@ const Internal = {
                       .range([context.getChartWidth, 0]);
     }
 
-    /*
-    We map the x-axis scale domain to the data. How the mapping is done various depending on whether we have string (ordinal) values or Number (linear) values
-    */
+    // We map the x-axis scale domain to the data. How the mapping
+    // is done various depending on whether we have string (ordinal)
+    // values or Number (linear) values
+
     if (dataDomain === 'string') {
       context.xScale.domain(context.data.map(d => { return d[context.xColumnName]; }));
     } else if (dataDomain === 'number') {
@@ -399,6 +404,7 @@ const Internal = {
     return context;
   },
 
+  // Sets the yScale for chart.
   /*
   @private
   @function setYscale
@@ -410,10 +416,10 @@ const Internal = {
   */
 
   setYscale(context, type, dataDomain) {
-    /*
-    If check for the type of axis and build accordingly.
-    In addition, we use helper functions to get the column name and set it to be the axis label.
-    */
+    // If check for the type of axis and build accordingly.
+    // In addition, we use helper functions to get the column name
+    // and set it to be the axis label.
+
     if (type === 'ordinal') {
       context.yColumnName = utils.getFirstOrdinalColumn(context.data);
       context.setyAxisLabel = context.yColumnName;
@@ -426,9 +432,9 @@ const Internal = {
                       .range([context.getChartHeight, 0]);
     }
 
-    /*
-    We map the y-axis scale domain to the data. How the mapping is done various depending on whether we have string (ordinal) values or Number (linear) values
-    */
+    // We map the y-axis scale domain to the data. How the mapping
+    // is done various depending on whether we have string (ordinal)
+    // values or Number (linear) values
     if (dataDomain === 'string') {
       context.yScale.domain(context.data.map(d => { return d[context.yColumnName]; }));
     } else if (dataDomain === 'number') {
@@ -438,6 +444,7 @@ const Internal = {
     return context;
   },
 
+  // Sets style properties for chart axis
   /*
   @private
   @function
@@ -461,6 +468,7 @@ const Internal = {
     return context;
   },
 
+  // Creates an ordinal color scale according to categories passed in
   /*
   @private
   @function convertColorsToScale
@@ -476,6 +484,7 @@ const Internal = {
     return context;
   },
 
+  // Creates tooltips on chart
   /*
   @private
   @function createToolTip
@@ -533,7 +542,7 @@ const Internal = {
     return context;
   },
 
-
+  // Creates legend on chart
   /*
   @private
   @function createLegend

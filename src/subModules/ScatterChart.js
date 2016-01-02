@@ -1,21 +1,19 @@
-/*
-This is required for d3 to load.
-*/
+// This is required for d3 to load.
 /* global d3 */
 
 import { ChartMain } from '../core/ChartMain';
 import Internal from '../internalCharts/internal';
 import InternalScatter from '../internalCharts/internalScatter';
 
-/*
-Defines the subclass for the Scatter Chart.
-*/
+// Defines the subclass for the Scatter Chart.
 
 export class ScatterChart extends ChartMain {
   constructor() {
     super();
   }
 
+  // Calls the necessary internal methods from Internal object
+  // and InternalScatter to build the scatter chart.
   /*
   @private
   @function build
@@ -24,9 +22,10 @@ export class ScatterChart extends ChartMain {
   */
 
   build() {
-    /*
-    Calls each of the methods on Internal and InternalScatter object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */
+    // Calls each of the methods on Internal and InternalScatter
+    // object necessary to build up all the components of the chart.
+    // Internal holds all the methods that do d3 manipulation to
+    // create and update various chart elements
     Internal.selectElement(this);
     Internal.getParentDimensions(this);
     Internal.getChartDimensions(this);
@@ -49,6 +48,7 @@ export class ScatterChart extends ChartMain {
     Internal.createLegend(this);
   }
 
+  // Updates the dots on chart. Calls the internal update function
   /*
   @private
   @function updateChartComponents
@@ -61,6 +61,7 @@ export class ScatterChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's height on the element itself
   /*
   @private
   @function updateHeight
@@ -69,9 +70,10 @@ export class ScatterChart extends ChartMain {
   */
 
   updateHeight() {
-    /*
-    Calls each of the methods on Internal object necessary to update the height of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */
+    // Calls each of the methods on Internal object
+    // necessary to update the height of the chart. Internal
+    //  holds all the methods that do d3 manipulation to
+    // create and update various parts of the chart
     Internal.updateSVGElement(this);
     InternalScatter.setYscale(this);
     Internal.updateYAxisScale(this);
@@ -81,6 +83,7 @@ export class ScatterChart extends ChartMain {
     return this;
   }
 
+  // Updates the chart's margin on the element itself
   /*
   @private
   @function updateMargins
@@ -89,14 +92,18 @@ export class ScatterChart extends ChartMain {
   */
 
   updateMargins() {
-    /*
-    Calls updateHeight and updateWidth on this instance to reflect the new margins.
-    */
+    // Calls updateHeight and updateWidth on this instance
+    // to reflect the new margins.
+
     this.updateHeight();
     this.updateWidth();
     return this;
   }
 
+  // Calls each of the methods on Internal object necessary to
+  // update the width of the chart. Internal holds all the
+  // methods that do d3 manipulation to create and update various
+  // parts of the chart
   /*
   @private
   @function updateWidth
@@ -105,9 +112,6 @@ export class ScatterChart extends ChartMain {
   */
 
   updateWidth() {
-    /*
-    Calls each of the methods on Internal object necessary to update the width of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */
     Internal.updateSVGElement(this);
     InternalScatter.setXscale(this);
     Internal.updateXAxisScale(this);
@@ -116,6 +120,8 @@ export class ScatterChart extends ChartMain {
     return this;
   }
 
+  // Overrides the default ChartMain setColors setter.
+  // Maps to an ordinal scale
   /*
   @private
   @function setColors
@@ -128,6 +134,8 @@ export class ScatterChart extends ChartMain {
     Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalNames]; }));
   }
 
+  // Calls InternalScatter to update color of scatter
+  // chart after initial render
   /*
   @private
   @function updateColors
@@ -140,6 +148,7 @@ export class ScatterChart extends ChartMain {
     return this;
   }
 
+  // Calls Internal to update/rerender x-axis label.
   /*
   @private
   @function updatexAxisLabel
@@ -156,10 +165,11 @@ export class ScatterChart extends ChartMain {
     return this;
   }
 
+  // Calls Internal to update/rerender y-axis label
   /*
   @private
   @function updateyAxisLabel
-  @description Calls Internal to update y-axis label
+  @description Calls Internal to update/rerender y-axis label
   @returns {Object} this Chart object
   */
 
