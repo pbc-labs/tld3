@@ -59,6 +59,8 @@ tld3.make('BarChart')
     .using(data)
     .in('#barchart');
 ```
+![Bar chart](http://imgur.com/3GjBMdS)
+
 __Example 2:__ Using CSV file
 
 ```javascript
@@ -72,20 +74,23 @@ tld3.upload('./data/scatterData.csv') // uploading csv data from a file
       console.error(err);
     });
 ```
+
+![Scatter chart](http://imgur.com/BlPE4tI)
 __Example 3:__ Using Firebase database url
 ```javascript
 
 tld3.uploadFirebase('https://tld3.firebaseio.com/') // upload data from from Firebase database
     .then((data) => { // if the promise returns successfully, create the chart
-      tld3.make('BarChart')
+      tld3.make('LineChart')
           .using(data)
-          .in('#barchart');
+          .in('#linechart');
     })
     .catch((err) => { // else handle error
       console.error(err);
     });
 
 ```
+![Line chart](http://imgur.com/jHaOwju)
 
 We support data in many formats, including raw JSON or importing data from csv, tsv or JSON files. We now also support Firebase database urls which allows you to have live data updates!
 
