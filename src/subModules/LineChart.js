@@ -27,6 +27,7 @@ export class LineChart extends ChartMain {
     Internal.getChartDimensions(this);
     InternalLine.setColumnNames(this);
     InternalLine.convertData(this);
+    Internal.convertColorsToScale(this, this.data.map(category => { return category.name; }));
     InternalLine.setXScale(this);
     InternalLine.setYScale(this);
     Internal.createSVGElement(this);
@@ -210,5 +211,17 @@ export class LineChart extends ChartMain {
     return this;
   }
 
+  /*
+  @private
+  @function setColors
+  @description Overrides the default ChartMain setColors setter - maps to an ordinal scale
+  @param {Array} colors Array of colors to update the chart to
+  */
+
+  set setColors(newColors) {
+    this._colors = newColors;
+    Internal.convertColorsToScale(this, this.data.map(category => { return category.name; }));
+    return this;
+  }
 
 }
