@@ -245,7 +245,7 @@ const InternalLine = {
   */
 
   convertData(context) {
-    context.data = utils.parseTimeData(context.data, context.xColumnName, context.dateFormat);
+    context.data = utils.parseTimeData(context.data, context.xColumnName, context._dateFormat);
     const list = [];
     const dataWorker = (i, columns) => {
       list.push({
@@ -275,7 +275,7 @@ const InternalLine = {
   */
 
   setColumnNames(context) {
-    context.xColumnName = utils.getFirstTimeColumn(context.data, context.dateFormat);
+    context.xColumnName = utils.getFirstTimeColumn(context.data, context._dateFormat);
 
     return context;
   },
