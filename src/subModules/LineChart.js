@@ -8,7 +8,7 @@ import InternalLine from '../internalCharts/internalLine';
 export class LineChart extends ChartMain {
   constructor() {
     super();
-    this.dateFormat = '';
+    this._dateFormat = '';
   }
 
   // Builds up the components of the line chart
@@ -192,7 +192,7 @@ export class LineChart extends ChartMain {
   */
 
   updateTimeFormat(dateFormat) {
-    this.dateFormat = dateFormat;
+    this._dateFormat = dateFormat;
     return this;
   }
 
