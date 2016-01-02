@@ -112,19 +112,6 @@ const DonutChart = {
 
   /*
   @private
-  @function updateTranslation
-  @description Updates the donut's position
-  @param {Object} context (chart instance)
-  @returns {Object} context (chart instance)
-  */
-
-  updateTranslation(context) {
-    context.svg.attr('transform', 'translate(' + context.getChartWidth / 2 + ',' + context.getChartHeight / 2 + ')');
-    return context;
-  },
-
-  /*
-  @private
   @function buildChartComponents
   @description Builds the actual chart components with data, including the tooltips
   @param {Object} context (chart instance)
@@ -134,7 +121,8 @@ const DonutChart = {
   buildChartComponents(context) {
     const tooltip = context.tooltip;
 
-    const g = context.svg.selectAll('.arc')
+    const g = context.svg.append('g')
+        .selectAll('.arc')
         .data(context.pie(context.data))
         .enter().append('g')
         .attr('class', (d, i) => { return `arc data-id-${i}`; });
