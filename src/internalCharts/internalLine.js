@@ -6,7 +6,7 @@ This is required for d3 to load.
 import utils from '../utils/utils';
 
 const InternalLine = {
-
+  // Updates the chart's style on the element
   /*
   @private
   @function styleChart
@@ -27,7 +27,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Builds up the line
   /*
   @private
   @function buildLine
@@ -37,16 +37,14 @@ const InternalLine = {
   */
 
   buildLine(context) {
-    /*
-    Build the d3 line using by mapping the x and y values to the data
-    */
+    // Build the d3 line using by mapping the x and y values to the data
     context.line = d3.svg.line()
         .x((d) => { return context.xScale(d.x); })
         .y((d) => { return context.yScale(d.y); });
 
     return context;
   },
-
+  // Builds up the y-axis
   /*
   @private
   @function buildYAxis
@@ -69,7 +67,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Updates and rebuilds the y-axis
   /*
   @private
   @function updateYAxis
@@ -79,9 +77,7 @@ const InternalLine = {
   */
 
   updateYAxis(context) {
-    /*
-    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
-    */
+    // Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
     context.element
            .select('svg')
            .selectAll('g .y.axis')
@@ -98,7 +94,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Sets the x-scale according to the data
   /*
   @private
   @function setXScale
@@ -116,7 +112,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Sets the y-scale according to the data
   /*
   @private
   @function setYScale
@@ -135,7 +131,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Builds the actual chart components with data
   /*
   @private
   @function buildChartComponents
@@ -195,7 +191,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Rebuilds the line on the chart
   /*
   @private
   @function updateChartComponents
@@ -218,7 +214,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Updates color of bar chart after initial render
   /*
   @private
   @function updateColors
@@ -239,7 +235,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Converts the data needed for the chart
   /*
   @private
   @function convertData
@@ -269,7 +265,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Sets the column names
   /*
   @private
   @function setColumnNames
@@ -283,7 +279,7 @@ const InternalLine = {
 
     return context;
   },
-
+  // Sets the tick format for xAxis
   /*
   @private
   @function setTickFormat
@@ -296,7 +292,7 @@ const InternalLine = {
     context.xAxis
     .tickFormat(d3.time.format(tickFormat));
   },
-
+  // Sets the tick count for xAxis
   /*
   @private
   @function setTickCount

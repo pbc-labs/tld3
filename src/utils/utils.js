@@ -6,10 +6,7 @@ This is required for d3 to load.
 import errors from './errors';
 
 import Firebase from 'firebase';
-/*
-Holds various utility functions used throughout the library,
-particularly for creating, building and modifying chart elements.
-*/
+// Holds various utility functions used throughout the library, particularly for creating, building and modifying chart elements.
 
 const utils = {
 
@@ -22,6 +19,7 @@ const utils = {
     return extension in okayExtensions;
   },
 
+  // Checks the data type for a given input
   /*
   @private
   @function getDataType
@@ -44,11 +42,11 @@ const utils = {
       return 'object';
     }
   },
-
+  // Gets data from file
   /*
   @private
   @function getData
-  @description Gets all a file
+  @description Gets data from file
   @param {Object/String} rawData The raw data from user
   @returns {Promise} A promise resolved when the data is available
   */
@@ -73,7 +71,7 @@ const utils = {
       throw new errors.UnacceptableFileExtensionError;
     }
   },
-
+  // Gets Firebase data from Firebase url passed in
   /*
   @private
   @function getFirebaseData
@@ -97,7 +95,7 @@ const utils = {
       });
     });
   },
-
+  // Checks the scale of column and returns if it ordinal
   /*
   @private
   @function isOridinal
@@ -120,10 +118,11 @@ const utils = {
     }
     return true;
   },
-
+  // Checks the scale of column and returns if it linear
   /*
   @private
-  @function Checks the scale of column and returns if it linear
+  @function isLinear
+  @description Checks the scale of column and returns if it linear
   @param {Object} data The graph data object
   @param {Object} columnName The column from the data
   @returns {Boolean} If the column scale is Linear
@@ -135,7 +134,7 @@ const utils = {
     }
     return false;
   },
-
+  // Checks the scale of column and returns if it linear
   /*
   @private
   @function isTime
@@ -151,7 +150,7 @@ const utils = {
     }
     return false;
   },
-
+  // Returns true a given timeStamp can be writen in a time format
   /*
   @private
   @function isAcceptableTimeFormat
@@ -170,7 +169,7 @@ const utils = {
     }
     return false;
   },
-
+  // Gets all the column names for the data set
   /*
   @private
   @function getColumnNames
@@ -187,7 +186,7 @@ const utils = {
       return Object.keys(data[0]);
     }
   },
-
+  // Gets the first possible ordinal column
   /*
   @private
   @function getFirstOrdinalColumn
@@ -205,7 +204,7 @@ const utils = {
     }
     return null;
   },
-
+  // Gets the first possible linear column
   /*
   @private
   @function getFirstLinearColumn
@@ -223,7 +222,7 @@ const utils = {
     }
     return null;
   },
-
+  // Gets the first possible time scale column
   /*
   @private
   @function getFirstTimeColumn
@@ -241,10 +240,11 @@ const utils = {
     }
     return null;
   },
-
+  // Parses time data
   /*
   @private
-  @function Parses time data
+  @function parseTimeData
+  @description Parses time data
   @param {Object} data
     @description The graph data object
   @param {String} column
@@ -274,10 +274,11 @@ const utils = {
     }
     return data;
   },
-
+  // Parses strings to numbers
   /*
   @private
-  @function Parses strings to numbers
+  @function parseNumberData
+  @description Parses strings to numbers
   @param {Object} data
     @description The graph data object
   @param {String} column

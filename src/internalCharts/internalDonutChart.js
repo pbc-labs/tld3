@@ -6,7 +6,7 @@ This is required for d3 to load.
 import utils from '../utils/utils';
 
 const DonutChart = {
-
+  // Updates the chart style
   /*
   @private
   @function updateStyle
@@ -23,7 +23,7 @@ const DonutChart = {
     });
     return context;
   },
-
+  // Updates the radius
   /*
   @private
   @function updateRadius
@@ -36,7 +36,7 @@ const DonutChart = {
     context.radius = Math.min(context.getChartHeight, context.getChartWidth) / 2;
     return context;
   },
-
+  // Updates the arc slices with a new scale
   /*
   @private
   @function updateArc
@@ -51,7 +51,7 @@ const DonutChart = {
                .innerRadius(context.radius - 10);
     return context;
   },
-
+  // Updates the pie slices with a new scale
   /*
   @private
   @function updatePie
@@ -66,7 +66,7 @@ const DonutChart = {
       .value(d => { return d[context.linearColumn]; });
     return context;
   },
-
+  // Update the linear name for ordinal data
   /*
   @private
   @function updateLinearColunm
@@ -80,7 +80,7 @@ const DonutChart = {
     context.linearColumn = columnName || utils.getFirstLinearColumn(context.data);
     return context;
   },
-
+  // Update the colunm name for ordinal data
   /*
   @private
   @function updateOrdinalColunm
@@ -94,7 +94,7 @@ const DonutChart = {
     context.ordinalColumn = columnName || utils.getFirstOrdinalColumn(context.data);
     return context;
   },
-
+  // Coverts the charts data to the correct format
   /*
   @private
   @function convertData
@@ -109,7 +109,7 @@ const DonutChart = {
     });
     return context;
   },
-
+  // Builds the actual chart components with data, including the tooltips
   /*
   @private
   @function buildChartComponents
@@ -176,7 +176,7 @@ const DonutChart = {
 
     return context;
   },
-
+  // Updates the donut slices on chart
   /*
   @private
   @function updateChartComponents
@@ -197,7 +197,7 @@ const DonutChart = {
           .text(d => { return d.data[context.ordinalColumn]; });
     return context;
   },
-
+  // Updates the title on the chart
   /*
   @private
   @function updateTitle
