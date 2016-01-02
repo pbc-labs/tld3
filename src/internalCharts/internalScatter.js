@@ -3,6 +3,7 @@
 import utils from '../utils/utils';
 
 const scatter = {
+// Parses and sets the column names for a particular chart instance
 /*
 @private
 @function setColumns
@@ -18,7 +19,7 @@ const scatter = {
 
     return context;
   },
-
+// Sets the scale for the x-axis based on the results of the setColumns function
 /*
 @private
 @function setXscale
@@ -35,7 +36,7 @@ const scatter = {
 
     return context;
   },
-
+// Sets the scale for the y-axis based on the results of the setColumns function
 /*
 @private
 @function setYscale
@@ -51,7 +52,7 @@ const scatter = {
     context.yScale.domain(d3.extent(context.data, (d) => { return +d[context.yColumnName]; })).nice();
     return context;
   },
-
+// Builds the actual chart components with data
 /*
 @private
 @function buildChartComponents
@@ -94,7 +95,7 @@ const scatter = {
 
     return context;
   },
-
+// Updates the chart's style on the element
 /*
 @private
 @function styleChart
@@ -126,6 +127,7 @@ const scatter = {
     this.styleChart(context);
     return context;
   },
+  // Updates the chart's colors
   /*
   @private
   @function  updateColors

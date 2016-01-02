@@ -6,6 +6,7 @@ This is required for d3 to load.
 import utils from '../utils/utils';
 
 const waffle = {
+  // Parses and sets the column names for a particular WaffleChart instance
   /*
   @private
   @function setColumns
@@ -20,7 +21,7 @@ const waffle = {
 
     return context;
   },
-
+  // Processes the data input and calculates the required number of squares and colors
   /*
   @private
   @function processData
@@ -56,7 +57,7 @@ const waffle = {
 
     return context;
   },
-
+  // Calculates the size of each square
   /*
   @private
   @function calculateSize
@@ -71,7 +72,7 @@ const waffle = {
 
     return context;
   },
-
+  // Builds the actual chart components (dots) and tooltip with data.
   /*
   @private
   @function buildChartComponents
@@ -131,7 +132,7 @@ const waffle = {
 
     return context;
   },
-
+  // Updates the chart's style on the element
   /*
   @private
   @function styleChart
@@ -151,7 +152,7 @@ const waffle = {
            .text(`${context.xColumnName} | ${context.yColumnName}`);
     return context;
   },
-
+  // Creates a legend for the chart according to colors and data used
   /*
   @private
   @function createLegend
@@ -184,7 +185,7 @@ const waffle = {
 
     return context;
   },
-
+  // Updates the chart's colors
   /*
   @private
   @function updateColors
@@ -203,7 +204,7 @@ const waffle = {
 
     return context;
   },
-
+  // Updates the chart components by re-processing the data
   /*
   @private
   @function updateChartComponents
