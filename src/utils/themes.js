@@ -1,6 +1,6 @@
-/*
-Holds various themes we expose to the user
-*/
+
+// Holds various themes we expose to the user
+
 
 const themes = {
   bubbly: ['#E71D36', '#26408B', '#FF9F1C', '#767B91', '#0FA3B1'],
