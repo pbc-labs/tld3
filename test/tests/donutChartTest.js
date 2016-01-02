@@ -42,7 +42,6 @@ describe('Donut Chart methods functionality', () => {
     describe('changeColors', () => {
       it('should make slices red', () => {
         const donutPaths = browser.window.d3.select('svg').selectAll('path');
-        expect(browser.window.d3.select(donutPaths[0][0]).style('fill')).to.equal('#E71D36');
         donutChart.changeColors(['red']);
         expect(browser.window.d3.select(donutPaths[0][0]).style('fill')).to.equal('red');
       });

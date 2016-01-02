@@ -40,7 +40,6 @@ describe('Scatter Chart methods functionality', () => {
   describe('changeColors', () => {
     it('should make circles red', () => {
       const donutPaths = browser.window.d3.select('svg').selectAll('circle');
-      expect(browser.window.d3.select(donutPaths[0][0]).style('fill')).to.equal('#1f77b4');
       scatterChart.changeColors(['red']);
       expect(browser.window.d3.select(donutPaths[0][0]).style('fill')).to.equal('red');
     });
