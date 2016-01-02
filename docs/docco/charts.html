@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>charts.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="ChartMain.html">
+                  ChartMain.js
+                </a>
+              
+                
+                <a class="source" href="core.html">
+                  core.js
+                </a>
+              
+                
+                <a class="source" href="InternalBarLeft.html">
+                  InternalBarLeft.js
+                </a>
+              
+                
+                <a class="source" href="internal.html">
+                  internal.js
+                </a>
+              
+                
+                <a class="source" href="internalArea.html">
+                  internalArea.js
+                </a>
+              
+                
+                <a class="source" href="internalBar.html">
+                  internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalDonutChart.html">
+                  internalDonutChart.js
+                </a>
+              
+                
+                <a class="source" href="internalLine.html">
+                  internalLine.js
+                </a>
+              
+                
+                <a class="source" href="internalScatter.html">
+                  internalScatter.js
+                </a>
+              
+                
+                <a class="source" href="internalWaffle.html">
+                  internalWaffle.js
+                </a>
+              
+                
+                <a class="source" href="AreaChart.html">
+                  AreaChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChart.html">
+                  BarChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChartLeft.html">
+                  BarChartLeft.js
+                </a>
+              
+                
+                <a class="source" href="DonutChart.html">
+                  DonutChart.js
+                </a>
+              
+                
+                <a class="source" href="LineChart.html">
+                  LineChart.js
+                </a>
+              
+                
+                <a class="source" href="ScatterChart.html">
+                  ScatterChart.js
+                </a>
+              
+                
+                <a class="source" href="WaffleChart.html">
+                  WaffleChart.js
+                </a>
+              
+                
+                <a class="source" href="charts.html">
+                  charts.js
+                </a>
+              
+                
+                <a class="source" href="data.html">
+                  data.js
+                </a>
+              
+                
+                <a class="source" href="errors.html">
+                  errors.js
+                </a>
+              
+                
+                <a class="source" href="themes.html">
+                  themes.js
+                </a>
+              
+                
+                <a class="source" href="utils.html">
+                  utils.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>charts.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { BarChart } <span class="hljs-keyword">from</span> <span class="hljs-string">'../subModules/BarChart'</span>;
+<span class="hljs-keyword">import</span> { LineChart } <span class="hljs-keyword">from</span> <span class="hljs-string">'../subModules/LineChart'</span>;
+<span class="hljs-keyword">import</span> { DonutChart } <span class="hljs-keyword">from</span> <span class="hljs-string">'../subModules/DonutChart'</span>;
+<span class="hljs-keyword">import</span> { ScatterChart } <span class="hljs-keyword">from</span> <span class="hljs-string">'../subModules/ScatterChart'</span>;
+<span class="hljs-keyword">import</span> { WaffleChart } <span class="hljs-keyword">from</span> <span class="hljs-string">'../subModules/WaffleChart'</span>;
+<span class="hljs-keyword">import</span> { BarChartLeft } <span class="hljs-keyword">from</span> <span class="hljs-string">'../subModules/BarChartLeft'</span>;
+<span class="hljs-keyword">import</span> { AreaChart } <span class="hljs-keyword">from</span> <span class="hljs-string">'../subModules/AreaChart'</span>;
+
+<span class="hljs-comment">/*
+@private
+@description This holds all our chart types within main library.
+A subclass exists for each chart type.
+*/</span>
+
+<span class="hljs-keyword">const</span> charts = {
+  BarChart,
+  LineChart,
+  DonutChart,
+  ScatterChart,
+  WaffleChart,
+  BarChartLeft,
+  AreaChart,
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> charts;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

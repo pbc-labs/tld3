@@ -16,7 +16,6 @@ gulp.task('default', ['clean', 'lint-strict', 'build', 'test', 'doc', 'stage'], 
 
 // run jsDoc on all src files
 gulp.task('doc', shell.task([
-  './node_modules/.bin/jsdoc ./src/**/*.js -t ./node_modules/ink-docstrap/template -c ./node_modules/jsdoc/gen.json',
   './node_modules/.bin/docco ./src/**/*.js -o docs/docco'
 ]));
 

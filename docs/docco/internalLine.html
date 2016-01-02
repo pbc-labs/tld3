@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>internalLine.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="ChartMain.html">
+                  ChartMain.js
+                </a>
+              
+                
+                <a class="source" href="core.html">
+                  core.js
+                </a>
+              
+                
+                <a class="source" href="InternalBarLeft.html">
+                  InternalBarLeft.js
+                </a>
+              
+                
+                <a class="source" href="internal.html">
+                  internal.js
+                </a>
+              
+                
+                <a class="source" href="internalArea.html">
+                  internalArea.js
+                </a>
+              
+                
+                <a class="source" href="internalBar.html">
+                  internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalDonutChart.html">
+                  internalDonutChart.js
+                </a>
+              
+                
+                <a class="source" href="internalLine.html">
+                  internalLine.js
+                </a>
+              
+                
+                <a class="source" href="internalScatter.html">
+                  internalScatter.js
+                </a>
+              
+                
+                <a class="source" href="internalWaffle.html">
+                  internalWaffle.js
+                </a>
+              
+                
+                <a class="source" href="AreaChart.html">
+                  AreaChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChart.html">
+                  BarChart.js
+                </a>
+              
+                
+                <a class="source" href="BarChartLeft.html">
+                  BarChartLeft.js
+                </a>
+              
+                
+                <a class="source" href="DonutChart.html">
+                  DonutChart.js
+                </a>
+              
+                
+                <a class="source" href="LineChart.html">
+                  LineChart.js
+                </a>
+              
+                
+                <a class="source" href="ScatterChart.html">
+                  ScatterChart.js
+                </a>
+              
+                
+                <a class="source" href="WaffleChart.html">
+                  WaffleChart.js
+                </a>
+              
+                
+                <a class="source" href="charts.html">
+                  charts.js
+                </a>
+              
+                
+                <a class="source" href="data.html">
+                  data.js
+                </a>
+              
+                
+                <a class="source" href="errors.html">
+                  errors.js
+                </a>
+              
+                
+                <a class="source" href="themes.html">
+                  themes.js
+                </a>
+              
+                
+                <a class="source" href="utils.html">
+                  utils.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>internalLine.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
+This is required for d3 to load.
+*/</span>
+<span class="hljs-comment">/*  global d3  */</span>
+
+<span class="hljs-keyword">import</span> utils <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/utils'</span>;
+
+<span class="hljs-keyword">const</span> InternalLine = {
+
+  <span class="hljs-comment">/*
+  @private
+  @function styleChart
+  @description Updates the chart's style on the element
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  styleChart(context) {
+    context.element.select(<span class="hljs-string">'svg'</span>)
+        .style(<span class="hljs-string">'font-family'</span>, context.getFontStyle)
+        .attr(<span class="hljs-string">'font-size'</span>, context.getFontSize)
+        .append(<span class="hljs-string">'text'</span>)
+        .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'title'</span>)
+        .attr(<span class="hljs-string">'x'</span>, context.getWidth * <span class="hljs-number">0.5</span>)
+        .attr(<span class="hljs-string">'y'</span>, <span class="hljs-number">20</span>)
+        .text(context.getTitle);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function buildLine
+  @description Builds up the line
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  buildLine(context) {
+    <span class="hljs-comment">/*
+    Build the d3 line using by mapping the x and y values to the data
+    */</span>
+    context.line = d3.svg.line()
+        .x((d) =&gt; { <span class="hljs-keyword">return</span> context.xScale(d.x); })
+        .y((d) =&gt; { <span class="hljs-keyword">return</span> context.yScale(d.y); });
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function buildYAxis
+  @description Builds up the y-axis
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  buildYAxis(context) {
+    context.svg.append(<span class="hljs-string">'g'</span>)
+             .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'y axis'</span>)
+             .call(context.yAxis)
+             .append(<span class="hljs-string">'text'</span>)
+             .attr(<span class="hljs-string">'transform'</span>, <span class="hljs-string">'rotate(-90)'</span>)
+             .attr(<span class="hljs-string">'y'</span>, <span class="hljs-number">-45</span>)
+             .attr(<span class="hljs-string">'x'</span>, -context.getMargins.bottom * <span class="hljs-number">2</span>)
+             .attr(<span class="hljs-string">'dy'</span>, <span class="hljs-string">'.4em'</span>)
+             .style(<span class="hljs-string">'text-anchor'</span>, <span class="hljs-string">'end'</span>)
+             .text(context.getyAxisLabel);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateYAxis
+  @description Updates and rebuilds the y-axis
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateYAxis(context) {
+    <span class="hljs-comment">/*
+    Updated the y-axis on chart by rebuilding it. Used when properties on a chart are changed and require a rebuild.
+    */</span>
+    context.element
+           .select(<span class="hljs-string">'svg'</span>)
+           .selectAll(<span class="hljs-string">'g .y.axis'</span>)
+           .call(context.yAxis);
+
+    context.element.select(<span class="hljs-string">'.y-axis-label'</span>)
+           .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'y-axis-label'</span>)
+           .attr(<span class="hljs-string">'transform'</span>, <span class="hljs-string">'rotate(-90)'</span>)
+           .attr(<span class="hljs-string">'y'</span>, <span class="hljs-number">-45</span>)
+           .attr(<span class="hljs-string">'x'</span>, -context.getMargins.bottom * <span class="hljs-number">2</span>)
+           .attr(<span class="hljs-string">'dy'</span>, <span class="hljs-string">'.4em'</span>)
+           .style(<span class="hljs-string">'text-anchor'</span>, <span class="hljs-string">'end'</span>)
+           .text(context.getyAxisLabel);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function setXScale
+  @description Sets the x-scale according to the data
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+  setXScale(context) {
+    context.setxAxisLabel = context.xColumnName;
+    context.xScale = d3.time.scale()
+                    .range([<span class="hljs-number">0</span>, context.getWidth]);
+    context.xScale.domain(
+      [d3.min(context.data, d =&gt; { <span class="hljs-keyword">return</span> d3.min(d.values, v =&gt; {<span class="hljs-keyword">return</span> v[context.xColumnName]; }); }),
+      d3.max(context.data, d =&gt; { <span class="hljs-keyword">return</span> d3.max(d.values, v =&gt; {<span class="hljs-keyword">return</span> v[context.xColumnName]; }); })]);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function setYScale
+  @description Sets the y-scale according to the data
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+  setYScale(context) {
+    context.setyAxisLabel = <span class="hljs-string">'Default Label'</span>;
+    context.yScale = d3.scale.linear()
+                    .range([context.getHeight, <span class="hljs-number">0</span>]);
+
+    context.yScale.domain(
+      [d3.min(context.data, d =&gt; { <span class="hljs-keyword">return</span> d3.min(d.values, v =&gt; {<span class="hljs-keyword">return</span> v[d.name]; }); }),
+      d3.max(context.data, d =&gt; { <span class="hljs-keyword">return</span> d3.max(d.values, v =&gt; {<span class="hljs-keyword">return</span> v[d.name]; }); })]);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function buildChartComponents
+  @description Builds the actual chart components with data
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+   */</span>
+
+  buildChartComponents(context) {
+    <span class="hljs-keyword">const</span> groups = context.svg.selectAll(<span class="hljs-string">'.line'</span>)
+    .data(context.data)
+    .enter()
+    .append(<span class="hljs-string">'g'</span>);
+
+    <span class="hljs-keyword">const</span> lines = groups.append(<span class="hljs-string">'path'</span>)
+                        .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'line'</span>);
+
+    <span class="hljs-keyword">let</span> k = context.data[<span class="hljs-number">0</span>].values.length;
+    <span class="hljs-keyword">const</span> length = k;
+    d3.timer(() =&gt; {
+      <span class="hljs-keyword">if</span> (k &gt; <span class="hljs-number">0</span>) {
+        k -= <span class="hljs-number">7</span>;
+        lines.attr(<span class="hljs-string">'d'</span>, (d) =&gt; {
+          <span class="hljs-keyword">return</span> context.line(d.values.map(v =&gt; {
+            <span class="hljs-keyword">return</span> { x: v[context.xColumnName], y: v[d.name] };
+          }).slice(<span class="hljs-number">0</span>, length - k)); });
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      }
+    });
+
+    lines.on(<span class="hljs-string">'mouseover'</span>, (d, i) =&gt; {
+      context.element.selectAll(<span class="hljs-string">'.line'</span>)
+      .style(<span class="hljs-string">'opacity'</span>, (data, index) =&gt; {
+        <span class="hljs-keyword">if</span> (index !== i) {
+          <span class="hljs-keyword">return</span> <span class="hljs-number">0.25</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      });
+      context.tooltip.transition()
+       .duration(<span class="hljs-number">200</span>)
+       .style(<span class="hljs-string">'display'</span>, <span class="hljs-string">'block'</span>)
+       .style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">0.9</span>);
+      context.tooltip
+       .html(() =&gt; {
+         <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${context.xColumnName}</span>: <span class="hljs-subst">${context.xScale.invert(d3.event.pageX - context.getMargins.left - context.getMargins.right).toLocaleString()}</span>\
+         <span class="hljs-subst">${d.name}</span>: <span class="hljs-subst">${context.yScale.invert(d3.event.pageY - context.getMargins.top - context.getMargins.bottom).toFixed(3)}</span>`</span>;
+       })
+       .style(<span class="hljs-string">'left'</span>, (d3.event.pageX + <span class="hljs-string">'px'</span>))
+       .style(<span class="hljs-string">'top'</span>, (d3.event.pageY + <span class="hljs-string">'px'</span>));
+    });
+
+    lines.on(<span class="hljs-string">'mouseout'</span>, () =&gt; {
+      context.tooltip.transition().delay(<span class="hljs-number">1000</span>).style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">0</span>).style(<span class="hljs-string">'display'</span>, <span class="hljs-string">'none'</span>);
+      context.element.selectAll(<span class="hljs-string">'.line'</span>).transition().delay(<span class="hljs-number">1000</span>).style(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">1.0</span>);
+    });
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateChartComponents
+  @description Rebuilds the line on the chart
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateChartComponents(context) {
+    context.svg.select(<span class="hljs-string">'.line'</span>).remove();
+    context.svg.append(<span class="hljs-string">'path'</span>)
+            .datum(context.data)
+            .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'line'</span>)
+            .style({
+              fill: <span class="hljs-string">'none'</span>,
+              stroke: context.getColors[<span class="hljs-number">0</span>],
+              <span class="hljs-string">'stroke-width'</span>: <span class="hljs-string">'crispEdges'</span>,
+            })
+            .attr(<span class="hljs-string">'d'</span>, context.line);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function updateColors
+  @description Updates color of bar chart after initial render
+  @@param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateColors(context) {
+    context.svg.selectAll(<span class="hljs-string">'.line'</span>)
+        .style({
+          fill: <span class="hljs-string">'none'</span>,
+          <span class="hljs-string">'stroke-width'</span>: <span class="hljs-string">'crispEdges'</span>,
+        })
+        .style(<span class="hljs-string">'stroke'</span>, (d, i) =&gt; {
+          <span class="hljs-keyword">return</span> context.getColors[i];
+        });
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function convertData
+  @description Converts the data needed for the chart
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  convertData(context) {
+    context.data = utils.parseTimeData(context.data, context.xColumnName, context.dateFormat);
+    <span class="hljs-keyword">const</span> list = [];
+    <span class="hljs-keyword">const</span> dataWorker = (i, columns) =&gt; {
+      list.push({
+        name: columns[i],
+        values: context.data.map(val =&gt; {
+          <span class="hljs-keyword">return</span> { [context.xColumnName]: val[context.xColumnName], [columns[i]]: <span class="hljs-built_in">Number</span>(val[columns[i]]) };
+        }),
+      });
+    };
+    <span class="hljs-keyword">const</span> columns = utils.getColumnNames(context.data);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; columns.length; i++) {
+      <span class="hljs-keyword">if</span> (columns[i] !== context.xColumnName &amp;&amp; utils.isLinear(context.data, columns[i])) {
+        dataWorker(i, columns);
+      }
+    }
+    context.data = list;
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function setColumnNames
+  @description Sets the column names
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  setColumnNames(context) {
+    context.xColumnName = utils.getFirstTimeColumn(context.data, context.dateFormat);
+
+    <span class="hljs-keyword">return</span> context;
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function setTickFormat
+  @description Sets the tick format for xAxis
+  @param {Object} context Chart object
+  @param {String} tickFormat a format specifier
+  */</span>
+
+  setTickFormat(context, tickFormat) {
+    context.xAxis
+    .tickFormat(d3.time.format(tickFormat));
+  },
+
+  <span class="hljs-comment">/*
+  @private
+  @function setTickCount
+  @description Sets the tick count for xAxis
+  @param {Object} context Chart object
+  @param {String} tickCount A count for the number of ticks
+  @param {String} countBy countBy What interval ticks should count e.g. by month, year, minute
+  */</span>
+
+  setTickCount(context, tickCount, countBy) {
+    context.xAxis
+    .ticks(d3.time[countBy], tickCount);
+  },
+
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> InternalLine;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
