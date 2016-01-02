@@ -26,11 +26,11 @@ export class DonutChart extends ChartMain {
     Internal.getParentDimensions(this);
     Internal.getChartDimensions(this);
     Internal.createSVGElement(this);
-    Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalColumn]; }));
     Internal.createToolTip(this);
     InternalDonut.updateStyle(this);
     InternalDonut.updateTranslation(this);
     InternalDonut.updateOrdinalColumn(this);
+    Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalColumn]; }));
     InternalDonut.updateLinearColumn(this);
     InternalDonut.convertData(this);
     InternalDonut.updateRadius(this);
