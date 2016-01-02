@@ -1,6 +1,5 @@
 import { ChartMain } from '../core/ChartMain';
 import Internal from '../internalCharts/internal';
-import InternalBar from '../internalCharts/internalBar';
 import InternalBarLeft from '../internalCharts/InternalBarLeft';
 
 // Constructor subclass for Left Bar Chart.
@@ -41,7 +40,6 @@ export class BarChartLeft extends ChartMain {
     Internal.setAxisStyle(this, 'path', 'none', '#000', 'crispEdges');
     Internal.setAxisStyle(this, 'line', 'none', '#000', 'crispEdges');
     InternalBarLeft.buildChartComponents(this);
-    InternalBar.styleChart(this);
 
     return this;
   }
@@ -136,8 +134,8 @@ export class BarChartLeft extends ChartMain {
   @returns {Object} this (chart instance)
   */
 
-  updateColors(colors) {
-    InternalBar.updateColors(colors, this);
+  updateColors() {
+    InternalBarLeft.updateColors(this);
 
     return this;
   }

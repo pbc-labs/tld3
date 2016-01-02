@@ -254,6 +254,23 @@ const InternalBarLeft = {
     return context;
   },
 
+  // Updates color of left bar chart after initial render
+  /*
+  @private
+  @function updateColors
+  @description Updates color of left bar chart after initial render
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */
+
+  updateColors(context) {
+    context.element.select('svg').selectAll('rect')
+           .remove();
+
+    this.buildChartComponents(context);
+
+    return context;
+  },
 
 };
 
