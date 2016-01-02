@@ -383,6 +383,8 @@ export class ChartMain {
 
     ref.on('value', (snapshot) => {
       this.data = snapshot.val();
+      this.updateHeight();
+      this.updateWidth();
       this.updateChartComponents();
     }, this);
 
