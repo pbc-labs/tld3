@@ -75,7 +75,6 @@ export class BarChartLeft extends ChartMain {
   */
 
   updateHeight() {
-
     // Internal holds all the methods that do d3 manipulation
     // to create and update various parts of the chart
 
