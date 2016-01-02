@@ -61,6 +61,7 @@ tld3.make('BarChart')
 ```
 ![Bar chart](http://imgur.com/3GjBMdS)
 
+
 __Example 2:__ Using CSV file
 
 ```javascript
@@ -76,6 +77,8 @@ tld3.upload('./data/scatterData.csv') // uploading csv data from a file
 ```
 
 ![Scatter chart](http://imgur.com/BlPE4tI)
+
+
 __Example 3:__ Using Firebase database url
 ```javascript
 
