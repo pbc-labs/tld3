@@ -125,7 +125,7 @@ export class ScatterChart extends ChartMain {
 
   set setColors(newColors) {
     this._colors = newColors;
-    Internal.convertColorsToScale(this, this.ordinalNames);
+    Internal.convertColorsToScale(this, this.data.map(d => { return d[this.ordinalNames]; }));
   }
 
   /*
