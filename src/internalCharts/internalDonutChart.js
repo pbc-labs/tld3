@@ -215,6 +215,20 @@ const DonutChart = {
     return this;
   },
 
+   // Updates the donut's position
+   /*
+   @private
+   @function updateTranslation
+   @description Updates the donut's position
+   @param {Object} context (chart instance)
+   @returns {Object} context (chart instance)
+   */
+
+  updateTranslation(context) {
+    context.svg.attr('transform', 'translate(' + context.getParentWidth / 2 + ',' + context.getParentHeight / 2 + ')');
+    return context;
+  },
+
 };
 
 export default DonutChart;
