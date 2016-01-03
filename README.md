@@ -8,10 +8,10 @@ tld3.js is a lightweight library that makes building [d3.js](http://d3js.org`/) 
 1. [Usage](#Usage)
 2. [Requirements](#requirements)
     1. [Installing Dependencies](#installation)
-3. [The Basic Idea](#The basic idea)
-4. [Why use tld3.js?](#Why use tld3.js?)
-5. [What is tld3.js not good for?](#What is tld3.js not good for?)
-6. [Chart types](#Chart types)
+3. [The Basic Idea](#Idea)
+4. [Why use tld3.js?](#Why)
+5. [What is tld3.js not good for?](#WhyNot)
+6. [Chart types](#Types)
 7. [Roadmap](#roadmap)
 8. [Contributing](#contributing)
 
@@ -32,7 +32,7 @@ This assumes that you’re using [npm](https://www.npmjs.com/) package manager. 
 
 If you aren't using npm or a modern module bundler, you can use a pre-built version from cdnjs and place the src link in script tags in your html file(s). This will make tld3.js available as a global object in your project.
 
-## The basic idea
+## Idea
 
 __tl;dr:__ Creating a bar chart in tld3.js is as simple as:
 
@@ -99,7 +99,7 @@ We support data in many formats, including raw JSON or importing data from csv, 
 
 See the [docs](https://iam-peekay.gitbooks.io/tld3/content/) for more information.
 
-## Why use tld3.js?
+## Why
 
 * __Powerful:__ tld3.js rides on [d3.js](http://d3js.org/)'s powerful visualization and data-driven DOM manipulation capabilities
 * __Easy-to-use:__ tld3.js offers an extremely simple and expressive syntax
@@ -108,13 +108,13 @@ See the [docs](https://iam-peekay.gitbooks.io/tld3/content/) for more informatio
 * __Minimal API surface area:__ tld3.js only requires that you learn a handful of methods before you're on your way to making beautiful graphs
 * __tl;dr:__ Tooltips and transitions automagically included!
 
-## What is tld3.js not good for?
+## WhyNot
 
 * Complex physics based d3.js components or animations
 * Brushing, zooming and filtering of selections using built in stateful d3 tools
 * Anything that requires a lot of DOM mutation, events, timers or internal state
 
-## Chart types
+## Types
 
 We currently support the following types of charts:
 * Bar chart
