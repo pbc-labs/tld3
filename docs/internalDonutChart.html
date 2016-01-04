@@ -30,8 +30,8 @@
                 </a>
               
                 
-                <a class="source" href="InternalBarLeft.html">
-                  InternalBarLeft.js
+                <a class="source" href="index.html">
+                  index.js
                 </a>
               
                 
@@ -47,6 +47,11 @@
                 
                 <a class="source" href="internalBar.html">
                   internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalBarLeft.html">
+                  internalBarLeft.js
                 </a>
               
                 
@@ -160,9 +165,22 @@ This is required for d3 to load.
 
 <span class="hljs-keyword">import</span> utils <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/utils'</span>;
 
-<span class="hljs-keyword">const</span> DonutChart = {
+<span class="hljs-keyword">const</span> DonutChart = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Updates the chart style</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateStyle
   @description Updates the chart style
@@ -177,9 +195,22 @@ This is required for d3 to load.
       <span class="hljs-string">'text-anchor'</span>: <span class="hljs-string">'middle'</span>,
     });
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Updates the radius</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateRadius
   @description Updates the radius
@@ -190,9 +221,22 @@ This is required for d3 to load.
   updateRadius(context) {
     context.radius = <span class="hljs-built_in">Math</span>.min(context.getChartHeight, context.getChartWidth) / <span class="hljs-number">2</span>;
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Updates the arc slices with a new scale</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateArc
   @description Updates the arc slices with a new scale
@@ -202,12 +246,25 @@ This is required for d3 to load.
 
   updateArc(context) {
     context.arc = d3.svg.arc()
-               .outerRadius(context.radius - <span class="hljs-number">80</span>)
+               .outerRadius(context.radius - (context.radius / <span class="hljs-number">1.8</span>))
                .innerRadius(context.radius - <span class="hljs-number">10</span>);
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Updates the pie slices with a new scale</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updatePie
   @description Updates the pie slices with a new scale
@@ -220,9 +277,22 @@ This is required for d3 to load.
       .sort(<span class="hljs-literal">null</span>)
       .value(d =&gt; { <span class="hljs-keyword">return</span> d[context.linearColumn]; });
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Update the linear name for ordinal data</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateLinearColunm
   @description Update the linear name for ordinal data
@@ -234,9 +304,22 @@ This is required for d3 to load.
   updateLinearColumn(context, columnName) {
     context.linearColumn = columnName || utils.getFirstLinearColumn(context.data);
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Update the colunm name for ordinal data</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateOrdinalColunm
   @description Update the colunm name for ordinal data
@@ -248,9 +331,22 @@ This is required for d3 to load.
   updateOrdinalColumn(context, columnName) {
     context.ordinalColumn = columnName || utils.getFirstOrdinalColumn(context.data);
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Coverts the charts data to the correct format</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function convertData
   @description Coverts the charts data to the correct format
@@ -263,9 +359,22 @@ This is required for d3 to load.
       item[context.linearColumn] = <span class="hljs-built_in">Number</span>(item[context.linearColumn]);
     });
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Builds the actual chart components with data, including the tooltips</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function buildChartComponents
   @description Builds the actual chart components with data, including the tooltips
@@ -312,11 +421,11 @@ This is required for d3 to load.
         </li>
         
         
-        <li id="section-2">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>select all unfocused arcs and lowers opacity</p>
 
@@ -343,9 +452,22 @@ This is required for d3 to load.
     });
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Updates the donut slices on chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateChartComponents
   @description Updates the donut slices on chart
@@ -364,9 +486,22 @@ This is required for d3 to load.
           .attr(<span class="hljs-string">'dy'</span>, <span class="hljs-string">'.35em'</span>)
           .text(d =&gt; { <span class="hljs-keyword">return</span> d.data[context.ordinalColumn]; });
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Updates the title on the chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateTitle
   @description Updates the title on the chart
@@ -381,6 +516,62 @@ This is required for d3 to load.
     .attr(<span class="hljs-string">'text-anchor'</span>, <span class="hljs-string">'middle'</span>)
     .text(context.getTitle);
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Updates the donut’s position</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>   <span class="hljs-comment">/*
+   @private
+   @function updateTranslation
+   @description Updates the donut's position
+   @param {Object} context (chart instance)
+   @returns {Object} context (chart instance)
+   */</span>
+
+  updateTranslation(context) {
+    context.svg.attr(<span class="hljs-string">'transform'</span>, <span class="hljs-string">'translate('</span> + context.getParentWidth / <span class="hljs-number">2</span> + <span class="hljs-string">','</span> + context.getParentHeight / <span class="hljs-number">2</span> + <span class="hljs-string">')'</span>);
+    <span class="hljs-keyword">return</span> context;
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Updates color of left bar chart after initial render</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
+  @private
+  @function updateColors
+  @description Updates color of left bar chart after initial render
+  @param {Object} context (chart instance)
+  @returns {Object} context (chart instance)
+  */</span>
+
+  updateColors(context) {
+    context.element.select(<span class="hljs-string">'svg'</span>).selectAll(<span class="hljs-string">'rect'</span>)
+           .remove();
+
+    <span class="hljs-keyword">this</span>.buildChartComponents(context);
+
+    <span class="hljs-keyword">return</span> context;
   },
 
 };

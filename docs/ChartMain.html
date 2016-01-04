@@ -30,8 +30,8 @@
                 </a>
               
                 
-                <a class="source" href="InternalBarLeft.html">
-                  InternalBarLeft.js
+                <a class="source" href="index.html">
+                  index.js
                 </a>
               
                 
@@ -47,6 +47,11 @@
                 
                 <a class="source" href="internalBar.html">
                   internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalBarLeft.html">
+                  internalBarLeft.js
                 </a>
               
                 
@@ -157,15 +162,7 @@
 <span class="hljs-keyword">import</span> Internal <span class="hljs-keyword">from</span> <span class="hljs-string">'../internalCharts/internal'</span>;
 <span class="hljs-keyword">import</span> Firebase <span class="hljs-keyword">from</span> <span class="hljs-string">'firebase'</span>;
 <span class="hljs-keyword">import</span> errors <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/errors'</span>;
-<span class="hljs-keyword">import</span> themes <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/themes'</span>;
-
-<span class="hljs-comment">/*
-Defines the main Chart class that servers as the super class for all
-chart types. The ChartMain class defines the default inherited property
-values, setters and getters, and the user-facing API.
-*/</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChartMain</span> </span>{</pre></div></div>
+<span class="hljs-keyword">import</span> themes <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/themes'</span>;</pre></div></div>
             
         </li>
         
@@ -176,11 +173,14 @@ values, setters and getters, and the user-facing API.
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Sets the default inherited property values for all charts</p>
+              <p>Defines the main Chart class that servers as the super class for all
+chart types. The ChartMain class defines the default inherited
+property values, setters and getters, and the user-facing API.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">constructor</span>(width, height, margins, colors, title, fontSize, fontStyle, xAxisLabel, yAxisLabel, xAxisOrientation, yAxisOrientation) {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChartMain</span> </span>{</pre></div></div>
             
         </li>
         
@@ -191,12 +191,12 @@ values, setters and getters, and the user-facing API.
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>this._width = width || 600;
-this._height = height || 300;</p>
+              <p>Sets the default inherited property values for all charts</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>._colors = colors || [<span class="hljs-string">'#E71D36'</span>, <span class="hljs-string">'#26408B'</span>, <span class="hljs-string">'#FF9F1C'</span>, <span class="hljs-string">'#767B91'</span>, <span class="hljs-string">'#0FA3B1'</span>];
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">constructor</span>(width, height, margins, colors, title, fontSize, fontStyle, xAxisLabel, yAxisLabel, xAxisOrientation, yAxisOrientation) {
+    <span class="hljs-keyword">this</span>._colors = colors || [<span class="hljs-string">'#E71D36'</span>, <span class="hljs-string">'#26408B'</span>, <span class="hljs-string">'#FF9F1C'</span>, <span class="hljs-string">'#767B91'</span>, <span class="hljs-string">'#0FA3B1'</span>];
     <span class="hljs-keyword">this</span>._title = title || <span class="hljs-string">'Default title'</span>;
     <span class="hljs-keyword">this</span>._fontSize = fontSize || <span class="hljs-number">14</span>;
     <span class="hljs-keyword">this</span>._fontStyle = fontStyle || <span class="hljs-string">'Arial'</span>;
@@ -208,11 +208,23 @@ this._height = height || 300;</p>
     <span class="hljs-keyword">this</span>._chartWidth = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>._chartHeight = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>._margins = margins || { top: <span class="hljs-literal">null</span>, right: <span class="hljs-literal">null</span>, bottom: <span class="hljs-literal">null</span>, left: <span class="hljs-literal">null</span> };
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>All of the below setters and getters are used for the chart
+properties instantiated in the constructor function above.</p>
 
-  <span class="hljs-comment">/* All of the below setters and getters are used for the chart properties instantiated in the constructor function above.
-  */</span>
-
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
   set setParentHeight(newHeight) {
     <span class="hljs-keyword">this</span>._parentHeight = newHeight;
   }
@@ -319,9 +331,22 @@ this._height = height || 300;</p>
 
   get getyAxisOrientation() {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._yAxisOrientation;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Updates the margins on the chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function changeMargins
   @description Updates the margins on the chart
   @param {Object} options New margin values formatted as such: { top: 30, right: 30, bottom: 30, left: 50 }
@@ -333,11 +358,11 @@ this._height = height || 300;</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Check for valid input</p>
 
@@ -350,11 +375,11 @@ this._height = height || 300;</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Use setter to update margins property</p>
 
@@ -365,11 +390,11 @@ this._height = height || 300;</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Call the updateMargins method that exists on the subclass</p>
 
@@ -380,11 +405,11 @@ this._height = height || 300;</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Call the updateChartComponents method on the subclass
 to recreate the chart components so the changes are visible</p>
@@ -393,9 +418,22 @@ to recreate the chart components so the changes are visible</p>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateChartComponents();
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Updates the width of the chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function changeWidth
   @description Updates the width of the chart
   @param {Number} width New width in px
@@ -407,11 +445,11 @@ to recreate the chart components so the changes are visible</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Check for valid input</p>
 
@@ -424,11 +462,11 @@ to recreate the chart components so the changes are visible</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Use setter to update width property</p>
 
@@ -439,11 +477,11 @@ to recreate the chart components so the changes are visible</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Call the updateWidth method that exists on the subclass</p>
 
@@ -454,11 +492,11 @@ to recreate the chart components so the changes are visible</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Call the updateChartComponents method on the subclass
 to recreate the chart components so the changes are visible</p>
@@ -467,63 +505,7 @@ to recreate the chart components so the changes are visible</p>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateChartComponents();
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
-
-  <span class="hljs-comment">/*
-  @function changeHeight
-  @description Updates the height of the chart
-  @param {Number} height New height in px
-  @returns {Object} this (the chart instance)
-  */</span>
-
-  changeHeight(height) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-12">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
-              </div>
-              <p>Check for valid input</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> height !== <span class="hljs-string">'number'</span>) {
-      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.HeightError;
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-13">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
-              </div>
-              <p>Use setter to update height property</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setChartHeight = height;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-14">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>Call the updateHeight method that exists on the subclass</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateHeight();</pre></div></div>
+  }</pre></div></div>
             
         </li>
         
@@ -534,24 +516,18 @@ to recreate the chart components so the changes are visible</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Call the updateChartComponents method on the subclass
-to recreate the chart components so the changes are visible</p>
+              <p>Updates the height of the chart</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateChartComponents();
-
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
-
-  <span class="hljs-comment">/*
-  @function changeTitle
-  @description Updates the title of the chart
-  @param {String} title New chart title
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
+  @function changeHeight
+  @description Updates the height of the chart
+  @param {Number} height New height in px
   @returns {Object} this (the chart instance)
   */</span>
 
-  changeTitle(title) {</pre></div></div>
+  changeHeight(height) {</pre></div></div>
             
         </li>
         
@@ -566,8 +542,8 @@ to recreate the chart components so the changes are visible</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> title !== <span class="hljs-string">'string'</span> &amp;&amp; <span class="hljs-keyword">typeof</span> title !== <span class="hljs-string">'number'</span>) {
-      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.TitleError;
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> height !== <span class="hljs-string">'number'</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.HeightError;
     }</pre></div></div>
             
         </li>
@@ -579,11 +555,11 @@ to recreate the chart components so the changes are visible</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>Use setter to update title property</p>
+              <p>Use setter to update height property</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setTitle = title;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setChartHeight = height;</pre></div></div>
             
         </li>
         
@@ -594,6 +570,94 @@ to recreate the chart components so the changes are visible</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
+              <p>Call the updateHeight method that exists on the subclass</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateHeight();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Call the updateChartComponents method on the subclass
+to recreate the chart components so the changes are visible</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateChartComponents();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Updates the title of the chart</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
+  @function changeTitle
+  @description Updates the title of the chart
+  @param {String} title New chart title
+  @returns {Object} this (the chart instance)
+  */</span>
+
+  changeTitle(title) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Check for valid input</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> title !== <span class="hljs-string">'string'</span> &amp;&amp; <span class="hljs-keyword">typeof</span> title !== <span class="hljs-string">'number'</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.TitleError;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Use setter to update title property</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setTitle = title;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
               <p>Call the updateTitle method on Internal config object
 which handles the d3 manipulation</p>
 
@@ -602,9 +666,22 @@ which handles the d3 manipulation</p>
             <div class="content"><div class='highlight'><pre>    Internal.updateTitle(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Updates the font size on the chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function changeFontSize
   @description Updates the font size on the chart
   @param {Number} size New font size
@@ -616,11 +693,11 @@ which handles the d3 manipulation</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Check for valid input</p>
 
@@ -633,11 +710,11 @@ which handles the d3 manipulation</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Use setter to update size property</p>
 
@@ -648,11 +725,11 @@ which handles the d3 manipulation</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Call the updateFontSize method on Internal config object
 which handles the d3 manipulation</p>
@@ -662,135 +739,7 @@ which handles the d3 manipulation</p>
             <div class="content"><div class='highlight'><pre>    Internal.updateFontSize(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
-
-  <span class="hljs-comment">/*
-  @function changeFontStyle
-  @description Updates the font style on the chart
-  @param {String} font New font style
-  @returns {Object} this (the chart instance)
-  */</span>
-
-  changeFontStyle(font) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <p>Check for valid input</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> font !== <span class="hljs-string">'string'</span>) {
-      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.FontStyleError;
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-23">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
-              </div>
-              <p>Use setter to update font style property</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setFontStyle = font;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-24">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
-              </div>
-              <p>Call the updateFontStyle method on Internal config object
-which handles the d3 manipulation</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    Internal.updateFontStyle(<span class="hljs-keyword">this</span>);
-
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
-
-  <span class="hljs-comment">/*
-  @function changexAxisLabel
-  @description Updates the x-axis label on the chart
-  @param {String} label New x-axis label
-  @returns {Object} this (the chart instance)
-  */</span>
-
-  changexAxisLabel(label) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-25">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
-              </div>
-              <p>Use setter to update x-axis-label property</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setxAxisLabel = label;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-26">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
-              </div>
-              <p>Call the updatexAxisLabel method on the subclass instance.
-The update functionality varies for each chart type,
-hence why we call the method on the instance</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updatexAxisLabel();
-
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
-
-  <span class="hljs-comment">/**
-  @function changeyAxisLabel
-  @description Updates the y-axis label on the chart.
-  @param {String} label New y-axis label
-  @returns {Object} this (the chart instance)
-  */</span>
-
-  changeyAxisLabel(label) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-27">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
-              </div>
-              <p>Use setter to update y-axis-label property</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setyAxisLabel = label;</pre></div></div>
+  }</pre></div></div>
             
         </li>
         
@@ -801,26 +750,18 @@ hence why we call the method on the instance</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
-              <p>Call the updateyAxisLAbel method on the subclass instance.
-The update functionality varies for each chart type,
-hence why we call the method on the instance</p>
+              <p>Updates the font style on the chart</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateyAxisLabel();
-
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
-
-  <span class="hljs-comment">/*
-  @function changeColors
-  @description Updates the colors on the chart.
-  @param {Array} colors New chart colors. Can be RGB, HEX or string
-  color name
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
+  @function changeFontStyle
+  @description Updates the font style on the chart
+  @param {String} font New font style
   @returns {Object} this (the chart instance)
   */</span>
 
-  changeColors(colors) {</pre></div></div>
+  changeFontStyle(font) {</pre></div></div>
             
         </li>
         
@@ -835,8 +776,8 @@ hence why we call the method on the instance</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.isArray(colors)) {
-      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.ColorError;
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> font !== <span class="hljs-string">'string'</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.FontStyleError;
     }</pre></div></div>
             
         </li>
@@ -848,11 +789,11 @@ hence why we call the method on the instance</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
-              <p>Use setter to update colors property</p>
+              <p>Use setter to update font style property</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setColors = colors;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setFontStyle = font;</pre></div></div>
             
         </li>
         
@@ -863,18 +804,219 @@ hence why we call the method on the instance</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
+              <p>Call the updateFontStyle method on Internal config object
+which handles the d3 manipulation</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    Internal.updateFontStyle(<span class="hljs-keyword">this</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Updates the x-axis label on the chart</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
+  @function changexAxisLabel
+  @description Updates the x-axis label on the chart
+  @param {String} label New x-axis label
+  @returns {Object} this (the chart instance)
+  */</span>
+
+  changexAxisLabel(label) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>Use setter to update x-axis-label property</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setxAxisLabel = label;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Call the updatexAxisLabel method on the subclass instance.
+The update functionality varies for each chart type,
+hence why we call the method on the instance</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updatexAxisLabel();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Updates the y-axis label on the chart.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/**
+  @function changeyAxisLabel
+  @description Updates the y-axis label on the chart.
+  @param {String} label New y-axis label
+  @returns {Object} this (the chart instance)
+  */</span>
+
+  changeyAxisLabel(label) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Use setter to update y-axis-label property</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setyAxisLabel = label;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>Call the updateyAxisLAbel method on the subclass instance.
+The update functionality varies for each chart type,
+hence why we call the method on the instance</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateyAxisLabel();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>Updates the colors on the chart.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
+  @function changeColors
+  @description Updates the colors on the chart.
+  @param {Array} colors New chart colors. Can be RGB, HEX or string
+  color name
+  @returns {Object} this (the chart instance)
+  */</span>
+
+  changeColors(colors) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>Check for valid input</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.isArray(colors)) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> errors.ColorError;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>Use setter to update colors property</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setColors = colors;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
               <p>Call the updateColors method on the subclass instance.
 The update functionality varies for each chart type,
 hence why we call the method on the instance</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateColors();
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.updateColors(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>Sets the div element in which the d3 chart will created.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function in
   @description Sets the div element in which the d3 chart will created.
   @param {String} classOrid Class or Id of the div element where d3 chart
@@ -887,11 +1029,11 @@ hence why we call the method on the instance</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>Check to make sure data has already been set</p>
 
@@ -904,11 +1046,11 @@ hence why we call the method on the instance</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p>Set the location of the d3 chart element to the DOM
 element with the class or id passed in</p>
@@ -920,11 +1062,11 @@ element with the class or id passed in</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <p>Builds up the d3 chart. The functionality for building the
 chart varies by Chart type, hence why it lives on the
@@ -935,9 +1077,22 @@ subclass instance</p>
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.build();
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>Sets the data for the chart.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function using
   @description Sets the data for the chart.
   @param {Object/JSON/URL} dataInput Data for D3 chart
@@ -949,11 +1104,11 @@ subclass instance</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-47">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-47">&#182;</a>
               </div>
               <p>Check for valid input</p>
 
@@ -966,11 +1121,11 @@ subclass instance</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-48">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
               <p>Set the data for the d3 chart using the data passed in</p>
 
@@ -979,8 +1134,24 @@ subclass instance</p>
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.data = dataInput;
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>If using Firebase database as data source, chaining this method
+will capture updates to data in real-time. And chart will update
+without refresh</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
   <span class="hljs-comment">/*
   @function refreshFirebaseData
   @description If using Firebase database as data source, chaining this method will capture updates to data in real-time. And chart will update without refresh
@@ -993,13 +1164,28 @@ subclass instance</p>
 
     ref.on(<span class="hljs-string">'value'</span>, (snapshot) =&gt; {
       <span class="hljs-keyword">this</span>.data = snapshot.val();
+      <span class="hljs-keyword">this</span>.updateHeight();
+      <span class="hljs-keyword">this</span>.updateWidth();
       <span class="hljs-keyword">this</span>.updateChartComponents();
     }, <span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>Allows for customization of chart configuration before rendering.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function with
   @description Allows for customization of chart configuration before rendering.
   @param {Object} configuration object
@@ -1011,11 +1197,11 @@ subclass instance</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-51">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               <p>If the key is theme, we set the colors to the theme’s color
 (stored in themes config object)</p>

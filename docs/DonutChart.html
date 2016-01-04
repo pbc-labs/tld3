@@ -30,8 +30,8 @@
                 </a>
               
                 
-                <a class="source" href="InternalBarLeft.html">
-                  InternalBarLeft.js
+                <a class="source" href="index.html">
+                  index.js
                 </a>
               
                 
@@ -47,6 +47,11 @@
                 
                 <a class="source" href="internalBar.html">
                   internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalBarLeft.html">
+                  internalBarLeft.js
                 </a>
               
                 
@@ -150,12 +155,11 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              
+              <p>This is required for d3 to load.</p>
+
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
-This is required for d3 to load.
-*/</span>
+            <div class="content"><div class='highlight'><pre>
 <span class="hljs-comment">/*  global d3  */</span>
 
 <span class="hljs-keyword">import</span> { ChartMain } <span class="hljs-keyword">from</span> <span class="hljs-string">'../core/ChartMain'</span>;
@@ -165,22 +169,51 @@ This is required for d3 to load.
 <span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DonutChart</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ChartMain</span> </span>{
   <span class="hljs-keyword">constructor</span>() {
     <span class="hljs-keyword">super</span>();
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Builds up the Donut chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function build
   @description Builds up the Donut chart
   @returns {Object} this (chart instance)
   */</span>
-  build() {
-    <span class="hljs-comment">/*
-    Calls each of the methods on Internal and InternalDonut object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */</span>
+  build() {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Calls each of the methods on Internal and InternalDonut
+object necessary to build up all the components of the
+chart. Internal holds all the methods that do d3
+manipulation to create and update various parts of the chart</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
     Internal.selectElement(<span class="hljs-keyword">this</span>);
     Internal.getParentDimensions(<span class="hljs-keyword">this</span>);
     Internal.getChartDimensions(<span class="hljs-keyword">this</span>);
     Internal.createSVGElement(<span class="hljs-keyword">this</span>);
+    InternalDonut.updateTranslation(<span class="hljs-keyword">this</span>);
     Internal.createToolTip(<span class="hljs-keyword">this</span>);
     InternalDonut.updateStyle(<span class="hljs-keyword">this</span>);
     InternalDonut.updateOrdinalColumn(<span class="hljs-keyword">this</span>);
@@ -192,26 +225,67 @@ This is required for d3 to load.
     InternalDonut.updatePie(<span class="hljs-keyword">this</span>);
     InternalDonut.buildChartComponents(<span class="hljs-keyword">this</span>);
     InternalDonut.updateTitle(<span class="hljs-keyword">this</span>);
-    Internal.createLegend(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Calls InternalDonut to update the Donut on chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateChartComponents
   @description Calls InternalDonut to update the Donut on chart
   @returns {Object} this (chart instance)
   */</span>
-  updateChartComponents() {
-    <span class="hljs-comment">/* Calls method on InternalDonut to recreate all the chart components. Used to reflect any changes made to property values (e.g. font-size, axis-label, etc.)
-    */</span>
-    InternalDonut.updateChartComponents(<span class="hljs-keyword">this</span>);
+  updateChartComponents() {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Calls method on InternalDonut to recreate all the
+chart components. Used to reflect any changes made
+to property values (e.g. font-size, axis-label, etc.)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    InternalDonut.updateChartComponents(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Calls InternalDonut to update color of Donut chart after
+initial render.
+Used when a property changes that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateColors
   @description Calls InternalDonut to update color of Donut chart after initial render
@@ -220,23 +294,65 @@ This is required for d3 to load.
   updateColors() {
     InternalDonut.updateChartComponents(<span class="hljs-keyword">this</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Updates the chart’s margin on the element itself</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
-  @returns {Object} this Chart object
-  */</span>
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Used when the margins change that requires a re-render.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  @returns {Object} this Chart object
+  */
 
   updateMargins() {
-    <span class="hljs-keyword">this</span>.updateHeight();
-    <span class="hljs-keyword">this</span>.updateWidth();
+    this.updateHeight();
+    this.updateWidth();
 
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+    return this;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Updates the chart’s width on the element itself
+Used when the width changes that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateWidth
   @description Updates the chart's width on the element itself
@@ -250,9 +366,23 @@ This is required for d3 to load.
     InternalDonut.updateChartComponents(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Updates the chart’s height on the element itself
+Used when the height changes that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateHeight
   @description Updates the chart's height on the element itself
@@ -266,9 +396,23 @@ This is required for d3 to load.
     InternalDonut.updateChartComponents(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Overrides the default ChartMain setColors setter
+Maps to an ordinal scale</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function setColors
   @description Overrides the default ChartMain setColors setter - maps to an ordinal scale

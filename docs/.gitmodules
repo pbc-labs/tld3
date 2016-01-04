@@ -1,4 +1,0 @@
-[submodule "docs/docco"]
-	path = docs/docco
-	url = https://github.com/iam-peekay/tld3.git
-	branch = gh-pages

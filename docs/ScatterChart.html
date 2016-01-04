@@ -30,8 +30,8 @@
                 </a>
               
                 
-                <a class="source" href="InternalBarLeft.html">
-                  InternalBarLeft.js
+                <a class="source" href="index.html">
+                  index.js
                 </a>
               
                 
@@ -47,6 +47,11 @@
                 
                 <a class="source" href="internalBar.html">
                   internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalBarLeft.html">
+                  internalBarLeft.js
                 </a>
               
                 
@@ -150,39 +155,75 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              
+              <p>This is required for d3 to load.</p>
+
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
-This is required for d3 to load.
-*/</span>
-<span class="hljs-comment">/* global d3 */</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global d3 */</span>
 
 <span class="hljs-keyword">import</span> { ChartMain } <span class="hljs-keyword">from</span> <span class="hljs-string">'../core/ChartMain'</span>;
 <span class="hljs-keyword">import</span> Internal <span class="hljs-keyword">from</span> <span class="hljs-string">'../internalCharts/internal'</span>;
-<span class="hljs-keyword">import</span> InternalScatter <span class="hljs-keyword">from</span> <span class="hljs-string">'../internalCharts/internalScatter'</span>;
+<span class="hljs-keyword">import</span> InternalScatter <span class="hljs-keyword">from</span> <span class="hljs-string">'../internalCharts/internalScatter'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Defines the subclass for the Scatter Chart.</p>
 
-<span class="hljs-comment">/*
-Defines the subclass for the Scatter Chart.
-*/</span>
-
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScatterChart</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ChartMain</span> </span>{
   <span class="hljs-keyword">constructor</span>() {
     <span class="hljs-keyword">super</span>();
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Calls the necessary internal methods from Internal object
+and InternalScatter to build the scatter chart.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function build
   @description Calls the necessary internal methods from Internal object and InternalScatter to build the scatter chart.
   @returns {Object} this (chart instance)
   */</span>
 
-  build() {
-    <span class="hljs-comment">/*
-    Calls each of the methods on Internal and InternalScatter object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */</span>
-    Internal.selectElement(<span class="hljs-keyword">this</span>);
+  build() {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Calls each of the methods on Internal and InternalScatter
+object necessary to build up all the components of the chart.
+Internal holds all the methods that do d3 manipulation to
+create and update various chart elements</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    Internal.selectElement(<span class="hljs-keyword">this</span>);
     Internal.getParentDimensions(<span class="hljs-keyword">this</span>);
     Internal.getChartDimensions(<span class="hljs-keyword">this</span>);
     InternalScatter.setColumns(<span class="hljs-keyword">this</span>);
@@ -195,11 +236,11 @@ Defines the subclass for the Scatter Chart.
         </li>
         
         
-        <li id="section-2">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>x-axis</p>
 
@@ -211,11 +252,11 @@ Defines the subclass for the Scatter Chart.
         </li>
         
         
-        <li id="section-3">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>y-axis</p>
 
@@ -228,9 +269,22 @@ Defines the subclass for the Scatter Chart.
     InternalScatter.buildChartComponents(<span class="hljs-keyword">this</span>);
     InternalScatter.styleChart(<span class="hljs-keyword">this</span>);
     Internal.createLegend(<span class="hljs-keyword">this</span>);
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Updates the dots on chart. Calls the internal update function</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateChartComponents
   @description Updates the dots on chart. Calls the internal update function
@@ -240,45 +294,114 @@ Defines the subclass for the Scatter Chart.
     InternalScatter.updateChartComponents(<span class="hljs-keyword">this</span>);
     Internal.createLegend(<span class="hljs-keyword">this</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Updates the chart’s height on the element itself</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateHeight
   @description Updates the chart's height on the element itself
   @returns {Object} this (chart instance)
   */</span>
 
-  updateHeight() {
-    <span class="hljs-comment">/*
-    Calls each of the methods on Internal object necessary to update the height of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */</span>
-    Internal.updateSVGElement(<span class="hljs-keyword">this</span>);
+  updateHeight() {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Calls each of the methods on Internal object
+necessary to update the height of the chart. Internal
+ holds all the methods that do d3 manipulation to
+create and update various parts of the chart</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    Internal.updateSVGElement(<span class="hljs-keyword">this</span>);
     InternalScatter.setYscale(<span class="hljs-keyword">this</span>);
     Internal.updateYAxisScale(<span class="hljs-keyword">this</span>);
     Internal.updateYAxis(<span class="hljs-keyword">this</span>);
     Internal.updateXAxisPosition(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Updates the chart’s margin on the element itself</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateMargins
   @description Updates the chart's margin on the element itself
   @returns {Object} this (chart instance)
   */</span>
 
-  updateMargins() {
-    <span class="hljs-comment">/*
-    Calls updateHeight and updateWidth on this instance to reflect the new margins.
-    */</span>
+  updateMargins() {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Calls updateHeight and updateWidth on this instance
+to reflect the new margins.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
     <span class="hljs-keyword">this</span>.updateHeight();
     <span class="hljs-keyword">this</span>.updateWidth();
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Calls each of the methods on Internal object necessary to
+update the width of the chart. Internal holds all the
+methods that do d3 manipulation to create and update various
+parts of the chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateWidth
   @description Updates the chart's width on the element itself
@@ -286,18 +409,29 @@ Defines the subclass for the Scatter Chart.
   */</span>
 
   updateWidth() {
-    <span class="hljs-comment">/*
-    Calls each of the methods on Internal object necessary to update the width of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */</span>
     Internal.updateSVGElement(<span class="hljs-keyword">this</span>);
     InternalScatter.setXscale(<span class="hljs-keyword">this</span>);
     Internal.updateXAxisScale(<span class="hljs-keyword">this</span>);
     Internal.updateXAxis(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Overrides the default ChartMain setColors setter.
+Maps to an ordinal scale</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function setColors
   @description Overrides the default ChartMain setColors setter - maps to an ordinal scale
@@ -307,9 +441,23 @@ Defines the subclass for the Scatter Chart.
   set setColors(newColors) {
     <span class="hljs-keyword">this</span>._colors = newColors;
     Internal.convertColorsToScale(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>.data.map(d =&gt; { <span class="hljs-keyword">return</span> d[<span class="hljs-keyword">this</span>.ordinalNames]; }));
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Calls InternalScatter to update color of scatter
+chart after initial render</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateColors
   @description Calls InternalScatter to update color of scatter chart after initial render
@@ -319,9 +467,22 @@ Defines the subclass for the Scatter Chart.
     InternalScatter.updateColors(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Calls Internal to update/rerender x-axis label.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updatexAxisLabel
   @description Calls Internal to update x-axis label
@@ -335,12 +496,25 @@ Defines the subclass for the Scatter Chart.
     Internal.updateXAxis(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Calls Internal to update/rerender y-axis label</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateyAxisLabel
-  @description Calls Internal to update y-axis label
+  @description Calls Internal to update/rerender y-axis label
   @returns {Object} this Chart object
   */</span>
 
