@@ -1,7 +1,7 @@
 # tl;d3
 [![Build Status](https://travis-ci.org/pbc-labs/tld3.svg?branch=master)](https://travis-ci.org/pbc-labs/tld3)
 
-tld3.js is a lightweight library that makes building [d3.js](http://d3js.org`/) graphs much simpler. It abstracts the intricacies of d3.js while harnessing the power of its data-driven DOM manipulation.
+tld3.js is a lightweight library that makes building [d3.js](http://d3js.org/) graphs much simpler. It abstracts the intricacies of d3.js while harnessing the power of its data-driven DOM manipulation.
 
 ## Table of Contents
 
