@@ -1,5 +1,5 @@
 
-// Holds various themes we expose to the user
+// Holds colors themes that are exposed to the user
 
 
 const themes = {

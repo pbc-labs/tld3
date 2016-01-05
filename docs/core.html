@@ -30,8 +30,8 @@
                 </a>
               
                 
-                <a class="source" href="InternalBarLeft.html">
-                  InternalBarLeft.js
+                <a class="source" href="index.html">
+                  index.js
                 </a>
               
                 
@@ -47,6 +47,11 @@
                 
                 <a class="source" href="internalBar.html">
                   internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalBarLeft.html">
+                  internalBarLeft.js
                 </a>
               
                 
@@ -158,19 +163,51 @@ tld3.js 1.0.0
 http://tld3js.org
 (c) 2015 Preethi Kasireddy, Banun Atina Idris and Colin Seale
 tld3 may be freely distributed under the MIT license.
-*/</span>
+*/</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>This is required for d3 to load.</p>
 
-<span class="hljs-comment">/*
-This is required for d3 to load.
-*/</span>
-<span class="hljs-comment">/* global d3 */</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-comment">/* global d3 */</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Import all necessary submodules into the core module</p>
 
-<span class="hljs-comment">/**
-Import all necessary submodules into the core module
-*/</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>This defines our main library object.</p>
 
-<span class="hljs-comment">/*
-This defines our main library object.
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
 @private
 */</span>
 
@@ -181,9 +218,22 @@ This defines our main library object.
 <span class="hljs-keyword">const</span> lib = {
   internal,
 
-  version: <span class="hljs-string">'1.0.0'</span>,
+  version: <span class="hljs-string">'1.0.0'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Returns the appropriate chart instance that matches the</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function make
   @description Returns the appropriate chart instance that matches the
   chart type passed in
@@ -193,9 +243,22 @@ This defines our main library object.
 
   make(chartType) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> charts[chartType]();
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Fetches data from the url passed in</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function upload
   @description Fetches data from the url passed in
   @param {String} dataLocation Url of the file where data is located
@@ -204,9 +267,22 @@ This defines our main library object.
 
   upload(dataUrl) {
     <span class="hljs-keyword">return</span> utils.getData(dataUrl);
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Fetches data from the Firebase url passed in</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function uploadFirebase
   @description Fetches data from the Firebase url passed in
   @param {String} url Url of the Firebase database where data is stored

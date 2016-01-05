@@ -6,6 +6,7 @@ var mocha = require('gulp-mocha');
 var del = require('del');
 var webpack = require("webpack");
 var babel = require('babel-register');
+var ghPages = require('gulp-gh-pages');
 // var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require("./webpack.config.js");
 
@@ -18,6 +19,12 @@ gulp.task('default', ['clean', 'lint-strict', 'build', 'test', 'doc', 'stage'], 
 gulp.task('doc', shell.task([
   './node_modules/.bin/docco ./src/**/*.js -o docs/'
 ]));
+
+// publish docco to gh-pages
+gulp.task('deploy', function () {
+  return gulp.src('./docs/**/*')
+    .pipe(ghPages());
+});
 
 //Lint files using Airbnb config ESLinter
 gulp.task('lint', function () {

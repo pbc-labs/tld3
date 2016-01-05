@@ -30,8 +30,8 @@
                 </a>
               
                 
-                <a class="source" href="InternalBarLeft.html">
-                  InternalBarLeft.js
+                <a class="source" href="index.html">
+                  index.js
                 </a>
               
                 
@@ -47,6 +47,11 @@
                 
                 <a class="source" href="internalBar.html">
                   internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalBarLeft.html">
+                  internalBarLeft.js
                 </a>
               
                 
@@ -150,18 +155,30 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              
+              <p>This is required for d3 to load.</p>
+
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
-This is required for d3 to load.
-*/</span>
-<span class="hljs-comment">/* global d3 */</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global d3 */</span>
 
 <span class="hljs-keyword">import</span> utils <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/utils'</span>;
 
-<span class="hljs-keyword">const</span> Internal = {
-  <span class="hljs-comment">/*
+<span class="hljs-keyword">const</span> Internal = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Creates a d3 element and assigns it to our internal ‘element’ property</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function selectElement
   @description Creates a d3 element and assigns it to our internal 'element' property
@@ -169,15 +186,42 @@ This is required for d3 to load.
   @returns {Object} context (chart instance)
   */</span>
 
-  selectElement(context) {
-    <span class="hljs-comment">/* Use d3 to select the DOM element where the chart will be drawn. Set the element to our chart's 'element' property
-    */</span>
-    context.element = d3.select(context.location);
+  selectElement(context) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Use d3 to select the DOM element where the chart
+will be drawn. Set the element to our chart’s ‘element’ property</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    context.element = d3.select(context.location);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Obtains the height and width of the containing element.
+If the width is 0, the width of the window is used.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function getParentDimensions
   @description Obtains the height and width of the containing element. If the width is 0, the width of the window is used.
@@ -192,9 +236,23 @@ This is required for d3 to load.
     context.element.style(<span class="hljs-string">'height'</span>, <span class="hljs-string">`<span class="hljs-subst">${context._parentHeight}</span>px`</span>);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Calculates the height and width of the chart according
+to the size of the containing element</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function getChartDimensions
   @description Calculates the height and width of the chart according to the size of the containing element
@@ -213,9 +271,22 @@ This is required for d3 to load.
     };
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Creates the main SVG element</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function createSVGElement
   @description Creates the main SVG element
@@ -223,10 +294,23 @@ This is required for d3 to load.
   @returns {Object} context (chart instance)
   */</span>
 
-  createSVGElement(context) {
-    <span class="hljs-comment">/* Appends the SVG to our chart element. Sets the width and height of the SVG.
-    */</span>
-    context.translateX = (context.getParentWidth / <span class="hljs-number">2</span>) - (context.getChartWidth / <span class="hljs-number">2</span>);
+  createSVGElement(context) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Appends the SVG to our chart element.
+Sets the width and height of the SVG.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    context.translateX = (context.getParentWidth / <span class="hljs-number">2</span>) - (context.getChartWidth / <span class="hljs-number">2</span>);
 
     context.translateY = (context.getParentHeight / <span class="hljs-number">2</span>) - (context.getChartHeight / <span class="hljs-number">2</span>);
     context.container = context.element.append(<span class="hljs-string">'div'</span>)
@@ -234,7 +318,6 @@ This is required for d3 to load.
                                          <span class="hljs-string">'display'</span>: <span class="hljs-string">'inline-block'</span>,
                                          <span class="hljs-string">'position'</span>: <span class="hljs-string">'relative'</span>,
                                          <span class="hljs-string">'width'</span>: <span class="hljs-string">'100%'</span>,
-                                         <span class="hljs-string">'padding-bottom'</span>: <span class="hljs-string">'100%'</span>,
                                          <span class="hljs-string">'vertical-align'</span>: <span class="hljs-string">'middle'</span>,
                                          <span class="hljs-string">'overflow'</span>: <span class="hljs-string">'hidden'</span>,
                                        });
@@ -248,9 +331,22 @@ This is required for d3 to load.
                           .attr(<span class="hljs-string">'transform'</span>, <span class="hljs-string">`translate(<span class="hljs-subst">${context.translateX}</span>, <span class="hljs-subst">${context.translateY}</span>)`</span>);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Updates the main SVG element</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateSVGElement
   @description Updates the main SVG element
@@ -258,19 +354,45 @@ This is required for d3 to load.
   @returns {Object} context (chart instance)
   */</span>
 
-  updateSVGElement(context) {
-    <span class="hljs-comment">/* Select current SVG element and tpdates the width and height of the SVG.
-    */</span>
-    context.element.select(<span class="hljs-string">'svg'</span>)
+  updateSVGElement(context) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Select current SVG element and tpdates the width and height of the SVG.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    context.element.select(<span class="hljs-string">'svg'</span>)
            .attr(<span class="hljs-string">'width'</span>, context.getChartWidth + context.getMargins.left + context.getMargins.right)
            .attr(<span class="hljs-string">'height'</span>, context.getChartHeight + context.getMargins.top + context.getMargins.bottom)
            .append(<span class="hljs-string">'g'</span>)
            .attr(<span class="hljs-string">'transform'</span>, <span class="hljs-string">'translate('</span> + context.getMargins.left + <span class="hljs-string">','</span> + context.getMargins.top + <span class="hljs-string">')'</span>);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Creates a d3 x-axis using the appropriate scale and orientation
+for this chart instance</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function createxAxis
   @description Creates d3 x-axis
@@ -279,16 +401,28 @@ This is required for d3 to load.
   */</span>
 
   createxAxis(context) {
-    <span class="hljs-comment">/*
-    Builds x-axis using the appropriate scale and orientation.
-    */</span>
     context.xAxis = d3.svg.axis()
                       .scale(context.xScale)
                       .orient(context.getxAxisOrientation)
                       .ticks(<span class="hljs-number">6</span>);
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Creates a d3 y-axis using the appropriate scale and orientation
+for this chart instance</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
   <span class="hljs-comment">/*
   @private
   @function createyAxis
@@ -306,9 +440,24 @@ This is required for d3 to load.
                       .orient(context.getyAxisOrientation);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Updates y-axis using the new scale. Used when user
+updates some chart property that requires recreation
+of axis.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateYAxisScale
   @description Updates the up the y-axis scale
@@ -317,19 +466,29 @@ This is required for d3 to load.
   */</span>
 
   updateYAxisScale(context) {
-    <span class="hljs-comment">/*
-    Updates y-axis using the new scale. Used when user
-    updates some chart property that requires recreation
-    of Axis
-    */</span>
     context.yAxis = d3.svg.axis()
                       .scale(context.yScale)
                       .orient(context.getyAxisOrientation);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Updates x-axis using the new scale. Used when user
+updates some chart property that requires recreation
+of axis.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateXAxisScale
   @description Updates the up the x-axis scale
@@ -338,19 +497,28 @@ This is required for d3 to load.
   */</span>
 
   updateXAxisScale(context) {
-    <span class="hljs-comment">/*
-    Updates x-axis using the new scale. Used when user
-    updates some chart property that requires recreation
-    of Axis
-    */</span>
     context.xAxis = d3.svg.axis()
                       .scale(context.xScale)
                       .orient(context.getxAxisOrientation);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Builds up the x-axis. Sets the class property, transforms
+the height to the bottom of graph, and appends an axis label.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function buildXAxis
   @description Builds up the x-axis
@@ -359,9 +527,6 @@ This is required for d3 to load.
   */</span>
 
   buildXAxis(context) {
-    <span class="hljs-comment">/*
-    Builds up the x-axis. Sets the class property, transforms the height to the bottom of graph, and appends an axis label
-    */</span>
     context.svg.append(<span class="hljs-string">'g'</span>)
                .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'x axis'</span>)
                .attr(<span class="hljs-string">'transform'</span>, <span class="hljs-string">'translate(0, '</span> + context.getChartHeight + <span class="hljs-string">')'</span>)
@@ -374,9 +539,22 @@ This is required for d3 to load.
                .text(context.getxAxisLabel);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Translates the x-axis to the right location</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateXAxisPosition
   @description Translates the x-axis
@@ -391,9 +569,23 @@ This is required for d3 to load.
            .attr(<span class="hljs-string">'transform'</span>, <span class="hljs-string">'translate(0, '</span> + context.getChartHeight + <span class="hljs-string">')'</span>);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Builds up the y-axis. Sets the class property, rotates
+the position to be to left of graph, and appends an axis label</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function buildYAxis
   @description Builds up the y-axis and adds the label
@@ -401,9 +593,6 @@ This is required for d3 to load.
   @returns {Object} context (chart instance)
   */</span>
   buildYAxis(context) {
-    <span class="hljs-comment">/*
-    Builds up the y-axis. Sets the class property, rotates the position to be to left of graph, and appends an axis label
-    */</span>
     context.svg.append(<span class="hljs-string">'g'</span>)
            .attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'y axis'</span>)
            .call(context.yAxis)
@@ -415,9 +604,23 @@ This is required for d3 to load.
            .style(<span class="hljs-string">'text-anchor'</span>, <span class="hljs-string">'end'</span>)
            .text(context.getyAxisLabel);
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Updates the y-axis on chart by rebuilding it. Used when
+properties on a chart are changed that requires axis rebuild.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function Updates the up the y-axis
   @param {Object} context (chart instance)
@@ -425,9 +628,6 @@ This is required for d3 to load.
   */</span>
 
   updateYAxis(context) {
-    <span class="hljs-comment">/*
-    Updates the y-axis on chart by rebuilding it. Used when properties on a chart are changed that requires axis rebuild.
-    */</span>
     context.element
            .select(<span class="hljs-string">'svg'</span>)
            .selectAll(<span class="hljs-string">'g .y.axis'</span>)
@@ -442,9 +642,23 @@ This is required for d3 to load.
            .text(context.getyAxisLabel);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Updated the x-axis on chart by rebuilding it. Used when
+properties on a chart are changed that requires axis rebuild.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateXAxis
   @description Updates the up the x-axis scale
@@ -453,9 +667,6 @@ This is required for d3 to load.
   */</span>
 
   updateXAxis(context) {
-    <span class="hljs-comment">/*
-    Updated the x-axis on chart by rebuilding it. Used when properties on a chart are changed that requires axis rebuild.
-    */</span>
     context.element
            .select(<span class="hljs-string">'svg'</span>)
            .selectAll(<span class="hljs-string">'g .x.axis'</span>)
@@ -467,10 +678,23 @@ This is required for d3 to load.
            .text(context.getxAxisLabel);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Updates the chart’s font size on the svg
+Used when the font size changes that requires a re-render</p>
 
-
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateFontSize
   @description Updates the chart's font size on the svg
@@ -483,9 +707,23 @@ This is required for d3 to load.
            .attr(<span class="hljs-string">'font-size'</span>, context.getFontSize);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Updates the chart’s font style on the svg
+Used when the font style changes that requires a re-render</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateFontStyle
   @description Updates the chart's font style on the svg
@@ -498,9 +736,23 @@ This is required for d3 to load.
            .style(<span class="hljs-string">'font-family'</span>, context.getFontStyle);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Updates the chart’s title on the svg
+Used when the title changes that requires a re-render</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateTitle
   @description Updates the chart's title on the svg
@@ -513,9 +765,22 @@ This is required for d3 to load.
             .text(context.getTitle);
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Sets the xScale for chart.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function setXscale
   @description Sets the xScale for chart. Checks for the type of scale passed in, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
@@ -525,12 +790,24 @@ This is required for d3 to load.
   @returns {Object} context (chart instance)
   */</span>
 
-  setXscale(context, type, dataDomain) {
-    <span class="hljs-comment">/*
-    If check for the type of axis and build accordingly.
-    In addition, we use helper functions to get the column name and
-    set it to be the axis label.
-    */</span>
+  setXscale(context, type, dataDomain) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>If check for the type of axis and build accordingly.
+In addition, we use helper functions to get the column name
+and set it to be the axis label.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
     <span class="hljs-keyword">if</span> (type === <span class="hljs-string">'ordinal'</span>) {
       context.xColumnName = utils.getFirstOrdinalColumn(context.data);
       context.setxAxisLabel = context.xColumnName;
@@ -541,11 +818,24 @@ This is required for d3 to load.
       context.setxAxisLabel = context.xColumnName;
       context.xScale = d3.scale.linear()
                       .range([context.getChartWidth, <span class="hljs-number">0</span>]);
-    }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>We map the x-axis scale domain to the data. How the mapping
+is done various depending on whether we have string (ordinal)
+values or Number (linear) values</p>
 
-    <span class="hljs-comment">/*
-    We map the x-axis scale domain to the data. How the mapping is done various depending on whether we have string (ordinal) values or Number (linear) values
-    */</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
     <span class="hljs-keyword">if</span> (dataDomain === <span class="hljs-string">'string'</span>) {
       context.xScale.domain(context.data.map(d =&gt; { <span class="hljs-keyword">return</span> d[context.xColumnName]; }));
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dataDomain === <span class="hljs-string">'number'</span>) {
@@ -553,9 +843,22 @@ This is required for d3 to load.
     }
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Sets the yScale for chart.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function setYscale
   @description Sets the yScale for chart. Checks for the type of scale passed in, and builds the scale accordingly. Then depending on whether we are using the ordinal scale or linear scale, we map the data to the scale accordingly.
@@ -565,11 +868,24 @@ This is required for d3 to load.
   @returns {Object} this (chart instance)
   */</span>
 
-  setYscale(context, type, dataDomain) {
-    <span class="hljs-comment">/*
-    If check for the type of axis and build accordingly.
-    In addition, we use helper functions to get the column name and set it to be the axis label.
-    */</span>
+  setYscale(context, type, dataDomain) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>If check for the type of axis and build accordingly.
+In addition, we use helper functions to get the column name
+and set it to be the axis label.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
     <span class="hljs-keyword">if</span> (type === <span class="hljs-string">'ordinal'</span>) {
       context.yColumnName = utils.getFirstOrdinalColumn(context.data);
       context.setyAxisLabel = context.yColumnName;
@@ -580,21 +896,46 @@ This is required for d3 to load.
       context.setyAxisLabel = context.yColumnName;
       context.yScale = d3.scale.linear()
                       .range([context.getChartHeight, <span class="hljs-number">0</span>]);
-    }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>We map the y-axis scale domain to the data. How the mapping
+is done various depending on whether we have string (ordinal)
+values or Number (linear) values</p>
 
-    <span class="hljs-comment">/*
-    We map the y-axis scale domain to the data. How the mapping is done various depending on whether we have string (ordinal) values or Number (linear) values
-    */</span>
-    <span class="hljs-keyword">if</span> (dataDomain === <span class="hljs-string">'string'</span>) {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (dataDomain === <span class="hljs-string">'string'</span>) {
       context.yScale.domain(context.data.map(d =&gt; { <span class="hljs-keyword">return</span> d[context.yColumnName]; }));
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dataDomain === <span class="hljs-string">'number'</span>) {
       context.yScale.domain([<span class="hljs-number">0</span>, d3.max(context.data, d =&gt; { <span class="hljs-keyword">return</span> d[context.yColumnName]; })]);
     }
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Sets style properties for chart axis</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function
   @description Sets style properties for chart axis
@@ -615,9 +956,22 @@ This is required for d3 to load.
            });
 
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Creates an ordinal color scale according to categories passed in</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function convertColorsToScale
   @description Creates an ordinal color scale according to categories passed in
@@ -630,9 +984,22 @@ This is required for d3 to load.
                             .domain(categories)
                             .range(context.getColors);
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Creates tooltips on chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function createToolTip
   @description Creates tooltips on chart
@@ -663,11 +1030,11 @@ This is required for d3 to load.
         </li>
         
         
-        <li id="section-2">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Turns on visibility of tooltip</p>
 
@@ -682,11 +1049,11 @@ This is required for d3 to load.
         </li>
         
         
-        <li id="section-3">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Turns off visibility of tooltip</p>
 
@@ -701,11 +1068,11 @@ This is required for d3 to load.
         </li>
         
         
-        <li id="section-4">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Determines the location the tooltip should render
 Sets the content of the tooltip</p>
@@ -724,10 +1091,22 @@ Sets the content of the tooltip</p>
     context.tooltip.hide = hide;
     context.tooltip.setContent = setContent;
     <span class="hljs-keyword">return</span> context;
-  },
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Creates legend on chart</p>
 
-
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function createLegend
   @description Creates legend on chart
@@ -752,11 +1131,11 @@ Sets the content of the tooltip</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Setting colors</p>
 
@@ -767,11 +1146,11 @@ Sets the content of the tooltip</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>append the name of ordinal data</p>
 

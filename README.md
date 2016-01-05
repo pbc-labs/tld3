@@ -59,7 +59,7 @@ tld3.make('BarChart')
     .using(data)
     .in('#barchart');
 ```
-![Bar chart](http://imgur.com/3GjBMdS)
+![Alt text](./assets/bar.png)
 
 
 __Example 2:__ Using CSV file
@@ -76,7 +76,7 @@ tld3.upload('./data/scatterData.csv') // uploading csv data from a file
     });
 ```
 
-![Scatter chart](http://imgur.com/BlPE4tI)
+![Alt text](./assets/scatter.png)
 
 
 __Example 3:__ Using Firebase database url

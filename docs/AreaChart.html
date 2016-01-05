@@ -30,8 +30,8 @@
                 </a>
               
                 
-                <a class="source" href="InternalBarLeft.html">
-                  InternalBarLeft.js
+                <a class="source" href="index.html">
+                  index.js
                 </a>
               
                 
@@ -47,6 +47,11 @@
                 
                 <a class="source" href="internalBar.html">
                   internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalBarLeft.html">
+                  internalBarLeft.js
                 </a>
               
                 
@@ -161,20 +166,47 @@
   <span class="hljs-keyword">constructor</span>() {
     <span class="hljs-keyword">super</span>();
     <span class="hljs-keyword">this</span>.dateFormat = <span class="hljs-string">''</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Build up all the components for the chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function build
   @description Build up all the components for the chart
   @returns {Object} this (chart instance)
   */</span>
 
-  build() {
-    <span class="hljs-comment">/*
-    Calls each of the methods on Internal and InternalArea object necessary to build up all the components of the chart. Internal holds all the methods that do d3 manipulation to create and update various parts of the chart
-    */</span>
+  build() {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Calls each of the methods on Internal and InternalArea object
+necessary to build up all the components of the chart. Internal
+holds all the methods that do d3 manipulation to create and
+update various parts of the chart</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
     Internal.selectElement(<span class="hljs-keyword">this</span>);
     Internal.getParentDimensions(<span class="hljs-keyword">this</span>);
     Internal.getChartDimensions(<span class="hljs-keyword">this</span>);
@@ -196,9 +228,23 @@
     InternalArea.styleChart(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Updates the area components on the chart
+Used when a property changes that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateChartComponents
   @description Updates the area components on the chart
@@ -209,9 +255,23 @@
     InternalArea.updateChartComponents(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Updates the chart’s height on the element
+Used when the height changes that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateHeight
   @description Updates the chart's height on the element
@@ -228,9 +288,23 @@
     InternalArea.updateChartComponents(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Updates the chart’s width on the element
+Used when the width changes that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateWidth
   @description Updates the chart's width on the element
@@ -245,9 +319,23 @@
     InternalArea.buildArea(<span class="hljs-keyword">this</span>);
     InternalArea.updateChartComponents(<span class="hljs-keyword">this</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Updates the chart’s margin on the element
+Used when the margins change that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateMargins
   @description Updates the chart's margin on the element
@@ -258,9 +346,23 @@
     <span class="hljs-keyword">this</span>.updateWidth();
     <span class="hljs-keyword">this</span>.updateHeight();
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Update color of area in chart
+Used when the color property changes that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @function updateColors
   @description Update color of area in chart
   @returns {Object} this (chart instance)

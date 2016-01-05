@@ -17,7 +17,6 @@ coverage
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
-dist/
 
 # Dependency directories
 # Deployed apps should consider commenting these lines out:
@@ -26,4 +25,3 @@ node_modules/
 bower_components/
 
 .DS_Store
-

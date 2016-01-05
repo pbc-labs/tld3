@@ -73,7 +73,7 @@ describe('Bar Chart methods functionality', () => {
       expect(barXColumn).to.equal('letterTest');
     });
 
-    it('should set the right x-column name', () => {
+    it('should set the right y-column name', () => {
       const barChart = browser.window.tld3.make('BarChart');
       barChart.using(dataBarChart).in('#barchart');
       const barYColumn = barChart.getyAxisLabel;

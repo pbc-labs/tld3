@@ -26,7 +26,8 @@
     {
       "name": "Colin Seale",
       "email": "ceseale3@gmail.com"
-      }],
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pbc-labs/tld3/issues"
@@ -51,6 +52,7 @@
     "gulp": "3.9.0",
     "gulp-babel": "6.1.1",
     "gulp-eslint": "1.1.1",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-mocha": "2.2.0",
     "gulp-shell": "0.5.1",
     "gulp-util": "3.0.7",

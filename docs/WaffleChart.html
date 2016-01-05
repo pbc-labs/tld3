@@ -30,8 +30,8 @@
                 </a>
               
                 
-                <a class="source" href="InternalBarLeft.html">
-                  InternalBarLeft.js
+                <a class="source" href="index.html">
+                  index.js
                 </a>
               
                 
@@ -47,6 +47,11 @@
                 
                 <a class="source" href="internalBar.html">
                   internalBar.js
+                </a>
+              
+                
+                <a class="source" href="internalBarLeft.html">
+                  internalBarLeft.js
                 </a>
               
                 
@@ -150,23 +155,15 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              
+              <p>This is required for d3 to load.</p>
+
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
-This is required for d3 to load.
-*/</span>
-<span class="hljs-comment">/* global d3 */</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global d3 */</span>
 
 <span class="hljs-keyword">import</span> { ChartMain } <span class="hljs-keyword">from</span> <span class="hljs-string">'../core/ChartMain'</span>;
 <span class="hljs-keyword">import</span> Internal <span class="hljs-keyword">from</span> <span class="hljs-string">'../internalCharts/internal'</span>;
-<span class="hljs-keyword">import</span> InternalWaffle <span class="hljs-keyword">from</span> <span class="hljs-string">'../internalCharts/internalWaffle'</span>;
-<span class="hljs-comment">/**
-Constructor subclass for Waffle Chart.
-*/</span>
-<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WaffleChart</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ChartMain</span> </span>{
-  <span class="hljs-keyword">constructor</span>() {
-    <span class="hljs-keyword">super</span>();</pre></div></div>
+<span class="hljs-keyword">import</span> InternalWaffle <span class="hljs-keyword">from</span> <span class="hljs-string">'../internalCharts/internalWaffle'</span>;</pre></div></div>
             
         </li>
         
@@ -176,6 +173,24 @@ Constructor subclass for Waffle Chart.
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Constructor subclass for Waffle Chart.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WaffleChart</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ChartMain</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Adds default waffleChart configuration</p>
 
@@ -190,23 +205,34 @@ Constructor subclass for Waffle Chart.
         </li>
         
         
-        <li id="section-3">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Overwrites default colors with ordinal scale</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>._colors = d3.scale.category10();
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>All of the below setters and getters are used for the chart
+properties instantiated in the contructor function above.</p>
 
-  <span class="hljs-comment">/*
-  All of the below setters and getters are used for the chart properties instantiated in the contructor function above.
-  */</span>
-
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
   get getSquareValue() {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._squareValue;
   }
@@ -240,9 +266,22 @@ Constructor subclass for Waffle Chart.
   }
   get getGapSize() {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._gap;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Builds up the elements of the waffle chart</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function build
   @description Builds up the waffle chart
@@ -263,9 +302,23 @@ Constructor subclass for Waffle Chart.
     InternalWaffle.createLegend(<span class="hljs-keyword">this</span>);
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Calls InternalWaffle to update the waffle chart components.
+Used when a property changes that requires a re-render.</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function updateChartComponents
   @description Calls InternalWaffle to update the waffle chart components
@@ -280,13 +333,14 @@ Constructor subclass for Waffle Chart.
         </li>
         
         
-        <li id="section-4">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>overwrites setChartHeight for wafflechart</p>
+              <p>Overwrites setChartHeight for wafflechart (wafflechart is differet
+from the other charts)</p>
 
             </div>
             
@@ -325,9 +379,23 @@ Constructor subclass for Waffle Chart.
   updateHeight() {
     Internal.updateSVGElement(<span class="hljs-keyword">this</span>);
     InternalWaffle.updateChartComponents(<span class="hljs-keyword">this</span>);
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Overrides the default ChartMain setColors setter.
+Maps to an ordinal scale</p>
 
-  <span class="hljs-comment">/*
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
   @private
   @function setColors
   @description Overrides the default ChartMain setColors setter - maps to an ordinal scale
@@ -338,18 +406,32 @@ Constructor subclass for Waffle Chart.
                     .domain(<span class="hljs-keyword">this</span>.getColors.domain())
                     .range(newColors);
     <span class="hljs-keyword">this</span>._colors = color;
-  }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Updates color of waffle chart after initial render
+Used when a property changes that requires a re-render.</p>
 
-<span class="hljs-comment">/*
-@private
-@function Updates color of waffle chart after initial render
-@returns {Object} this (chart instance)
-*/</span>
-  updateColors() {
-    InternalWaffle.updateColors(<span class="hljs-keyword">this</span>);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-comment">/*
+  @private
+  @function Updates color of waffle chart after initial render
+  @returns {Object} this (chart instance)
+  */</span>
+    updateColors() {
+      InternalWaffle.updateColors(<span class="hljs-keyword">this</span>);
 
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  }
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
 }</pre></div></div>
             
         </li>
