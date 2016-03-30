@@ -93,7 +93,7 @@ tld3.uploadFirebase('https://tld3.firebaseio.com/') // upload data from from Fir
     });
 
 ```
-![Line chart](http://imgur.com/jHaOwju)
+![Line chart](./assets/line.png)
 
 We support data in many formats, including raw JSON or importing data from csv, tsv or JSON files. We now also support Firebase database urls which allows you to have live data updates!
 
