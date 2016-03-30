@@ -1,6 +1,6 @@
 {
   "name": "tld3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An expressive, modular library for D3.js.",
   "main": "dist/tld3.js",
   "repository": {
