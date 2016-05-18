@@ -5,13 +5,13 @@ tld3.js is a lightweight library that makes building [d3.js](http://d3js.org/) g
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+1. [Usage](#usage)
 2. [Requirements](#requirements)
     1. [Installing Dependencies](#installation)
-3. [The Basic Idea](#Idea)
-4. [Why use tld3.js?](#Why)
-5. [What is tld3.js not good for?](#WhyNot)
-6. [Chart types](#Types)
+3. [The Basic Idea](#idea)
+4. [Why use tld3.js?](#why)
+5. [What is tld3.js not good for?](#whynot)
+6. [Chart types](#types)
 7. [Roadmap](#roadmap)
 8. [Contributing](#contributing)
 
